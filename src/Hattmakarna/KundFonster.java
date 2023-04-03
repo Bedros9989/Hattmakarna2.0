@@ -20,16 +20,16 @@ public class KundFonster extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        andraKundinformation = new javax.swing.JButton();
+        hanteraKundinformation = new javax.swing.JButton();
         registreraNyKund = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
-        andraKundinformation.setText("Ändra kundinformation");
-        andraKundinformation.addActionListener(new java.awt.event.ActionListener() {
+        hanteraKundinformation.setText("Hantera kundinformation");
+        hanteraKundinformation.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                andraKundinformationActionPerformed(evt);
+                hanteraKundinformationActionPerformed(evt);
             }
         });
 
@@ -47,9 +47,9 @@ public class KundFonster extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(57, 57, 57)
                 .addComponent(registreraNyKund)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(andraKundinformation)
-                .addGap(57, 57, 57))
+                .addGap(18, 18, 18)
+                .addComponent(hanteraKundinformation)
+                .addContainerGap(36, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -57,7 +57,7 @@ public class KundFonster extends javax.swing.JFrame {
                 .addGap(117, 117, 117)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(registreraNyKund, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(andraKundinformation, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(hanteraKundinformation, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(157, Short.MAX_VALUE))
         );
 
@@ -82,17 +82,17 @@ public class KundFonster extends javax.swing.JFrame {
         
     }//GEN-LAST:event_registreraNyKundActionPerformed
 
-    private void andraKundinformationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_andraKundinformationActionPerformed
+    private void hanteraKundinformationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hanteraKundinformationActionPerformed
         
-        new ÄndraKundInfoFonster(idb).setVisible(true);
+        new HanteraKundInfoFonster(idb).setVisible(true);
         dispose();
         
-    }//GEN-LAST:event_andraKundinformationActionPerformed
+    }//GEN-LAST:event_hanteraKundinformationActionPerformed
 
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton andraKundinformation;
+    private javax.swing.JButton hanteraKundinformation;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JButton registreraNyKund;
     // End of variables declaration//GEN-END:variables

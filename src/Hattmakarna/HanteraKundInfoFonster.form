@@ -24,16 +24,12 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="jPanel1" max="32767" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-          </Group>
+          <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jPanel1" alignment="0" max="32767" attributes="0"/>
+          <Component id="jPanel1" alignment="1" min="-2" max="-2" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
@@ -44,47 +40,55 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="142" max="-2" attributes="0"/>
-                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
-              </Group>
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                          <Component id="jÄndraKundTel" min="-2" max="-2" attributes="0"/>
-                          <Component id="jÄndraKundNamn" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jÄndraKundAdress" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jÄndraKundMejl" alignment="0" min="-2" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="jÄndraKundNamn" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="jLojalitetsKund" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="jÄndraKundAdress" min="-2" max="-2" attributes="0"/>
+                      <Component id="jÄndraKundTel" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                      <Component id="jÄndraKundMejl" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="91" max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
+                  <EmptySpace pref="150" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Component id="jÄndratKundTel" min="-2" pref="160" max="-2" attributes="0"/>
                       <Component id="jÄndradKundAdress" min="-2" pref="160" max="-2" attributes="0"/>
                       <Component id="jÄndradKundMejl" min="-2" pref="160" max="-2" attributes="0"/>
                       <Component id="jAngeLojalitetsKund" alignment="0" min="-2" pref="160" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jÄndratKundNamn" alignment="1" min="-2" pref="160" max="-2" attributes="0"/>
-                          <Component id="jButton1" min="-2" pref="160" max="-2" attributes="0"/>
+                      <Component id="jÄndratKundNamn" alignment="0" min="-2" pref="160" max="-2" attributes="0"/>
+                      <Component id="jButton1" min="-2" pref="160" max="-2" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="jAngivetKundID" min="-2" pref="75" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="jKundIDKnapp" pref="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+              </Group>
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace max="32767" attributes="0"/>
+                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="148" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
-                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+                  <Component id="jLabel1" min="-2" pref="38" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jAngivetKundID" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jKundIDKnapp" alignment="0" max="32767" attributes="0"/>
+                  </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jÄndraKundNamn" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jÄndratKundNamn" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jÄndraKundNamn" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jÄndratKundTel" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jÄndraKundTel" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -101,12 +105,12 @@
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jLojalitetsKund" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jAngeLojalitetsKund" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLojalitetsKund" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="jButton1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="30" max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -117,9 +121,25 @@
             <Property name="text" type="java.lang.String" value="&#xc4;ndra kundinformation"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="j&#xc4;ndraKundNamn">
+        <Component class="javax.swing.JLabel" name="jLabel2">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Namn"/>
+            <Property name="text" type="java.lang.String" value="Ange KundID"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="j&#xc4;ndratKundNamn">
+        </Component>
+        <Component class="javax.swing.JTextField" name="j&#xc4;ndratKundTel">
+        </Component>
+        <Component class="javax.swing.JLabel" name="j&#xc4;ndraKundMejl">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="E-postadress"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="jAngeLojalitetsKund">
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLojalitetsKund">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Lojalitetskund"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="j&#xc4;ndraKundTel">
@@ -127,34 +147,33 @@
             <Property name="text" type="java.lang.String" value="Telefonnummer"/>
           </Properties>
         </Component>
+        <Component class="javax.swing.JTextField" name="j&#xc4;ndradKundMejl">
+        </Component>
+        <Component class="javax.swing.JTextField" name="j&#xc4;ndradKundAdress">
+        </Component>
+        <Component class="javax.swing.JButton" name="jButton1">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="&#xc4;ndra kundinformation"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="j&#xc4;ndraKundNamn">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Namn"/>
+          </Properties>
+        </Component>
         <Component class="javax.swing.JLabel" name="j&#xc4;ndraKundAdress">
           <Properties>
             <Property name="text" type="java.lang.String" value="Gatuadress"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="j&#xc4;ndraKundMejl">
+        <Component class="javax.swing.JTextField" name="jAngivetKundID">
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jAngivetKundIDActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="jKundIDKnapp">
           <Properties>
-            <Property name="text" type="java.lang.String" value="E-postadress"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="j&#xc4;ndratKundNamn">
-        </Component>
-        <Component class="javax.swing.JTextField" name="j&#xc4;ndratKundTel">
-        </Component>
-        <Component class="javax.swing.JTextField" name="j&#xc4;ndradKundAdress">
-        </Component>
-        <Component class="javax.swing.JTextField" name="j&#xc4;ndradKundMejl">
-        </Component>
-        <Component class="javax.swing.JLabel" name="jLojalitetsKund">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Lojalitetskund"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="jAngeLojalitetsKund">
-        </Component>
-        <Component class="javax.swing.JButton" name="jButton1">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="&#xc4;ndra kundinformation"/>
+            <Property name="text" type="java.lang.String" value="OK"/>
           </Properties>
         </Component>
       </SubComponents>
