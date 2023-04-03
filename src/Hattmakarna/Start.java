@@ -1,3 +1,5 @@
+package Hattmakarna;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import oru.inf.InfDB;
@@ -14,7 +16,7 @@ public class Start {
             Logger.getLogger(Start.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-                new Meny(idb).setVisible(true); // Här öppnas en ny Meny
+                new InloggningsFonster(idb).setVisible(true); // Här öppnas en ny Meny
             }
     
 }
