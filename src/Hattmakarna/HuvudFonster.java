@@ -1,3 +1,5 @@
+package Hattmakarna;
+
 import oru.inf.InfDB;
 
 

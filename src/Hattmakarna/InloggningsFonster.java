@@ -1,3 +1,5 @@
+package Hattmakarna;
+
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import oru.inf.InfDB;

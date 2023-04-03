@@ -1,26 +1,26 @@
+package Hattmakarna;
+
 import javax.swing.JOptionPane;
+import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 import oru.inf.InfDB;
 import oru.inf.InfException;
 
-public class ÄndraKundInfoFonster extends javax.swing.JFrame {
+public class RegistreraBestallning extends javax.swing.JFrame {
 
     private InfDB idb;
 
-    public ÄndraKundInfoFonster(InfDB idb) {
+    public RegistreraBestallning(InfDB idb) {
         initComponents();
         this.idb = idb;
         this.setLocationRelativeTo(null);
-        ÄndraKundInfoFonster.this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        RegistreraBestallning.this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
-
-
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setResizable(false);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
