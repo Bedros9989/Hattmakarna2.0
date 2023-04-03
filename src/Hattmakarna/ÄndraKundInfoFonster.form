@@ -61,20 +61,16 @@
                   </Group>
                   <EmptySpace pref="91" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="1" attributes="0">
-                          <Component id="jÄndratKundNamn" min="-2" pref="160" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jÄndratKundTel" min="-2" pref="160" max="-2" attributes="0"/>
-                              <Component id="jÄndradKundAdress" min="-2" pref="160" max="-2" attributes="0"/>
-                              <Component id="jÄndradKundMejl" min="-2" pref="160" max="-2" attributes="0"/>
-                              <Component id="jAngeLojalitetsKund" alignment="0" min="-2" pref="160" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jÄndratKundTel" min="-2" pref="160" max="-2" attributes="0"/>
+                      <Component id="jÄndradKundAdress" min="-2" pref="160" max="-2" attributes="0"/>
+                      <Component id="jÄndradKundMejl" min="-2" pref="160" max="-2" attributes="0"/>
+                      <Component id="jAngeLojalitetsKund" alignment="0" min="-2" pref="160" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jÄndratKundNamn" alignment="1" min="-2" pref="160" max="-2" attributes="0"/>
+                          <Component id="jButton1" min="-2" pref="160" max="-2" attributes="0"/>
                       </Group>
                   </Group>
+                  <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -108,7 +104,9 @@
                       <Component id="jLojalitetsKund" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jAngeLojalitetsKund" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="70" max="32767" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="30" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -153,6 +151,11 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jAngeLojalitetsKund">
+        </Component>
+        <Component class="javax.swing.JButton" name="jButton1">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="&#xc4;ndra kundinformation"/>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>
