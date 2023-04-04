@@ -113,6 +113,11 @@ public class RegistreraBestallning extends javax.swing.JFrame {
 
         btnUppdateraKundReg.setFont(new java.awt.Font("Helvetica Neue", 0, 10)); // NOI18N
         btnUppdateraKundReg.setText("Uppdatera kundregister");
+        btnUppdateraKundReg.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUppdateraKundRegActionPerformed(evt);
+            }
+        });
 
         jButton1.setText("tillfällig knapp till hantera beställning som ej funkar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -134,29 +139,14 @@ public class RegistreraBestallning extends javax.swing.JFrame {
                         .addComponent(cbAnsvarig, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel6)
-                                        .addGap(84, 84, 84)
-                                        .addComponent(cbHattID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jLabel1))
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel5)))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(cbKundID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(39, 39, 39)
-                                .addComponent(jLabel7))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(50, 50, 50)
-                                .addComponent(jbLaggTillHatt)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel5)
+                        .addGap(18, 18, 18)
+                        .addComponent(cbKundID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(39, 39, 39)
+                        .addComponent(jLabel7)
+                        .addGap(13, 13, 13)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnUppdateraKundReg)
                             .addComponent(jbRegKund))
@@ -172,7 +162,14 @@ public class RegistreraBestallning extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(96, 96, 96)
-                                .addComponent(jButton1)))
+                                .addComponent(jButton1))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel6)
+                                .addGap(84, 84, 84)
+                                .addComponent(cbHattID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(28, 28, 28)
+                                .addComponent(jbLaggTillHatt))
+                            .addComponent(jLabel1))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
@@ -285,6 +282,21 @@ public class RegistreraBestallning extends javax.swing.JFrame {
     private void cbKundIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbKundIDActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cbKundIDActionPerformed
+
+    private void btnUppdateraKundRegActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUppdateraKundRegActionPerformed
+        // TODO add your handling code here:
+//        String fraga= "Update table Bestallning";
+//        
+//        try{
+//            idb.
+//            JOptionPane.showMessageDialog(null, "Kundregistret är uppdaterat!");
+//    }
+//        catch (InfException e){
+//            System.out.println("något är fel");
+//        }
+    
+        
+    }//GEN-LAST:event_btnUppdateraKundRegActionPerformed
 
 private void fyllcbHattID(){
     String fraga= "select HattID from Hatt";
