@@ -180,31 +180,7 @@ public class HanteraKundInfoFonster extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         
-        if (ValideringsKlass.tommaTextFält(jÄndraKundNamn, jÄndraKundTel, jÄndraKundMejl, jÄndradKundAdress)){
-    
-           
-                String namn = jÄndraKundNamn.getText();
-                String telefonnummer = jÄndraKundTel.getText();
-                
-                if (jÄndraKundNamn.getText().isEmpty() == false) {
-                    try {
-                        JOptionPane.showMessageDialog(null, "Namn har ändrats!");
-                        idb.update("UPDATE kund SET Telefon = '" + telefonnummer + "' WHERE KundID = " + kundID);
-                    } catch (InfException error) {
-                        JOptionPane.showMessageDialog(null, "Något gick fel!");
-                        System.out.println("Internt felmedelande" + error.getMessage());
-                    }
-                }
-                if (jÄndraKundTel.getText().isEmpty() == false) {
-                    try {
-                        JOptionPane.showMessageDialog(null, "Telefonnummer har ändrats!");
-                        idb.update("UPDATE alien SET Namn = '" + namn + "' WHERE Alien_ID = " + alienId);
-                    } catch (InfException error) {
-                        JOptionPane.showMessageDialog(null, "Något gick fel!");
-                        System.out.println("Internt felmedelande" + error.getMessage());
-                    }
-                }
-            }
+       
        
     }//GEN-LAST:event_jButton1ActionPerformed
 
