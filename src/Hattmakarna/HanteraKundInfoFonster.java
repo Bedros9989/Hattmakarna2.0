@@ -173,17 +173,48 @@ public class HanteraKundInfoFonster extends javax.swing.JFrame {
     }//GEN-LAST:event_jÄndratKundNamnActionPerformed
 
     private void jKundIDKnappActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jKundIDKnappActionPerformed
-       if(jAngivetKundID.getText().isEmpty()){
-           JOptionPane.showMessageDialog(null, "Vänligen fyll i ett Kund ID och det du vill ändra!");
-       }
+      
     }//GEN-LAST:event_jKundIDKnappActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         
-      if(ValideringsKlass.rutanÄrTom (jÄndratKundNamn, jÄndraKundNamn)){
-          
+      if(jAngivetKundID.getText().isEmpty()){
+           JOptionPane.showMessageDialog(null, "Vänligen fyll i ett Kund ID och det du vill ändra!");
+       } else{
       }
-       
+                String kundid = jAngivetKundID.getText();
+                String namn = jÄndratKundNamn.getText();
+                String telefonnummer = jÄndraKundTel.getText();
+                String gatuadress = jÄndraKundAdress.getText();
+                if (jÄndratKundNamn.getText().isEmpty() == false) {
+                    try {
+                        JOptionPane.showMessageDialog(null, "Namn har ändrats!");
+                        idb.update("UPDATE kund SET Namn = '" + namn + "' WHERE Kundid = " + jAngivetKundID);
+                    } catch (InfException error) {
+                        JOptionPane.showMessageDialog(null, "Något gick fel!");
+                        System.out.println("Internt felmedelande" + error.getMessage());
+                    }
+                }
+                if (jÄndraKundTel.getText().isEmpty() == false) {
+                    try {
+                        JOptionPane.showMessageDialog(null, "Telefonnummer har ändrats!");
+                        idb.update("UPDATE kund SET Telefonnummer = '" + telefonnummer + "' WHERE Kundid = " + jÄndraKundTel);
+                    } catch (InfException error) {
+                        JOptionPane.showMessageDialog(null, "Något gick fel!");
+                        System.out.println("Internt felmedelande" + error.getMessage());
+                    }
+                }
+                 if (jÄndraKundAdress.getText().isEmpty() == false) {
+                    try {
+                        JOptionPane.showMessageDialog(null, "Gatuadress har ändrats!");
+                        idb.update("UPDATE kund SET gatuadress = '" + gatuadress + "' WHERE kundid = " + jÄndraKundAdress);
+                    } catch (InfException error) {
+                        JOptionPane.showMessageDialog(null, "Något gick fel!");
+                        System.out.println("Internt felmedelande" + error.getMessage());
+                    }
+                }
+                 
+               
     }//GEN-LAST:event_jButton1ActionPerformed
 
 
