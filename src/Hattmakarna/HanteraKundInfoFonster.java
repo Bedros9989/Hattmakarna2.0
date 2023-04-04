@@ -56,6 +56,11 @@ public class HanteraKundInfoFonster extends javax.swing.JFrame {
         jÄndraKundTel.setText("Telefonnummer");
 
         jButton1.setText("Ändra kundinformation");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jÄndraKundNamn.setText("Namn");
 
@@ -68,6 +73,11 @@ public class HanteraKundInfoFonster extends javax.swing.JFrame {
         });
 
         jKundIDKnapp.setText("OK");
+        jKundIDKnapp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jKundIDKnappActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -161,6 +171,42 @@ public class HanteraKundInfoFonster extends javax.swing.JFrame {
     private void jÄndratKundNamnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jÄndratKundNamnActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jÄndratKundNamnActionPerformed
+
+    private void jKundIDKnappActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jKundIDKnappActionPerformed
+       if(jAngivetKundID.getText().isEmpty()){
+           JOptionPane.showMessageDialog(null, "Vänligen fyll i ett Kund ID och det du vill ändra!");
+       }
+    }//GEN-LAST:event_jKundIDKnappActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        
+        if (ValideringsKlass.tommaTextFält(jÄndraKundNamn, jÄndraKundTel, jÄndraKundMejl, jÄndradKundAdress)){
+    
+           
+                String namn = jÄndraKundNamn.getText();
+                String telefonnummer = jÄndraKundTel.getText();
+                
+                if (jÄndraKundNamn.getText().isEmpty() == false) {
+                    try {
+                        JOptionPane.showMessageDialog(null, "Namn har ändrats!");
+                        idb.update("UPDATE kund SET Telefon = '" + telefonnummer + "' WHERE KundID = " + kundID);
+                    } catch (InfException error) {
+                        JOptionPane.showMessageDialog(null, "Något gick fel!");
+                        System.out.println("Internt felmedelande" + error.getMessage());
+                    }
+                }
+                if (jÄndraKundTel.getText().isEmpty() == false) {
+                    try {
+                        JOptionPane.showMessageDialog(null, "Telefonnummer har ändrats!");
+                        idb.update("UPDATE alien SET Namn = '" + namn + "' WHERE Alien_ID = " + alienId);
+                    } catch (InfException error) {
+                        JOptionPane.showMessageDialog(null, "Något gick fel!");
+                        System.out.println("Internt felmedelande" + error.getMessage());
+                    }
+                }
+            }
+       
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
 

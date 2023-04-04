@@ -40,4 +40,18 @@ public class ValideringsKlass {
         return resultat;
     }
     
+     public static boolean tommaTextFält(JTextField ... textrutor){
+        boolean resultat = true;
+        for (JTextField text : textrutor){
+            if (text.getText().isEmpty()){
+                resultat = false;
+            }
+        }
+            if (!resultat){
+                JOptionPane.showMessageDialog(null, "Vänligen fyll i alla fält!");
+            }
+        
+        return resultat;
+    }
+    
 }

@@ -166,6 +166,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="&#xc4;ndra kundinformation"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="j&#xc4;ndraKundNamn">
           <Properties>
@@ -186,6 +189,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="OK"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jKundIDKnappActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
