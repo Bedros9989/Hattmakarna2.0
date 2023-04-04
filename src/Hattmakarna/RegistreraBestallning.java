@@ -18,6 +18,7 @@ public class RegistreraBestallning extends javax.swing.JFrame {
         RegistreraBestallning.this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         btnUppdateraKundReg.setVisible(false);
         fyllcbHattID();
+        fyllcbPersonalID();
     }
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -68,7 +69,7 @@ public class RegistreraBestallning extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Helvetica Neue", 2, 13)); // NOI18N
         jLabel7.setText("Ny kund");
 
-        cbHattID.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Välj hattID", "Item 2", "Item 3", "Item 4" }));
+        cbHattID.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Välj hattID" }));
         cbHattID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbHattIDActionPerformed(evt);
@@ -96,7 +97,7 @@ public class RegistreraBestallning extends javax.swing.JFrame {
 
         jLabel8.setText("Ansvarig för beställning");
 
-        cbAnsvarig.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Välj", "Otto", "Judith", "" }));
+        cbAnsvarig.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Välj" }));
         cbAnsvarig.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbAnsvarigActionPerformed(evt);
@@ -275,6 +276,7 @@ private void fyllcbHattID(){
             JOptionPane.showMessageDialog(null, "Något gick snett, prova igen!");
             
     }
+}
     
     private void fyllcbPersonalID(){
     String fraga= "select PersonalID from Personal";
@@ -283,7 +285,7 @@ private void fyllcbHattID(){
         allaPersonalIDn= idb.fetchColumn(fraga);
         
         for (String PersonalID: allaPersonalIDn){
-            cbHPersonalID.addItem(PersonalID);
+            cbAnsvarig.addItem(PersonalID);
         }
         
     }
