@@ -259,7 +259,7 @@ public class RegistreraBestallning extends javax.swing.JFrame {
     }//GEN-LAST:event_jbRegBestallningActionPerformed
 
     private void jbRegKundActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbRegKundActionPerformed
-        // Länk till RegistreraKundFonster?
+        // Länk till RegistreraKundFonster?..
         new RegistreraKundFonster(idb).setVisible(true);
         btnUppdateraKundReg.setVisible(true);
         
