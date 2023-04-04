@@ -118,7 +118,7 @@
       <SubComponents>
         <Component class="javax.swing.JLabel" name="jLabel1">
           <Properties>
-            <Property name="text" type="java.lang.String" value="&#xc4;ndra kundinformation"/>
+            <Property name="text" type="java.lang.String" value="Hantera kundinformation"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel2">
@@ -127,6 +127,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="j&#xc4;ndratKundNamn">
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="j&#xc4;ndratKundNamnActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="j&#xc4;ndratKundTel">
         </Component>

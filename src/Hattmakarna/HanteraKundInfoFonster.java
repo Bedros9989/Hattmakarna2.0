@@ -39,9 +39,15 @@ public class HanteraKundInfoFonster extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
-        jLabel1.setText("Ändra kundinformation");
+        jLabel1.setText("Hantera kundinformation");
 
         jLabel2.setText("Ange KundID");
+
+        jÄndratKundNamn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jÄndratKundNamnActionPerformed(evt);
+            }
+        });
 
         jÄndraKundMejl.setText("E-postadress");
 
@@ -146,6 +152,10 @@ public class HanteraKundInfoFonster extends javax.swing.JFrame {
     private void jAngivetKundIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAngivetKundIDActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jAngivetKundIDActionPerformed
+
+    private void jÄndratKundNamnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jÄndratKundNamnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jÄndratKundNamnActionPerformed
 
 
 
