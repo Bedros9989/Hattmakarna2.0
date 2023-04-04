@@ -49,26 +49,27 @@
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
               <Group type="102" alignment="1" attributes="0">
-                  <Group type="103" groupAlignment="1" attributes="0">
-                      <Group type="102" attributes="0">
-                          <EmptySpace max="32767" attributes="0"/>
-                          <Component id="jButton1" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="jKundNamn" min="-2" max="-2" attributes="0"/>
+                      <Component id="jKundTelefon" min="-2" max="-2" attributes="0"/>
+                      <Component id="jKundAdress" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="jKundMejl" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="jFelmeddelande" min="-2" pref="207" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="108" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jKundNamn" min="-2" max="-2" attributes="0"/>
-                              <Component id="jKundTelefon" min="-2" max="-2" attributes="0"/>
-                              <Component id="jKundAdress" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jKundMejl" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jAngivetKundNamn" pref="167" max="32767" attributes="0"/>
+                              <Component id="jAngivetKundNamn" max="32767" attributes="0"/>
                               <Component id="jAngiventKundTel" alignment="0" max="32767" attributes="0"/>
                               <Component id="jAngivenKundAdress" alignment="0" max="32767" attributes="0"/>
                               <Component id="jAngivenKundMejl" alignment="0" max="32767" attributes="0"/>
                           </Group>
+                      </Group>
+                      <Group type="102" attributes="0">
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Component id="jButton1" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
@@ -101,8 +102,11 @@
                       <Component id="jKundMejl" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="jButton1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="13" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jFelmeddelande" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace pref="22" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -153,6 +157,11 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JTextField" name="jFelmeddelande">
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jFelmeddelandeActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>
