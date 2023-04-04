@@ -22,7 +22,7 @@ public class InloggningsFonster extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        agentID = new javax.swing.JTextField();
+        personalID = new javax.swing.JTextField();
         textAnvändarnamn = new javax.swing.JLabel();
         textLösenord = new javax.swing.JLabel();
         lösenord = new javax.swing.JPasswordField();
@@ -34,19 +34,19 @@ public class InloggningsFonster extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        agentID.setFont(new java.awt.Font("Futura", 0, 14)); // NOI18N
-        agentID.setForeground(new java.awt.Color(153, 153, 153));
-        agentID.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        agentID.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        agentID.addActionListener(new java.awt.event.ActionListener() {
+        personalID.setFont(new java.awt.Font("Futura", 0, 14)); // NOI18N
+        personalID.setForeground(new java.awt.Color(153, 153, 153));
+        personalID.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        personalID.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        personalID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                agentIDActionPerformed(evt);
+                personalIDActionPerformed(evt);
             }
         });
 
         textAnvändarnamn.setFont(new java.awt.Font("Futura", 0, 13)); // NOI18N
         textAnvändarnamn.setForeground(new java.awt.Color(51, 51, 51));
-        textAnvändarnamn.setText("Användarnamn");
+        textAnvändarnamn.setText("PersonalID");
 
         textLösenord.setFont(new java.awt.Font("Futura", 0, 13)); // NOI18N
         textLösenord.setForeground(new java.awt.Color(51, 51, 51));
@@ -88,7 +88,7 @@ public class InloggningsFonster extends javax.swing.JFrame {
                         .addComponent(loggaIn, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(titel)
                     .addComponent(textAnvändarnamn)
-                    .addComponent(agentID, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(personalID, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(textLösenord))
                 .addContainerGap(119, Short.MAX_VALUE))
         );
@@ -100,7 +100,7 @@ public class InloggningsFonster extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(textAnvändarnamn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(agentID, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(personalID, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(textLösenord)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -124,9 +124,9 @@ public class InloggningsFonster extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void agentIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agentIDActionPerformed
+    private void personalIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_personalIDActionPerformed
 
-    }//GEN-LAST:event_agentIDActionPerformed
+    }//GEN-LAST:event_personalIDActionPerformed
 
     private void lösenordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lösenordActionPerformed
 
@@ -134,22 +134,22 @@ public class InloggningsFonster extends javax.swing.JFrame {
 
     private void loggaInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loggaInActionPerformed
 
-        if (ValideringsKlass.rutanÄrTom(agentID, textAnvändarnamn)){
+        if (ValideringsKlass.rutanÄrTom(personalID, textAnvändarnamn)){
             if (ValideringsKlass.rutanÄrTom(lösenord, textLösenord)){
 
                 try
                 {
-                    String id = agentID.getText();
+                    String id = personalID.getText();
                     String losenord = lösenord.getText();
 
-                    ArrayList<String> existerandePersonal = idb.fetchColumn("select username from Test1 ");
+                    ArrayList<String> existerandePersonal = idb.fetchColumn("select PersonalID from personal");
 
                     if (!existerandePersonal.contains(id)){
 
                         JOptionPane.showMessageDialog(null, "Personal med denna ID existerar inte!");
 
                     }else{
-                        String inloggMatcharDB = "Select lösenord from Test1 where username ='"+id+"'";
+                        String inloggMatcharDB = "Select Losenord from personal where PersonalID ='"+id+"'";
                         String svarLösen = idb.fetchSingle(inloggMatcharDB);
                          
                         if(losenord.equals(svarLösen)){
@@ -181,10 +181,10 @@ public class InloggningsFonster extends javax.swing.JFrame {
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField agentID;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JButton loggaIn;
     private javax.swing.JPasswordField lösenord;
+    private javax.swing.JTextField personalID;
     private javax.swing.JLabel textAnvändarnamn;
     private javax.swing.JLabel textLösenord;
     private javax.swing.JLabel titel;
