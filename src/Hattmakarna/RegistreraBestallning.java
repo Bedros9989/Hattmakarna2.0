@@ -1,5 +1,6 @@
 package Hattmakarna;
 
+import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 import oru.inf.InfDB;
@@ -29,12 +30,12 @@ public class RegistreraBestallning extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         cbHattID = new javax.swing.JComboBox<>();
         jbLaggTillHatt = new javax.swing.JButton();
-        tfDatum = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtareaAdress = new javax.swing.JTextArea();
         jLabel3 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         cbAnsvarig = new javax.swing.JComboBox<>();
+        jDateChooserReg = new com.toedter.calendar.JDateChooser();
         jbRegBestallning = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -51,7 +52,7 @@ public class RegistreraBestallning extends javax.swing.JFrame {
 
         jLabel6.setText("HattID");
 
-        cbKundID.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Välj kundID", "Item 2", "Item 3", "Item 4" }));
+        cbKundID.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Välj kundID och namn", "Item 2", "Item 3", "Item 4" }));
 
         jbRegKund.setText("Registrera kund");
         jbRegKund.addActionListener(new java.awt.event.ActionListener() {
@@ -72,11 +73,14 @@ public class RegistreraBestallning extends javax.swing.JFrame {
             }
         });
 
-        tfDatum.setColumns(10);
-
         txtareaAdress.setColumns(20);
         txtareaAdress.setRows(5);
         txtareaAdress.setText("Namn/Företag\nPostadress\nPostnummer Postort\nLand (om utrikes)");
+        txtareaAdress.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                txtareaAdressMousePressed(evt);
+            }
+        });
         jScrollPane1.setViewportView(txtareaAdress);
 
         jLabel3.setText("Kund");
@@ -111,30 +115,33 @@ public class RegistreraBestallning extends javax.swing.JFrame {
                                         .addGap(84, 84, 84)
                                         .addComponent(cbHattID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(jLabel1))
-                                .addGap(0, 2, Short.MAX_VALUE))
+                                .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel5)))
-                        .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jbLaggTillHatt, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
                                 .addComponent(cbKundID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(51, 51, 51)
-                                .addComponent(jLabel7)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jbRegKund)
-                        .addGap(25, 25, 25))
+                                .addGap(39, 39, 39)
+                                .addComponent(jLabel7)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jbRegKund))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(50, 50, 50)
+                                .addComponent(jbLaggTillHatt)))
+                        .addGap(37, 37, 37))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(43, 43, 43)
-                        .addComponent(tfDatum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addGap(40, 40, 40)
+                                .addComponent(jDateChooserReg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addGap(18, 18, 18)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
@@ -154,11 +161,11 @@ public class RegistreraBestallning extends javax.swing.JFrame {
                     .addComponent(jLabel6)
                     .addComponent(cbHattID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jbLaggTillHatt))
-                .addGap(32, 32, 32)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGap(26, 26, 26)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel2)
-                    .addComponent(tfDatum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(33, 33, 33)
+                    .addComponent(jDateChooserReg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(36, 36, 36)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -191,7 +198,7 @@ public class RegistreraBestallning extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(41, 41, 41)
                 .addComponent(jbRegBestallning)
-                .addGap(0, 43, Short.MAX_VALUE))
+                .addGap(0, 46, Short.MAX_VALUE))
         );
 
         pack();
@@ -199,9 +206,13 @@ public class RegistreraBestallning extends javax.swing.JFrame {
 
     private void jbRegBestallningActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbRegBestallningActionPerformed
         // Saker som ej syns i designen men som ska läggas till: :
-        // Skapa beställningsID
-        //koppla vem som ansvarar för ordern (eller lått dem fylla i det själva?)
+        // Skapa beställningsID getautoincrement
+       
         // totalsumma (kan det hämtas ut automatiskt genom HattID + kundens lojalitet kanske?)
+        
+        SimpleDateFormat DateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        
+        String regDatum = DateFormat.format(jDateChooserReg.getDate());
     }//GEN-LAST:event_jbRegBestallningActionPerformed
 
     private void jbRegKundActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbRegKundActionPerformed
@@ -216,12 +227,18 @@ public class RegistreraBestallning extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cbAnsvarigActionPerformed
 
+    private void txtareaAdressMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtareaAdressMousePressed
+        // textfältet ska bli tomt när man klickar på det
+        txtareaAdress.removeAll();
+    }//GEN-LAST:event_txtareaAdressMousePressed
+
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> cbAnsvarig;
     private javax.swing.JComboBox<String> cbHattID;
     private javax.swing.JComboBox<String> cbKundID;
+    private com.toedter.calendar.JDateChooser jDateChooserReg;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -235,7 +252,6 @@ public class RegistreraBestallning extends javax.swing.JFrame {
     private javax.swing.JButton jbLaggTillHatt;
     private javax.swing.JButton jbRegBestallning;
     private javax.swing.JButton jbRegKund;
-    private javax.swing.JTextField tfDatum;
     private javax.swing.JTextArea txtareaAdress;
     // End of variables declaration//GEN-END:variables
 }
