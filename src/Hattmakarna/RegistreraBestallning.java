@@ -1,6 +1,7 @@
 package Hattmakarna;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 import oru.inf.InfDB;
@@ -16,6 +17,7 @@ public class RegistreraBestallning extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         RegistreraBestallning.this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         btnUppdateraKundReg.setVisible(false);
+        fyllcbHattID();
     }
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -67,6 +69,11 @@ public class RegistreraBestallning extends javax.swing.JFrame {
         jLabel7.setText("Ny kund");
 
         cbHattID.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Välj hattID", "Item 2", "Item 3", "Item 4" }));
+        cbHattID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbHattIDActionPerformed(evt);
+            }
+        });
 
         jbLaggTillHatt.setText("Lägg till ytterligare hatt");
         jbLaggTillHatt.addActionListener(new java.awt.event.ActionListener() {
@@ -244,7 +251,32 @@ public class RegistreraBestallning extends javax.swing.JFrame {
         txtareaAdress.setText("");
     }//GEN-LAST:event_txtareaAdressMousePressed
 
+    private void cbHattIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbHattIDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbHattIDActionPerformed
 
+private void fyllcbHattID(){
+    String fraga= "select HattID from Hatt";
+    ArrayList<String> allaHattIDn;
+    try {
+        allaHattIDn= idb.fetchColumn(fraga);
+        
+        for (String hattID: allaHattIDn){
+            cbHattID.addItem(hattID);
+        }
+        
+    }
+        catch (InfException e) {
+
+            JOptionPane.showMessageDialog(null, "Fel på databasuppkopplingen, prova igen senare!");
+            System.out.println("Databasfel: " + e);
+            
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Något gick snett, prova igen!");
+            
+    }
+    
+}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnUppdateraKundReg;
