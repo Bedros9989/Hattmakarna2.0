@@ -30,7 +30,6 @@ public class RegistreraKundFonster extends javax.swing.JFrame {
         jAngivenKundAdress = new javax.swing.JTextField();
         jAngivenKundMejl = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
-        jFelmeddelande = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -51,9 +50,21 @@ public class RegistreraKundFonster extends javax.swing.JFrame {
             }
         });
 
+        jAngiventKundTel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jAngiventKundTelActionPerformed(evt);
+            }
+        });
+
         jAngivenKundAdress.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jAngivenKundAdressActionPerformed(evt);
+            }
+        });
+
+        jAngivenKundMejl.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jAngivenKundMejlActionPerformed(evt);
             }
         });
 
@@ -61,12 +72,6 @@ public class RegistreraKundFonster extends javax.swing.JFrame {
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
-            }
-        });
-
-        jFelmeddelande.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jFelmeddelandeActionPerformed(evt);
             }
         });
 
@@ -84,20 +89,15 @@ public class RegistreraKundFonster extends javax.swing.JFrame {
                     .addComponent(jKundNamn)
                     .addComponent(jKundTelefon)
                     .addComponent(jKundAdress)
-                    .addComponent(jKundMejl)
-                    .addComponent(jFelmeddelande, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jKundMejl))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 272, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(108, 108, 108)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jAngivetKundNamn)
-                            .addComponent(jAngiventKundTel)
-                            .addComponent(jAngivenKundAdress)
-                            .addComponent(jAngivenKundMejl)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1)))
-                .addGap(49, 49, 49))
+                    .addComponent(jAngivetKundNamn)
+                    .addComponent(jAngiventKundTel)
+                    .addComponent(jAngivenKundAdress)
+                    .addComponent(jAngivenKundMejl)
+                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -121,10 +121,8 @@ public class RegistreraKundFonster extends javax.swing.JFrame {
                     .addComponent(jAngivenKundMejl, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jKundMejl))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jFelmeddelande, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addComponent(jButton1)
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -153,12 +151,16 @@ public class RegistreraKundFonster extends javax.swing.JFrame {
     }//GEN-LAST:event_jAngivenKundAdressActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-// TODO add your handling code here:
+             
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jFelmeddelandeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFelmeddelandeActionPerformed
+    private void jAngiventKundTelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAngiventKundTelActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jFelmeddelandeActionPerformed
+    }//GEN-LAST:event_jAngiventKundTelActionPerformed
+
+    private void jAngivenKundMejlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAngivenKundMejlActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jAngivenKundMejlActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -167,7 +169,6 @@ public class RegistreraKundFonster extends javax.swing.JFrame {
     private javax.swing.JTextField jAngiventKundTel;
     private javax.swing.JTextField jAngivetKundNamn;
     private javax.swing.JButton jButton1;
-    private javax.swing.JTextField jFelmeddelande;
     private javax.swing.JLabel jKundAdress;
     private javax.swing.JLabel jKundMejl;
     private javax.swing.JLabel jKundNamn;
