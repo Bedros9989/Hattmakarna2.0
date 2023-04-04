@@ -15,6 +15,7 @@ public class RegistreraBestallning extends javax.swing.JFrame {
         this.idb = idb;
         this.setLocationRelativeTo(null);
         RegistreraBestallning.this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        btnUppdateraKundReg.setVisible(false);
     }
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -36,6 +37,7 @@ public class RegistreraBestallning extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         cbAnsvarig = new javax.swing.JComboBox<>();
         jDateChooserReg = new com.toedter.calendar.JDateChooser();
+        btnUppdateraKundReg = new javax.swing.JButton();
         jbRegBestallning = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -94,6 +96,9 @@ public class RegistreraBestallning extends javax.swing.JFrame {
             }
         });
 
+        btnUppdateraKundReg.setFont(new java.awt.Font("Helvetica Neue", 0, 10)); // NOI18N
+        btnUppdateraKundReg.setText("Uppdatera kundregister");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -103,7 +108,7 @@ public class RegistreraBestallning extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel8)
-                        .addGap(61, 61, 61)
+                        .addGap(46, 46, 46)
                         .addComponent(cbAnsvarig, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -125,19 +130,21 @@ public class RegistreraBestallning extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(cbKundID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(39, 39, 39)
-                                .addComponent(jLabel7)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jbRegKund))
+                                .addComponent(jLabel7))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(50, 50, 50)
                                 .addComponent(jbLaggTillHatt)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnUppdateraKundReg)
+                            .addComponent(jbRegKund))
                         .addGap(37, 37, 37))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addGap(40, 40, 40)
-                                .addComponent(jDateChooserReg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jDateChooserReg, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel4)
                                 .addGap(18, 18, 18)
@@ -156,7 +163,9 @@ public class RegistreraBestallning extends javax.swing.JFrame {
                     .addComponent(jbRegKund)
                     .addComponent(jLabel7)
                     .addComponent(jLabel3))
-                .addGap(25, 25, 25)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnUppdateraKundReg)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(cbHattID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -198,7 +207,7 @@ public class RegistreraBestallning extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(41, 41, 41)
                 .addComponent(jbRegBestallning)
-                .addGap(0, 46, Short.MAX_VALUE))
+                .addGap(0, 40, Short.MAX_VALUE))
         );
 
         pack();
@@ -217,6 +226,9 @@ public class RegistreraBestallning extends javax.swing.JFrame {
 
     private void jbRegKundActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbRegKundActionPerformed
         // Länk till RegistreraKundFonster?
+        new RegistreraKundFonster(idb).setVisible(true);
+        btnUppdateraKundReg.setVisible(true);
+        
     }//GEN-LAST:event_jbRegKundActionPerformed
 
     private void jbLaggTillHattActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbLaggTillHattActionPerformed
@@ -224,17 +236,18 @@ public class RegistreraBestallning extends javax.swing.JFrame {
     }//GEN-LAST:event_jbLaggTillHattActionPerformed
 
     private void cbAnsvarigActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbAnsvarigActionPerformed
-        // TODO add your handling code here:
+        // bättre hämta namnen från tabellen personal ifall någon mer personal läggs till
     }//GEN-LAST:event_cbAnsvarigActionPerformed
 
     private void txtareaAdressMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtareaAdressMousePressed
-        // textfältet ska bli tomt när man klickar på det
-        txtareaAdress.removeAll();
+        // textfältet ska bli tomt när man klickar på det, det blir det med denna
+        txtareaAdress.setText("");
     }//GEN-LAST:event_txtareaAdressMousePressed
 
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnUppdateraKundReg;
     private javax.swing.JComboBox<String> cbAnsvarig;
     private javax.swing.JComboBox<String> cbHattID;
     private javax.swing.JComboBox<String> cbKundID;
