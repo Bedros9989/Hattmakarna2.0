@@ -276,6 +276,29 @@ private void fyllcbHattID(){
             
     }
     
+    private void fyllcbPersonalID(){
+    String fraga= "select PersonalID from Personal";
+    ArrayList<String> allaPersonalIDn;
+    try {
+        allaPersonalIDn= idb.fetchColumn(fraga);
+        
+        for (String PersonalID: allaPersonalIDn){
+            cbHPersonalID.addItem(PersonalID);
+        }
+        
+    }
+        catch (InfException e) {
+
+            JOptionPane.showMessageDialog(null, "Fel på databasuppkopplingen, prova igen senare!");
+            System.out.println("Databasfel: " + e);
+            
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Något gick snett, prova igen!");
+            
+    }
+    
+    
+    
 }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
