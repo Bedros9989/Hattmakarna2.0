@@ -4,17 +4,42 @@
  */
 package Hattmakarna;
 
+import java.util.ArrayList;
+import oru.inf.InfDB;
+import oru.inf.InfException;
+
 /**
  *
  * @author jessicagustafsson
  */
 public class hanteraBestallningFonster extends javax.swing.JPanel {
-
+ 
+    private InfDB idb;
     /**
      * Creates new form hanteraBestallningFonster
      */
-    public hanteraBestallningFonster() {
-        initComponents();
+    public hanteraBestallningFonster(InfDB idb) {
+       initComponents();
+        this.idb = idb;
+        fyllcbBestallningsid();
+       
+    }
+    
+   
+    
+    private void fyllcbBestallningsid(){
+        String fraga= "Select BestallningsID from Bestallning";
+        ArrayList <String> allaBestallningsIDn;
+        
+        try{
+         
+            allaBestallningsIDn= idb.fetchColumn(fraga);
+        }
+        catch (InfException e){
+            
+        }
+        
+        
     }
 
     /**
@@ -27,30 +52,49 @@ public class hanteraBestallningFonster extends javax.swing.JPanel {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        cbBestallningsID = new javax.swing.JComboBox<>();
 
         jLabel1.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         jLabel1.setText("Hantera beställning");
+
+        jLabel2.setText("Välj beställningsID");
+
+        cbBestallningsID.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(79, 79, 79)
-                .addComponent(jLabel1)
-                .addContainerGap(163, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(79, 79, 79)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addComponent(jLabel2)
+                        .addGap(69, 69, 69)
+                        .addComponent(cbBestallningsID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(129, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(28, 28, 28)
                 .addComponent(jLabel1)
-                .addContainerGap(249, Short.MAX_VALUE))
+                .addGap(29, 29, 29)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(cbBestallningsID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(197, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> cbBestallningsID;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
 }
