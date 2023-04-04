@@ -17,6 +17,7 @@ public class hanteraBestallningFonster extends javax.swing.JPanel {
     private InfDB idb;
     /**
      * Creates new form hanteraBestallningFonster
+     * @param idb
      */
     public hanteraBestallningFonster(InfDB idb) {
        initComponents();

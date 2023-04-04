@@ -19,6 +19,7 @@ public class RegistreraBestallning extends javax.swing.JFrame {
         btnUppdateraKundReg.setVisible(false);
         fyllcbHattID();
         fyllcbPersonalID();
+        fyllcbKundID();
     }
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -58,7 +59,12 @@ public class RegistreraBestallning extends javax.swing.JFrame {
 
         jLabel6.setText("HattID");
 
-        cbKundID.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Välj kundID och namn", "Item 2", "Item 3", "Item 4" }));
+        cbKundID.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Välj kundID" }));
+        cbKundID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbKundIDActionPerformed(evt);
+            }
+        });
 
         jbRegKund.setText("Registrera kund");
         jbRegKund.addActionListener(new java.awt.event.ActionListener() {
@@ -276,6 +282,10 @@ public class RegistreraBestallning extends javax.swing.JFrame {
         new hanteraBestallningFonster(idb).setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void cbKundIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbKundIDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbKundIDActionPerformed
+
 private void fyllcbHattID(){
     String fraga= "select HattID from Hatt";
     ArrayList<String> allaHattIDn;
@@ -322,6 +332,29 @@ private void fyllcbHattID(){
     
     
 }
+    
+    public void fyllcbKundID(){
+        String fraga= "select KundID from Kund";
+        ArrayList<String> allaKundIDn;
+        
+        try{
+            allaKundIDn= idb.fetchColumn(fraga);
+            for (String enKund: allaKundIDn){
+              cbKundID.addItem(enKund);
+            }
+            
+        }  catch (InfException e) {
+
+            JOptionPane.showMessageDialog(null, "Fel på databasuppkopplingen, prova igen senare!");
+            System.out.println("Databasfel: " + e);
+            
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Något gick snett, prova igen!");
+            
+    }
+        
+    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnUppdateraKundReg;
