@@ -243,6 +243,7 @@ public class RegistreraBestallning extends javax.swing.JFrame {
             idb.insert("INSERT INTO Bestallning (BestallningsID, Leveransadress, Totalsumma, Fraktsedel, Datum, Kund, Personal) VALUES ('" +nyttID + "', '"+leveransAdress+ "', "+ 7777 + ",'"+ "Adress: "+ leveransAdress+ "', '" + regDatum +"', "+ kundID +", "+ personal+")"); 
        JOptionPane.showMessageDialog(null, "tillagt!");
        
+       //hur göra för att lägga till flera hattar?
        idb.update("UPDATE Hatt SET Bestallning = "+ nyttID + " where HattID= "+ hattID);
        
         
