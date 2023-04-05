@@ -19,18 +19,19 @@ public class HuvudFonster extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        goraBestallning = new javax.swing.JButton();
+        beställningar = new javax.swing.JButton();
         kunder = new javax.swing.JButton();
         material = new javax.swing.JButton();
-        leverantorer = new javax.swing.JButton();
+        nyLeverantör = new javax.swing.JButton();
+        visaLeverantörer = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
-        goraBestallning.setText("Göra Beställning");
-        goraBestallning.addActionListener(new java.awt.event.ActionListener() {
+        beställningar.setText("Beställningar");
+        beställningar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                goraBestallningActionPerformed(evt);
+                beställningarActionPerformed(evt);
             }
         });
 
@@ -48,10 +49,17 @@ public class HuvudFonster extends javax.swing.JFrame {
             }
         });
 
-        leverantorer.setText("Leverantörer");
-        leverantorer.addActionListener(new java.awt.event.ActionListener() {
+        nyLeverantör.setText("Registrera Leverantör");
+        nyLeverantör.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                leverantorerActionPerformed(evt);
+                nyLeverantörActionPerformed(evt);
+            }
+        });
+
+        visaLeverantörer.setText("Visa Leverantörer");
+        visaLeverantörer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                visaLeverantörerActionPerformed(evt);
             }
         });
 
@@ -63,12 +71,13 @@ public class HuvudFonster extends javax.swing.JFrame {
                 .addGap(38, 38, 38)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(material, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(goraBestallning, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE))
+                    .addComponent(beställningar, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(kunder, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(leverantorer, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE))
-                .addContainerGap(43, Short.MAX_VALUE))
+                    .addComponent(nyLeverantör, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(visaLeverantörer, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(55, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -76,12 +85,14 @@ public class HuvudFonster extends javax.swing.JFrame {
                 .addGap(61, 61, 61)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(kunder, javax.swing.GroupLayout.DEFAULT_SIZE, 55, Short.MAX_VALUE)
-                    .addComponent(goraBestallning, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(beställningar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(material, javax.swing.GroupLayout.DEFAULT_SIZE, 58, Short.MAX_VALUE)
-                    .addComponent(leverantorer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(52, Short.MAX_VALUE))
+                    .addComponent(nyLeverantör, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(visaLeverantörer, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(35, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -92,25 +103,25 @@ public class HuvudFonster extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void goraBestallningActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_goraBestallningActionPerformed
-
-        new RegistreraBestallning(idb).setVisible(true);
+    private void beställningarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_beställningarActionPerformed
         
-    }//GEN-LAST:event_goraBestallningActionPerformed
+        new Beställningar(idb).setVisible(true);
+        
+    }//GEN-LAST:event_beställningarActionPerformed
 
     private void materialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_materialActionPerformed
         
     }//GEN-LAST:event_materialActionPerformed
 
-    private void leverantorerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_leverantorerActionPerformed
-        new Leverantör(idb).setVisible(true);
-    }//GEN-LAST:event_leverantorerActionPerformed
+    private void nyLeverantörActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nyLeverantörActionPerformed
+        new NyLeverantör(idb).setVisible(true);
+    }//GEN-LAST:event_nyLeverantörActionPerformed
 
     private void kunderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kunderActionPerformed
         
@@ -118,13 +129,20 @@ public class HuvudFonster extends javax.swing.JFrame {
         
     }//GEN-LAST:event_kunderActionPerformed
 
+    private void visaLeverantörerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_visaLeverantörerActionPerformed
+        
+        new BefintligaLeverantörer(idb).setVisible(true);
+        
+    }//GEN-LAST:event_visaLeverantörerActionPerformed
+
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton goraBestallning;
+    private javax.swing.JButton beställningar;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JButton kunder;
-    private javax.swing.JButton leverantorer;
     private javax.swing.JButton material;
+    private javax.swing.JButton nyLeverantör;
+    private javax.swing.JButton visaLeverantörer;
     // End of variables declaration//GEN-END:variables
 }

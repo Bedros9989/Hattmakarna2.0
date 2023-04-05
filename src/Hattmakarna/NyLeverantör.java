@@ -4,23 +4,25 @@ package Hattmakarna;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import oru.inf.InfDB;
 import oru.inf.InfException;
 
-public class Leverantör extends javax.swing.JFrame {
+public class NyLeverantör extends javax.swing.JFrame {
     
      private InfDB idb;
      private String lID;
 
  
-    public Leverantör(InfDB idb) {
+    public NyLeverantör(InfDB idb) {
         initComponents();
         this.idb = idb;
         this.setLocationRelativeTo(null);
-        Leverantör.this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        NyLeverantör.this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         jTLevID.setEnabled(false);
         visaInfo();
-        
+        kontrolleraText();
     }
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -138,12 +140,17 @@ public class Leverantör extends javax.swing.JFrame {
              lID = idb.getAutoIncrement("Leverantor","LeverantorsID");
              jTLevID.setText(lID);
          } catch (InfException ex) {
-             Logger.getLogger(Leverantör.class.getName()).log(Level.SEVERE, null, ex);
+             Logger.getLogger(NyLeverantör.class.getName()).log(Level.SEVERE, null, ex);
          }
         
     }
     
     private void jBRegActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBRegActionPerformed
+        
+    if (ValideringsKlass.endastNummerTillåten(jTTelefon)){
+    if (ValideringsKlass.rutanÄrTom(jTNamn, jLNamn)){    
+    if (ValideringsKlass.rutanÄrTom( jTTelefon,jLTelefon)){   
+    if (ValideringsKlass.rutanÄrTom(jTAdress, jLAdress)){
         
         
         try {
@@ -174,10 +181,34 @@ public class Leverantör extends javax.swing.JFrame {
         catch (Exception ettUndantag) {
             JOptionPane.showMessageDialog(null, "Något gick fel!");
             System.out.println("Internt felmeddelande" + ettUndantag.getMessage());
-            
+        }
+    }
+    }
+    }
     }//GEN-LAST:event_jBRegActionPerformed
     }
    
+    private void kontrolleraText(){
+        
+        jTTelefon.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                ValideringsKlass.endastNummerTillåten(jTTelefon);
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                ValideringsKlass.endastNummerTillåten(jTTelefon);
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                ValideringsKlass.endastNummerTillåten(jTTelefon);
+            }
+        });
+        
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBReg;
     private javax.swing.JLabel jLAdress;
