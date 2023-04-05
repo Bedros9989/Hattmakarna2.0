@@ -17,6 +17,7 @@ public class RegistreraBestallning extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         RegistreraBestallning.this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         btnUppdateraKundReg.setVisible(false);
+       
         fyllcbHattID();
         fyllcbPersonalID();
         fyllcbKundID();
@@ -42,6 +43,8 @@ public class RegistreraBestallning extends javax.swing.JFrame {
         cbAnsvarig = new javax.swing.JComboBox<>();
         jDateChooserReg = new com.toedter.calendar.JDateChooser();
         btnUppdateraKundReg = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        txtareaTillagdHat = new javax.swing.JTextArea();
         jbRegBestallning = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -59,11 +62,6 @@ public class RegistreraBestallning extends javax.swing.JFrame {
         jLabel6.setText("HattID");
 
         cbKundID.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Välj kundID" }));
-        cbKundID.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbKundIDActionPerformed(evt);
-            }
-        });
 
         jbRegKund.setText("Registrera kund");
         jbRegKund.addActionListener(new java.awt.event.ActionListener() {
@@ -82,7 +80,7 @@ public class RegistreraBestallning extends javax.swing.JFrame {
             }
         });
 
-        jbLaggTillHatt.setText("Lägg till ytterligare hatt");
+        jbLaggTillHatt.setText("Lägg till hatt");
         jbLaggTillHatt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbLaggTillHattActionPerformed(evt);
@@ -98,11 +96,6 @@ public class RegistreraBestallning extends javax.swing.JFrame {
         jLabel8.setText("Ansvarig för beställning");
 
         cbAnsvarig.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Välj" }));
-        cbAnsvarig.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbAnsvarigActionPerformed(evt);
-            }
-        });
 
         jDateChooserReg.setDateFormatString("yyyy-MM-dd");
 
@@ -113,6 +106,10 @@ public class RegistreraBestallning extends javax.swing.JFrame {
                 btnUppdateraKundRegActionPerformed(evt);
             }
         });
+
+        txtareaTillagdHat.setColumns(20);
+        txtareaTillagdHat.setRows(5);
+        jScrollPane2.setViewportView(txtareaTillagdHat);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -139,7 +136,10 @@ public class RegistreraBestallning extends javax.swing.JFrame {
                             .addComponent(jLabel5))
                         .addGap(23, 23, 23)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jbLaggTillHatt)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jbLaggTillHatt)
+                                .addGap(18, 18, 18)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(cbKundID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(64, 64, 64)
@@ -148,15 +148,14 @@ public class RegistreraBestallning extends javax.swing.JFrame {
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(btnUppdateraKundReg)
                                     .addComponent(jbRegKund)))))
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(jLabel4)
-                            .addGap(18, 18, 18)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(jLabel8)
-                            .addGap(46, 46, 46)
-                            .addComponent(cbAnsvarig, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel8)
+                        .addGap(46, 46, 46)
+                        .addComponent(cbAnsvarig, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(157, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -171,18 +170,21 @@ public class RegistreraBestallning extends javax.swing.JFrame {
                     .addComponent(jbRegKund)
                     .addComponent(jLabel7)
                     .addComponent(jLabel3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnUppdateraKundReg)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(cbHattID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbLaggTillHatt))
-                .addGap(26, 26, 26)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel2)
-                    .addComponent(jDateChooserReg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(36, 36, 36)
+                .addComponent(btnUppdateraKundReg)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel6)
+                            .addComponent(cbHattID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jbLaggTillHatt))
+                        .addGap(26, 26, 26)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel2)
+                            .addComponent(jDateChooserReg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(17, 17, 17)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -215,7 +217,7 @@ public class RegistreraBestallning extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(41, 41, 41)
                 .addComponent(jbRegBestallning)
-                .addGap(0, 23, Short.MAX_VALUE))
+                .addGap(0, 17, Short.MAX_VALUE))
         );
 
         pack();
@@ -223,10 +225,11 @@ public class RegistreraBestallning extends javax.swing.JFrame {
 
     private void jbRegBestallningActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbRegBestallningActionPerformed
         
-        // totalsumma ska läggas till (kan det hämtas ut automatiskt genom HattID + kundens lojalitet kanske?)
+        // totalsumma ska läggas till (kan det hämtas ut automatiskt genom HattID + kundens lojalitet kanske)
         
         String kundID= cbKundID.getSelectedItem().toString();
-        String hattID= cbHattID.getSelectedItem().toString();
+       // String hattID= cbHattID.getSelectedItem().toString();
+       String hattID= txtareaTillagdHat.getText();
         String leveransAdress= txtareaAdress.getText();
         String personal=cbAnsvarig.getSelectedItem().toString();
         SimpleDateFormat DateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -237,8 +240,11 @@ public class RegistreraBestallning extends javax.swing.JFrame {
             
             String nyttID= idb.getAutoIncrement("Bestallning", "BestallningsID");
             
-            idb.insert("INSERT INTO Bestallning (BestallningsID, Leveransadress, Totalsumma, Fraktsedel, Datum, Kund, Personal) VALUES ('" +nyttID + "', '"+leveransAdress+ "', "+ 7777 + ",'"+ leveransAdress+ "', '" + regDatum +"', "+ kundID +", "+ personal+")"); 
+            idb.insert("INSERT INTO Bestallning (BestallningsID, Leveransadress, Totalsumma, Fraktsedel, Datum, Kund, Personal) VALUES ('" +nyttID + "', '"+leveransAdress+ "', "+ 7777 + ",'"+ "Adress: "+ leveransAdress+ "', '" + regDatum +"', "+ kundID +", "+ personal+")"); 
        JOptionPane.showMessageDialog(null, "tillagt!");
+       
+       idb.update("UPDATE Hatt SET Bestallning = "+ nyttID + " where HattID= "+ hattID);
+       
         
         }
         catch (InfException e){
@@ -256,32 +262,22 @@ public class RegistreraBestallning extends javax.swing.JFrame {
     }//GEN-LAST:event_jbRegKundActionPerformed
 
     private void jbLaggTillHattActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbLaggTillHattActionPerformed
-        // Leder till att hatt 1 läggs till + chans lägga till ny hatt
+        // Leder till att hatt 1 läggs till i textarean för hattar.
+       
+            
+                
+        String hattID= cbHattID.getSelectedItem().toString();
+        
+       txtareaTillagdHat.append(hattID + "\n" );
+        
     }//GEN-LAST:event_jbLaggTillHattActionPerformed
-
-    private void cbAnsvarigActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbAnsvarigActionPerformed
-        // bättre hämta namnen från tabellen personal ifall någon mer personal läggs till
-    }//GEN-LAST:event_cbAnsvarigActionPerformed
 
     private void cbHattIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbHattIDActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cbHattIDActionPerformed
 
-    private void cbKundIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbKundIDActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cbKundIDActionPerformed
-
     private void btnUppdateraKundRegActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUppdateraKundRegActionPerformed
-        // TODO add your handling code here:
-//        String fraga= "Update table Bestallning";
-//        
-//        try{
-//            idb.
-//            JOptionPane.showMessageDialog(null, "Kundregistret är uppdaterat!");
-//    }
-//        catch (InfException e){
-//            System.out.println("något är fel");
-//        }
+
     
 
 fyllcbKundID();
@@ -331,7 +327,7 @@ private void fyllcbHattID(){
             
     }
     
-    
+   
     
 }
     
@@ -374,9 +370,11 @@ private void fyllcbHattID(){
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton jbLaggTillHatt;
     private javax.swing.JButton jbRegBestallning;
     private javax.swing.JButton jbRegKund;
     private javax.swing.JTextArea txtareaAdress;
+    private javax.swing.JTextArea txtareaTillagdHat;
     // End of variables declaration//GEN-END:variables
 }
