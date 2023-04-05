@@ -145,6 +145,11 @@ public class Leverantör extends javax.swing.JFrame {
     
     private void jBRegActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBRegActionPerformed
         
+    if (ValideringsKlass.endastNummerTillåten(jTTelefon)){
+    if (ValideringsKlass.rutanÄrTom(jTNamn, jLNamn)){    
+    if (ValideringsKlass.rutanÄrTom( jTTelefon,jLTelefon)){   
+    if (ValideringsKlass.rutanÄrTom(jTAdress, jLAdress)){
+        
         
         try {
            
@@ -174,7 +179,10 @@ public class Leverantör extends javax.swing.JFrame {
         catch (Exception ettUndantag) {
             JOptionPane.showMessageDialog(null, "Något gick fel!");
             System.out.println("Internt felmeddelande" + ettUndantag.getMessage());
-            
+        }
+    }
+    }
+    }
     }//GEN-LAST:event_jBRegActionPerformed
     }
    
