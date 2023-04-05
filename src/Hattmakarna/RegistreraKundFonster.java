@@ -175,7 +175,7 @@ public class RegistreraKundFonster extends javax.swing.JFrame {
             felMeddelande.setText("Fel: Vänligen fyll i alla fält");
         } else {
             try {
-                idb.insert("INSERT INTO Kund (Namn, Telefon, Adress, Email) VALUES (" + jAngivetKundNamn.getText() + "', '" + jAngiventKundTel.getText() + "', '" + jAngivenKundAdress.getText() + "', " + jAngivenKundMejl.getText() + ");");
+                idb.insert("INSERT INTO Kund (Namn,Telefon,Adress,Email) VALUES (" + jAngivetKundNamn.getText() + "', '" + jAngiventKundTel.getText() + "', '" + jAngivenKundAdress.getText() + "', " + jAngivenKundMejl.getText() + ");");
             } catch (InfException ex) {
                 Logger.getLogger(RegistreraKundFonster.class.getName()).log(Level.SEVERE, null, ex);
             }
