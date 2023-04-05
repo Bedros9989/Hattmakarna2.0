@@ -13,34 +13,31 @@ public class BestallningGenomford extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jBVisaFraktsedel = new javax.swing.JButton();
-        jTBeställningGenomförd = new javax.swing.JTextField();
+        jLBeställning = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jBVisaFraktsedel.setText("Visa fraktsedel");
 
-        jTBeställningGenomförd.setText("Beställning genomförd");
+        jLBeställning.setText("Beställning genomförd");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(146, 146, 146)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(146, 146, 146)
-                        .addComponent(jBVisaFraktsedel))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(129, 129, 129)
-                        .addComponent(jTBeställningGenomförd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(135, Short.MAX_VALUE))
+                    .addComponent(jLBeställning)
+                    .addComponent(jBVisaFraktsedel))
+                .addContainerGap(133, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(75, 75, 75)
-                .addComponent(jTBeställningGenomförd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(45, 45, 45)
+                .addGap(58, 58, 58)
+                .addComponent(jLBeställning)
+                .addGap(68, 68, 68)
                 .addComponent(jBVisaFraktsedel)
                 .addContainerGap(136, Short.MAX_VALUE))
         );
@@ -61,7 +58,7 @@ public class BestallningGenomford extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBVisaFraktsedel;
+    private javax.swing.JLabel jLBeställning;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTBeställningGenomförd;
     // End of variables declaration//GEN-END:variables
 }
