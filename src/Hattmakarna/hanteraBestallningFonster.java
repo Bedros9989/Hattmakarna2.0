@@ -5,6 +5,7 @@
 package Hattmakarna;
 
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import oru.inf.InfDB;
 import oru.inf.InfException;
 
@@ -42,6 +43,8 @@ public class hanteraBestallningFonster extends javax.swing.JPanel {
         
         
     }
+    
+        
 
     /**
      * This method is called from within the constructor to initialize the form.
