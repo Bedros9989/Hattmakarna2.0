@@ -109,7 +109,7 @@ public class HuvudFonster extends javax.swing.JFrame {
     }//GEN-LAST:event_materialActionPerformed
 
     private void leverantorerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_leverantorerActionPerformed
-        
+        new Leverantör(idb).setVisible(true);
     }//GEN-LAST:event_leverantorerActionPerformed
 
     private void kunderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kunderActionPerformed
