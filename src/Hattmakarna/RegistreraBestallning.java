@@ -42,7 +42,6 @@ public class RegistreraBestallning extends javax.swing.JFrame {
         cbAnsvarig = new javax.swing.JComboBox<>();
         jDateChooserReg = new com.toedter.calendar.JDateChooser();
         btnUppdateraKundReg = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
         jbRegBestallning = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -92,12 +91,6 @@ public class RegistreraBestallning extends javax.swing.JFrame {
 
         txtareaAdress.setColumns(20);
         txtareaAdress.setRows(5);
-        txtareaAdress.setText("Namn/Företag\nPostadress\nPostnummer Postort\nLand (om utrikes)");
-        txtareaAdress.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                txtareaAdressMousePressed(evt);
-            }
-        });
         jScrollPane1.setViewportView(txtareaAdress);
 
         jLabel3.setText("Kund");
@@ -111,18 +104,13 @@ public class RegistreraBestallning extends javax.swing.JFrame {
             }
         });
 
+        jDateChooserReg.setDateFormatString("yyyy-MM-dd");
+
         btnUppdateraKundReg.setFont(new java.awt.Font("Helvetica Neue", 0, 10)); // NOI18N
         btnUppdateraKundReg.setText("Uppdatera kundregister");
         btnUppdateraKundReg.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnUppdateraKundRegActionPerformed(evt);
-            }
-        });
-
-        jButton1.setText("tillfällig knapp till hantera beställning som ej funkar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
             }
         });
 
@@ -132,48 +120,44 @@ public class RegistreraBestallning extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(37, 37, 37)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel8)
-                        .addGap(46, 46, 46)
-                        .addComponent(cbAnsvarig, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addComponent(jLabel2)
+                        .addGap(40, 40, 40)
+                        .addComponent(jDateChooserReg, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel1)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel6)
+                                .addGap(84, 84, 84))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addGap(89, 89, 89)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cbHattID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5))
+                        .addGap(23, 23, 23)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jbLaggTillHatt)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(40, 40, 40)
-                                .addComponent(jDateChooserReg, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addGap(18, 18, 18)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(96, 96, 96)
-                                .addComponent(jButton1))
-                            .addComponent(jLabel1)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(cbKundID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(64, 64, 64)
+                                .addComponent(jLabel7)
+                                .addGap(27, 27, 27)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel6)
-                                        .addGap(84, 84, 84))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel3)
-                                        .addGap(89, 89, 89)))
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(cbHattID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel5))
-                                .addGap(23, 23, 23)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jbLaggTillHatt)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(cbKundID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(64, 64, 64)
-                                        .addComponent(jLabel7)
-                                        .addGap(27, 27, 27)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(btnUppdateraKundReg)
-                                            .addComponent(jbRegKund))))))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                    .addComponent(btnUppdateraKundReg)
+                                    .addComponent(jbRegKund)))))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(jLabel4)
+                            .addGap(18, 18, 18)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(jLabel8)
+                            .addGap(46, 46, 46)
+                            .addComponent(cbAnsvarig, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(157, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -198,16 +182,11 @@ public class RegistreraBestallning extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel2)
                     .addComponent(jDateChooserReg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(36, 36, 36)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(36, 36, 36)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addComponent(jButton1)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                    .addComponent(jLabel4)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cbAnsvarig, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -236,26 +215,37 @@ public class RegistreraBestallning extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(41, 41, 41)
                 .addComponent(jbRegBestallning)
-                .addGap(0, 34, Short.MAX_VALUE))
+                .addGap(0, 23, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbRegBestallningActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbRegBestallningActionPerformed
-        // Saker som ej syns i designen men som ska läggas till: :
-        // Skapa beställningsID getautoincrement
-       
-        // totalsumma (kan det hämtas ut automatiskt genom HattID + kundens lojalitet kanske?)
+        
+        // totalsumma ska läggas till (kan det hämtas ut automatiskt genom HattID + kundens lojalitet kanske?)
         
         String kundID= cbKundID.getSelectedItem().toString();
         String hattID= cbHattID.getSelectedItem().toString();
-        String leveransAdress= txtareaAdress.getSelectedText();
+        String leveransAdress= txtareaAdress.getText();
         String personal=cbAnsvarig.getSelectedItem().toString();
         SimpleDateFormat DateFormat = new SimpleDateFormat("yyyy-MM-dd");
         String regDatum = DateFormat.format(jDateChooserReg.getDate());
         
-        //String fraga= "Insert into Bestallning ("
+        
+        try{
+            
+            String nyttID= idb.getAutoIncrement("Bestallning", "BestallningsID");
+            
+            idb.insert("INSERT INTO Bestallning (BestallningsID, Leveransadress, Totalsumma, Fraktsedel, Datum, Kund, Personal) VALUES ('" +nyttID + "', '"+leveransAdress+ "', "+ 7777 + ",'"+ leveransAdress+ "', '" + regDatum +"', "+ kundID +", "+ personal+")"); 
+       JOptionPane.showMessageDialog(null, "tillagt!");
+        
+        }
+        catch (InfException e){
+            JOptionPane.showMessageDialog(null, "Databasfel!");
+            System.out.println("fel:"+ e);
+        }
+        
     }//GEN-LAST:event_jbRegBestallningActionPerformed
 
     private void jbRegKundActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbRegKundActionPerformed
@@ -273,19 +263,9 @@ public class RegistreraBestallning extends javax.swing.JFrame {
         // bättre hämta namnen från tabellen personal ifall någon mer personal läggs till
     }//GEN-LAST:event_cbAnsvarigActionPerformed
 
-    private void txtareaAdressMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtareaAdressMousePressed
-        // textfältet ska bli tomt när man klickar på det, det blir det med denna
-        txtareaAdress.setText("");
-    }//GEN-LAST:event_txtareaAdressMousePressed
-
     private void cbHattIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbHattIDActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cbHattIDActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        //ska raderas sen
-        new hanteraBestallningFonster(idb).setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
 
     private void cbKundIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbKundIDActionPerformed
         // TODO add your handling code here:
@@ -383,7 +363,6 @@ private void fyllcbHattID(){
     private javax.swing.JComboBox<String> cbAnsvarig;
     private javax.swing.JComboBox<String> cbHattID;
     private javax.swing.JComboBox<String> cbKundID;
-    private javax.swing.JButton jButton1;
     private com.toedter.calendar.JDateChooser jDateChooserReg;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
