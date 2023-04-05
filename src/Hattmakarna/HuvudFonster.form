@@ -29,7 +29,10 @@
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
+          <Group type="102" attributes="0">
+              <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="67" max="32767" attributes="0"/>
+          </Group>
       </Group>
     </DimensionLayout>
   </Layout>
@@ -48,9 +51,10 @@
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Component id="kunder" max="32767" attributes="0"/>
-                      <Component id="leverantorer" pref="153" max="32767" attributes="0"/>
+                      <Component id="nyLeverantör" max="32767" attributes="0"/>
+                      <Component id="visaLeverantörer" alignment="1" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="43" max="32767" attributes="0"/>
+                  <EmptySpace pref="55" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -65,9 +69,11 @@
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Component id="material" pref="58" max="32767" attributes="0"/>
-                      <Component id="leverantorer" max="32767" attributes="0"/>
+                      <Component id="nyLeverantör" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="52" max="32767" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Component id="visaLeverantörer" min="-2" pref="59" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -97,12 +103,20 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="materialActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="leverantorer">
+        <Component class="javax.swing.JButton" name="nyLeverant&#xf6;r">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Leverant&#xf6;rer"/>
+            <Property name="text" type="java.lang.String" value="Registrera Leverant&#xf6;r"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="leverantorerActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="nyLeverant&#xf6;rActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="visaLeverant&#xf6;rer">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Visa Leverant&#xf6;rer"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="visaLeverant&#xf6;rerActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

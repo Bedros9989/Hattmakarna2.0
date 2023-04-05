@@ -7,17 +7,17 @@ import javax.swing.JOptionPane;
 import oru.inf.InfDB;
 import oru.inf.InfException;
 
-public class Leverantör extends javax.swing.JFrame {
+public class NyLeverantör extends javax.swing.JFrame {
     
      private InfDB idb;
      private String lID;
 
  
-    public Leverantör(InfDB idb) {
+    public NyLeverantör(InfDB idb) {
         initComponents();
         this.idb = idb;
         this.setLocationRelativeTo(null);
-        Leverantör.this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        NyLeverantör.this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         jTLevID.setEnabled(false);
         visaInfo();
         
@@ -138,7 +138,7 @@ public class Leverantör extends javax.swing.JFrame {
              lID = idb.getAutoIncrement("Leverantor","LeverantorsID");
              jTLevID.setText(lID);
          } catch (InfException ex) {
-             Logger.getLogger(Leverantör.class.getName()).log(Level.SEVERE, null, ex);
+             Logger.getLogger(NyLeverantör.class.getName()).log(Level.SEVERE, null, ex);
          }
         
     }
