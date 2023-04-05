@@ -70,12 +70,6 @@ public class BefintligaLeverantörer extends javax.swing.JFrame {
             }
         });
 
-        namn.setText("jTextField1");
-
-        adress.setText("jTextField2");
-
-        telefonnummer.setText("jTextField3");
-
         jLVald.setText("Vald Leverantör");
 
         jLNamn.setText("Namn");
