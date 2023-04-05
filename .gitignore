@@ -49,3 +49,5 @@ hs_err_pid*
 .mtj.tmp/
 /Hattmakarna2.0/nbproject/private/
 *.properties
+build/built-jar.properties
+*.properties
