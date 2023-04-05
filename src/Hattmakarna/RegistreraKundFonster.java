@@ -79,6 +79,8 @@ public class RegistreraKundFonster extends javax.swing.JFrame {
             }
         });
 
+        felMeddelande.setForeground(new java.awt.Color(255, 0, 0));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
