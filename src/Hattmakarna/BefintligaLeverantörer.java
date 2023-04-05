@@ -61,6 +61,7 @@ public class BefintligaLeverantörer extends javax.swing.JFrame {
         jLNamn = new javax.swing.JLabel();
         jLAdress = new javax.swing.JLabel();
         jLTelefon = new javax.swing.JLabel();
+        statistik = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -77,6 +78,8 @@ public class BefintligaLeverantörer extends javax.swing.JFrame {
         jLAdress.setText("Telefonnummer");
 
         jLTelefon.setText("Adress");
+
+        statistik.setText("Statistik");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -96,10 +99,13 @@ public class BefintligaLeverantörer extends javax.swing.JFrame {
                 .addGap(55, 55, 55))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(21, 21, 21)
-                .addComponent(jLVald)
-                .addGap(18, 18, 18)
-                .addComponent(valdLeverantör, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(273, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(statistik, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLVald)
+                        .addGap(18, 18, 18)
+                        .addComponent(valdLeverantör, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(373, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -120,7 +126,9 @@ public class BefintligaLeverantörer extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(telefonnummer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLAdress))
-                .addContainerGap(72, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(statistik, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+                .addGap(30, 30, 30))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -171,6 +179,7 @@ public class BefintligaLeverantörer extends javax.swing.JFrame {
     private javax.swing.JLabel jLVald;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField namn;
+    private javax.swing.JButton statistik;
     private javax.swing.JTextField telefonnummer;
     private javax.swing.JComboBox<String> valdLeverantör;
     // End of variables declaration//GEN-END:variables
