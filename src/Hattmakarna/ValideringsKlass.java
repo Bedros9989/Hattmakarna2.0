@@ -40,14 +40,4 @@ public class ValideringsKlass {
         return resultat;
     }
     
-    
-       public static boolean rutaEmpty(JTextField enRuta) {
-        boolean empty = false;
-
-        if (enRuta.getText().isEmpty()) {
-            empty = true;
-        }
-
-        return empty;
-    }
 }
