@@ -50,13 +50,15 @@
               </Group>
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Component id="jKundNamn" min="-2" max="-2" attributes="0"/>
                       <Component id="jKundTelefon" min="-2" max="-2" attributes="0"/>
                       <Component id="jKundAdress" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="jKundMejl" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="felMeddelande" max="32767" attributes="0"/>
+                      <Component id="confirmMeddelande" alignment="0" pref="178" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="200" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jAngivetKundNamn" max="32767" attributes="0"/>
                       <Component id="jAngiventKundTel" alignment="0" max="32767" attributes="0"/>
@@ -93,9 +95,14 @@
                       <Component id="jAngivenKundMejl" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                       <Component id="jKundMejl" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
-                  <Component id="jButton1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="28" max="32767" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="1" attributes="0">
+                      <Component id="jButton1" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="felMeddelande" alignment="0" min="-2" pref="27" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="confirmMeddelande" pref="29" max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -153,6 +160,10 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
           </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="felMeddelande">
+        </Component>
+        <Component class="javax.swing.JLabel" name="confirmMeddelande">
         </Component>
       </SubComponents>
     </Container>
