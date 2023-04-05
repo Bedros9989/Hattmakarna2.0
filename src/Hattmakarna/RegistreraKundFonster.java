@@ -159,7 +159,7 @@ public class RegistreraKundFonster extends javax.swing.JFrame {
     private void jAngiventKundTelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAngiventKundTelActionPerformed
 
         if (ValideringsKlass.rutanÄrTom(jAngivetKundNamn, jKundNamn) || ValideringsKlass.rutanÄrTom(jAngiventKundTel, jKundTelefon) || ValideringsKlass.rutanÄrTom(jAngivenKundAdress, jKundAdress) || ValideringsKlass.rutanÄrTom(jAngivenKundMejl, jKundMejl)) {
-            JOptionPane.showMessageDialog(null, "Personal med denna ID existerar inte!");
+            JOptionPane.showMessageDialog(null, "Vänligen fyll i alla textfält!");
         } else {
             try {
                 idb.insert("INSERT INTO Kund (Namn,Telefon,Adress,Email) VALUES (" + jAngivetKundNamn.getText() + "', '" + jAngiventKundTel.getText() + "', '" + jAngivenKundAdress.getText() + "', " + jAngivenKundMejl.getText() + ");");
