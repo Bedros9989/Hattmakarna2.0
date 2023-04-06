@@ -29,7 +29,7 @@ public class Hattar extends javax.swing.JFrame {
         Hattar.this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         tabell.setModel(model);
         model.addColumn("Storlek");
-        model.addColumn("Kreatör");
+        model.addColumn("Skapare");
         model.addColumn("Kategori");
         addValues();
         
@@ -121,7 +121,7 @@ public class Hattar extends javax.swing.JFrame {
         
         try
         {
-            String hattar = "select * from Hatt where Kategori = '"+valdHatt+"'";
+            String hattar = "Select Namn AS 'Skapare', Storlek,Kategori from Hatt join Personal P on Hatt.Skapare = P.PersonalID where Kategori='"+valdHatt+"'";
             ArrayList<HashMap<String, String>> allaHattar = idb.fetchRows(hattar); 
             
             for (HashMap<String, String> hatt : allaHattar){
@@ -129,9 +129,9 @@ public class Hattar extends javax.swing.JFrame {
                 
                 Object[] hattData = {
                     
-                    (Object)hatt.get("Storlek"),
-                    (Object)hatt.get("Skapare"),
-                    (Object)hatt.get("Kategori")                    
+                    hatt.get("Storlek"),
+                    hatt.get("Namn"),
+                    hatt.get("Kategori")                    
                 };
                 model.addRow(hattData);
 
