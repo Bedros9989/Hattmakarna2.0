@@ -12,7 +12,7 @@ public class HanteraKundInfoFonster extends javax.swing.JFrame {
         initComponents();
         this.idb = idb;
         this.setLocationRelativeTo(null);
-        HanteraKundInfoFonster.this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+       // HanteraKundInfoFonster.this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 
 
