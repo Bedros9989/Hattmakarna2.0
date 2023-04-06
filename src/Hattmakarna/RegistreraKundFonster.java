@@ -174,7 +174,7 @@ public class RegistreraKundFonster extends javax.swing.JFrame {
         } else {
             try {
                 String kID = idb.getAutoIncrement("Kund", "KundID");
-                idb.insert("INSERT INTO Kund (KundID, Namn, Telefon, Adress, Email) VALUES (" + kID + jAngivetKundNamn.getText() + "', '" + jAngiventKundTel.getText() + "', '" + jAngivenKundAdress.getText() + "', " + jAngivenKundMejl.getText() + ");");
+                idb.insert("INSERT INTO Kund VALUES (" + kID + jAngivetKundNamn.getText() + "', '" + jAngivenKundAdress.getText() + "', '" + jAngiventKundTel.getText() + "', " + "', 0 , '" + jAngivenKundMejl.getText() + ");");
                 confirmMeddelande.setText("En ny kund har registrerats!");
             } catch (InfException exc) {
                 JOptionPane.showMessageDialog(null, "Något gick fel!");
