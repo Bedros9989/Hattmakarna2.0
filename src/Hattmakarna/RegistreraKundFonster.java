@@ -173,9 +173,10 @@ public class RegistreraKundFonster extends javax.swing.JFrame {
            felMeddelande.setText("Fel: Vänligen fyll i alla fält");
         } else {
             try {
-                String kID = idb.getAutoIncrement("Kund", "KundID");
-                idb.insert("INSERT INTO Kund VALUES (" + kID + jAngivetKundNamn.getText() + "', '" + jAngivenKundAdress.getText() + "', '" + jAngiventKundTel.getText() + "', " + "', 0 , '" + jAngivenKundMejl.getText() + ");");
-                confirmMeddelande.setText("En ny kund har registrerats!");
+                String kID = idb.getAutoIncrement("Kund","KundID");
+                idb.insert("INSERT INTO Kund VALUES (" + kID + "', '" + jAngivetKundNamn.getText() + "', '" + jAngivenKundAdress.getText() + "', '" + jAngiventKundTel.getText() + "', 0 , '" + jAngivenKundMejl.getText() + ");");
+                {
+                }confirmMeddelande.setText("En ny kund har registrerats!");
             } catch (InfException exc) {
                 JOptionPane.showMessageDialog(null, "Något gick fel!");
             }
