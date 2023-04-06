@@ -22,7 +22,7 @@ public class RegistreraHattFonster extends javax.swing.JFrame {
         fyllCbHattMaterial();
         fyllCbHattKategori();
         this.setLocationRelativeTo(null);
-        txtAreaMaterial.append("Material" + "\t" + "\t" + "Mängd" + "\t" + "Pris" + "\n");
+        //txtAreaMaterial.append("Material" + "\t" + "\t" + "Mängd" + "\t" + "Pris" + "\n");
     }
 
     private String hamtaHattID() {
@@ -281,13 +281,16 @@ public class RegistreraHattFonster extends javax.swing.JFrame {
         try {
             String ettMaterialNamn = cbHattMaterial.getSelectedItem().toString();
             String valdMangd = txtHattMangd.getText();
-            String ettMaterialIDString = idb.fetchSingle("select MaterialID from Material where Namn =" + ettMaterialNamn);
+            String ettMaterialIDString = idb.fetchSingle("select MaterialID from Material where Namn ='" + ettMaterialNamn +"'");
             int ettMaterialIDInt = Integer.parseInt(ettMaterialIDString);
             int ettInkopsPris = Integer.parseInt(idb.fetchSingle("select Inkopspris from bestallningsinnehall where Material =" + ettMaterialIDInt));
-            int enhetsPris = ettInkopsPris / Integer.parseInt(idb.fetchSingle("select Mangd from bestallningsinnehall where Material=" + ettMaterialIDInt));
-            int materialPris = enhetsPris * Integer.parseInt(valdMangd);
+            double ettInkopsPrisDouble = ettInkopsPris;
+            double enhetsPrisDouble = ettInkopsPrisDouble / Double.parseDouble(idb.fetchSingle("select Mangd from bestallningsinnehall where Material=" + ettMaterialIDInt));
             
-            txtAreaMaterial.append(ettMaterialNamn + "\t" + valdMangd + "\t" + materialPris);
+            double materialPris = enhetsPrisDouble * Double.parseDouble(valdMangd);
+            double materialPrisAvrundad = Math.round(materialPris);
+            
+            txtAreaMaterial.append(ettMaterialNamn + "   " + "Mängd: " + valdMangd + "   " + "Pris: " + materialPrisAvrundad + "\n");
             txtHattMangd.setText("");
         } catch (InfException ex) {
             JOptionPane.showMessageDialog(null, "Något gick fel");
