@@ -270,6 +270,7 @@ public class RegistreraBestallning extends javax.swing.JFrame {
     
     private void jbRegBestallningActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbRegBestallningActionPerformed
 
+        new BestallningGenomford(idb).setVisible(true);
         
     }//GEN-LAST:event_jbRegBestallningActionPerformed
 
