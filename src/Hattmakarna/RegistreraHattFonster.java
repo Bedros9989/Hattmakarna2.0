@@ -3,6 +3,8 @@ package Hattmakarna;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import oru.inf.InfDB;
 import oru.inf.InfException;
@@ -17,7 +19,10 @@ public class RegistreraHattFonster extends javax.swing.JFrame {
         RegistreraHattFonster.this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         lblHattIDPresentation.setText(hamtaHattID());
         fyllCbValjPersonal();
+        fyllCbHattMaterial();
+        fyllCbHattKategori();
         this.setLocationRelativeTo(null);
+        txtAreaMaterial.append("Material" + "\t" + "\t" + "Mängd" + "\t" + "Pris" + "\n");
     }
 
     private String hamtaHattID() {
@@ -43,6 +48,36 @@ public class RegistreraHattFonster extends javax.swing.JFrame {
             System.out.println("Internt felmeddelande" + ex.getMessage());
         }
     }
+    
+     private void fyllCbHattMaterial() {
+        try {
+            ArrayList<String> allaHattMaterial = idb.fetchColumn("Select namn from material");
+            Collections.sort(allaHattMaterial);
+
+            for (String Namn : allaHattMaterial) {
+                cbHattMaterial.addItem(Namn);
+            }
+        } catch (InfException ex) {
+            JOptionPane.showMessageDialog(null, "Något gick fel");
+            System.out.println("Internt felmeddelande" + ex.getMessage());
+        }
+    }
+     
+     private void fyllCbHattKategori() {
+        try {
+            ArrayList<String> allaHattKategorier = idb.fetchColumn("Select kategori from hatt");
+            Collections.sort(allaHattKategorier);
+
+            for (String Namn : allaHattKategorier) {
+                cbHattKategori.addItem(Namn);
+            }
+        } catch (InfException ex) {
+            JOptionPane.showMessageDialog(null, "Något gick fel");
+            System.out.println("Internt felmeddelande" + ex.getMessage());
+        }
+    }
+     
+     
 
    
     @SuppressWarnings("unchecked")
@@ -60,13 +95,14 @@ public class RegistreraHattFonster extends javax.swing.JFrame {
         lblValjMaterial = new javax.swing.JLabel();
         cbHattMaterial = new javax.swing.JComboBox<>();
         lblMängdMaterial = new javax.swing.JLabel();
-        txtHattMängd = new javax.swing.JTextField();
+        txtHattMangd = new javax.swing.JTextField();
         lblHattID = new javax.swing.JLabel();
         lblHattIDPresentation = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtAreaMaterial = new javax.swing.JTextArea();
-        lblValtMaterial = new javax.swing.JLabel();
         btnValjMaterial = new javax.swing.JButton();
+        lblHattKategori = new javax.swing.JLabel();
+        cbHattKategori = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -79,7 +115,6 @@ public class RegistreraHattFonster extends javax.swing.JFrame {
 
         lblHattSkapare.setText("Skapare");
 
-        cbValjPersonal.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Välj personal" }));
         cbValjPersonal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbValjPersonalActionPerformed(evt);
@@ -95,7 +130,6 @@ public class RegistreraHattFonster extends javax.swing.JFrame {
 
         lblValjMaterial.setText("Välj material");
 
-        cbHattMaterial.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Välj materialnamn" }));
         cbHattMaterial.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbHattMaterialActionPerformed(evt);
@@ -104,9 +138,9 @@ public class RegistreraHattFonster extends javax.swing.JFrame {
 
         lblMängdMaterial.setText("Mängd material");
 
-        txtHattMängd.addActionListener(new java.awt.event.ActionListener() {
+        txtHattMangd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtHattMängdActionPerformed(evt);
+                txtHattMangdActionPerformed(evt);
             }
         });
 
@@ -118,8 +152,6 @@ public class RegistreraHattFonster extends javax.swing.JFrame {
         txtAreaMaterial.setRows(5);
         jScrollPane1.setViewportView(txtAreaMaterial);
 
-        lblValtMaterial.setText("Valt material");
-
         btnValjMaterial.setText("Välj");
         btnValjMaterial.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -127,58 +159,71 @@ public class RegistreraHattFonster extends javax.swing.JFrame {
             }
         });
 
+        lblHattKategori.setText("Kategori");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(247, 247, 247)
+                .addComponent(lblValkomstText, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(28, 28, 28)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblHattStorlek)
                             .addComponent(lblHattBildLänk)
-                            .addComponent(lblValjMaterial)
-                            .addComponent(lblMängdMaterial)
                             .addComponent(lblHattSkapare)
                             .addComponent(lblHattID))
-                        .addGap(61, 61, 61)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(cbValjPersonal, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txtHattStorlek)
-                                .addComponent(txtHattBild)
-                                .addComponent(cbHattMaterial, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(txtHattMängd, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnValjMaterial))
-                            .addComponent(lblHattIDPresentation))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblValtMaterial)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(btnRegistreraHatt)
-                                .addGap(18, 18, 18))))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(247, 247, 247)
-                        .addComponent(lblValkomstText, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(45, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnValjMaterial)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblHattKategori)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(145, 145, 145)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                .addComponent(cbValjPersonal, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(txtHattStorlek)
+                                                .addComponent(txtHattBild))
+                                            .addComponent(lblHattIDPresentation)))
+                                    .addComponent(cbHattKategori, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(lblValjMaterial)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(cbHattMaterial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(lblMängdMaterial)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(txtHattMangd, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(87, 87, 87)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(175, 175, 175)
+                                .addComponent(btnRegistreraHatt)
+                                .addContainerGap(63, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jScrollPane1)
+                                .addContainerGap())))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addComponent(lblValkomstText)
-                .addGap(11, 11, 11)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblHattID)
-                    .addComponent(lblHattIDPresentation)
-                    .addComponent(lblValtMaterial))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(11, 11, 11)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblHattID)
+                            .addComponent(lblHattIDPresentation))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblHattSkapare)
                             .addComponent(cbValjPersonal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -186,17 +231,25 @@ public class RegistreraHattFonster extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtHattStorlek, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblHattStorlek))
-                        .addGap(23, 23, 23)
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(cbHattMaterial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblValjMaterial))
-                        .addGap(27, 27, 27)
+                            .addComponent(lblHattKategori)
+                            .addComponent(cbHattKategori, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblValjMaterial)
+                            .addComponent(cbHattMaterial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblMängdMaterial)
-                            .addComponent(txtHattMängd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnValjMaterial)))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 150, Short.MAX_VALUE)
+                            .addComponent(txtHattMangd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addComponent(btnValjMaterial)
+                .addGap(88, 88, 88)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblHattBildLänk)
                     .addComponent(txtHattBild, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -219,12 +272,27 @@ public class RegistreraHattFonster extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cbHattMaterialActionPerformed
 
-    private void txtHattMängdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtHattMängdActionPerformed
+    private void txtHattMangdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtHattMangdActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtHattMängdActionPerformed
+    }//GEN-LAST:event_txtHattMangdActionPerformed
 
     private void btnValjMaterialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnValjMaterialActionPerformed
-        // TODO add your handling code here:
+    
+        try {
+            String ettMaterialNamn = cbHattMaterial.getSelectedItem().toString();
+            String valdMangd = txtHattMangd.getText();
+            String ettMaterialIDString = idb.fetchSingle("select MaterialID from Material where Namn =" + ettMaterialNamn);
+            int ettMaterialIDInt = Integer.parseInt(ettMaterialIDString);
+            int ettInkopsPris = Integer.parseInt(idb.fetchSingle("select Inkopspris from bestallningsinnehall where Material =" + ettMaterialIDInt));
+            int enhetsPris = ettInkopsPris / Integer.parseInt(idb.fetchSingle("select Mangd from bestallningsinnehall where Material=" + ettMaterialIDInt));
+            int materialPris = enhetsPris * Integer.parseInt(valdMangd);
+            
+            txtAreaMaterial.append(ettMaterialNamn + "\t" + valdMangd + "\t" + materialPris);
+            txtHattMangd.setText("");
+        } catch (InfException ex) {
+            JOptionPane.showMessageDialog(null, "Något gick fel");
+            System.out.println("Internt felmeddelande" + ex.getMessage());
+        }
     }//GEN-LAST:event_btnValjMaterialActionPerformed
 
     
@@ -234,21 +302,22 @@ public class RegistreraHattFonster extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnRegistreraHatt;
     private javax.swing.JButton btnValjMaterial;
+    private javax.swing.JComboBox<String> cbHattKategori;
     private javax.swing.JComboBox<String> cbHattMaterial;
     private javax.swing.JComboBox<String> cbValjPersonal;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblHattBildLänk;
     private javax.swing.JLabel lblHattID;
     private javax.swing.JLabel lblHattIDPresentation;
+    private javax.swing.JLabel lblHattKategori;
     private javax.swing.JLabel lblHattSkapare;
     private javax.swing.JLabel lblHattStorlek;
     private javax.swing.JLabel lblMängdMaterial;
     private javax.swing.JLabel lblValjMaterial;
     private javax.swing.JLabel lblValkomstText;
-    private javax.swing.JLabel lblValtMaterial;
     private javax.swing.JTextArea txtAreaMaterial;
     private javax.swing.JTextField txtHattBild;
-    private javax.swing.JTextField txtHattMängd;
+    private javax.swing.JTextField txtHattMangd;
     private javax.swing.JTextField txtHattStorlek;
     // End of variables declaration//GEN-END:variables
 }

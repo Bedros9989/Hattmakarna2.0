@@ -23,49 +23,68 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="247" max="-2" attributes="0"/>
+              <Component id="lblValkomstText" min="-2" pref="152" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="lblHattStorlek" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="lblHattBildLänk" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblValjMaterial" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblMängdMaterial" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="lblHattSkapare" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="lblHattID" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="cbValjPersonal" max="32767" attributes="0"/>
-                              <Component id="txtHattStorlek" max="32767" attributes="0"/>
-                              <Component id="txtHattBild" max="32767" attributes="0"/>
-                              <Component id="cbHattMaterial" max="32767" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="txtHattMängd" min="-2" pref="75" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="btnValjMaterial" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Component id="lblHattIDPresentation" alignment="0" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="lblValtMaterial" min="-2" max="-2" attributes="0"/>
-                          <Component id="jScrollPane1" min="-2" pref="281" max="-2" attributes="0"/>
-                          <Group type="102" alignment="1" attributes="0">
-                              <Component id="btnRegistreraHatt" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="247" max="-2" attributes="0"/>
-                      <Component id="lblValkomstText" min="-2" pref="152" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="btnValjMaterial" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="lblHattKategori" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Group type="102" attributes="0">
+                                      <EmptySpace min="145" pref="145" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
+                                              <Component id="cbValjPersonal" max="32767" attributes="0"/>
+                                              <Component id="txtHattStorlek" max="32767" attributes="0"/>
+                                              <Component id="txtHattBild" max="32767" attributes="0"/>
+                                          </Group>
+                                          <Component id="lblHattIDPresentation" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <Component id="cbHattKategori" alignment="1" min="-2" pref="130" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" attributes="0">
+                                  <Component id="lblValjMaterial" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
+                                  <Component id="cbHattMaterial" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" attributes="0">
+                                  <Component id="lblMängdMaterial" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
+                                  <Component id="txtHattMangd" min="-2" pref="75" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                      </Group>
+                      <EmptySpace min="-2" pref="87" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="-2" pref="175" max="-2" attributes="0"/>
+                              <Component id="btnRegistreraHatt" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace pref="63" max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Component id="jScrollPane1" max="32767" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
                   </Group>
               </Group>
-              <EmptySpace pref="45" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -74,15 +93,14 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="lblValkomstText" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="lblHattID" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="lblHattIDPresentation" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="lblValtMaterial" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="lblHattID" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblHattIDPresentation" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="lblHattSkapare" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="cbValjPersonal" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -92,21 +110,31 @@
                           <Component id="txtHattStorlek" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="lblHattStorlek" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="cbHattMaterial" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblValjMaterial" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblHattKategori" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="cbHattKategori" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="lblValjMaterial" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="cbHattMaterial" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="lblMängdMaterial" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtHattMängd" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnValjMaterial" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtHattMangd" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
-                  <Component id="jScrollPane1" min="-2" pref="161" max="-2" attributes="0"/>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="jScrollPane1" min="-2" pref="161" max="-2" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace pref="150" max="32767" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="btnValjMaterial" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="88" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lblHattBildLänk" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txtHattBild" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -146,9 +174,7 @@
     <Component class="javax.swing.JComboBox" name="cbValjPersonal">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="1">
-            <StringItem index="0" value="V&#xe4;lj personal"/>
-          </StringArray>
+          <StringArray count="0"/>
         </Property>
       </Properties>
       <Events>
@@ -176,9 +202,7 @@
     <Component class="javax.swing.JComboBox" name="cbHattMaterial">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="1">
-            <StringItem index="0" value="V&#xe4;lj materialnamn"/>
-          </StringArray>
+          <StringArray count="0"/>
         </Property>
       </Properties>
       <Events>
@@ -193,9 +217,9 @@
         <Property name="text" type="java.lang.String" value="M&#xe4;ngd material"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtHattM&#xe4;ngd">
+    <Component class="javax.swing.JTextField" name="txtHattMangd">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtHattM&#xe4;ngdActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtHattMangdActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="lblHattID">
@@ -223,11 +247,6 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JLabel" name="lblValtMaterial">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Valt material"/>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JButton" name="btnValjMaterial">
       <Properties>
         <Property name="text" type="java.lang.String" value="V&#xe4;lj"/>
@@ -235,6 +254,21 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnValjMaterialActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblHattKategori">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Kategori"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="cbHattKategori">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="0"/>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
     </Component>
   </SubComponents>
 </Form>
