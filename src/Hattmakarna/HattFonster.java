@@ -16,6 +16,7 @@ public class HattFonster extends javax.swing.JFrame {
         initComponents();
         this.idb = idb;
         HattFonster.this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        this.setLocationRelativeTo(null);
     }
 
     @SuppressWarnings("unchecked")
