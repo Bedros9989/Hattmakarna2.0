@@ -44,6 +44,7 @@
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Component id="material" max="32767" attributes="0"/>
                       <Component id="beställningar" pref="150" max="32767" attributes="0"/>
+                      <Component id="btnHattar" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -69,7 +70,10 @@
                       <Component id="nyLeverantör" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="visaLeverantörer" min="-2" pref="59" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="visaLeverantörer" pref="59" max="32767" attributes="0"/>
+                      <Component id="btnHattar" max="32767" attributes="0"/>
+                  </Group>
                   <EmptySpace pref="35" max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -114,6 +118,14 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="visaLeverant&#xf6;rerActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="btnHattar">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Hattar"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnHattarActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

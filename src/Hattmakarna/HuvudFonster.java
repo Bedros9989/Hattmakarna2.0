@@ -24,7 +24,7 @@ public class HuvudFonster extends javax.swing.JFrame {
         material = new javax.swing.JButton();
         nyLeverantör = new javax.swing.JButton();
         visaLeverantörer = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        btnHattar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -64,10 +64,10 @@ public class HuvudFonster extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Hattar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnHattar.setText("Hattar");
+        btnHattar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnHattarActionPerformed(evt);
             }
         });
 
@@ -80,7 +80,7 @@ public class HuvudFonster extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(material, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(beställningar, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnHattar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(kunder, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -102,7 +102,7 @@ public class HuvudFonster extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(visaLeverantörer, javax.swing.GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnHattar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(35, Short.MAX_VALUE))
         );
 
@@ -147,14 +147,18 @@ public class HuvudFonster extends javax.swing.JFrame {
     }//GEN-LAST:event_visaLeverantörerActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        new HattFonster(idb).setVisible(true);
+      
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void btnHattarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHattarActionPerformed
+        new HattFonster(idb).setVisible(true);
+    }//GEN-LAST:event_btnHattarActionPerformed
 
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton beställningar;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnHattar;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JButton kunder;
     private javax.swing.JButton material;
