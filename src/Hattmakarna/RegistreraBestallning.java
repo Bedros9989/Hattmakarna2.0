@@ -13,16 +13,17 @@ public class RegistreraBestallning extends javax.swing.JFrame {
 
     private InfDB idb; 
     private String valdHatt;
+    private String ID;
     DefaultListModel<String> model = new DefaultListModel<String>();
     
-    public RegistreraBestallning(InfDB idb) {
+    public RegistreraBestallning(InfDB idb, String ID) {
         initComponents();
         this.idb = idb;
+        this.ID = ID;
         this.setLocationRelativeTo(null);
         RegistreraBestallning.this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         hämtaKund();
         hämtaHattar();
-        
         
         
     }
@@ -137,7 +138,9 @@ public class RegistreraBestallning extends javax.swing.JFrame {
                         .addComponent(taBort, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(jLabel7)
-                        .addComponent(jDateChooserReg, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(jDateChooserReg, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(61, 61, 61))
                         .addComponent(jLabel1)
                         .addComponent(jLabel2)
                         .addGroup(jPanel1Layout.createSequentialGroup()

@@ -6,10 +6,12 @@ import oru.inf.InfDB;
 public class HuvudFonster extends javax.swing.JFrame {
 
     private InfDB idb;
+    private String ID;
 
-    public HuvudFonster(InfDB idb) {
+    public HuvudFonster(InfDB idb, String ID) {
         initComponents();
         this.idb = idb;
+        this.ID = ID;
         this.setLocationRelativeTo(null);
         HuvudFonster.this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
@@ -111,7 +113,7 @@ public class HuvudFonster extends javax.swing.JFrame {
 
     private void beställningarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_beställningarActionPerformed
         
-        new Beställningar(idb).setVisible(true);
+        new Beställningar(idb, ID).setVisible(true);
         
     }//GEN-LAST:event_beställningarActionPerformed
 

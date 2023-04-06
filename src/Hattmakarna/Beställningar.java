@@ -7,10 +7,12 @@ import oru.inf.InfDB;
 public class Beställningar extends javax.swing.JFrame {
 
     private InfDB idb;
+    private String ID;
 
-    public Beställningar(InfDB idb) {
+    public Beställningar(InfDB idb, String ID) {
         initComponents();
         this.idb = idb;
+        this.ID = ID;
         this.setLocationRelativeTo(null);
         Beställningar.this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
@@ -87,7 +89,7 @@ public class Beställningar extends javax.swing.JFrame {
 
     private void nyBeställningActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nyBeställningActionPerformed
          
-        new RegistreraBestallning(idb).setVisible(true);
+        new RegistreraBestallning(idb, ID).setVisible(true);
          
     }//GEN-LAST:event_nyBeställningActionPerformed
 
