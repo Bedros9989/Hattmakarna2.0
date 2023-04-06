@@ -111,7 +111,7 @@ public class HuvudFonster extends javax.swing.JFrame {
 
     private void beställningarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_beställningarActionPerformed
         
-        new Beställningar(idb).setVisible(true);
+        new Bestallningar(idb).setVisible(true);
         
     }//GEN-LAST:event_beställningarActionPerformed
 
@@ -120,7 +120,7 @@ public class HuvudFonster extends javax.swing.JFrame {
     }//GEN-LAST:event_materialActionPerformed
 
     private void nyLeverantörActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nyLeverantörActionPerformed
-        new NyLeverantör(idb).setVisible(true);
+        new NyLeverantor(idb).setVisible(true);
     }//GEN-LAST:event_nyLeverantörActionPerformed
 
     private void kunderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kunderActionPerformed
@@ -131,7 +131,7 @@ public class HuvudFonster extends javax.swing.JFrame {
 
     private void visaLeverantörerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_visaLeverantörerActionPerformed
         
-        new BefintligaLeverantörer(idb).setVisible(true);
+        new BefintligaLeverantorer(idb).setVisible(true);
         
     }//GEN-LAST:event_visaLeverantörerActionPerformed
 

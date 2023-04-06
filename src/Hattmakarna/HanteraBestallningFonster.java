@@ -8,15 +8,15 @@ import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 import oru.inf.InfDB;
 import oru.inf.InfException;
 
-public class HanteraBeställningFönster extends javax.swing.JFrame {
+public class HanteraBestallningFonster extends javax.swing.JFrame {
 
     private InfDB idb;
     
-    public HanteraBeställningFönster(InfDB idb) {
+    public HanteraBestallningFonster(InfDB idb) {
         initComponents();
         this.idb = idb;
         this.setLocationRelativeTo(null);
-        HanteraBeställningFönster.this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        HanteraBestallningFonster.this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

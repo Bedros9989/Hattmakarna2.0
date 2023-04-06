@@ -4,15 +4,15 @@ package Hattmakarna;
 import oru.inf.InfDB;
 
 
-public class Beställningar extends javax.swing.JFrame {
+public class Bestallningar extends javax.swing.JFrame {
 
     private InfDB idb;
 
-    public Beställningar(InfDB idb) {
+    public Bestallningar(InfDB idb) {
         initComponents();
         this.idb = idb;
         this.setLocationRelativeTo(null);
-        Beställningar.this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        Bestallningar.this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -81,7 +81,7 @@ public class Beställningar extends javax.swing.JFrame {
 
     private void hanteraBeställningActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hanteraBeställningActionPerformed
         
-        new HanteraBeställningFönster(idb).setVisible(true);
+        new HanteraBestallningFonster(idb).setVisible(true);
         
     }//GEN-LAST:event_hanteraBeställningActionPerformed
 

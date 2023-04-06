@@ -7,15 +7,15 @@ import javax.swing.JOptionPane;
 import oru.inf.InfDB;
 import oru.inf.InfException;
 
-public class BefintligaLeverantörer extends javax.swing.JFrame {
+public class BefintligaLeverantorer extends javax.swing.JFrame {
 
     private InfDB idb;
 
-    public BefintligaLeverantörer(InfDB idb) {
+    public BefintligaLeverantorer(InfDB idb) {
         initComponents();
         this.idb = idb;
         this.setLocationRelativeTo(null);
-        BefintligaLeverantörer.this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        BefintligaLeverantorer.this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         fyllLista();
         namn.setEnabled(false);
         telefonnummer.setEnabled(false);
