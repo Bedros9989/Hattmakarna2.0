@@ -1,6 +1,7 @@
 
 package Hattmakarna;
 
+import java.awt.Window;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.logging.Level;
@@ -140,10 +141,27 @@ public class Hattar extends javax.swing.JFrame {
             String hatten = (String)tabell.getValueAt(valdaHatten, 0);
             jLabel1.setText(hatten);
             
+            RegistreraBestallning beställning = getBeställningForm();
+            String[] data = {hatten};
+            beställning.populateList(data);
+            dispose();
         }
         
     }//GEN-LAST:event_läggTillBeställningActionPerformed
 
+    private RegistreraBestallning getBeställningForm(){
+        
+        RegistreraBestallning form = null;
+        for (Window window : Window.getWindows()){
+            if (window instanceof RegistreraBestallning){
+                form = (RegistreraBestallning) window;
+                break;
+            }
+            
+        }
+        return form;
+    }
+    
     private void addValues(){
         
         
