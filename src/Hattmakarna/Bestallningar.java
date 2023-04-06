@@ -9,11 +9,7 @@ public class Bestallningar extends javax.swing.JFrame {
     private InfDB idb;
     private String ID;
 
-<<<<<<< HEAD:src/Hattmakarna/Bestallningar.java
-    public Bestallningar(InfDB idb) {
-=======
-    public Beställningar(InfDB idb, String ID) {
->>>>>>> SkapaBeställning:src/Hattmakarna/Beställningar.java
+    public Bestallningar(InfDB idb, String ID) {
         initComponents();
         this.idb = idb;
         this.ID = ID;
