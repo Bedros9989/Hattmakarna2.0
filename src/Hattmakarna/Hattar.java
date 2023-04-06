@@ -13,8 +13,9 @@ import oru.inf.InfException;
 public class Hattar extends javax.swing.JFrame {
 
     private InfDB idb;
+    private String valdHatt;
     
-    public Hattar(InfDB idb) {
+    public Hattar(InfDB idb, String valdHatt) {
         initComponents();
         this.idb = idb;
         this.setLocationRelativeTo(null);

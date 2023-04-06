@@ -10,6 +10,7 @@ import oru.inf.InfException;
 public class RegistreraBestallning extends javax.swing.JFrame {
 
     private InfDB idb; 
+    private String valdHatt;
     
     public RegistreraBestallning(InfDB idb) {
         initComponents();
@@ -17,6 +18,7 @@ public class RegistreraBestallning extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         RegistreraBestallning.this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         hämtaKund();
+        hämtaHattar();
         
     }
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -55,7 +57,12 @@ public class RegistreraBestallning extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Helvetica Neue", 0, 17)); // NOI18N
         jLabel6.setText("Hatt");
 
-        cbKundID.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Välj kundID" }));
+        cbKundID.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Välj Kund" }));
+        cbKundID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbKundIDActionPerformed(evt);
+            }
+        });
 
         cbHattID.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Välj Hatt" }));
         cbHattID.addActionListener(new java.awt.event.ActionListener() {
@@ -194,7 +201,11 @@ public class RegistreraBestallning extends javax.swing.JFrame {
             allaKundNamn= idb.fetchColumn(fraga);
             for (String enKund: allaKundNamn){
               cbKundID.addItem(enKund);
+              
             }
+            cbKundID.addItem("+ Lägg till ny kund");
+            
+            
             
         }  catch (InfException e) {
 
@@ -210,7 +221,7 @@ public class RegistreraBestallning extends javax.swing.JFrame {
     
     private void hämtaHattar(){
         
-        String fraga= "select Namn from Hatt";
+        String fraga= "select Kategori from Hatt";
         ArrayList<String> allaHattIDn;
     
         try {
@@ -238,13 +249,26 @@ public class RegistreraBestallning extends javax.swing.JFrame {
 
     private void jbLaggTillHattActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbLaggTillHattActionPerformed
 
-        new Hattar(idb).setVisible(true); 
+        valdHatt = cbHattID.getSelectedItem().toString();
+        
+        new Hattar(idb, valdHatt).setVisible(true); 
         
     }//GEN-LAST:event_jbLaggTillHattActionPerformed
 
     private void cbHattIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbHattIDActionPerformed
         
     }//GEN-LAST:event_cbHattIDActionPerformed
+
+    private void cbKundIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbKundIDActionPerformed
+        
+        if (cbKundID.getSelectedItem().toString().equals("+ Lägg till ny kund")){
+                
+                new HanteraKundInfoFonster(idb).setVisible(true);
+                dispose();
+                
+            }
+        
+    }//GEN-LAST:event_cbKundIDActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> cbHattID;
