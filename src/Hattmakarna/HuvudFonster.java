@@ -147,7 +147,7 @@ public class HuvudFonster extends javax.swing.JFrame {
     }//GEN-LAST:event_visaLeverantörerActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        new RegistreraHattFonster(idb).setVisible(true);
+        new HattFonster(idb).setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
 
