@@ -114,8 +114,18 @@ public class HanteraBestallningFonster extends javax.swing.JFrame {
         });
 
         jbLev.setText("Ändra leveransadress");
+        jbLev.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbLevActionPerformed(evt);
+            }
+        });
 
         jbSumma.setText("Ändra totalsumma");
+        jbSumma.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbSummaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -145,14 +155,12 @@ public class HanteraBestallningFonster extends javax.swing.JFrame {
                                         .addComponent(jtHattID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jbkund)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(jbkund)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(jbhatt)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jbBortHatt)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 270, Short.MAX_VALUE)))
+                                        .addComponent(jbBortHatt)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 270, Short.MAX_VALUE)
                                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -285,10 +293,7 @@ public class HanteraBestallningFonster extends javax.swing.JFrame {
 
     private void jbPersonalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbPersonalActionPerformed
  String bestallningsID= jtBestallningsID.getText();
-   String kundID= jtKundID.getText();
-   String hattID= jtHattID.getText();
-   String leveransAdress= txtaLeveransadress.getText();
-   String totalsumma=jtSumma.getText();
+ ;
    String bestallningsAnsvarig= jtAnsvarig.getText();
     
         if (bestallningsID.isEmpty()|| (bestallningsID.matches(".*[a-zA-Z].*"))){
@@ -298,27 +303,9 @@ public class HanteraBestallningFonster extends javax.swing.JFrame {
         else{
             try{
            
-            if (kundID.isEmpty()== false){
-                idb.update("Update Bestallning set Kund = " + kundID + " where BestallningsID= "+ bestallningsID );
-                JOptionPane.showMessageDialog(null, "KundID har uppdaterats på ordern!");
-            }
-            if (hattID.isEmpty()==false){
-                 idb.update("Update Hatt set Bestallning = " + bestallningsID + " where HattID= "+ hattID );
-                JOptionPane.showMessageDialog(null, "Hatt har lagts till i ordern!");
-            }
-            if (leveransAdress.isEmpty()==false){
-                idb.update("Update Bestallning set Leveransadress = "+leveransAdress+ " where BestallningsID= "+ bestallningsID);
-                JOptionPane.showMessageDialog(null, "Leveransadress har uppdaterats!");
-            }
-            
-            if (totalsumma.isEmpty()==false){
-                idb.update("Update bestallning set Totalsumma= "+ totalsumma + " where BestallningsID= "+ bestallningsID);
-                JOptionPane.showMessageDialog(null, "Totalsumman har uppdaterats!");
-            }
-         
             if (bestallningsAnsvarig.isEmpty()==false){
                 idb.update("Update bestallning set Personal= "+ bestallningsAnsvarig + " where BestallningsID= "+ bestallningsID);
-                JOptionPane.showMessageDialog(null, "Totalsumman har uppdaterats!");
+                JOptionPane.showMessageDialog(null, "Ansvarig personal har uppdaterats!");
             }
             
             }
@@ -424,6 +411,63 @@ public class HanteraBestallningFonster extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jbBortHattActionPerformed
 
+    private void jbLevActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbLevActionPerformed
+      
+        String bestallningsID= jtBestallningsID.getText();
+  
+   String leveransAdress= txtaLeveransadress.getText();
+  
+    
+        if (bestallningsID.isEmpty()|| (bestallningsID.matches(".*[a-zA-Z].*"))){
+            JOptionPane.showMessageDialog(null, "Säkerställ att du skrivit in beställningsID korrekt!");
+       
+        }
+        else{
+            try{
+           
+            
+            if (leveransAdress.isEmpty()==false){
+                idb.update("Update Bestallning set Leveransadress = "+leveransAdress+ " where BestallningsID= "+ bestallningsID);
+                JOptionPane.showMessageDialog(null, "Leveransadress har uppdaterats!");
+        
+            
+            }
+            }
+        catch (InfException e){
+            JOptionPane.showMessageDialog(null, "Databasfel");
+            System.out.println("Databasfel: "+e);
+        }
+        }
+        
+        
+        
+    }//GEN-LAST:event_jbLevActionPerformed
+
+    private void jbSummaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSummaActionPerformed
+      String bestallningsID= jtBestallningsID.getText();
+   String totalsumma=jtSumma.getText();
+  
+    
+        if (bestallningsID.isEmpty()|| (bestallningsID.matches(".*[a-zA-Z].*"))){
+            JOptionPane.showMessageDialog(null, "Säkerställ att du skrivit in beställningsID korrekt!");
+       
+        }
+        else{
+            try{
+           
+            if (totalsumma.isEmpty()==false){
+                idb.update("Update bestallning set Totalsumma= "+ totalsumma + " where BestallningsID= "+ bestallningsID);
+                JOptionPane.showMessageDialog(null, "Totalsumman har uppdaterats!");
+            }
+         
+            
+            }
+        catch (InfException e){
+            JOptionPane.showMessageDialog(null, "Databasfel");
+        }
+        }
+    }//GEN-LAST:event_jbSummaActionPerformed
+   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
