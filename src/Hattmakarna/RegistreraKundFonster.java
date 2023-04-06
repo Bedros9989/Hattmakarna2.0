@@ -31,7 +31,7 @@ public class RegistreraKundFonster extends javax.swing.JFrame {
         jAngiventKundTel = new javax.swing.JTextField();
         jAngivenKundAdress = new javax.swing.JTextField();
         jAngivenKundMejl = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        btnRegistreraKund = new javax.swing.JButton();
         felMeddelande = new javax.swing.JLabel();
         confirmMeddelande = new javax.swing.JLabel();
 
@@ -72,12 +72,14 @@ public class RegistreraKundFonster extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Registrera kund");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnRegistreraKund.setText("Registrera kund");
+        btnRegistreraKund.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnRegistreraKundActionPerformed(evt);
             }
         });
+
+        felMeddelande.setForeground(new java.awt.Color(255, 0, 0));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -86,7 +88,7 @@ public class RegistreraKundFonster extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(140, 140, 140)
                 .addComponent(jTitel, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(256, Short.MAX_VALUE))
+                .addContainerGap(286, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(35, 35, 35)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -94,15 +96,15 @@ public class RegistreraKundFonster extends javax.swing.JFrame {
                     .addComponent(jKundTelefon)
                     .addComponent(jKundAdress)
                     .addComponent(jKundMejl)
-                    .addComponent(felMeddelande, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(confirmMeddelande, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE))
+                    .addComponent(felMeddelande, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(confirmMeddelande, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jAngivetKundNamn)
                     .addComponent(jAngiventKundTel)
                     .addComponent(jAngivenKundAdress)
                     .addComponent(jAngivenKundMejl)
-                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addComponent(btnRegistreraKund, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -126,12 +128,15 @@ public class RegistreraKundFonster extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jAngivenKundMejl, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jKundMejl))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(felMeddelande, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(confirmMeddelande, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(btnRegistreraKund)
+                        .addGap(22, 22, 22))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(felMeddelande, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                .addComponent(confirmMeddelande, javax.swing.GroupLayout.DEFAULT_SIZE, 55, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -160,25 +165,25 @@ public class RegistreraKundFonster extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jAngivenKundAdressActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-             
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jAngiventKundTelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAngiventKundTelActionPerformed
-      felMeddelande.setText("");
+    private void btnRegistreraKundActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistreraKundActionPerformed
+    felMeddelande.setText("");
       confirmMeddelande.setText("");
         
         if (ValideringsKlass.rutaEmpty(jAngivetKundNamn) || ValideringsKlass.rutaEmpty(jAngiventKundTel) || ValideringsKlass.rutaEmpty(jAngivenKundAdress) || ValideringsKlass.rutaEmpty(jAngivenKundMejl)) {
            felMeddelande.setText("Fel: Vänligen fyll i alla fält");
         } else {
             try {
-                idb.insert("INSERT INTO Kund (Namn,Telefon,Adress,Email) VALUES (" + jAngivetKundNamn.getText() + "', '" + jAngiventKundTel.getText() + "', '" + jAngivenKundAdress.getText() + "', " + jAngivenKundMejl.getText() + ");");
-                confirmMeddelande.setText("En ny kund ahr registrerats!");
+                idb.insert("INSERT INTO Kund (Namn, Telefon, Adress, Email) VALUES (" + jAngivetKundNamn.getText() + "', '" + jAngiventKundTel.getText() + "', '" + jAngivenKundAdress.getText() + "', " + jAngivenKundMejl.getText() + ");");
+                confirmMeddelande.setText("En ny kund har registrerats!");
             } catch (InfException exc) {
                 JOptionPane.showMessageDialog(null, "Något gick fel!");
             }
 
-                            }
+                            }        
+    }//GEN-LAST:event_btnRegistreraKundActionPerformed
+
+    private void jAngiventKundTelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAngiventKundTelActionPerformed
+   
     }//GEN-LAST:event_jAngiventKundTelActionPerformed
 
     private void jAngivenKundMejlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAngivenKundMejlActionPerformed
@@ -187,13 +192,13 @@ public class RegistreraKundFonster extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnRegistreraKund;
     private javax.swing.JLabel confirmMeddelande;
     private javax.swing.JLabel felMeddelande;
     private javax.swing.JTextField jAngivenKundAdress;
     private javax.swing.JTextField jAngivenKundMejl;
     private javax.swing.JTextField jAngiventKundTel;
     private javax.swing.JTextField jAngivetKundNamn;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jKundAdress;
     private javax.swing.JLabel jKundMejl;
     private javax.swing.JLabel jKundNamn;
