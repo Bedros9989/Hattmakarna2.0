@@ -1,9 +1,13 @@
 package Hattmakarna;
 
 
+import com.toedter.calendar.JDateChooser;
+import java.util.Date;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 
@@ -40,22 +44,6 @@ public class ValideringsKlass {
         return resultat;
     }
     
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-=======
->>>>>>> parent of 1d85450 (.)
-       public static boolean rutaEmpty(JTextField enRuta) {
-        boolean empty = false;
-
-        if (enRuta.getText().isEmpty()) {
-            empty = true;
-        }
-
-        return empty;
-    }
-<<<<<<< HEAD
-
     public static boolean rutanÄrTom2 (JTextArea enRuta, JLabel namn){
         
         boolean resultat = true;
@@ -65,11 +53,26 @@ public class ValideringsKlass {
         }
         return resultat;
     }
-=======
->>>>>>> parent of 73abaef (.)
     
+    public static boolean datumInteVald(JDateChooser datum){
+        
+        boolean resultat = true;
+        Date valdDatum = datum.getDate();
+        if (valdDatum == null){
+            JOptionPane.showMessageDialog(null, "Du har inte valt ett datum");
+            resultat = false;
+        }
+        return resultat;
+    }
     
-
-=======
->>>>>>> parent of 1d85450 (.)
+    public static boolean listaTom(JList lista){
+        
+        boolean resultat = true;
+        if(lista.getModel().getSize() ==0){
+            JOptionPane.showMessageDialog(null, "Du har inte valt någon hatt");
+            resultat = false;
+        }
+        return resultat;
+    }
+    
 }

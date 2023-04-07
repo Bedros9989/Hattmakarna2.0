@@ -8,6 +8,7 @@ import oru.inf.InfException;
 public class InloggningsFonster extends javax.swing.JFrame {
 
     private InfDB idb;
+    private String ID;
 
     public InloggningsFonster(InfDB idb) {
         initComponents();
@@ -154,7 +155,8 @@ public class InloggningsFonster extends javax.swing.JFrame {
                          
                         if(losenord.equals(svarLösen)){
                             
-                            new HuvudFonster(idb).setVisible(true);
+                            ID = id;
+                            new HuvudFonster(idb,ID).setVisible(true);
                             dispose();
                             
                         }
