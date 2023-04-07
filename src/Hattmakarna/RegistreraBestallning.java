@@ -303,7 +303,7 @@ public class RegistreraBestallning extends javax.swing.JFrame {
                         orderNr = bästID;
                         vikt= "100gr";
                         datum = regDatum;
-                        mottagare =fraktsedel;
+                        mottagare =adress;
                         kund = kundID;
                         
                         double totalSumma = Double.parseDouble(summan.getText())  * Lojalitet;

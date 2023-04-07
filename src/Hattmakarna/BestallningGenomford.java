@@ -1,10 +1,17 @@
 
 package Hattmakarna;
 
+import java.awt.Color;
 import java.awt.Desktop;
+import java.io.File;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.pdmodel.PDPage;
+import org.apache.pdfbox.pdmodel.PDPageContentStream;
+import org.apache.pdfbox.pdmodel.font.PDType1Font;
+import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
 import oru.inf.InfDB;
 import oru.inf.InfException;
 
@@ -98,9 +105,90 @@ public class BestallningGenomford extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public static PDDocument createSamplePDF(String msg, String msg2, String msg3, String msg4, String msg5, String msg6, String msg7)throws IOException{
+        
+        PDDocument pDDocument = new PDDocument();
+        PDPage pDPage = new PDPage();
+        pDDocument.addPage(pDPage);
+        PDPageContentStream cs = new PDPageContentStream(pDDocument,pDPage);
+        cs.beginText();
+        cs.setFont(PDType1Font.HELVETICA, 20);
+        cs.setNonStrokingColor(Color.black);
+        cs.moveTextPositionByAmount(250, 750);
+        cs.showText(msg);
+        cs.newLineAtOffset(-70, -30);
+        cs.newLine();
+        cs.showText(msg2);
+        cs.newLineAtOffset(-150, -80);
+        cs.newLine();
+        cs.showText(msg3);
+        cs.newLineAtOffset(0, -50);
+        cs.newLine();
+        cs.showText(msg4);
+        cs.newLineAtOffset(0, -50);
+        cs.newLine();
+        cs.showText(msg5);
+        cs.newLineAtOffset(0, -50);
+        cs.newLine();
+        cs.showText(msg6);
+        cs.newLineAtOffset(0, -50);
+        cs.newLine();
+        cs.showText(msg7);
+        cs.endText();
+        cs.close();
+        return pDDocument;
+    }
+    
+    public static void savenclose (PDDocument pdd,String destpath)throws IOException{
+        
+        pdd.save(new File(destpath));
+        pdd.close();
+        
+    }
+    
+    public static void insertImage (String pdfPath, String imagePath)throws IOException{
+        
+       PDDocument pdd = PDDocument.load(new File(pdfPath));
+       PDPage page = pdd.getPage(0);
+       
+       PDImageXObject pdImage = PDImageXObject.createFromFile("./Databasfiler/1.png", pdd);
+       PDPageContentStream cs = new PDPageContentStream(pdd,page,PDPageContentStream.AppendMode.APPEND,false);
+       cs.drawImage(pdImage,55,50,500,300);
+       cs.close();
+       savenclose(pdd,pdfPath);
+        
+    }
+    
     private void jBVisaFraktsedelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBVisaFraktsedelActionPerformed
         
+        String text = "Fraktsedel";
+        String text2= "Otto och Judiths hattar AB";
+        String text3= "Ordernummer:"+orderNr;
+        String text4= "Vikt:"+vikt;
+        String text5= "Datum:"+datum;
+        String text6= "Avsändare: Hattvägen 1, 70281, Örebro";
+        String text7= "Mottagare:"+ mottagare;
+       
+        try {
+       PDDocument pdd = createSamplePDF(text, text2, text3, text4, text5,text6,text7);
+        savenclose (pdd,"./Databasfiler/hej.pdf");
+        insertImage("./Databasfiler/hej.pdf","./Databasfiler/1.png");
         
+        File file = new File("./Databasfiler/hej.pdf");
+        if (file.exists()) {
+            try {
+                Desktop.getDesktop().open(file);
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        } else {
+            System.out.println("File not found.");
+        }
+
+        
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
         
     }//GEN-LAST:event_jBVisaFraktsedelActionPerformed
 
