@@ -41,6 +41,7 @@ public class ValideringsKlass {
     }
     
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> parent of 1d85450 (.)
@@ -64,27 +65,9 @@ public class ValideringsKlass {
         }
         return resultat;
     }
+=======
+>>>>>>> parent of 73abaef (.)
     
-    public static boolean datumInteVald(JDateChooser datum){
-        
-        boolean resultat = true;
-        Date valdDatum = datum.getDate();
-        if (valdDatum == null){
-            JOptionPane.showMessageDialog(null, "Du har inte valt ett datum");
-            resultat = false;
-        }
-        return resultat;
-    }
-    
-    public static boolean listaTom(JList lista){
-        
-        boolean resultat = true;
-        if(lista.getModel().getSize() ==0){
-            JOptionPane.showMessageDialog(null, "Du har inte valt någon hatt");
-            resultat = false;
-        }
-        return resultat;
-    }
     
 
 =======
