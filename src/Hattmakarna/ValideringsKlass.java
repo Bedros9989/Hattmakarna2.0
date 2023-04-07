@@ -44,7 +44,7 @@ public class ValideringsKlass {
         return resultat;
     }
     
-<<<<<<< HEAD
+
        public static boolean rutaEmpty(JTextField enRuta) {
         boolean empty = false;
 
@@ -54,7 +54,7 @@ public class ValideringsKlass {
 
         return empty;
     }
-=======
+
     public static boolean rutanÄrTom2 (JTextArea enRuta, JLabel namn){
         
         boolean resultat = true;
@@ -86,5 +86,5 @@ public class ValideringsKlass {
         return resultat;
     }
     
->>>>>>> SkapaBeställning
+
 }
