@@ -10,11 +10,21 @@ import oru.inf.InfException;
 
 public class BestallningGenomford extends javax.swing.JFrame {
 
-    private InfDB idb; 
+    private InfDB idb;
+    private String orderNr;
+    private String vikt;
+    private String datum;
+    private String mottagare;
+    private String kund;
     
-    public BestallningGenomford(InfDB idb) {
+    public BestallningGenomford(InfDB idb, String orderNr,String vikt,String datum, String mottagare,String kund) {
         initComponents();
         this.idb = idb;
+        this.orderNr=orderNr;
+        this.vikt=vikt;
+        this.datum=datum;
+        this.mottagare=mottagare;
+        this.kund=kund;
         this.setLocationRelativeTo(null);
         BestallningGenomford.this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }

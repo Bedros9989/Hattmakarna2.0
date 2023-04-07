@@ -16,6 +16,12 @@ public class RegistreraBestallning extends javax.swing.JFrame {
     private double Lojalitet;
     DefaultListModel<String> model = new DefaultListModel<String>();
     
+    private String orderNr;
+    private String vikt;
+    private String datum;
+    private String mottagare;
+    private String kund;
+    
     public RegistreraBestallning(InfDB idb, String ID) {
         initComponents();
         this.idb = idb;
@@ -293,9 +299,16 @@ public class RegistreraBestallning extends javax.swing.JFrame {
                 int resultat = JOptionPane.showConfirmDialog(null, "Är du nöjd med allt du har skrivit?", "Bekräfta uppgifter", JOptionPane.YES_NO_OPTION);
                 
                 if(resultat == JOptionPane.YES_OPTION){
+                    
+                        orderNr = bästID;
+                        vikt= "100gr";
+                        datum = regDatum;
+                        mottagare =fraktsedel;
+                        kund = kundID;
+                        
                         double totalSumma = Double.parseDouble(summan.getText())  * Lojalitet;
                         idb.insert("INSERT INTO hattmakare.Bestallning (BestallningsID, Leveransadress, Totalsumma, Fraktsedel, Datum, Kund, Personal) VALUES ("+bästID+", '"+adress+"', "+totalSumma+", '"+fraktsedel+"', '"+regDatum+"', "+kundID+", "+ID+");");
-                        new BestallningGenomford(idb).setVisible(true);
+                        new BestallningGenomford(idb,orderNr,vikt,datum,mottagare,kund).setVisible(true);
                         
                      
                 }
@@ -307,7 +320,7 @@ public class RegistreraBestallning extends javax.swing.JFrame {
                 if(resultat == JOptionPane.YES_OPTION){
                         double summa = Double.parseDouble(summan.getText());
                         idb.insert("INSERT INTO hattmakare.Bestallning (BestallningsID, Leveransadress, Totalsumma, Fraktsedel, Datum, Kund, Personal) VALUES ("+bästID+", '"+adress+"', "+summa+", '"+fraktsedel+"', '"+regDatum+"', "+kundID+", "+ID+");");
-                        new BestallningGenomford(idb).setVisible(true);
+                        new BestallningGenomford(idb,orderNr,vikt,datum,mottagare,kund).setVisible(true);
                        
                      
                 }
