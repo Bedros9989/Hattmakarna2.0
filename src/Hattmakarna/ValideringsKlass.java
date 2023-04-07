@@ -1,13 +1,9 @@
 package Hattmakarna;
 
 
-import com.toedter.calendar.JDateChooser;
-import java.util.Date;
 import javax.swing.JLabel;
-import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
-import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 
@@ -44,7 +40,10 @@ public class ValideringsKlass {
         return resultat;
     }
     
+<<<<<<< HEAD
 
+=======
+>>>>>>> parent of 1d85450 (.)
        public static boolean rutaEmpty(JTextField enRuta) {
         boolean empty = false;
 
@@ -54,6 +53,7 @@ public class ValideringsKlass {
 
         return empty;
     }
+<<<<<<< HEAD
 
     public static boolean rutanÄrTom2 (JTextArea enRuta, JLabel namn){
         
@@ -87,4 +87,6 @@ public class ValideringsKlass {
     }
     
 
+=======
+>>>>>>> parent of 1d85450 (.)
 }
