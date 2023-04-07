@@ -20,7 +20,6 @@ public class HanteraBestallningFonster extends javax.swing.JFrame {
 //        txtareaInfo.setVisible(false);
 //        skrolla.setVisible(false);
         this.setLocationRelativeTo(null);
-        
 
     }
 
@@ -160,7 +159,7 @@ public class HanteraBestallningFonster extends javax.swing.JFrame {
                         .addComponent(jLabel1))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(28, 28, 28)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel10)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel6)
@@ -176,8 +175,8 @@ public class HanteraBestallningFonster extends javax.swing.JFrame {
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGap(18, 18, 18)
                                         .addComponent(jbLev))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(272, 272, 272)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(jbRadera))))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -295,7 +294,7 @@ public class HanteraBestallningFonster extends javax.swing.JFrame {
                         .addComponent(jtAnsvarig, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(33, 33, 33)
                         .addComponent(jbPersonal)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(935, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -431,16 +430,16 @@ public class HanteraBestallningFonster extends javax.swing.JFrame {
 
         String bestallningsID = jtBestallningsID.getText();
 
-        String leveransAdress = txtaLeveransadress.getText();
-
+//        String leveransAdress = txtaLeveransadress.getText();
         if (bestallningsID.isEmpty() || (bestallningsID.matches(".*[a-zA-Z].*"))) {
             JOptionPane.showMessageDialog(null, "Säkerställ att du skrivit in beställningsID korrekt!");
 
         } else {
             try {
-
+                String leveransAdress = txtaLeveransadress.getText();
                 if (leveransAdress.isEmpty() == false) {
-                    idb.update("Update Bestallning set Leveransadress = " + leveransAdress + " where BestallningsID= " + bestallningsID);
+                    idb.update("Update bestallning set Leveransadress = '" + leveransAdress + "' where BestallningsID= " + bestallningsID);
+                    idb.update("Update bestallning set Fraktsedel =  '" + leveransAdress + "' where BestallningsID= " + bestallningsID);
                     JOptionPane.showMessageDialog(null, "Leveransadress har uppdaterats!");
 
                 } else {
@@ -524,20 +523,22 @@ public class HanteraBestallningFonster extends javax.swing.JFrame {
     }//GEN-LAST:event_jbRaderaActionPerformed
 
     private void jbVisaInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbVisaInfoActionPerformed
-           
-           txtareaInfo.setVisible(true);
-           skrolla.setVisible(true);
+
+        txtareaInfo.setVisible(true);
+        skrolla.setVisible(true);
         String bestallningsID = jtBestallningsID.getText();
-        String fraga = ("Select * from bestallning where bestallningsID= " + bestallningsID);
+        String fraga = ("Select * from bestallning where bestallningsID= " + bestallningsID + "\n");
 
         if (bestallningsID.isEmpty() || (bestallningsID.matches(".*[a-zA-Z].*"))) {
             JOptionPane.showMessageDialog(null, "Säkerställ att du skrivit in beställningsID korrekt!");
 
         } else {
             try {
-                HashMap <String, String> raden = idb.fetchRow(fraga);
-                String resultat= raden.toString();
-                txtareaInfo.setText(resultat);
+                txtareaInfo.setText("BeställningsID: " + bestallningsID + "\n");
+
+                HashMap<String, String> raden = idb.fetchRow(fraga);
+                String resultat = raden.toString();
+                txtareaInfo.append(resultat);
             } catch (InfException e) {
                 JOptionPane.showMessageDialog(null, "Databasfel");
                 System.out.println("Databasfel: " + e);
