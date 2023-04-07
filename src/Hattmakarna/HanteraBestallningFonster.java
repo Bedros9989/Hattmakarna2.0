@@ -20,7 +20,6 @@ public class HanteraBestallningFonster extends javax.swing.JFrame {
 //        txtareaInfo.setVisible(false);
 //        skrolla.setVisible(false);
         this.setLocationRelativeTo(null);
-        
 
     }
 
@@ -60,7 +59,7 @@ public class HanteraBestallningFonster extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
         jLabel1.setText("Hantera beställning");
 
         jLabel2.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
@@ -95,8 +94,6 @@ public class HanteraBestallningFonster extends javax.swing.JFrame {
         txtareaInfo.setRows(5);
         txtareaInfo.setText("Ange beställningsID för att se\nbeställningsinformation här.");
         skrolla.setViewportView(txtareaInfo);
-
-        jLabel10.setText("Fyll i aktuellt beställningsID samt de uppgifter som du vill uppdatera i beställningen");
 
         jbkund.setText("Ändra kundID");
         jbkund.addActionListener(new java.awt.event.ActionListener() {
@@ -154,65 +151,61 @@ public class HanteraBestallningFonster extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(28, 28, 28)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel10)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(95, 95, 95)
-                        .addComponent(jLabel1))
+                        .addComponent(jLabel6)
+                        .addGap(82, 82, 82)
+                        .addComponent(jtSumma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(33, 33, 33)
+                        .addComponent(jbSumma))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(28, 28, 28)
+                        .addComponent(jLabel5)
+                        .addGap(40, 40, 40)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel10)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel6)
-                                .addGap(82, 82, 82)
-                                .addComponent(jtSumma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(33, 33, 33)
-                                .addComponent(jbSumma))
+                                .addGap(18, 18, 18)
+                                .addComponent(jbLev))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addGap(40, 40, 40)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(272, 272, 272)
+                                .addComponent(jbRadera))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel3)
+                                        .addGap(90, 90, 90)
+                                        .addComponent(jtKundID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel7)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jtHattID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(18, 18, 18)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jbkund)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jbLev))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(272, 272, 272)
-                                        .addComponent(jbRadera))))
+                                        .addComponent(jbhatt)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jbBortHatt))))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addComponent(jLabel3)
-                                                .addGap(90, 90, 90)
-                                                .addComponent(jtKundID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addComponent(jLabel7)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(jtHattID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                        .addGap(18, 18, 18)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jbkund)
-                                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addComponent(jbhatt)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(jbBortHatt))))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel2)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jtBestallningsID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(28, 28, 28)
-                                        .addComponent(jbVisaInfo)))
-                                .addGap(75, 75, 75)
-                                .addComponent(skrolla, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(630, Short.MAX_VALUE))
+                                .addComponent(jLabel2)
+                                .addGap(18, 18, 18)
+                                .addComponent(jtBestallningsID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(28, 28, 28)
+                                .addComponent(jbVisaInfo)))
+                        .addGap(75, 75, 75)
+                        .addComponent(skrolla, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(78, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel10)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -242,7 +235,7 @@ public class HanteraBestallningFonster extends javax.swing.JFrame {
                         .addComponent(skrolla, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jbRadera)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                         .addComponent(jbLev)))
                 .addGap(25, 25, 25)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -277,9 +270,6 @@ public class HanteraBestallningFonster extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -296,12 +286,16 @@ public class HanteraBestallningFonster extends javax.swing.JFrame {
                         .addGap(33, 33, 33)
                         .addComponent(jbPersonal)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(jtAnsvarig, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -441,7 +435,7 @@ public class HanteraBestallningFonster extends javax.swing.JFrame {
 
                 if (leveransAdress.isEmpty() == false) {
                     idb.update("Update Bestallning set Leveransadress = " + leveransAdress + " where BestallningsID= " + bestallningsID);
-                     idb.update("Update Bestallning set Fraktsedel = ' Adress: " + leveransAdress + "' where BestallningsID= " + bestallningsID);
+                    idb.update("Update Bestallning set Fraktsedel = ' Adress: " + leveransAdress + "' where BestallningsID= " + bestallningsID);
                     JOptionPane.showMessageDialog(null, "Leveransadress har uppdaterats!");
 
                 } else {
@@ -525,20 +519,28 @@ public class HanteraBestallningFonster extends javax.swing.JFrame {
     }//GEN-LAST:event_jbRaderaActionPerformed
 
     private void jbVisaInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbVisaInfoActionPerformed
-           
-           txtareaInfo.setVisible(true);
-           skrolla.setVisible(true);
-        String bestallningsID = jtBestallningsID.getText();
-        String fraga = ("Select * from bestallning where bestallningsID= " + bestallningsID);
+//lös hur man hämtar hem ev flera hattar i en beställning.. .någon slags loop
 
+        txtareaInfo.setVisible(true);
+        skrolla.setVisible(true);
+        String bestallningsID = jtBestallningsID.getText();
+        String fragaKund = ("Select kund from bestallning where bestallningsID= " + bestallningsID);
+        String fragaAdress = ("Select Leveransadress from bestallning where bestallningsID= " + bestallningsID);
+        String fragaSumma = ("Select Totalsumma from bestallning where bestallningsID= " + bestallningsID);
+        String fragaAnsvarig = ("Select Personal from bestallning where bestallningsID= " + bestallningsID);
+        String fragaDatum = ("Select Datum from bestallning where bestallningsID= " + bestallningsID);
         if (bestallningsID.isEmpty() || (bestallningsID.matches(".*[a-zA-Z].*"))) {
             JOptionPane.showMessageDialog(null, "Säkerställ att du skrivit in beställningsID korrekt!");
 
         } else {
             try {
-                HashMap <String, String> raden = idb.fetchRow(fraga);
-                String resultat= raden.toString();
-                txtareaInfo.setText(resultat);
+                txtareaInfo.setText("BeställningsID: " + bestallningsID + "\n");
+                txtareaInfo.append("KundID: " + idb.fetchSingle(fragaKund) + " \n");
+                txtareaInfo.append("Leveransadress: " + idb.fetchSingle(fragaAdress) + " \n");
+                txtareaInfo.append("Totalsumma: " + idb.fetchSingle(fragaSumma) + " kronor \n");
+                txtareaInfo.append("Ansvarig personals ID: " + idb.fetchSingle(fragaAnsvarig) + " \n");
+                txtareaInfo.append("Datum för beställning: " + idb.fetchSingle(fragaDatum) + " \n");
+
             } catch (InfException e) {
                 JOptionPane.showMessageDialog(null, "Databasfel");
                 System.out.println("Databasfel: " + e);
