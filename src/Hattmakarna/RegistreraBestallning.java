@@ -348,10 +348,10 @@ public class RegistreraBestallning extends javax.swing.JFrame {
         
         if (cbKundID.getSelectedItem().toString().equals("+ Lägg till ny kund")){
                 
-                new HanteraKundInfoFonster(idb).setVisible(true);
+                new RegistreraKundFonster(idb).setVisible(true);
                 dispose();
                 
-            }
+            }else{
         
         try {
             
@@ -375,7 +375,7 @@ public class RegistreraBestallning extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Något gick snett, prova igen!");
             
         }  
-        
+        }
         
     }//GEN-LAST:event_cbKundIDActionPerformed
 
