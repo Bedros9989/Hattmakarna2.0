@@ -5,6 +5,7 @@ import java.awt.Window;
 import java.util.ArrayList;
 import java.util.HashMap;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import oru.inf.InfDB;
 import oru.inf.InfException;
@@ -65,6 +66,7 @@ public class Hattar extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
+        tabell.setRequestFocusEnabled(false);
         jScrollPane1.setViewportView(tabell);
 
         läggTillBeställning.setText("Lägg till hatten i beställningen");
@@ -185,7 +187,9 @@ public class Hattar extends javax.swing.JFrame {
         }
         
     }
+        
     
+   
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel1;
