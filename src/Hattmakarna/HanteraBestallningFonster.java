@@ -441,6 +441,7 @@ public class HanteraBestallningFonster extends javax.swing.JFrame {
 
                 if (leveransAdress.isEmpty() == false) {
                     idb.update("Update Bestallning set Leveransadress = " + leveransAdress + " where BestallningsID= " + bestallningsID);
+                     idb.update("Update Bestallning set Fraktsedel = ' Adress: " + leveransAdress + "' where BestallningsID= " + bestallningsID);
                     JOptionPane.showMessageDialog(null, "Leveransadress har uppdaterats!");
 
                 } else {
