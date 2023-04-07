@@ -7,6 +7,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import javax.swing.JOptionPane;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
@@ -195,14 +196,34 @@ public class BestallningGenomford extends javax.swing.JFrame {
     private void skickaBekräftelseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_skickaBekräftelseActionPerformed
         
         try {
-    String to = "omradeschef@mib.se";
-    String subject = "Email subject";
-    String body = "This is the email body text";
-    URI emailUri = new URI("mailto", to, null, "subject=" + subject + "&body=" + body, null);
-    Desktop.getDesktop().mail(emailUri);
-} catch (URISyntaxException | IOException ex) {
-    ex.printStackTrace();
-}
+            
+            String email= idb.fetchSingle("select Email from Kund where KundID = "+kund);
+            try {
+            String subject = "Email subject";
+            String body = "This is the email body text";
+            URI emailUri = new URI("mailto", email, null, "subject=" + subject + "&body=" + body, null);
+            Desktop.getDesktop().mail(emailUri);
+            
+            }catch (URISyntaxException | IOException ex) {
+                 ex.printStackTrace();
+            }
+ 
+    }
+        catch (InfException e) {
+
+            JOptionPane.showMessageDialog(null, "Fel på databasuppkopplingen, prova igen senare!");
+            System.out.println("Databasfel: " + e);
+            
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Något gick snett, prova igen!");
+            
+        
+        }
+        
+        
+        
+        
+        
 
 
         
