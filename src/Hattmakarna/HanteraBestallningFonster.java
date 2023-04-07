@@ -435,7 +435,7 @@ public class HanteraBestallningFonster extends javax.swing.JFrame {
             }
         catch (InfException e){
             JOptionPane.showMessageDialog(null, "Databasfel");
-            System.out.println("Databasfel: "+e);
+            System.out.println("Databasfel hej: "+e);
         }
         }
         
