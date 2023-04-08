@@ -212,7 +212,9 @@ public class RegistreraHattFonster extends javax.swing.JFrame {
     }//GEN-LAST:event_cbValjPersonalActionPerformed
 
     private void btnRegistreraHattActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistreraHattActionPerformed
-        // TODO add your handling code here:
+        
+        new RegistreraBild(idb).setVisible(true);
+        
     }//GEN-LAST:event_btnRegistreraHattActionPerformed
 
     private void cbHattMaterialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbHattMaterialActionPerformed
