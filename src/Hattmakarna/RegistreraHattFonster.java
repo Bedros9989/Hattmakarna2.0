@@ -213,7 +213,7 @@ public class RegistreraHattFonster extends javax.swing.JFrame {
 
     private void btnRegistreraHattActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistreraHattActionPerformed
         
-        new RegistreraBild(idb).setVisible(true);
+       
         
     }//GEN-LAST:event_btnRegistreraHattActionPerformed
 
