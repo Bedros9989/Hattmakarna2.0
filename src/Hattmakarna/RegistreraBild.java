@@ -2,12 +2,16 @@
 package Hattmakarna;
 
 import java.awt.Image;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
-import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import oru.inf.InfDB;
 import oru.inf.InfException;
@@ -54,6 +58,11 @@ public class RegistreraBild extends javax.swing.JFrame {
         });
 
         save.setText("Save");
+        save.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -116,11 +125,37 @@ public class RegistreraBild extends javax.swing.JFrame {
             jLabel1.setIcon(new ImageIcon(img));
             
             
-            
         }
         
         
     }//GEN-LAST:event_browseActionPerformed
+
+    private void saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveActionPerformed
+        
+        System.out.print("Image path - "+ path);
+        System.out.print("Image name - "+ F.getName());
+        File file = new File(path);
+        
+        try {
+            FileInputStream fis = new FileInputStream(file);
+            ByteArrayOutputStream bos = new ByteArrayOutputStream();
+            byte[] buf = new byte[1024];
+            for (int readNum; (readNum = fis.read(buf)) != -1;){
+                bos.write(buf, 0, readNum);
+            }
+            byte[] imageBytes = bos.toByteArray();
+            
+            idb.insert("INSERT INTO hattmakare.Hatt (HattID, Storlek, Skapare, Kategori, Bestallning, Tillverkningstimmar, BildFilsNamn, BildData) VALUES (3, 10, 1, 'Hatt', 1, 2, '"+path+"', "+imageBytes+");");
+            
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(RegistreraBild.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(RegistreraBild.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InfException ex) {
+            Logger.getLogger(RegistreraBild.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_saveActionPerformed
 
     
     
