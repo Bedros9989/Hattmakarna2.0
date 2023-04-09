@@ -10,6 +10,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import javax.swing.JOptionPane;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 
 public class ValjBild extends javax.swing.JFrame {
@@ -44,6 +45,11 @@ public class ValjBild extends javax.swing.JFrame {
         jLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         väljBild.setText("Spara");
+        väljBild.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                väljBildActionPerformed(evt);
+            }
+        });
 
         spara.setText("Välj en bild");
         spara.addActionListener(new java.awt.event.ActionListener() {
@@ -124,6 +130,18 @@ public class ValjBild extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_sparaActionPerformed
+
+    private void väljBildActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_väljBildActionPerformed
+        
+        int resultat = JOptionPane.showConfirmDialog(null, "Är du nöjd med bilden du har valt?", "Bekräfta bild", JOptionPane.YES_NO_OPTION);
+                
+                if(resultat == JOptionPane.YES_OPTION){
+                    RegistreraHattFonster hatt = getBildForm();
+                        hatt.hämtabild(pimage);
+                        dispose();
+                    } 
+
+    }//GEN-LAST:event_väljBildActionPerformed
 
     private RegistreraHattFonster getBildForm(){
         

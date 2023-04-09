@@ -1,6 +1,9 @@
 
 package Hattmakarna;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import java.util.Collections;
 import javax.swing.JOptionPane;
@@ -10,6 +13,8 @@ import oru.inf.InfException;
 public class RegistreraHattFonster extends javax.swing.JFrame {
 
     private InfDB idb;
+    public byte[] pimage=null;
+    Connection conn=null;
 
     public RegistreraHattFonster(InfDB idb) {
         initComponents();
@@ -18,6 +23,7 @@ public class RegistreraHattFonster extends javax.swing.JFrame {
         lblHattIDPresentation.setText(hamtaHattID());
         fyllCbValjPersonal();
         this.setLocationRelativeTo(null);
+        conn=DBConnect.connect();
     }
 
     private String hamtaHattID() {
@@ -44,8 +50,27 @@ public class RegistreraHattFonster extends javax.swing.JFrame {
         }
     }
 
-   
-    @SuppressWarnings("unchecked")
+    public class DBConnect {   
+     public static Connection connect()
+        {
+     Connection con=null;
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");                                
+            con=DriverManager.getConnection("jdbc:mysql://localhost:3306/hattmakare","hattuser","hattkey");   
+        } 
+            catch (Exception e) 
+    {
+        System.out.println("inter.DBConnect.connect()");
+    }
+         return con;
+        } 
+    }
+    
+    public void hämtabild(byte[] pimage2){
+          
+     pimage= pimage2;
+    }
+    
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -220,6 +245,20 @@ public class RegistreraHattFonster extends javax.swing.JFrame {
 
     private void btnRegistreraHattActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistreraHattActionPerformed
         
+        try {
+             String q= "INSERT INTO `hatt`(`hattID`, `Storlek`,`Skapare`,`Kategori`,`Bestallning`,`Tillverkningstimmar`,`BildFilsNamn`,`BildData`) VALUES (?,?,?,?,?,?,?,?)";               
+               PreparedStatement pst=conn.prepareStatement(q);                
+               pst.setString(1,"3"); 
+               pst.setString(2, "10");
+               pst.setString(3, "1");
+               pst.setString(4, "Test");
+               pst.setString(5, "1");
+               pst.setString(6, "5");
+               pst.setString(7, "id");
+               pst.setBytes(8, pimage);                
+                pst.execute(); 
+        } catch (Exception e) {
+        }
        
         
     }//GEN-LAST:event_btnRegistreraHattActionPerformed
