@@ -55,7 +55,6 @@ public class RegistreraHattFonster extends javax.swing.JFrame {
         txtHattStorlek = new javax.swing.JTextField();
         lblHattSkapare = new javax.swing.JLabel();
         cbValjPersonal = new javax.swing.JComboBox<>();
-        txtHattBild = new javax.swing.JTextField();
         btnRegistreraHatt = new javax.swing.JButton();
         lblValjMaterial = new javax.swing.JLabel();
         cbHattMaterial = new javax.swing.JComboBox<>();
@@ -67,6 +66,7 @@ public class RegistreraHattFonster extends javax.swing.JFrame {
         txtAreaMaterial = new javax.swing.JTextArea();
         lblValtMaterial = new javax.swing.JLabel();
         btnValjMaterial = new javax.swing.JButton();
+        hattBild = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -127,6 +127,13 @@ public class RegistreraHattFonster extends javax.swing.JFrame {
             }
         });
 
+        hattBild.setText("Bild");
+        hattBild.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                hattBildActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -143,17 +150,17 @@ public class RegistreraHattFonster extends javax.swing.JFrame {
                             .addComponent(lblHattSkapare)
                             .addComponent(lblHattID))
                         .addGap(61, 61, 61)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(cbValjPersonal, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(txtHattStorlek)
-                                .addComponent(txtHattBild)
                                 .addComponent(cbHattMaterial, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(txtHattMängd, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(btnValjMaterial))
-                            .addComponent(lblHattIDPresentation))
+                            .addComponent(lblHattIDPresentation)
+                            .addComponent(hattBild, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblValtMaterial)
@@ -199,8 +206,8 @@ public class RegistreraHattFonster extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 150, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblHattBildLänk)
-                    .addComponent(txtHattBild, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnRegistreraHatt))
+                    .addComponent(btnRegistreraHatt)
+                    .addComponent(hattBild))
                 .addGap(38, 38, 38))
         );
 
@@ -229,6 +236,12 @@ public class RegistreraHattFonster extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnValjMaterialActionPerformed
 
+    private void hattBildActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hattBildActionPerformed
+        
+        new ValjBild().setVisible(true);
+        
+    }//GEN-LAST:event_hattBildActionPerformed
+
     
    
     
@@ -238,6 +251,7 @@ public class RegistreraHattFonster extends javax.swing.JFrame {
     private javax.swing.JButton btnValjMaterial;
     private javax.swing.JComboBox<String> cbHattMaterial;
     private javax.swing.JComboBox<String> cbValjPersonal;
+    private javax.swing.JButton hattBild;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblHattBildLänk;
     private javax.swing.JLabel lblHattID;
@@ -249,7 +263,6 @@ public class RegistreraHattFonster extends javax.swing.JFrame {
     private javax.swing.JLabel lblValkomstText;
     private javax.swing.JLabel lblValtMaterial;
     private javax.swing.JTextArea txtAreaMaterial;
-    private javax.swing.JTextField txtHattBild;
     private javax.swing.JTextField txtHattMängd;
     private javax.swing.JTextField txtHattStorlek;
     // End of variables declaration//GEN-END:variables
