@@ -245,6 +245,11 @@ public class RegistreraHattFonster extends javax.swing.JFrame {
 
     private void btnRegistreraHattActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistreraHattActionPerformed
         
+        /* För att lägga-bild funktionen ska funka så behövde vi 
+           använda den officiella mysql.java.jar filen som fanns
+           istället för InfDB.jar. Den är dock jättenkel att använda
+           som ni kanske märker nedanför */
+        
         try {
              String q= "INSERT INTO `hatt`(`hattID`, `Storlek`,`Skapare`,`Kategori`,`Bestallning`,`Tillverkningstimmar`,`BildFilsNamn`,`BildData`) VALUES (?,?,?,?,?,?,?,?)";               
                PreparedStatement pst=conn.prepareStatement(q);                
