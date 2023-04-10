@@ -5,7 +5,6 @@ import java.awt.Window;
 import java.util.ArrayList;
 import java.util.HashMap;
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import oru.inf.InfDB;
 import oru.inf.InfException;
@@ -28,7 +27,9 @@ public class Hattar extends javax.swing.JFrame {
         tabell.setModel(model);
         model.addColumn("Storlek");
         model.addColumn("Skapare");
+        model.addColumn("Bild");
         addValues();
+        tabell.setDefaultEditor(Object.class, null);
         
     }
 
@@ -46,25 +47,6 @@ public class Hattar extends javax.swing.JFrame {
         text.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
         text.setText("Tillgängliga hattar");
 
-        tabell.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, "", null},
-                {null, null, null},
-                {null, null, null},
-                {null, "", null}
-            },
-            new String [] {
-                "Storlek", "Skapare", "Kategori"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Double.class, java.lang.String.class, java.lang.String.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
         tabell.setRequestFocusEnabled(false);
         jScrollPane1.setViewportView(tabell);
 
@@ -121,6 +103,7 @@ public class Hattar extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
     private void läggTillBeställningActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_läggTillBeställningActionPerformed
         
         int valdaHatten = tabell.getSelectedRow();
