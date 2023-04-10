@@ -159,38 +159,37 @@ public class HanteraKundInfoFonster extends javax.swing.JFrame {
     setInfo();      
     }//GEN-LAST:event_jKundIDKnappActionPerformed
 
-    
-     public HashMap getInfoKund() {
-
-        HashMap<String, String> info = new HashMap<>();
+        public HashMap getInfoKund() {    
+         HashMap<String, String> info = new HashMap<>();
         try {
 
-            info = idb.fetchRow("SELECT KundID, Kund.Namn, Kund.Adress, Kund.Telefonnummer, Kund.Lojalitet, Kund.Email FROM Kund WHERE KundID = '" + jAngivetKundID + "';");
+            info = idb.fetchRow("SELECT Namn, Adress, Telefon, Lojalitet, Email FROM Kund WHERE KundID = '" + jAngivetKundID + "';");
 
-        }catch (InfException ex) {
+        } catch (InfException ex) {
             JOptionPane.showMessageDialog(null, "Något gick fel!");
 
         }
         return info;
     }
+   
     
-    
+ 
+  
  public void setInfo() {
         HashMap<String, String> info;
         info = getInfoKund();
 
-        String namn = info.get("Kund.Namn");
-        String adress = info.get("Kund.Adress");
-        String telefon = info.get("Kund.Telefonnummer");
-        String lojalitet = info.get("Kund.Lojalitet");
-        String email = info.get("Kund.Email");
+        String namn = info.get("Namn");
+        String adress = info.get("Adress");
+        String telefon = info.get("Telefonnummer");
+        String lojalitet = info.get("Lojalitet");
+        String email = info.get("Email");
 
         lblKundNamn.setText(namn);
-        lblKundTel.setText(telefon);
         lblKundAdress.setText(adress);
-        lblKundEmail.setText(email);
+        lblKundTel.setText(telefon);
         lblKundLojalitet.setText(lojalitet);
- 
+        lblKundEmail.setText(email);
 
     }
 
