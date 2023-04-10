@@ -28,27 +28,28 @@
               <Group type="103" groupAlignment="1" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="lblHattStorlek" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblHattBildLänk" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblValjMaterial" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblMängdMaterial" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblHattSkapare" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblHattID" alignment="0" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="cbValjPersonal" max="32767" attributes="0"/>
-                              <Component id="txtHattStorlek" max="32767" attributes="0"/>
-                              <Component id="txtHattBild" max="32767" attributes="0"/>
-                              <Component id="cbHattMaterial" max="32767" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="lblHattStorlek" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblValjMaterial" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblMängdMaterial" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblHattSkapare" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblHattID" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="cbValjPersonal" max="32767" attributes="0"/>
+                                  <Component id="txtHattStorlek" max="32767" attributes="0"/>
+                                  <Component id="cbHattMaterial" max="32767" attributes="0"/>
+                                  <Component id="lblHattIDPresentation" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="txtHattMängd" min="-2" pref="75" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="btnValjMaterial" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
                           </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="txtHattMängd" min="-2" pref="75" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="btnValjMaterial" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Component id="lblHattIDPresentation" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="hattBild" min="-2" pref="132" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -108,9 +109,8 @@
               </Group>
               <EmptySpace pref="150" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="lblHattBildLänk" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtHattBild" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnRegistreraHatt" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="hattBild" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
           </Group>
@@ -129,11 +129,6 @@
     <Component class="javax.swing.JLabel" name="lblHattStorlek">
       <Properties>
         <Property name="text" type="java.lang.String" value="Storlek"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="lblHattBildL&#xe4;nk">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Bildl&#xe4;nk"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtHattStorlek">
@@ -157,8 +152,6 @@
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
-    </Component>
-    <Component class="javax.swing.JTextField" name="txtHattBild">
     </Component>
     <Component class="javax.swing.JButton" name="btnRegistreraHatt">
       <Properties>
@@ -234,6 +227,14 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnValjMaterialActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="hattBild">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="L&#xe4;gg till bild"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="hattBildActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>
