@@ -17,10 +17,11 @@ public class KollaBild extends javax.swing.JFrame {
     int s=0;
     public byte[] pimage=null;
     Connection conn=null;
+    private String hatten;
     
-    
-    public KollaBild() {
+    public KollaBild(String hatten) {
         initComponents();
+        this.hatten=hatten;
         this.setLocationRelativeTo(null);
         KollaBild.this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         conn=KollaBild.DBConnect.connect();
@@ -92,7 +93,7 @@ public class KollaBild extends javax.swing.JFrame {
     private void kollaPåBild(){
         
         try {
-           String sql="SELECT `BildData` FROM `Hatt` WHERE HattID=3";          
+           String sql="SELECT `BildData` FROM `Hatt` WHERE HattID="+hatten;          
            PreparedStatement pst=conn.prepareStatement(sql);
            ResultSet rs=pst.executeQuery();
            if(rs.next())
