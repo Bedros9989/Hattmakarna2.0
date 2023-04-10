@@ -48,6 +48,11 @@ public class Hattar extends javax.swing.JFrame {
         text.setText("Tillgängliga hattar");
 
         tabell.setRequestFocusEnabled(false);
+        tabell.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabellMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tabell);
 
         läggTillBeställning.setText("Lägg till hatten i beställningen");
@@ -118,6 +123,10 @@ public class Hattar extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_läggTillBeställningActionPerformed
+
+    private void tabellMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabellMouseClicked
+       
+    }//GEN-LAST:event_tabellMouseClicked
 
     private RegistreraBestallning getBeställningForm(){
         
