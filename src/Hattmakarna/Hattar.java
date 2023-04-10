@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 import oru.inf.InfDB;
 import oru.inf.InfException;
 
@@ -126,6 +127,18 @@ public class Hattar extends javax.swing.JFrame {
 
     private void tabellMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabellMouseClicked
        
+        int index = tabell.getSelectedRow();
+        TableModel model = tabell.getModel();
+        if (index != -1){
+            
+            String hatten = (String)tabell.getValueAt(index, 0);
+            
+            new KollaBild().setVisible(true);
+            
+        }
+        
+        
+        
     }//GEN-LAST:event_tabellMouseClicked
 
     private RegistreraBestallning getBeställningForm(){
