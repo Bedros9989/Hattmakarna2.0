@@ -167,13 +167,14 @@ public class RegistreraKundFonster extends javax.swing.JFrame {
 
     private void btnRegistreraKundActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistreraKundActionPerformed
     felMeddelande.setText("");
-      confirmMeddelande.setText("");
+    confirmMeddelande.setText("");
         
         if (ValideringsKlass.rutaEmpty(jAngivetKundNamn) || ValideringsKlass.rutaEmpty(jAngiventKundTel) || ValideringsKlass.rutaEmpty(jAngivenKundAdress) || ValideringsKlass.rutaEmpty(jAngivenKundMejl)) {
            felMeddelande.setText("Fel: Vänligen fyll i alla fält");
         } else {
             try {
-                idb.insert("INSERT INTO Kund (Namn, Telefon, Adress, Email) VALUES (" + jAngivetKundNamn.getText() + "', '" + jAngiventKundTel.getText() + "', '" + jAngivenKundAdress.getText() + "', " + jAngivenKundMejl.getText() + ");");
+                String kID = idb.getAutoIncrement("Kund", "KundID");
+                idb.insert("INSERT INTO Kund VALUES (" +kID+ "', '" + jAngivetKundNamn.getText() + "', '" + jAngivenKundAdress.getText() + "', '" + jAngiventKundTel.getText() + "', " + "0" + "', '" + jAngivenKundMejl.getText() + ");");
                 confirmMeddelande.setText("En ny kund har registrerats!");
             } catch (InfException exc) {
                 JOptionPane.showMessageDialog(null, "Något gick fel!");
