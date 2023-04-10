@@ -166,21 +166,7 @@ public class RegistreraKundFonster extends javax.swing.JFrame {
     }//GEN-LAST:event_jAngivenKundAdressActionPerformed
 
     private void btnRegistreraKundActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistreraKundActionPerformed
-    felMeddelande.setText("");
-    confirmMeddelande.setText("");
-        
-        if (ValideringsKlass.rutaEmpty(jAngivetKundNamn) || ValideringsKlass.rutaEmpty(jAngiventKundTel) || ValideringsKlass.rutaEmpty(jAngivenKundAdress) || ValideringsKlass.rutaEmpty(jAngivenKundMejl)) {
-           felMeddelande.setText("Fel: Vänligen fyll i alla fält");
-        } else {
-            try {
-                String kID = idb.getAutoIncrement("Kund", "KundID");
-                idb.insert("INSERT INTO Kund VALUES (" +kID+ "', '" + jAngivetKundNamn.getText() + "', '" + jAngivenKundAdress.getText() + "', '" + jAngiventKundTel.getText() + "', " + "0" + "', '" + jAngivenKundMejl.getText() + ");");
-                confirmMeddelande.setText("En ny kund har registrerats!");
-            } catch (InfException exc) {
-                JOptionPane.showMessageDialog(null, "Något gick fel!");
-            }
-
-                            }        
+     
     }//GEN-LAST:event_btnRegistreraKundActionPerformed
 
     private void jAngiventKundTelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAngiventKundTelActionPerformed
