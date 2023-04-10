@@ -20,16 +20,17 @@ public class KundFonster extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        hanteraKundinformation = new javax.swing.JButton();
+        SeKundinformation = new javax.swing.JButton();
         registreraNyKund = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
-        hanteraKundinformation.setText("Hantera kundinformation");
-        hanteraKundinformation.addActionListener(new java.awt.event.ActionListener() {
+        SeKundinformation.setText("Se kundinformation");
+        SeKundinformation.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                hanteraKundinformationActionPerformed(evt);
+                SeKundinformationActionPerformed(evt);
             }
         });
 
@@ -40,16 +41,23 @@ public class KundFonster extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setText("Ändra kundinformaiton");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(57, 57, 57)
-                .addComponent(registreraNyKund)
-                .addGap(18, 18, 18)
-                .addComponent(hanteraKundinformation)
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(57, 57, 57)
+                        .addComponent(registreraNyKund)
+                        .addGap(18, 18, 18)
+                        .addComponent(SeKundinformation))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(124, 124, 124)
+                        .addComponent(jButton1)))
+                .addContainerGap(64, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -57,8 +65,10 @@ public class KundFonster extends javax.swing.JFrame {
                 .addGap(117, 117, 117)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(registreraNyKund, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(hanteraKundinformation, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(157, Short.MAX_VALUE))
+                    .addComponent(SeKundinformation, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(26, 26, 26)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(96, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -82,17 +92,18 @@ public class KundFonster extends javax.swing.JFrame {
         
     }//GEN-LAST:event_registreraNyKundActionPerformed
 
-    private void hanteraKundinformationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hanteraKundinformationActionPerformed
+    private void SeKundinformationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SeKundinformationActionPerformed
         
-        new HanteraKundInfoFonster(idb).setVisible(true);
+        new SeKundInfoFonster(idb).setVisible(true);
         dispose();
         
-    }//GEN-LAST:event_hanteraKundinformationActionPerformed
+    }//GEN-LAST:event_SeKundinformationActionPerformed
 
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton hanteraKundinformation;
+    private javax.swing.JButton SeKundinformation;
+    private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JButton registreraNyKund;
     // End of variables declaration//GEN-END:variables

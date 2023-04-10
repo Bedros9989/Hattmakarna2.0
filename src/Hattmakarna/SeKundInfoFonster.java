@@ -5,15 +5,15 @@ import javax.swing.JOptionPane;
 import oru.inf.InfDB;
 import oru.inf.InfException;
 
-public class HanteraKundInfoFonster extends javax.swing.JFrame {
+public class SeKundInfoFonster extends javax.swing.JFrame {
 
     private InfDB idb;
 
-    public HanteraKundInfoFonster(InfDB idb) {
+    public SeKundInfoFonster(InfDB idb) {
         initComponents();
         this.idb = idb;
         this.setLocationRelativeTo(null);
-       // HanteraKundInfoFonster.this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+       // SeKundInfoFonster.this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 
 
