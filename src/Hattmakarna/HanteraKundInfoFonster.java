@@ -179,18 +179,17 @@ public class HanteraKundInfoFonster extends javax.swing.JFrame {
         HashMap<String, String> info;
         info = getInfoKund();
 
-        String KundID = info.get("KundID");
         String namn = info.get("Kund.Namn");
         String adress = info.get("Kund.Adress");
         String telefon = info.get("Kund.Telefonnummer");
         String lojalitet = info.get("Kund.Lojalitet");
         String email = info.get("Kund.Email");
 
-        lblKundNamn.setText("");
-        lblKundTel.setText("");
-        lblKundAdress.setText("");
-        lblKundEmail.setText(namn);
-        lblKundLojalitet.setText(telefon);
+        lblKundNamn.setText(namn);
+        lblKundTel.setText(telefon);
+        lblKundAdress.setText(adress);
+        lblKundEmail.setText(email);
+        lblKundLojalitet.setText(lojalitet);
  
 
     }
