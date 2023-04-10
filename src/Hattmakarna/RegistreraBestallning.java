@@ -2,6 +2,7 @@ package Hattmakarna;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.HashSet;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
@@ -258,12 +259,14 @@ public class RegistreraBestallning extends javax.swing.JFrame {
         
         String fraga= "select Kategori from Hatt";
         ArrayList<String> allaHattIDn;
-    
+        HashSet<String> unikaHattIDn = new HashSet<>();
         try {
         
             allaHattIDn= idb.fetchColumn(fraga);
             for (String hattID: allaHattIDn){
-            cbHattID.addItem(hattID);
+            unikaHattIDn.add(hattID);
+            
+            
         }
     }
         catch (InfException e) {
@@ -275,6 +278,9 @@ public class RegistreraBestallning extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Något gick snett, prova igen!");
             
         }  
+        for (String hattID : unikaHattIDn) {
+            cbHattID.addItem(hattID);
+        }
     }
     
     private void jbRegBestallningActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbRegBestallningActionPerformed
