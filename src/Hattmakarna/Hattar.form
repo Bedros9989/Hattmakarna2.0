@@ -93,18 +93,6 @@
           <SubComponents>
             <Component class="javax.swing.JTable" name="tabell">
               <Properties>
-                <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                  <Table columnCount="3" rowCount="4">
-                    <Column editable="true" title="Storlek" type="java.lang.Double"/>
-                    <Column editable="true" title="Skapare" type="java.lang.String">
-                      <Data value=""/>
-                      <Data value="null"/>
-                      <Data value="null"/>
-                      <Data value=""/>
-                    </Column>
-                    <Column editable="true" title="Kategori" type="java.lang.String"/>
-                  </Table>
-                </Property>
                 <Property name="requestFocusEnabled" type="boolean" value="false"/>
               </Properties>
             </Component>
