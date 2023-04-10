@@ -156,14 +156,14 @@ public class HanteraKundInfoFonster extends javax.swing.JFrame {
     if(jAngivetKundID.getText().isEmpty()){
         JOptionPane.showMessageDialog(null, "Vänligen fyll i ett KundID");
     }
-    setInfo();      
+        setInfo();      
     }//GEN-LAST:event_jKundIDKnappActionPerformed
 
         public HashMap getInfoKund() {    
          HashMap<String, String> info = new HashMap<>();
         try {
 
-            info = idb.fetchRow("SELECT Namn, Adress, Telefon, Lojalitet, Email FROM Kund WHERE KundID = '" + jAngivetKundID + "';");
+            info = idb.fetchRow("SELECT Namn, Adress, Telefonnummer, Lojalitet, Email FROM Kund WHERE KundID = '" + jAngivetKundID + "';");
 
         } catch (InfException ex) {
             JOptionPane.showMessageDialog(null, "Något gick fel!");
@@ -173,8 +173,6 @@ public class HanteraKundInfoFonster extends javax.swing.JFrame {
     }
    
     
- 
-  
  public void setInfo() {
         HashMap<String, String> info;
         info = getInfoKund();
