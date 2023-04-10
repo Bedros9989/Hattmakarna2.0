@@ -44,16 +44,18 @@ public class ValideringsKlass {
         return resultat;
     }
     
-    public static boolean rutaEmpty (JTextField enRuta){
-        
-        boolean resultat = true;
-        if (enRuta.getText().isEmpty()){
-            JOptionPane.showMessageDialog(null, "Ruta får ej vara tom!");
-            resultat=false;
+    
+        public static boolean rutaEmpty(JTextField enRuta) {
+        boolean empty = false;
+
+        if (enRuta.getText().isEmpty()) {
+            empty = true;
         }
-        return resultat;
+
+        return empty;
     }
     
+
     public static boolean rutanÄrTom2 (JTextArea enRuta, JLabel namn){
         
         boolean resultat = true;
