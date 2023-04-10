@@ -163,7 +163,7 @@ public class HanteraKundInfoFonster extends javax.swing.JFrame {
          HashMap<String, String> info = new HashMap<>();
         try {
 
-            info = idb.fetchRow("SELECT Namn, Adress, Telefonnummer, Lojalitet, Email FROM Kund WHERE KundID = '" + jAngivetKundID + "';");
+            info = idb.fetchRow("SELECT Namn, Adress, Telefonnummer, Lojalitet, Email FROM Kund WHERE KundID = '" + jAngivetKundID.getText() + "';");
 
         } catch (InfException ex) {
             JOptionPane.showMessageDialog(null, "Något gick fel!");
