@@ -28,7 +28,6 @@ public class Hattar extends javax.swing.JFrame {
         tabell.setModel(model);
         model.addColumn("Storlek");
         model.addColumn("Skapare");
-        model.addColumn("Kategori");
         addValues();
         
     }
@@ -155,7 +154,7 @@ public class Hattar extends javax.swing.JFrame {
         
         try
         {
-            String hattar = "Select Namn AS 'Skapare', Storlek,Kategori from Hatt join Personal P on Hatt.Skapare = P.PersonalID where Kategori='"+valdHatt+"'";
+            String hattar = "Select Namn AS 'Skapare', Storlek from Hatt join Personal P on Hatt.Skapare = P.PersonalID where Kategori='"+valdHatt+"'";
             ArrayList<HashMap<String, String>> allaHattar = idb.fetchRows(hattar); 
             
             for (HashMap<String, String> hatt : allaHattar){
@@ -164,8 +163,7 @@ public class Hattar extends javax.swing.JFrame {
                 Object[] hattData = {
                     
                     hatt.get("Storlek"),
-                    hatt.get("Namn"),
-                    hatt.get("Kategori")                    
+                    hatt.get("Namn"),                    
                 };
                 model.addRow(hattData);
 
