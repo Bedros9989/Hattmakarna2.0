@@ -332,7 +332,7 @@ public class RegistreraHattFonster extends javax.swing.JFrame {
             pst.setString(2, txtHattStorlek.getText());
             pst.setString(3, personalID);
             pst.setString(4, cbHattKategori.getSelectedItem().toString());
-            pst.setString(5, bestallningsID);
+            pst.setString(5, txtBestallning.getText());
             pst.setString(6, txtTillverkningstimmar.getText());
             pst.setBytes(7, pimage);
             pst.execute();
@@ -431,6 +431,8 @@ public class RegistreraHattFonster extends javax.swing.JFrame {
             //         + ("SELECT Antal FROM Antalvara WHERE MaterialID =" + variableMaterialID +
             // ") - +variabelmangdMaterial+
             //Uppdatera HattMaterial genom Arralisten MaterialLista
+            
+            JOptionPane.showMessageDialog(null, "Hatten har registrerats");
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Något gick fel");
             System.out.println("Internt felmeddelande" + ex.getMessage());
