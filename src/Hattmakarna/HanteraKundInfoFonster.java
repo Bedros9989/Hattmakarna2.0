@@ -7,15 +7,15 @@ import javax.swing.JOptionPane;
 import oru.inf.InfDB;
 import oru.inf.InfException;
 
-public class SeKundInfoFonster extends javax.swing.JFrame {
+public class HanteraKundInfoFonster extends javax.swing.JFrame {
 
     private InfDB idb;
 
-    public SeKundInfoFonster(InfDB idb) {
+    public HanteraKundInfoFonster(InfDB idb) {
         initComponents();
         this.idb = idb;
         this.setLocationRelativeTo(null);
-        SeKundInfoFonster.this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        HanteraKundInfoFonster.this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         id.setEnabled(false);
         namn.setEnabled(false);
         mail.setEnabled(false);
@@ -137,9 +137,9 @@ public class SeKundInfoFonster extends javax.swing.JFrame {
                 .addGap(36, 36, 36)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(id, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2))
                         .addGap(18, 18, 18)
                         .addComponent(jÄndraKundNamn))
                     .addComponent(namn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -279,7 +279,7 @@ public class SeKundInfoFonster extends javax.swing.JFrame {
                 idb.update(ändraInfo);
                 
                 JOptionPane.showMessageDialog(null, "Ändringar sparade!");
-                new SeKundInfoFonster(idb).setVisible(true);
+                new HanteraKundInfoFonster(idb).setVisible(true);
                 dispose();
             
         } catch (InfException ettUndantag) {

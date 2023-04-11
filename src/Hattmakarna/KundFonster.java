@@ -84,7 +84,7 @@ public class KundFonster extends javax.swing.JFrame {
 
     private void SeKundinformationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SeKundinformationActionPerformed
         
-        new SeKundInfoFonster(idb).setVisible(true);
+        new HanteraKundInfoFonster(idb).setVisible(true);
         dispose();
         
     }//GEN-LAST:event_SeKundinformationActionPerformed
