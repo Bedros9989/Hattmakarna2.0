@@ -114,7 +114,7 @@ public class BestallningGenomford extends javax.swing.JFrame {
         pDDocument.addPage(pDPage);
         PDPageContentStream cs = new PDPageContentStream(pDDocument,pDPage);
         cs.beginText();
-        cs.setFont(PDType1Font.HELVETICA, 20);
+        cs.setFont(PDType1Font.TIMES_BOLD, 20);
         cs.setNonStrokingColor(Color.black);
         cs.moveTextPositionByAmount(250, 750);
         cs.showText(msg);
