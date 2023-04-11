@@ -55,7 +55,7 @@ public class RegistreraHattFonster extends javax.swing.JFrame {
 
     private void fyllCbHattMaterial() {
         try {
-            ArrayList<String> allaHattMaterial = idb.fetchColumn("Select namn from material");
+            ArrayList<String> allaHattMaterial = idb.fetchColumn("Select materialnamn from material");
             Collections.sort(allaHattMaterial);
 
             for (String Namn : allaHattMaterial) {
@@ -68,15 +68,9 @@ public class RegistreraHattFonster extends javax.swing.JFrame {
     }
 
     private void fyllCbHattKategori() {
-        ArrayList<String> allaHattKategorier = new ArrayList<>();
-        allaHattKategorier.add("Doktorshatt");
-        allaHattKategorier.add("Studenthatt");
-        allaHattKategorier.add("Specialhatt");
-        Collections.sort(allaHattKategorier);
-
-        for (String enKategori : allaHattKategorier) {
-            cbHattKategori.addItem(enKategori);
-        }
+            cbHattKategori.addItem("Doktorshatt");
+            cbHattKategori.addItem("Specialhatt");
+            cbHattKategori.addItem("Studenthatt");
     }
 
     public class DBConnect {
