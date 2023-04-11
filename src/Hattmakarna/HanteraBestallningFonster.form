@@ -6,7 +6,7 @@
     </Component>
   </NonVisualComponents>
   <Properties>
-    <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="defaultCloseOperation" type="int" value="2"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -277,9 +277,6 @@
           <Properties>
             <Property name="columns" type="int" value="5"/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jtHattIDActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="jtSumma">
           <Properties>
@@ -296,8 +293,11 @@
             <Component class="javax.swing.JTextArea" name="txtareaInfo">
               <Properties>
                 <Property name="columns" type="int" value="20"/>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Helvetica Neue" size="13" style="2"/>
+                </Property>
                 <Property name="rows" type="int" value="5"/>
-                <Property name="text" type="java.lang.String" value="Ange best&#xe4;llningsID f&#xf6;r att se&#xa;best&#xe4;llningsinformation h&#xe4;r."/>
+                <Property name="text" type="java.lang.String" value="Ange best&#xe4;llningsID f&#xf6;r att se &#xa;best&#xe4;llningsinformation h&#xe4;r."/>
               </Properties>
             </Component>
           </SubComponents>

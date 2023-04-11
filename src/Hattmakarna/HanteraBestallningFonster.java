@@ -17,10 +17,6 @@ public class HanteraBestallningFonster extends javax.swing.JFrame {
         initComponents();
         this.idb = idb;
         HanteraBestallningFonster.this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-      
-        //txtareaInfo.hide();
-//        txtareaInfo.setVisible(false);
-//        skrolla.setVisible(false);
         this.setLocationRelativeTo(null);
         fyllCbPersonal();
 
@@ -60,7 +56,7 @@ public class HanteraBestallningFonster extends javax.swing.JFrame {
         jbReg = new javax.swing.JButton();
         cbPersonal = new javax.swing.JComboBox<>();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
         jLabel1.setText("Hantera beställning");
@@ -85,17 +81,13 @@ public class HanteraBestallningFonster extends javax.swing.JFrame {
         jLabel7.setText("Hatt");
 
         jtHattID.setColumns(5);
-        jtHattID.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtHattIDActionPerformed(evt);
-            }
-        });
 
         jtSumma.setColumns(5);
 
         txtareaInfo.setColumns(20);
+        txtareaInfo.setFont(new java.awt.Font("Helvetica Neue", 2, 13)); // NOI18N
         txtareaInfo.setRows(5);
-        txtareaInfo.setText("Ange beställningsID för att se\nbeställningsinformation här.");
+        txtareaInfo.setText("Ange beställningsID för att se \nbeställningsinformation här.");
         skrolla.setViewportView(txtareaInfo);
 
         jbkund.setText("Ändra kundID");
@@ -324,14 +316,10 @@ public class HanteraBestallningFonster extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jtHattIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtHattIDActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtHattIDActionPerformed
-
     private void jbPersonalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbPersonalActionPerformed
         String bestallningsID = jtBestallningsID.getText();
         String bestallningsAnsvarig = cbPersonal.getSelectedItem().toString();
-        String hittaPersonal= "Select PersonalID from Personal where namn = '"+ bestallningsAnsvarig + "'";
+        String hittaPersonal = "Select PersonalID from Personal where namn = '" + bestallningsAnsvarig + "'";
 
         if (bestallningsID.isEmpty() || (bestallningsID.matches(".*[a-zA-Z].*"))) {
             JOptionPane.showMessageDialog(null, "Säkerställ att du skrivit in beställningsID korrekt!");
@@ -340,7 +328,7 @@ public class HanteraBestallningFonster extends javax.swing.JFrame {
             try {
 
                 if ((bestallningsAnsvarig.isEmpty() == false)) {
-                   String ID= idb.fetchSingle(hittaPersonal);
+                    String ID = idb.fetchSingle(hittaPersonal);
                     idb.update("Update bestallning set Personal= '" + ID + "' where BestallningsID= " + bestallningsID);
                     JOptionPane.showMessageDialog(null, "Ansvarig personal har uppdaterats!");
                     visaInfo();
@@ -398,7 +386,7 @@ public class HanteraBestallningFonster extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, "Hatt har lagts till i ordern!");
                     visaInfo();
                 } else {
-                    JOptionPane.showMessageDialog(null, "Skriv HattID som du vill uppdatera till i rutan!");
+                    JOptionPane.showMessageDialog(null, "Skriv HattID på den hatt som du vill lägga till i rutan!");
                 }
             } catch (InfException e) {
                 JOptionPane.showMessageDialog(null, "Databasfel");
@@ -409,7 +397,6 @@ public class HanteraBestallningFonster extends javax.swing.JFrame {
 
     private void jbBortHattActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBortHattActionPerformed
 
-        //funkar ej att at bort hatt från beställning!
         String bestallningsID = jtBestallningsID.getText();
 
         String hattID = jtHattID.getText();
@@ -477,8 +464,8 @@ public class HanteraBestallningFonster extends javax.swing.JFrame {
                 if (totalsumma.isEmpty() == false) {
                     idb.update("Update bestallning set Totalsumma= " + totalsumma + " where BestallningsID= " + bestallningsID);
                     JOptionPane.showMessageDialog(null, "Totalsumman har uppdaterats!");
-                 visaInfo();
-                    
+                    visaInfo();
+
                 } else {
                     JOptionPane.showMessageDialog(null, "Skriv totalsumman som du vill uppdatera till i rutan!");
                 }
@@ -493,34 +480,35 @@ public class HanteraBestallningFonster extends javax.swing.JFrame {
     private void jbRegActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbRegActionPerformed
         //Hur gör man för att validera att datum är skrivet som yyyy-mm-dd i rutan, och att det inte står ex "hej" där?
 
-        String bestallningsID = jtBestallningsID.getText();
+        if (ValideringsKlass.datumInteVald(jdateDatum)) {
+            String bestallningsID = jtBestallningsID.getText();
 
-        if (bestallningsID.isEmpty() || (bestallningsID.matches(".*[a-zA-Z].*"))) {
-            JOptionPane.showMessageDialog(null, "Säkerställ att du skrivit in beställningsID korrekt!");
+            if (bestallningsID.isEmpty() || (bestallningsID.matches(".*[a-zA-Z].*"))) {
+                JOptionPane.showMessageDialog(null, "Säkerställ att du skrivit in beställningsID korrekt!");
 
-        } else {
-            try {
-                SimpleDateFormat DateFormat = new SimpleDateFormat("yyyy-MM-dd");
-                String regDatum = DateFormat.format(jdateDatum.getDate());
-                if (regDatum.isEmpty() == false) {
-                    idb.update("Update bestallning set Datum= '" + regDatum + "' where BestallningsID= " + bestallningsID);
-                    JOptionPane.showMessageDialog(null, "Registreringsdatum har uppdaterats!");
-                    visaInfo();
-                } else {
-                    JOptionPane.showMessageDialog(null, "Säkerställ att du valt datum!");
+            } else {
+                try {
+                    SimpleDateFormat DateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                    String regDatum = DateFormat.format(jdateDatum.getDate());
+                    if (regDatum.isEmpty() == false) {
+                        idb.update("Update bestallning set Datum= '" + regDatum + "' where BestallningsID= " + bestallningsID);
+                        JOptionPane.showMessageDialog(null, "Registreringsdatum har uppdaterats!");
+                        visaInfo();
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Säkerställ att du valt datum!");
+                    }
+
+                } catch (InfException e) {
+                    JOptionPane.showMessageDialog(null, "Databasfel");
+                    System.out.println("Databasfel: " + e);
                 }
-
-            } catch (InfException e) {
-                JOptionPane.showMessageDialog(null, "Databasfel");
-                System.out.println("Databasfel: " + e);
             }
         }
 
     }//GEN-LAST:event_jbRegActionPerformed
 
     private void jbRaderaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbRaderaActionPerformed
-       
-        //funkar ej pga måste radera hatt ur hattabell då med tror jag
+
         String bestallningsID = jtBestallningsID.getText();
 
         if (bestallningsID.isEmpty() || (bestallningsID.matches(".*[a-zA-Z].*"))) {
@@ -530,7 +518,7 @@ public class HanteraBestallningFonster extends javax.swing.JFrame {
             try {
                 idb.delete("Delete from bestallning where BestallningsID= '" + bestallningsID + "'");
                 JOptionPane.showMessageDialog(null, "Beställningen är raderad!");
-                txtareaInfo.setText("Beställning med ID: "+ bestallningsID + " kan ej hittas." );
+                txtareaInfo.setText("Beställning med ID: " + bestallningsID + " kan ej hittas.");
             } catch (InfException e) {
                 JOptionPane.showMessageDialog(null, "Databasfel");
                 System.out.println("Databasfel: " + e);
@@ -539,9 +527,7 @@ public class HanteraBestallningFonster extends javax.swing.JFrame {
     }//GEN-LAST:event_jbRaderaActionPerformed
 
     private void jbVisaInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbVisaInfoActionPerformed
-//lös hur man hämtar hem ev flera hattar i en beställning.. .någon slags loop
-
-     visaInfo();
+        visaInfo();
 
     }//GEN-LAST:event_jbVisaInfoActionPerformed
 
@@ -550,6 +536,7 @@ public class HanteraBestallningFonster extends javax.swing.JFrame {
     }//GEN-LAST:event_cbPersonalActionPerformed
 
     private void fyllCbPersonal() {
+
         ArrayList<String> allPersonal;
         String fraga = "Select Namn from personal";
 
@@ -565,52 +552,124 @@ public class HanteraBestallningFonster extends javax.swing.JFrame {
             System.out.println("Databasfel: " + e);
         }
     }
-    
-    private void visaInfo(){
-         txtareaInfo.setVisible(true);
-        skrolla.setVisible(true);
-        String bestallningsID = jtBestallningsID.getText();
-        String fragaKund = ("Select kund from bestallning where bestallningsID= " + bestallningsID);
-        String fragaAdress = ("Select Leveransadress from bestallning where bestallningsID= " + bestallningsID);
-        String fragaSumma = ("Select Totalsumma from bestallning where bestallningsID= " + bestallningsID);
-        String fragaAnsvarig = ("Select Personal from bestallning where bestallningsID= " + bestallningsID);
-        String fragaDatum = ("Select Datum from bestallning where bestallningsID= " + bestallningsID);
 
-        if (bestallningsID.isEmpty() || (bestallningsID.matches(".*[a-zA-Z].*"))) {
-            JOptionPane.showMessageDialog(null, "Säkerställ att du skrivit in beställningsID korrekt!");
+    private void visaInfo() {
+        if (ValideringsKlass.endastNummerTillåten(jtBestallningsID) || (ValideringsKlass.rutanÄrTom(jtBestallningsID, jLabel2))) {
 
-        } else {
-            try {
-                ArrayList<String> allaBestallningsID;
-                String fraga = "Select BestallningsID from Bestallning";
-                allaBestallningsID = idb.fetchColumn(fraga);
-                boolean finns = false;
-                for (String ID : allaBestallningsID) {
-                    if (bestallningsID.equals(ID)) {
-                        finns = true;
-                        txtareaInfo.setText("BeställningsID: " + bestallningsID + "\n");
-                        txtareaInfo.append("KundID: " + idb.fetchSingle(fragaKund) + " \n");
-                        txtareaInfo.append("Leveransadress: " + idb.fetchSingle(fragaAdress) + " \n");
-                        txtareaInfo.append("Totalsumma: " + idb.fetchSingle(fragaSumma) + " kronor \n");
-                        txtareaInfo.append("Ansvarig personals ID: " + idb.fetchSingle(fragaAnsvarig) + " \n");
-                        txtareaInfo.append("Datum för beställning: " + idb.fetchSingle(fragaDatum) + " \n");
+            txtareaInfo.setVisible(true);
+            skrolla.setVisible(true);
+            String bestallningsID = jtBestallningsID.getText();
+            String fragaKund = ("Select kund from bestallning where bestallningsID= " + bestallningsID);
+            String fragaHatt = ("Select HattId from Hatt where bestallning = '" + bestallningsID + "'");
+            String fragaAdress = ("Select Leveransadress from bestallning where bestallningsID= " + bestallningsID);
+            String fragaSumma = ("Select Totalsumma from bestallning where bestallningsID= " + bestallningsID);
+            String fragaAnsvarig = ("Select Personal from bestallning where bestallningsID= " + bestallningsID);
+            String fragaDatum = ("Select Datum from bestallning where bestallningsID= " + bestallningsID);
+
+            if (bestallningsID.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Säkerställ att du skrivit in beställningsID korrekt!");
+
+            } else {
+                try {
+
+                    ArrayList<String> allaBestallningsID;
+                    String fraga = "Select BestallningsID from Bestallning";
+                    allaBestallningsID = idb.fetchColumn(fraga);
+
+                    boolean finns = false;
+                    for (String ID : allaBestallningsID) {
+                        if (bestallningsID.equals(ID)) {
+                            finns = true;
+                            txtareaInfo.setText("BeställningsID: " + bestallningsID + "\n");
+                            txtareaInfo.append("KundID: " + idb.fetchSingle(fragaKund) + " \n");
+//                            txtareaInfo.append("HattID:");
+                            hamtaaHatt();
+                            txtareaInfo.append("Leveransadress: " + idb.fetchSingle(fragaAdress) + " \n");
+                            txtareaInfo.append("Totalsumma: " + idb.fetchSingle(fragaSumma) + " kronor \n");
+                            txtareaInfo.append("Ansvarig personals ID: " + idb.fetchSingle(fragaAnsvarig) + " \n");
+                            txtareaInfo.append("Datum för beställning: " + idb.fetchSingle(fragaDatum) + " \n");
+                        }
                     }
-                }
-                if (!finns) {
-                    txtareaInfo.setText("ID kan ej hittas. Var god prova igen.");
+                    if (!finns) {
+                        txtareaInfo.setText("ID kan ej hittas. Var god prova igen.");
 
+                    }
+
+                } catch (InfException e) {
+                    JOptionPane.showMessageDialog(null, "Databasfel");
+                    System.out.println("Databasfel: " + e);
                 }
 
-            } catch (InfException e) {
-                JOptionPane.showMessageDialog(null, "Databasfel");
-                System.out.println("Databasfel: " + e);
             }
-        
+        }
 
-
-    }                             
     }
 
+//    public HashMap getHattarNej() {
+//
+//        HashMap<String, String> info = new HashMap<>();
+//        try {
+//
+//            info = idb.fetchRow("SELECT HattID, Kategori FROM Hatt WHERE Bestallning = '" + jtBestallningsID.getText() + "'");
+//
+//           
+//                   
+//            
+//        } catch (InfException ex) {
+//            JOptionPane.showMessageDialog(null, "Något gick fel, var god prova igen!");
+//
+//        }
+//        return info;
+//
+//    }
+//    public ArrayList getHattarna() {
+//        ArrayList<HashMap<Integer, String>> info = new ArrayList();
+//        try {
+//            idb.fetchRows("Select * from Hatt");
+//
+//        } catch (InfException e) {
+//            JOptionPane.showMessageDialog(null, "Nått är fel!");
+//        }
+//        return info;
+//    }
+
+//    public void setHattar() {
+//
+//        ArrayList<HashMap<String, String>> info;
+//        info = getHattarna();
+//
+////        txtareaInfo.append("Hej");
+//        for (HashMap<String, String> Hatt : info) {
+//
+//            if ((Hatt.get("Bestallning")).equals("2")) {
+//
+//                txtareaInfo.append(("HattID: ") + Hatt.get("HattID") + "\n");
+//                txtareaInfo.append("Hej");
+//            }
+//        }
+//    }
+
+    public ArrayList hamtaaHatt() {
+        ArrayList<String> hattar = new ArrayList<>();
+        String fragaHatt = "Select Bestallning from hatt";
+
+        try {
+            hattar = idb.fetchColumn(fragaHatt);
+
+            for (String bestallningsID : hattar) {
+                if (bestallningsID.equals(jtBestallningsID.getText())) {
+
+                    String hattID = "Select HattID from hatt where Bestallning= '" + jtBestallningsID.getText() + "'";
+                    txtareaInfo.append("HattID: " + idb.fetchSingle(hattID) + "\n");
+                } else {
+                  System.out.println("Hej");
+                }
+            }
+        } catch (InfException e) {
+            JOptionPane.showMessageDialog(null, "hej");
+        }
+        return hattar;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> cbPersonal;
