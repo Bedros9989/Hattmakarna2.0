@@ -360,7 +360,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Helvetica Neue" size="13" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Radera best&#xe4;llning"/>
+            <Property name="text" type="java.lang.String" value="(Avbryt best&#xe4;llning)"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbRaderaActionPerformed"/>
