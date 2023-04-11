@@ -9,6 +9,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.JComboBox;
 
 
 public class ValideringsKlass {
@@ -130,7 +131,15 @@ public class ValideringsKlass {
     }
         
 
-
+ public static boolean endastNummerTillåtenLIDCB(JComboBox Välj_LeverantörsBeställningsID){
+        
+   boolean resultat = true;
+     if (Välj_LeverantörsBeställningsID.getSelectedItem().toString().matches(".*[a-zA-Z].*")){
+       JOptionPane.showMessageDialog(null, "Endast siffror tillåtna!");
+         resultat=false;  
+       }
+      return resultat;
+    }
 
 
 
