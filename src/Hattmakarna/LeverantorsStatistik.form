@@ -82,7 +82,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Helvetica Neue" size="24" style="0"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="V&#xe4;lj Leverant&#xf6;rs ID"/>
+            <Property name="text" type="java.lang.String" value="V&#xe4;lj best&#xe4;llnings ID"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JComboBox" name="leverant&#xf6;rer">

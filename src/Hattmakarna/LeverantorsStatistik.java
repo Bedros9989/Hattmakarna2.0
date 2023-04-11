@@ -42,7 +42,7 @@ public class LeverantorsStatistik extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
-        jLabel1.setText("Välj Leverantörs ID");
+        jLabel1.setText("Välj beställnings ID");
 
         jButton1.setText("Visa Information");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -118,11 +118,19 @@ public class LeverantorsStatistik extends javax.swing.JFrame {
         try
         {
             String id = leverantörer.getSelectedItem().toString();
-            String beställningar = "Select Leverantor.Namn as Leverantörsnamn, Datum, Mangd as Mängd, Inkopspris as Inköpspris, M.Namn as Materialnamn from Leverantor join Leverantorsbestallning L on Leverantor.LeverantorsID = L.LeverantorID join Bestallningsinnehall B on L.LeverantorsbestallningsID = B.Leverantorsbestallning join Material M on B.Material = M.MaterialID where LeverantorsbestallningsID ="+id+";";
+            String beställningar = "Select Leverantor.Namn, Datum, Mangd as Mängd, Inkopspris as Inköpspris from Leverantor join Leverantorsbestallning L on Leverantor.LeverantorsID = L.LeverantorID join Bestallningsinnehall B on L.LeverantorsbestallningsID = B.Leverantorsbestallning join Material M on B.Material = M.MaterialID where LeverantorsbestallningsID ="+id+" group by Leverantor.Namn, Datum, Mangd,Inkopspris,M.Namn";
             ArrayList<HashMap<String, String>> allaHattar = idb.fetchRows(beställningar); 
             
             for (HashMap<String, String> hatt : allaHattar){
                 
+                for (HashMap<String, String> row : allaHattar) {
+    System.out.println("New row:");
+    for (String key : row.keySet()) {
+        String value = row.get(key);
+        System.out.println("  " + key + ": " + value);
+    }
+}
+
                 
                 Object[] hattData = {
                     
@@ -133,6 +141,9 @@ public class LeverantorsStatistik extends javax.swing.JFrame {
                     hatt.get("Namn"), 
                 };
                 model.addRow(hattData);
+                
+                
+
                 
 
             }
@@ -164,8 +175,10 @@ public class LeverantorsStatistik extends javax.swing.JFrame {
             allaBeställningar= idb.fetchColumn(fraga);
             for (String enKund: allaBeställningar){
               leverantörer.addItem(enKund);
-              
-            }          
+             
+            }
+            
+            
             
             
         }  catch (InfException e) {
