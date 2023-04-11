@@ -49,23 +49,17 @@
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="96" max="-2" attributes="0"/>
+                                  <Component id="felMeddelande" pref="143" max="32767" attributes="0"/>
+                              </Group>
+                              <Group type="102" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="jKundNamn" alignment="0" min="-2" max="-2" attributes="0"/>
                                       <Component id="jKundTelefon" alignment="0" min="-2" max="-2" attributes="0"/>
                                       <Component id="jKundAdress" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="confirmMeddelande" alignment="0" min="-2" pref="183" max="-2" attributes="0"/>
+                                      <Component id="jKundMejl" alignment="0" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="96" max="-2" attributes="0"/>
-                                  <Component id="felMeddelande" pref="143" max="32767" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="confirmMeddelande" min="-2" pref="183" max="-2" attributes="0"/>
-                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="jKundMejl" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               </Group>
                           </Group>
@@ -130,7 +124,7 @@
         <Component class="javax.swing.JLabel" name="jTitel">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Calibri" size="24" style="0"/>
+              <Font name="Calibri" size="22" style="0"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Registrera ny kund"/>
           </Properties>
