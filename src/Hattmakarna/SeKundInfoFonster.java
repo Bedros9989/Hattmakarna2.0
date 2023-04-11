@@ -1,5 +1,7 @@
 package Hattmakarna;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import javax.swing.JOptionPane;
 import oru.inf.InfDB;
@@ -13,7 +15,14 @@ public class SeKundInfoFonster extends javax.swing.JFrame {
         initComponents();
         this.idb = idb;
         this.setLocationRelativeTo(null);
-       // SeKundInfoFonster.this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        SeKundInfoFonster.this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        id.setEnabled(false);
+        namn.setEnabled(false);
+        mail.setEnabled(false);
+        adress.setEnabled(false);
+        lojalitet.setEnabled(false);
+        nummer.setEnabled(false);
+        hämtaKund();
     }
 
 
@@ -28,13 +37,15 @@ public class SeKundInfoFonster extends javax.swing.JFrame {
         jÄndraKundTel = new javax.swing.JLabel();
         jÄndraKundNamn = new javax.swing.JLabel();
         jÄndraKundAdress = new javax.swing.JLabel();
-        jAngivetKundID = new javax.swing.JTextField();
-        jKundIDKnapp = new javax.swing.JButton();
-        lblKundNamn = new javax.swing.JLabel();
-        lblKundTel = new javax.swing.JLabel();
-        lblKundAdress = new javax.swing.JLabel();
-        lblKundEmail = new javax.swing.JLabel();
-        lblKundLojalitet = new javax.swing.JLabel();
+        id = new javax.swing.JTextField();
+        namn = new javax.swing.JTextField();
+        nummer = new javax.swing.JTextField();
+        adress = new javax.swing.JTextField();
+        mail = new javax.swing.JTextField();
+        lojalitet = new javax.swing.JTextField();
+        spara = new javax.swing.JButton();
+        ändra = new javax.swing.JButton();
+        cbKundID = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -43,7 +54,7 @@ public class SeKundInfoFonster extends javax.swing.JFrame {
         jLabel1.setText("Sök kundinformation");
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel2.setText("Ange KundID");
+        jLabel2.setText("KundID");
 
         jÄndraKundMejl.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jÄndraKundMejl.setText("E-postadress");
@@ -60,16 +71,24 @@ public class SeKundInfoFonster extends javax.swing.JFrame {
         jÄndraKundAdress.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jÄndraKundAdress.setText("Gatuadress");
 
-        jAngivetKundID.addActionListener(new java.awt.event.ActionListener() {
+        spara.setText("Spara");
+        spara.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jAngivetKundIDActionPerformed(evt);
+                sparaActionPerformed(evt);
             }
         });
 
-        jKundIDKnapp.setText("OK");
-        jKundIDKnapp.addActionListener(new java.awt.event.ActionListener() {
+        ändra.setText("Ändra");
+        ändra.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jKundIDKnappActionPerformed(evt);
+                ändraActionPerformed(evt);
+            }
+        });
+
+        cbKundID.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Välj Kund" }));
+        cbKundID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbKundIDActionPerformed(evt);
             }
         });
 
@@ -77,144 +96,210 @@ public class SeKundInfoFonster extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jÄndraKundNamn)
-                            .addComponent(jÄndraKundAdress)
-                            .addComponent(jÄndraKundTel)
-                            .addComponent(jLojalitetsKund)
-                            .addComponent(jÄndraKundMejl))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jAngivetKundID, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jKundIDKnapp, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(lblKundEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(lblKundLojalitet, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(lblKundNamn, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblKundTel, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblKundAdress, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(135, 135, 135))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(158, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(148, 148, 148))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(148, 148, 148))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(ändra, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(spara, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(160, 160, 160))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(33, 33, 33)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
+                    .addComponent(jÄndraKundNamn)
+                    .addComponent(jÄndraKundAdress)
+                    .addComponent(jÄndraKundTel)
+                    .addComponent(jLojalitetsKund)
+                    .addComponent(jÄndraKundMejl))
+                .addGap(98, 98, 98)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(cbKundID, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(adress)
+                    .addComponent(mail)
+                    .addComponent(lojalitet)
+                    .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(namn)
+                    .addComponent(nummer))
+                .addGap(47, 47, 47))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(21, 21, 21)
+                .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(cbKundID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
-                        .addComponent(jLabel2)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addComponent(jÄndraKundNamn))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jAngivetKundID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jKundIDKnapp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lblKundNamn, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(jÄndraKundTel))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lblKundTel, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(namn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jÄndraKundTel)
+                    .addComponent(nummer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(adress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jÄndraKundAdress, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jÄndraKundAdress, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblKundAdress, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jÄndraKundMejl)
+                    .addComponent(mail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jÄndraKundMejl)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLojalitetsKund)
-                        .addGap(56, 56, 56))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(lblKundEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lblKundLojalitet, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(53, 53, 53))))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lojalitet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLojalitetsKund))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(spara, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ändra, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(14, 14, 14))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 27, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jAngivetKundIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAngivetKundIDActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jAngivetKundIDActionPerformed
+    private void hämtaKund(){
+        
+        String fraga= "select Namn from Kund";
+        ArrayList<String> allaKundNamn;
+        
+        try{
+            allaKundNamn= idb.fetchColumn(fraga);
+            for (String enKund: allaKundNamn){
+              cbKundID.addItem(enKund);
+              
+            }
+            cbKundID.addItem("+ Lägg till ny kund");
+            
+            
+            
+        }  catch (InfException e) {
 
-    private void jKundIDKnappActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jKundIDKnappActionPerformed
-    if(jAngivetKundID.getText().isEmpty()){
-        JOptionPane.showMessageDialog(null, "Vänligen fyll i ett KundID");
+            JOptionPane.showMessageDialog(null, "Fel på databasuppkopplingen, prova igen senare!");
+            System.out.println("Databasfel: " + e);
+            
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Något gick snett, prova igen!");
+            
     }
-        setInfo();      
-    }//GEN-LAST:event_jKundIDKnappActionPerformed
-
-        public HashMap getInfoKund() {    
-         HashMap<String, String> info = new HashMap<>();
-        try {
-
-            info = idb.fetchRow("SELECT Namn, Adress, Telefonnummer, Lojalitet, Email FROM Kund WHERE KundID = '" + jAngivetKundID.getText() + "';");
-
-        } catch (InfException ex) {
-            JOptionPane.showMessageDialog(null, "Något gick fel!");
-
-        }
-        return info;
     }
-   
     
- public void setInfo() {
-        HashMap<String, String> info;
-        info = getInfoKund();
+    private void cbKundIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbKundIDActionPerformed
 
-        String namn = info.get("Namn");
-        String adress = info.get("Adress");
-        String telefon = info.get("Telefonnummer");
-        String lojalitet = info.get("Lojalitet");
-        String email = info.get("Email");
+        if (cbKundID.getSelectedItem().toString().equals("+ Lägg till ny kund")){
 
-        lblKundNamn.setText(namn);
-        lblKundAdress.setText(adress);
-        lblKundTel.setText(telefon);
-        lblKundLojalitet.setText(lojalitet);
-        lblKundEmail.setText(email);
+            new RegistreraKundFonster(idb).setVisible(true);
+            dispose();
 
+            
+            
+        }else{
+
+            try {
+                String kunden = cbKundID.getSelectedItem().toString();
+                String hämtaID = idb.fetchSingle("select KundID from Kund where Namn= '"+kunden+"'");
+                String hämtaNamn = idb.fetchSingle("select Namn from Kund where Namn= '"+kunden+"'");
+                String hämtaTelefon = idb.fetchSingle("select Telefonnummer from Kund where Namn= '"+kunden+"'");
+                String hämtaAdress = idb.fetchSingle("select Adress from Kund where Namn= '"+kunden+"'");
+                String hämtaMail = idb.fetchSingle("select Email from Kund where Namn= '"+kunden+"'");
+                String hämtaLojalitet = idb.fetchSingle("select Lojalitet from Kund where Namn= '"+kunden+"'");
+                
+                id.setText(hämtaID);
+                namn.setText(hämtaNamn);
+                nummer.setText(hämtaTelefon);
+                adress.setText(hämtaAdress);
+                mail.setText(hämtaMail);
+                lojalitet.setText(hämtaLojalitet);
+                
+                
+
+
+            }
+            catch (InfException e) {
+
+                JOptionPane.showMessageDialog(null, "Fel på databasuppkopplingen, prova igen senare!");
+                System.out.println("Databasfel: " + e);
+
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, "Något gick snett, prova igen!");
+
+            }
+        }
+
+    }//GEN-LAST:event_cbKundIDActionPerformed
+
+    private void ändraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ändraActionPerformed
+        
+        namn.setEnabled(true);
+        mail.setEnabled(true);
+        adress.setEnabled(true);
+        lojalitet.setEnabled(true);
+        nummer.setEnabled(true);
+        
+    }//GEN-LAST:event_ändraActionPerformed
+
+    private void sparaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sparaActionPerformed
+        
+        int resultat = JOptionPane.showConfirmDialog(null, "Är du nöjd med allt du har skrivit?", "Bekräfta uppgifter", JOptionPane.YES_NO_OPTION);
+    
+    if(resultat == JOptionPane.YES_OPTION){
+        
+        try {
+                String kunden = cbKundID.getSelectedItem().toString();
+                String hämtaID = idb.fetchSingle("select KundID from Kund where Namn= '"+kunden+"'");
+            
+                String nyNamn = namn.getText();
+                String nyTelefon = nummer.getText();
+                String nyAdress = adress.getText();
+                String nyMail = mail.getText();
+                String nyLojalitet = lojalitet.getText();
+                String ändraInfo = "UPDATE hattmakare.Kund t SET t.Namn = '"+nyNamn+"', t.Adress= '"+nyAdress+"', t.Telefonnummer = '"+nyTelefon+"', t.Lojalitet = "+nyLojalitet+", t.Email = '"+nyMail+"' WHERE t.KundID = "+hämtaID+";";
+                idb.update(ändraInfo);
+                
+                JOptionPane.showMessageDialog(null, "Ändringar sparade!");
+                new SeKundInfoFonster(idb).setVisible(true);
+                dispose();
+            
+        } catch (InfException ettUndantag) {
+            JOptionPane.showMessageDialog(null, "Databasfel!");
+            System.out.println("Internt felmeddelande" + ettUndantag.getMessage());
+        }
+        
+        catch (Exception ettUndantag) {
+            JOptionPane.showMessageDialog(null, "Något gick fel!");
+            System.out.println("Internt felmeddelande" + ettUndantag.getMessage());
+        }
+        
+        
+    }//GEN-LAST:event_sparaActionPerformed
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField jAngivetKundID;
-    private javax.swing.JButton jKundIDKnapp;
+    private javax.swing.JTextField adress;
+    private javax.swing.JComboBox<String> cbKundID;
+    private javax.swing.JTextField id;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLojalitetsKund;
@@ -223,10 +308,11 @@ public class SeKundInfoFonster extends javax.swing.JFrame {
     private javax.swing.JLabel jÄndraKundMejl;
     private javax.swing.JLabel jÄndraKundNamn;
     private javax.swing.JLabel jÄndraKundTel;
-    private javax.swing.JLabel lblKundAdress;
-    private javax.swing.JLabel lblKundEmail;
-    private javax.swing.JLabel lblKundLojalitet;
-    private javax.swing.JLabel lblKundNamn;
-    private javax.swing.JLabel lblKundTel;
+    private javax.swing.JTextField lojalitet;
+    private javax.swing.JTextField mail;
+    private javax.swing.JTextField namn;
+    private javax.swing.JTextField nummer;
+    private javax.swing.JButton spara;
+    private javax.swing.JButton ändra;
     // End of variables declaration//GEN-END:variables
 }
