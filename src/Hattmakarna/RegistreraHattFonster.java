@@ -323,17 +323,20 @@ public class RegistreraHattFonster extends javax.swing.JFrame {
            använda den officiella mysql.java.jar filen som fanns
            istället för InfDB.jar. Den är dock jättenkel att använda
            som ni kanske märker nedanför */
+        String bestallningsID = "";
+        
         try {
+            if (txtBestallning.getText().isEmpty()){
+                
+                bestallningsID= null;
+            }
+            
             String q = "INSERT INTO `hatt`(`hattID`, `Storlek`,`Skapare`,`Kategori`,`Bestallning`,`Tillverkningstimmar`,`BildData`) VALUES (?,?,?,?,?,?,?)";
             
             String personalNamn = cbValjPersonal.getSelectedItem().toString();
             String personalID = idb.fetchSingle("SELECT personalID FROM Personal WHERE namn = '" +personalNamn+ "'");
             
-            String bestallningsID = txtBestallning.getText();
             
-            if (bestallningsID.equals(null)){
-               
-            }
             
             PreparedStatement pst = conn.prepareStatement(q);
             pst.setString(1, lblHattIDPresentation.getText());
