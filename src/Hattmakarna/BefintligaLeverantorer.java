@@ -80,6 +80,11 @@ public class BefintligaLeverantorer extends javax.swing.JFrame {
         jLTelefon.setText("Adress");
 
         statistik.setText("Statistik");
+        statistik.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                statistikActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -169,6 +174,11 @@ public class BefintligaLeverantorer extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_valdLeverantörActionPerformed
+
+    private void statistikActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statistikActionPerformed
+        // TODO add your handling code here:
+         new LeverantorsStatistik(idb).setVisible(true);
+    }//GEN-LAST:event_statistikActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
