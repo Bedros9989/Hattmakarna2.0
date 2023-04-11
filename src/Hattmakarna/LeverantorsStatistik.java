@@ -118,7 +118,7 @@ public class LeverantorsStatistik extends javax.swing.JFrame {
         try
         {
             String id = leverantörer.getSelectedItem().toString();
-            String beställningar = "Select Leverantor.Namn, Datum, Mangd as Mängd, Inkopspris as Inköpspris from Leverantor join Leverantorsbestallning L on Leverantor.LeverantorsID = L.LeverantorID join Bestallningsinnehall B on L.LeverantorsbestallningsID = B.Leverantorsbestallning join Material M on B.Material = M.MaterialID where LeverantorsbestallningsID ="+id+" group by Leverantor.Namn, Datum, Mangd,Inkopspris,M.Namn";
+            String beställningar = "Select Leverantor.Namn, Datum, Mangd as Mängd, Inkopspris as Inköpspris, M.Materialnamn as Materialnamn from Leverantor join Leverantorsbestallning L on Leverantor.LeverantorsID = L.LeverantorID join Bestallningsinnehall B on L.LeverantorsbestallningsID = B.Leverantorsbestallning join Material M on B.Material = M.MaterialID where LeverantorsbestallningsID ="+id+"";
             ArrayList<HashMap<String, String>> allaHattar = idb.fetchRows(beställningar); 
             
             for (HashMap<String, String> hatt : allaHattar){
@@ -138,7 +138,7 @@ public class LeverantorsStatistik extends javax.swing.JFrame {
                     hatt.get("Datum"),  
                     hatt.get("Mangd"), 
                     hatt.get("Inkopspris"), 
-                    hatt.get("Namn"), 
+                    hatt.get("Materialnamn"), 
                 };
                 model.addRow(hattData);
                 
