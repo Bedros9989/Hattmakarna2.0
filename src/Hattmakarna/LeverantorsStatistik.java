@@ -5,6 +5,7 @@
 package Hattmakarna;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -53,28 +54,33 @@ public class LeverantorsStatistik extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTStatistik);
 
         jBVisaInfo.setText("Visa information");
+        jBVisaInfo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBVisaInfoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(153, 153, 153)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jBVisaInfo)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jCLevID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(19, 19, 19)))
+                .addContainerGap(130, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLLevID)
-                .addGap(110, 110, 110))
-            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(80, 80, 80)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(153, 153, 153)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jBVisaInfo)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jCLevID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(19, 19, 19)))))
-                .addContainerGap(86, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLLevID)
+                        .addGap(110, 110, 110))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(79, 79, 79))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -85,13 +91,42 @@ public class LeverantorsStatistik extends javax.swing.JFrame {
                 .addComponent(jCLevID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
                 .addComponent(jBVisaInfo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(37, 37, 37))
+                .addContainerGap(46, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jBVisaInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBVisaInfoActionPerformed
+        // TODO add your handling code here:
+          ArrayList<HashMap<String, String>> agentInfoLista;
+    jTInformation.setText("");
+    
+    String namnet = String.valueOf(jCAgentNamn.getSelectedItem().toString());
+     
+    try{
+    agentInfoLista = idb.fetchRows("SELECT Agent_ID, Telefon, Anstallningsdatum,"+ 
+            "Administrator, Omrade.Benamning FROM Agent "+
+            "JOIN Omrade ON Omrade.Omrades_ID = agent.Omrade WHERE Namn = '" + namnet + "'");
+    
+    if (agentInfoLista.size() > 0)
+    for(HashMap<String, String> agent: agentInfoLista)
+    { 
+            jTInformation.append(("AgentID:"  + "\t") + agent.get("Agent_ID") + "\n");
+            jTInformation.append(("Telefon:"  + "\t") + agent.get("Telefon") + "\n");
+            jTInformation.append(("Anställningsdatum:"  + "\t") + agent.get("Anstallningsdatum") + "\n");
+            jTInformation.append(("Adminstatus:"  + "\t") + agent.get("Administrator") + "\n");
+            jTInformation.append(("Område:"  + "\t") + agent.get("Benamning") + "\n");
+           
+              }   
+    
+    } catch (InfException ex) {
+            Logger.getLogger(VisaAllAgentInfo.class.getName()).log(Level.SEVERE, null, ex);
+        
+    }
+    }//GEN-LAST:event_jBVisaInfoActionPerformed
 
      private void fillComboboxLeverantorID(){
     jCLevID.removeAllItems();
