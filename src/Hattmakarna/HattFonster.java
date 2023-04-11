@@ -26,7 +26,7 @@ public class HattFonster extends javax.swing.JFrame {
         btnRegistreraHatt = new javax.swing.JButton();
         btnAndraHatt = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         btnRegistreraHatt.setText("Registrera ny hatt");
         btnRegistreraHatt.addActionListener(new java.awt.event.ActionListener() {
