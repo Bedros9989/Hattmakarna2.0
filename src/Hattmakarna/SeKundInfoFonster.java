@@ -40,7 +40,7 @@ public class SeKundInfoFonster extends javax.swing.JFrame {
         setResizable(false);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel1.setText("Hantera kundinformation");
+        jLabel1.setText("Sök kundinformation");
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel2.setText("Ange KundID");
