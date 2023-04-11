@@ -44,7 +44,7 @@ public class ValideringsKlass {
         return resultat;
     }
     
-    
+    //rutaEmpty är rätt, ändra inte
         public static boolean rutaEmpty(JTextField enRuta) {
         boolean empty = false;
 
