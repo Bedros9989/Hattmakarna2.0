@@ -16,6 +16,7 @@ public class HanteraBestallningFonster extends javax.swing.JFrame {
     public HanteraBestallningFonster(InfDB idb) {
         initComponents();
         this.idb = idb;
+        HanteraBestallningFonster.this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
       
         //txtareaInfo.hide();
 //        txtareaInfo.setVisible(false);
