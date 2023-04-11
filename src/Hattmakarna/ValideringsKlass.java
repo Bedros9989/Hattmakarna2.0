@@ -86,5 +86,53 @@ public class ValideringsKlass {
         }
         return resultat;
     }
+
+ 
+        public static boolean endastNummerTillåtenBID(JTextField Ange_BeställningsID){
+        
+        boolean resultat = true;
+        if (Ange_BeställningsID.getText().matches(".*[a-zA-Z].*")){
+            JOptionPane.showMessageDialog(null, "Endast siffror tillåtna!");
+            resultat=false;  
+        }
+        return resultat;
+    }
+        
+    
+        public static boolean endastNummerTillåtenKID(JTextField  KundID){
+        
+        boolean resultat = true;
+        if (KundID.getText().matches(".*[a-zA-Z].*")){
+            JOptionPane.showMessageDialog(null, "Endast siffror tillåtna!");
+            resultat=false;  
+        }
+        return resultat;
+    }
+        
+        public static boolean endastNummerTillåtenKI(JTextField Ange_KundID){
+        
+        boolean resultat = true;
+        if (Ange_KundID.getText().matches(".*[a-zA-Z].*")){
+            JOptionPane.showMessageDialog(null, "Endast siffror tillåtna!");
+            resultat=false;  
+        }
+        return resultat;
+    }
+        
+        public static boolean endastNummerTillåtenLID(JTextField LeverantörsID){
+        
+        boolean resultat = true;
+        if (LeverantörsID.getText().matches(".*[a-zA-Z].*")){
+            JOptionPane.showMessageDialog(null, "Endast siffror tillåtna!");
+            resultat=false;  
+        }
+        return resultat;
+    }
+        
+
+
+
+
+
     
 }
