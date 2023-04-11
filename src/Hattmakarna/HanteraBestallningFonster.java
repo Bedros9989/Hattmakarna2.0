@@ -16,6 +16,7 @@ public class HanteraBestallningFonster extends javax.swing.JFrame {
     public HanteraBestallningFonster(InfDB idb) {
         initComponents();
         this.idb = idb;
+      
         //txtareaInfo.hide();
 //        txtareaInfo.setVisible(false);
 //        skrolla.setVisible(false);
@@ -140,7 +141,7 @@ public class HanteraBestallningFonster extends javax.swing.JFrame {
         });
 
         jbRadera.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
-        jbRadera.setText("Radera beställning");
+        jbRadera.setText("(Avbryt beställning)");
         jbRadera.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbRaderaActionPerformed(evt);
@@ -419,7 +420,7 @@ public class HanteraBestallningFonster extends javax.swing.JFrame {
             try {
 
                 if (hattID.isEmpty() == false) {
-                    idb.update("Update Hatt set Bestallning = " + 0 + " where HattID= " + hattID);
+                    idb.update("Update Hatt set Bestallning = " + null + " where HattID= " + hattID);
                     JOptionPane.showMessageDialog(null, "Hatt har tagits bort från beställningen!");
                     visaInfo();
                 } else {
