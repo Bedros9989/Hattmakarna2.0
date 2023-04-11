@@ -92,7 +92,7 @@ public class RegistreraHattFonster extends javax.swing.JFrame {
         btnValjMaterial = new javax.swing.JButton();
         hattBild = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         lblValkomstText.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         lblValkomstText.setText("Registrera ny hatt");
