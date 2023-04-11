@@ -68,16 +68,14 @@ public class RegistreraHattFonster extends javax.swing.JFrame {
     }
 
     private void fyllCbHattKategori() {
-        try {
-            ArrayList<String> allaHattKategorier = idb.fetchColumn("Select kategori from hatt");
-            Collections.sort(allaHattKategorier);
+        ArrayList<String> allaHattKategorier = new ArrayList<>();
+        allaHattKategorier.add("Doktorshatt");
+        allaHattKategorier.add("Studenthatt");
+        allaHattKategorier.add("Specialhatt");
+        Collections.sort(allaHattKategorier);
 
-            for (String Namn : allaHattKategorier) {
-                cbHattKategori.addItem(Namn);
-            }
-        } catch (InfException ex) {
-            JOptionPane.showMessageDialog(null, "Något gick fel");
-            System.out.println("Internt felmeddelande" + ex.getMessage());
+        for (String enKategori : allaHattKategorier) {
+            cbHattKategori.addItem(enKategori);
         }
     }
 
@@ -324,20 +322,17 @@ public class RegistreraHattFonster extends javax.swing.JFrame {
            istället för InfDB.jar. Den är dock jättenkel att använda
            som ni kanske märker nedanför */
         String bestallningsID = "";
-        
+
         try {
-            if (txtBestallning.getText().isEmpty()){
-                
-                bestallningsID= null;
+            if (txtBestallning.getText().isEmpty()) {
+                bestallningsID = null;
             }
-            
+
             String q = "INSERT INTO `hatt`(`hattID`, `Storlek`,`Skapare`,`Kategori`,`Bestallning`,`Tillverkningstimmar`,`BildData`) VALUES (?,?,?,?,?,?,?)";
-            
+
             String personalNamn = cbValjPersonal.getSelectedItem().toString();
-            String personalID = idb.fetchSingle("SELECT personalID FROM Personal WHERE namn = '" +personalNamn+ "'");
-            
-            
-            
+            String personalID = idb.fetchSingle("SELECT personalID FROM Personal WHERE namn = '" + personalNamn + "'");
+
             PreparedStatement pst = conn.prepareStatement(q);
             pst.setString(1, lblHattIDPresentation.getText());
             pst.setString(2, txtHattStorlek.getText());
@@ -347,7 +342,7 @@ public class RegistreraHattFonster extends javax.swing.JFrame {
             pst.setString(6, txtTillverkningstimmar.getText());
             pst.setBytes(7, pimage);
             pst.execute();
-                        
+
 //                        
 //            //Hatt 1
 //            double material1 = MaterialLista.get(0);
@@ -438,14 +433,10 @@ public class RegistreraHattFonster extends javax.swing.JFrame {
 //
 //            
 //         
-
-           // "Update Antalvara SET Antal ="++ " WHERE MaterialID= " +variableMaterialID
-           //         + ("SELECT Antal FROM Antalvara WHERE MaterialID =" + variableMaterialID +
-           // ") - +variabelmangdMaterial+
-            
-            
+            // "Update Antalvara SET Antal ="++ " WHERE MaterialID= " +variableMaterialID
+            //         + ("SELECT Antal FROM Antalvara WHERE MaterialID =" + variableMaterialID +
+            // ") - +variabelmangdMaterial+
             //Uppdatera HattMaterial genom Arralisten MaterialLista
-            
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Något gick fel");
             System.out.println("Internt felmeddelande" + ex.getMessage());
