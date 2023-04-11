@@ -86,7 +86,7 @@ public class RegistreraHattFonster extends javax.swing.JFrame {
         public static Connection connect() {
             Connection con = null;
             try {
-                Class.forName("com.mysql.cj.jdbc.Driver");
+                Class.forName("com.mysql.jdbc.Driver");
                 con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hattmakare", "hattuser", "hattkey");
             } catch (Exception e) {
                 System.out.println("inter.DBConnect.connect()");
@@ -325,106 +325,116 @@ public class RegistreraHattFonster extends javax.swing.JFrame {
            som ni kanske märker nedanför */
         try {
             String q = "INSERT INTO `hatt`(`hattID`, `Storlek`,`Skapare`,`Kategori`,`Bestallning`,`Tillverkningstimmar`,`BildData`) VALUES (?,?,?,?,?,?,?)";
+            
+            String personalNamn = cbValjPersonal.getSelectedItem().toString();
+            String personalID = idb.fetchSingle("SELECT personalID FROM Personal WHERE namn = '" +personalNamn+ "'");
+            
+            String bestallningsID = txtBestallning.getText();
+            
+            if (bestallningsID.equals(null)){
+               
+            }
+            
             PreparedStatement pst = conn.prepareStatement(q);
             pst.setString(1, lblHattIDPresentation.getText());
             pst.setString(2, txtHattStorlek.getText());
-            pst.setString(3, cbValjPersonal.getSelectedItem().toString());
+            pst.setString(3, personalID);
             pst.setString(4, cbHattKategori.getSelectedItem().toString());
-            pst.setString(5, txtBestallning.getText());
+            pst.setString(5, bestallningsID);
             pst.setString(6, txtTillverkningstimmar.getText());
             pst.setBytes(7, pimage);
             pst.execute();
-            
                         
-            //Hatt 1
-            double material1 = MaterialLista.get(0);
-            Integer materialID1 = (int) material1;
-            String materialID1String = materialID1.toString();
-            double materialMangd1 = MaterialLista.get(1);
-            double materialPris1 = MaterialLista.get(2);
-            //Hatt 2
-            double material2 = MaterialLista.get(3);
-            Integer materialID2 = (int) material2;
-            String materialID2String = materialID2.toString();
-            double materialMangd2 = MaterialLista.get(4);
-            double materialPris2 = MaterialLista.get(5);
-            //Hatt 3
-            double material3 = MaterialLista.get(6);
-            Integer materialID3 = (int) material3;
-            String materialID3String = materialID3.toString();
-            double materialMangd3 = MaterialLista.get(7);
-            double materialPris3 = MaterialLista.get(8);
-            //Hatt 4
-            double material4 = MaterialLista.get(9);
-            Integer materialID4 = (int) material4;
-            String materialID4String = materialID4.toString();
-            double materialMangd4 = MaterialLista.get(10);
-            double materialPris4 = MaterialLista.get(11);
-            //Hatt 5
-            double material5 = MaterialLista.get(12);
-            Integer materialID5 = (int) material5;
-            String materialID5String = materialID5.toString();
-            double materialMangd5 = MaterialLista.get(13);
-            double materialPris5 = MaterialLista.get(14);
-            //Hatt 6
-            double material6 = MaterialLista.get(15);
-            Integer materialID6 = (int) material6;
-            String materialID6String = materialID6.toString();
-            double materialMangd6 = MaterialLista.get(16);
-            double materialPris6 = MaterialLista.get(17);
-            //Hatt 7
-            double material7 = MaterialLista.get(18);
-            Integer materialID7 = (int) material7;
-            String materialID7String = materialID7.toString();
-            double materialMangd7 = MaterialLista.get(19);
-            double materialPris7 = MaterialLista.get(20);
-            //Hatt 8
-            double material8 = MaterialLista.get(21);
-            Integer materialID8 = (int) material8;
-            String materialID8String = materialID8.toString();
-            double materialMangd8 = MaterialLista.get(22);
-            double materialPris8 = MaterialLista.get(23);
-            //Hatt 9
-            double material9 = MaterialLista.get(24);
-            Integer materialID9 = (int) material9;
-            String materialID9String = materialID9.toString();
-            double materialMangd9 = MaterialLista.get(25);
-            double materialPris9 = MaterialLista.get(26);
-            //Hatt 10
-            double material10 = MaterialLista.get(27);
-            Integer materialID10 = (int) material10;
-            String materialID10String = materialID10.toString();
-            double materialMangd10 = MaterialLista.get(28);
-            double materialPris10 = MaterialLista.get(29);
-
-            
-            
-            //Uppdatera Material genom Arralisten MaterialLista
-            //0, 3, 6= MaterialID
-            //1, 4, 7= mangdMangd
-            //2, 5, 8= materialPrisAvrundat
-            
-            
-            ArrayList<String> allaAntal = new ArrayList<String>();
-            ArrayList<String> allaMetervara = new ArrayList<String>();
-            ArrayList<String> allaKvadrametervara= new ArrayList<String>();
-            String fragaAntal = "SELECT materialID FROM antalvara";
-            String fragaMetervara = "SELECT materialID FROM metervara";
-            String fragaKvadratmetervara = "SELECT materialID FROM kvadratmetervara";
-            allaAntal = idb.fetchColumn(fragaAntal);
-            allaMetervara = idb.fetchColumn(fragaMetervara);
-            allaKvadrametervara = idb.fetchColumn(fragaKvadratmetervara);
-
-            for (String idAntal : allaAntal) {
-                if (materialID1.equals(idAntal)) {
-                    String nuvarandeAntal = idb.fetchSingle("SELECT Antal FROM Antalvara WHERE MaterialID =" + materialID1);
-                    double nuvarandeAntalDouble = Double.parseDouble(nuvarandeAntal);
-                    double nyttAntal = nuvarandeAntalDouble - materialMangd1;
-                }
-            }
-
-            
-         
+//                        
+//            //Hatt 1
+//            double material1 = MaterialLista.get(0);
+//            Integer materialID1 = (int) material1;
+//            String materialID1String = materialID1.toString();
+//            double materialMangd1 = MaterialLista.get(1);
+//            double materialPris1 = MaterialLista.get(2);
+//            //Hatt 2
+//            double material2 = MaterialLista.get(3);
+//            Integer materialID2 = (int) material2;
+//            String materialID2String = materialID2.toString();
+//            double materialMangd2 = MaterialLista.get(4);
+//            double materialPris2 = MaterialLista.get(5);
+//            //Hatt 3
+//            double material3 = MaterialLista.get(6);
+//            Integer materialID3 = (int) material3;
+//            String materialID3String = materialID3.toString();
+//            double materialMangd3 = MaterialLista.get(7);
+//            double materialPris3 = MaterialLista.get(8);
+//            //Hatt 4
+//            double material4 = MaterialLista.get(9);
+//            Integer materialID4 = (int) material4;
+//            String materialID4String = materialID4.toString();
+//            double materialMangd4 = MaterialLista.get(10);
+//            double materialPris4 = MaterialLista.get(11);
+//            //Hatt 5
+//            double material5 = MaterialLista.get(12);
+//            Integer materialID5 = (int) material5;
+//            String materialID5String = materialID5.toString();
+//            double materialMangd5 = MaterialLista.get(13);
+//            double materialPris5 = MaterialLista.get(14);
+//            //Hatt 6
+//            double material6 = MaterialLista.get(15);
+//            Integer materialID6 = (int) material6;
+//            String materialID6String = materialID6.toString();
+//            double materialMangd6 = MaterialLista.get(16);
+//            double materialPris6 = MaterialLista.get(17);
+//            //Hatt 7
+//            double material7 = MaterialLista.get(18);
+//            Integer materialID7 = (int) material7;
+//            String materialID7String = materialID7.toString();
+//            double materialMangd7 = MaterialLista.get(19);
+//            double materialPris7 = MaterialLista.get(20);
+//            //Hatt 8
+//            double material8 = MaterialLista.get(21);
+//            Integer materialID8 = (int) material8;
+//            String materialID8String = materialID8.toString();
+//            double materialMangd8 = MaterialLista.get(22);
+//            double materialPris8 = MaterialLista.get(23);
+//            //Hatt 9
+//            double material9 = MaterialLista.get(24);
+//            Integer materialID9 = (int) material9;
+//            String materialID9String = materialID9.toString();
+//            double materialMangd9 = MaterialLista.get(25);
+//            double materialPris9 = MaterialLista.get(26);
+//            //Hatt 10
+//            double material10 = MaterialLista.get(27);
+//            Integer materialID10 = (int) material10;
+//            String materialID10String = materialID10.toString();
+//            double materialMangd10 = MaterialLista.get(28);
+//            double materialPris10 = MaterialLista.get(29);
+//
+//            
+//            
+//            //Uppdatera Material genom Arralisten MaterialLista
+//            //0, 3, 6= MaterialID
+//            //1, 4, 7= mangdMangd
+//            //2, 5, 8= materialPrisAvrundat
+//            
+//            
+//            ArrayList<String> allaAntal = new ArrayList<String>();
+//            ArrayList<String> allaMetervara = new ArrayList<String>();
+//            ArrayList<String> allaKvadrametervara= new ArrayList<String>();
+//            String fragaAntal = "SELECT materialID FROM antalvara";
+//            String fragaMetervara = "SELECT materialID FROM metervara";
+//            String fragaKvadratmetervara = "SELECT materialID FROM kvadratmetervara";
+//            allaAntal = idb.fetchColumn(fragaAntal);
+//            allaMetervara = idb.fetchColumn(fragaMetervara);
+//            allaKvadrametervara = idb.fetchColumn(fragaKvadratmetervara);
+//
+//            for (String idAntal : allaAntal) {
+//                if (materialID1.equals(idAntal)) {
+//                    String nuvarandeAntal = idb.fetchSingle("SELECT Antal FROM Antalvara WHERE MaterialID =" + materialID1);
+//                    double nuvarandeAntalDouble = Double.parseDouble(nuvarandeAntal);
+//                    double nyttAntal = nuvarandeAntalDouble - materialMangd1;
+//                }
+//            }
+//
+//            
+//         
 
            // "Update Antalvara SET Antal ="++ " WHERE MaterialID= " +variableMaterialID
            //         + ("SELECT Antal FROM Antalvara WHERE MaterialID =" + variableMaterialID +
@@ -433,7 +443,9 @@ public class RegistreraHattFonster extends javax.swing.JFrame {
             
             //Uppdatera HattMaterial genom Arralisten MaterialLista
             
-        } catch (Exception e) {
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Något gick fel");
+            System.out.println("Internt felmeddelande" + ex.getMessage());
         }
 
 
