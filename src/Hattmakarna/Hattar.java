@@ -153,10 +153,6 @@ public class Hattar extends javax.swing.JFrame {
 //        }
         
         
-        
-        
-        
-        
     }//GEN-LAST:event_tabellMouseClicked
 
     private RegistreraBestallning getBeställningForm(){
