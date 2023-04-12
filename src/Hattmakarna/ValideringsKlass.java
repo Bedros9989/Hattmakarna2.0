@@ -9,6 +9,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.JComboBox;
 
 
 public class ValideringsKlass {
@@ -86,5 +87,61 @@ public class ValideringsKlass {
         }
         return resultat;
     }
+
+ 
+        public static boolean endastNummerTillåtenBID(JTextField Ange_BeställningsID){
+        
+        boolean resultat = true;
+        if (Ange_BeställningsID.getText().matches(".*[a-zA-Z].*")){
+            JOptionPane.showMessageDialog(null, "Endast siffror tillåtna!");
+            resultat=false;  
+        }
+        return resultat;
+    }
+        
+    
+        public static boolean endastNummerTillåtenKID(JTextField  KundID){
+        
+        boolean resultat = true;
+        if (KundID.getText().matches(".*[a-zA-Z].*")){
+            JOptionPane.showMessageDialog(null, "Endast siffror tillåtna!");
+            resultat=false;  
+        }
+        return resultat;
+    }
+        
+        public static boolean endastNummerTillåtenKI(JTextField Ange_KundID){
+        
+        boolean resultat = true;
+        if (Ange_KundID.getText().matches(".*[a-zA-Z].*")){
+            JOptionPane.showMessageDialog(null, "Endast siffror tillåtna!");
+            resultat=false;  
+        }
+        return resultat;
+    }
+        
+        public static boolean endastNummerTillåtenLID(JTextField LeverantörsID){
+        
+        boolean resultat = true;
+        if (LeverantörsID.getText().matches(".*[a-zA-Z].*")){
+            JOptionPane.showMessageDialog(null, "Endast siffror tillåtna!");
+            resultat=false;  
+        }
+        return resultat;
+    }
+        
+
+ public static boolean endastNummerTillåtenLIDCB(JComboBox Välj_LeverantörsBeställningsID){
+        
+   boolean resultat = true;
+     if (Välj_LeverantörsBeställningsID.getSelectedItem().toString().matches(".*[a-zA-Z].*")){
+       JOptionPane.showMessageDialog(null, "Endast siffror tillåtna!");
+         resultat=false;  
+       }
+      return resultat;
+    }
+
+
+
     
 }

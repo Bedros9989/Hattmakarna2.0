@@ -43,7 +43,7 @@ public class Hattar extends javax.swing.JFrame {
         tabell = new javax.swing.JTable();
         läggTillBeställning = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         text.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
         text.setText("Tillgängliga hattar");
