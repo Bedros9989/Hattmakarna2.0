@@ -125,36 +125,32 @@ public class Hattar extends javax.swing.JFrame {
 
     private void tabellMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabellMouseClicked
        
-        int index = tabell.getSelectedRow();
-        TableModel model = tabell.getModel();
-        try
-        {
-            if (index != -1){
-            
-            String hatt = (String)tabell.getValueAt(index, 0);
-            String hatten = idb.fetchSingle("select HattID from Hatt where Storlek="+hatt);
-            new KollaBild(hatten).setVisible(true);
-            
-        }
-
-            
-        }catch (InfException ettUndantag) {
-            
-            JOptionPane.showMessageDialog(null, "Databasfel!");
-            System.out.println("Internt felmeddelande" + ettUndantag.getMessage());
-            
-        }
-        
-        catch (Exception ettUndantag) {
-            
-            JOptionPane.showMessageDialog(null, "Något gick fel!");
-            System.out.println("Internt felmeddelande" + ettUndantag.getMessage());
-            
-        }
-        
-        
-        
-        
+//        int index = tabell.getSelectedRow();
+//        TableModel model = tabell.getModel();
+//        try
+//        {
+//            if (index != -1){
+//            
+//            String hatt = (String)tabell.getValueAt(index, 0);
+//            String hatten = idb.fetchSingle("select HattID from Hatt where Storlek="+hatt);
+//            new KollaBild(hatten).setVisible(true);
+//            
+//        }
+//
+//            
+//        }catch (InfException ettUndantag) {
+//            
+//            JOptionPane.showMessageDialog(null, "Databasfel!");
+//            System.out.println("Internt felmeddelande" + ettUndantag.getMessage());
+//            
+//        }
+//        
+//        catch (Exception ettUndantag) {
+//            
+//            JOptionPane.showMessageDialog(null, "Något gick fel!");
+//            System.out.println("Internt felmeddelande" + ettUndantag.getMessage());
+//            
+//        }
         
         
     }//GEN-LAST:event_tabellMouseClicked
