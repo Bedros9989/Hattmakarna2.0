@@ -583,11 +583,12 @@ public class HanteraBestallningFonster extends javax.swing.JFrame {
                             txtareaInfo.setText("BeställningsID: " + bestallningsID + "\n");
                             txtareaInfo.append("KundID: " + idb.fetchSingle(fragaKund) + " \n");
 //                            txtareaInfo.append("HattID:");
-                            hamtaaHatt();
+//                            hamtaaHatt();
                             txtareaInfo.append("Leveransadress: " + idb.fetchSingle(fragaAdress) + " \n");
                             txtareaInfo.append("Totalsumma: " + idb.fetchSingle(fragaSumma) + " kronor \n");
                             txtareaInfo.append("Ansvarig personals ID: " + idb.fetchSingle(fragaAnsvarig) + " \n");
                             txtareaInfo.append("Datum för beställning: " + idb.fetchSingle(fragaDatum) + " \n");
+                            hamtaaHatt();
                         }
                     }
                     if (!finns) {
