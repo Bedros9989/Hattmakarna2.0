@@ -26,6 +26,7 @@ public class LeverantorsStatistik extends javax.swing.JFrame {
         model.addColumn("Mängd");
         model.addColumn("Inköpspris");
         model.addColumn("Materialnamn");
+        tabell.setDefaultEditor(Object.class, null);
     }
 
 
@@ -121,17 +122,7 @@ public class LeverantorsStatistik extends javax.swing.JFrame {
             String beställningar = "Select Leverantor.Namn, Datum, Mangd as Mängd, Inkopspris as Inköpspris, M.Materialnamn as Materialnamn from Leverantor join Leverantorsbestallning L on Leverantor.LeverantorsID = L.LeverantorID join Bestallningsinnehall B on L.LeverantorsbestallningsID = B.Leverantorsbestallning join Material M on B.Material = M.MaterialID where LeverantorsbestallningsID ="+id+"";
             ArrayList<HashMap<String, String>> allaHattar = idb.fetchRows(beställningar); 
             
-            for (HashMap<String, String> hatt : allaHattar){
-                
-                for (HashMap<String, String> row : allaHattar) {
-    System.out.println("New row:");
-    for (String key : row.keySet()) {
-        String value = row.get(key);
-        System.out.println("  " + key + ": " + value);
-    }
-}
-
-                
+            for (HashMap<String, String> hatt : allaHattar){            
                 Object[] hattData = {
                     
                     hatt.get("Namn"),
@@ -141,11 +132,6 @@ public class LeverantorsStatistik extends javax.swing.JFrame {
                     hatt.get("Materialnamn"), 
                 };
                 model.addRow(hattData);
-                
-                
-
-                
-
             }
 
             
@@ -177,9 +163,6 @@ public class LeverantorsStatistik extends javax.swing.JFrame {
               leverantörer.addItem(enKund);
              
             }
-            
-            
-            
             
         }  catch (InfException e) {
 
