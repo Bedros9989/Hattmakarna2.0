@@ -583,11 +583,12 @@ public class HanteraBestallningFonster extends javax.swing.JFrame {
                             txtareaInfo.setText("BeställningsID: " + bestallningsID + "\n");
                             txtareaInfo.append("KundID: " + idb.fetchSingle(fragaKund) + " \n");
 //                            txtareaInfo.append("HattID:");
-                            hamtaaHatt();
+//                            hamtaaHatt();
                             txtareaInfo.append("Leveransadress: " + idb.fetchSingle(fragaAdress) + " \n");
                             txtareaInfo.append("Totalsumma: " + idb.fetchSingle(fragaSumma) + " kronor \n");
                             txtareaInfo.append("Ansvarig personals ID: " + idb.fetchSingle(fragaAnsvarig) + " \n");
                             txtareaInfo.append("Datum för beställning: " + idb.fetchSingle(fragaDatum) + " \n");
+                            hamtaaHatt();
                         }
                     }
                     if (!finns) {
@@ -632,7 +633,6 @@ public class HanteraBestallningFonster extends javax.swing.JFrame {
 //        }
 //        return info;
 //    }
-
 //    public void setHattar() {
 //
 //        ArrayList<HashMap<String, String>> info;
@@ -648,7 +648,6 @@ public class HanteraBestallningFonster extends javax.swing.JFrame {
 //            }
 //        }
 //    }
-
     public ArrayList hamtaaHatt() {
         ArrayList<String> hattar = new ArrayList<>();
         String fragaHatt = "Select Bestallning from hatt";
@@ -657,16 +656,19 @@ public class HanteraBestallningFonster extends javax.swing.JFrame {
             hattar = idb.fetchColumn(fragaHatt);
 
             for (String bestallningsID : hattar) {
+
                 if (bestallningsID.equals(jtBestallningsID.getText())) {
 
-                    String hattID = "Select HattID from hatt where Bestallning= '" + jtBestallningsID.getText() + "'";
-                    txtareaInfo.append("HattID: " + idb.fetchSingle(hattID) + "\n");
-                } else {
-                  System.out.println("Hej");
+                    String fragaHattID = "Select HattID from hatt where Bestallning= '" + jtBestallningsID.getText() + "'";
+                    String hattIDt = idb.fetchSingle(fragaHattID);
+                    txtareaInfo.append("HattID: "+ (hattIDt)+ "\n");
+ 
+                    
+
                 }
             }
         } catch (InfException e) {
-            JOptionPane.showMessageDialog(null, "hej");
+            JOptionPane.showMessageDialog(null, "databasfel");
         }
         return hattar;
     }
