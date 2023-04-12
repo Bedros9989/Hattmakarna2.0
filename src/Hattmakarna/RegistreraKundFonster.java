@@ -35,7 +35,7 @@ public class RegistreraKundFonster extends javax.swing.JFrame {
         felMeddelande = new javax.swing.JLabel();
         confirmMeddelande = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
 
         jTitel.setFont(new java.awt.Font("Calibri", 0, 22)); // NOI18N

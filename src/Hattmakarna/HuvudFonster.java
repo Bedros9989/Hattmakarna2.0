@@ -29,7 +29,7 @@ public class HuvudFonster extends javax.swing.JFrame {
         btnHattar = new javax.swing.JButton();
         loggaUt = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
 
         beställningar.setText("Beställningar");

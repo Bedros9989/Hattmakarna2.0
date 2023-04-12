@@ -45,7 +45,7 @@ public class BestallningGenomford extends javax.swing.JFrame {
         jLBeställning = new javax.swing.JLabel();
         skickaBekräftelse = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
 
         jBVisaFraktsedel.setText("Visa fraktsedel");

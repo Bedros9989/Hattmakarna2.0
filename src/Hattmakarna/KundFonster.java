@@ -23,7 +23,7 @@ public class KundFonster extends javax.swing.JFrame {
         SeKundinformation = new javax.swing.JButton();
         registreraNyKund = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
 
         SeKundinformation.setText("Hantera kundinformation");

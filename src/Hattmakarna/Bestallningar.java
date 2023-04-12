@@ -24,7 +24,7 @@ public class Bestallningar extends javax.swing.JFrame {
         hanteraBeställning = new javax.swing.JButton();
         nyBeställning = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         hanteraBeställning.setText("Hantera Beställning");
         hanteraBeställning.addActionListener(new java.awt.event.ActionListener() {

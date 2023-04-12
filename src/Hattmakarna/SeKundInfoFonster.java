@@ -36,7 +36,7 @@ public class SeKundInfoFonster extends javax.swing.JFrame {
         lblKundEmail = new javax.swing.JLabel();
         lblKundLojalitet = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
