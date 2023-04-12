@@ -15,6 +15,7 @@ public class RegistreraHattFonster extends javax.swing.JFrame {
     public byte[] pimage = null;
     Connection conn = null;
     private ArrayList<Double> MaterialLista;
+    private String bestallningsID;
 
     public RegistreraHattFonster(InfDB idb) {
         initComponents();
@@ -315,11 +316,12 @@ public class RegistreraHattFonster extends javax.swing.JFrame {
            använda den officiella mysql.java.jar filen som fanns
            istället för InfDB.jar. Den är dock jättenkel att använda
            som ni kanske märker nedanför */
-        String bestallningsID = "";
 
         try {
             if (txtBestallning.getText().isEmpty()) {
                 bestallningsID = null;
+            }else{
+                bestallningsID = txtBestallning.getText();
             }
 
             String q = "INSERT INTO `hatt`(`hattID`, `Storlek`,`Skapare`,`Kategori`,`Bestallning`,`Tillverkningstimmar`,`BildData`) VALUES (?,?,?,?,?,?,?)";
@@ -332,7 +334,7 @@ public class RegistreraHattFonster extends javax.swing.JFrame {
             pst.setString(2, txtHattStorlek.getText());
             pst.setString(3, personalID);
             pst.setString(4, cbHattKategori.getSelectedItem().toString());
-            pst.setString(5, txtBestallning.getText());
+            pst.setString(5, bestallningsID);
             pst.setString(6, txtTillverkningstimmar.getText());
             pst.setBytes(7, pimage);
             pst.execute();
