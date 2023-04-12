@@ -90,6 +90,7 @@ public class Bestallningar extends javax.swing.JFrame {
     private void nyBeställningActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nyBeställningActionPerformed
          
         new RegistreraBestallning(idb,ID).setVisible(true);
+        
          
     }//GEN-LAST:event_nyBeställningActionPerformed
 

@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
 import oru.inf.InfDB;
 import oru.inf.InfException;
 

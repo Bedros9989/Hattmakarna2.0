@@ -143,7 +143,9 @@ public class RegistreraBestallning extends javax.swing.JFrame {
                                 .addComponent(taBort, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(jLabel7)
-                                .addComponent(jDateChooserReg, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(jDateChooserReg, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(43, 43, 43))
                                 .addComponent(jLabel1)
                                 .addComponent(jLabel2)
                                 .addGroup(jPanel1Layout.createSequentialGroup()
@@ -216,11 +218,12 @@ public class RegistreraBestallning extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     public void populateList(String[] data){
-          
+     
     for (String s : data) {
         model.addElement(s);
         }
         jList1.setModel(model);   
+        
     }
     
     
