@@ -71,3 +71,6 @@
 
     -->
 </project>
+<target name="-post-jar">
+    <delete file="${dist.jar}/built-jar.properties"/>
+</target>
