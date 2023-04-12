@@ -119,6 +119,9 @@ public class Hattar extends javax.swing.JFrame {
             String[] data = {hatten};
             beställning.populateList(data);
             dispose();
+        }else{
+            
+            JOptionPane.showMessageDialog(this, "Please select a row.");
         }
         
     }//GEN-LAST:event_läggTillBeställningActionPerformed
