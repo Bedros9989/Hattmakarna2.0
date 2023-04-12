@@ -49,3 +49,6 @@ hs_err_pid*
 .mtj.tmp/
 
 *.properties
+
+# NetBeans specific files
+built-jar.properties
