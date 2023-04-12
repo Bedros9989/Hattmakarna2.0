@@ -47,10 +47,5 @@ hs_err_pid*
 # Mobile Tools for Java (J2ME)
 
 .mtj.tmp/
-/Hattmakarna2.0/nbproject/private/
-*.properties
-build/built-jar.properties
-*.properties
-build/built-jar.properties
-*.properties
+
 *.properties
