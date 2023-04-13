@@ -223,13 +223,6 @@ public class BestallningGenomford extends javax.swing.JFrame {
         
         }
         
-        
-        
-        
-        
-
-
-        
     }//GEN-LAST:event_skickaBekräftelseActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
