@@ -253,6 +253,8 @@ public class RegistreraBestallning extends javax.swing.JFrame {
     public void populateList(String[] data){
      
     for (String s : data) {
+        
+        model.clear();
         model.addElement(s);
         }
         jList1.setModel(model);   
@@ -340,7 +342,7 @@ public class RegistreraBestallning extends javax.swing.JFrame {
                         
                         double totalSumma = Double.parseDouble(summan.getText())  * Lojalitet;
                         idb.insert("INSERT INTO hattmakare.Bestallning (BestallningsID, Leveransadress, Totalsumma, Fraktsedel, Datum, Kund, Personal) VALUES ("+bästID+", '"+adress+"', "+totalSumma+", '"+fraktsedel+"', '"+regDatum+"', "+kundID+", "+ID+");");
-                        new BestallningGenomford(idb,bästID,"100gr",regDatum,adress,kundID).setVisible(true);
+                        new BestallningGenomford(idb,bästID,regDatum,adress,kundID).setVisible(true);
                         dispose();
                         
                      
@@ -353,7 +355,7 @@ public class RegistreraBestallning extends javax.swing.JFrame {
                 if(resultat == JOptionPane.YES_OPTION){
                         double summa = Double.parseDouble(summan.getText());
                         idb.insert("INSERT INTO hattmakare.Bestallning (BestallningsID, Leveransadress, Totalsumma, Fraktsedel, Datum, Kund, Personal) VALUES ("+bästID+", '"+adress+"', "+summa+", '"+fraktsedel+"', '"+regDatum+"', "+kundID+", "+ID+");");
-                        new BestallningGenomford(idb,bästID,"100gr",regDatum,adress,kundID).setVisible(true);
+                        new BestallningGenomford(idb,bästID,regDatum,adress,kundID).setVisible(true);
                         dispose();
                      
                 }
