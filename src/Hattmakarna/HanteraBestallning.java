@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import javax.swing.DefaultListModel;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.ListModel;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
@@ -18,6 +19,9 @@ public class HanteraBestallning extends javax.swing.JFrame {
     private InfDB idb;
     private String ID;
     private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    DefaultListModel<String> model = new DefaultListModel<String>();
+    private RegistreraBestallning beställning;
+    
     
     public HanteraBestallning(InfDB idb, String ID) {
         initComponents();
@@ -36,6 +40,9 @@ public class HanteraBestallning extends javax.swing.JFrame {
         status.setEnabled(false);
         annulera.setEnabled(false);
         spara.setEnabled(false);
+        ändra.setEnabled(false);
+        jList1.setModel(model);
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -80,7 +87,6 @@ public class HanteraBestallning extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Helvetica Neue", 0, 17)); // NOI18N
         jLabel3.setText("Kund");
 
-        kundBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
         kundBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 kundBoxActionPerformed(evt);
@@ -133,6 +139,11 @@ public class HanteraBestallning extends javax.swing.JFrame {
         });
 
         läggTill.setText("Lägg till");
+        läggTill.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                läggTillActionPerformed(evt);
+            }
+        });
 
         taBort.setText("Ta bort");
         taBort.addActionListener(new java.awt.event.ActionListener() {
@@ -142,6 +153,11 @@ public class HanteraBestallning extends javax.swing.JFrame {
         });
 
         spara.setText("Spara");
+        spara.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sparaActionPerformed(evt);
+            }
+        });
 
         ändra.setText("Ändra");
         ändra.addActionListener(new java.awt.event.ActionListener() {
@@ -160,6 +176,11 @@ public class HanteraBestallning extends javax.swing.JFrame {
         });
 
         annulera.setText("Annulera");
+        annulera.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                annuleraActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -170,7 +191,6 @@ public class HanteraBestallning extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel7)
                     .addComponent(jLabel2)
-                    .addComponent(datumChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addGroup(jPanel1Layout.createSequentialGroup()
@@ -203,6 +223,7 @@ public class HanteraBestallning extends javax.swing.JFrame {
                             .addComponent(taBort, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(datumChooser, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 345, Short.MAX_VALUE)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
@@ -354,8 +375,11 @@ public class HanteraBestallning extends javax.swing.JFrame {
 
     private void sök(){
         
-        DefaultListModel<String> listModel = new DefaultListModel<>();
-        jList1.setModel(listModel);
+        model.clear();
+        ändra.setEnabled(true);
+        ansvarig.removeAllItems();
+        kundBox.removeAllItems();
+        status.removeAllItems();
         hämtaKunder();
         hämtaPersonal();
         läggStatus();
@@ -390,7 +414,7 @@ public class HanteraBestallning extends javax.swing.JFrame {
                 String id = hatt.get("HattID");
                 String kategori= hatt.get("Kategori");
                 String storlek = hatt.get("Storlek");
-                listModel.addElement(id +"- "+kategori+" "+storlek);
+                model.addElement(id +"- "+kategori+" "+storlek);
 
             }
             }
@@ -424,7 +448,7 @@ public class HanteraBestallning extends javax.swing.JFrame {
        
                 try{
             
-                    int resultat = JOptionPane.showConfirmDialog(null, "Är du säker att du vill ta bort hatten", "Bekräfta uppgifter", JOptionPane.YES_NO_OPTION);
+                int resultat = JOptionPane.showConfirmDialog(null, "Är du säker att du vill ta bort hatten", "Bekräfta uppgifter", JOptionPane.YES_NO_OPTION);
                 
                 if(resultat == JOptionPane.YES_OPTION){
                     
@@ -433,9 +457,22 @@ public class HanteraBestallning extends javax.swing.JFrame {
                         String listItem = jList1.getModel().getElementAt(index);
                         String[] parts = listItem.split("-");
                         String selectedText = parts[0].trim();
-                        idb.delete("DELETE FROM hattmakare.Hatt WHERE HattID ="+selectedText);
+                        
+                        ArrayList<String> existerandeBeställninga = idb.fetchColumn("select HattID from Hatt where Bestallning is not null ");
+                        
+                        if (existerandeBeställninga.contains(selectedText)){
+                        idb.update("UPDATE hattmakare.Hatt t SET t.Bestallning = null WHERE t.HattID ="+selectedText);
                         JOptionPane.showMessageDialog(null, "Hatt borttagen från beställning!");
                         sök();
+                        
+                        }else{
+                            if (index != -1) {
+                            DefaultListModel model = (DefaultListModel) jList1.getModel();
+                            model.remove(index);
+                            
+                        }
+                        
+                        }
                     }
                         
                 }else{
@@ -460,10 +497,143 @@ public class HanteraBestallning extends javax.swing.JFrame {
         
         taBort.setEnabled(true);
         jList1.setEnabled(true);
+        kundBox.setEnabled(true);
+        ansvarig.setEnabled(true);
+        Adress.setEnabled(true);
+        datumChooser.setEnabled(true);
+        läggTill.setEnabled(true);
+        summan.setEnabled(true);
+        status.setEnabled(true);
+        annulera.setEnabled(true);
+        spara.setEnabled(true);
         
     }//GEN-LAST:event_ändraActionPerformed
 
+    private void annuleraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_annuleraActionPerformed
+        String bästID = beställningsID.getText();
+                try{
+            
+                int resultat = JOptionPane.showConfirmDialog(null, "Är du säker att du vill annulera beställningen", "Bekräfta uppgifter", JOptionPane.YES_NO_OPTION);
+                
+                if(resultat == JOptionPane.YES_OPTION){
+                    
+                    ListModel<String> listModel = jList1.getModel();
+                        for (int i = 0; i < jList1.getModel().getSize(); i++) {
+                        String listItem = jList1.getModel().getElementAt(i);
+                        String[] parts = listItem.split("-");
+                        String selectedText = parts[0].trim();
+                        idb.update("UPDATE hattmakare.Hatt t SET t.Bestallning = null WHERE t.HattID ="+selectedText);
+                        }
+                        
+                        
+                        idb.update("UPDATE hattmakare.Bestallning t SET t.Status = 'Annulerat' WHERE t.BestallningsID = "+bästID);
+                        sök();
+                        kundBox.setEnabled(false);
+                        ansvarig.setEnabled(false);
+                        Adress.setEnabled(false);
+                        datumChooser.setEnabled(false);
+                        jList1.setEnabled(false);
+                        läggTill.setEnabled(false);
+                        taBort.setEnabled(false);
+                        summan.setEnabled(false);
+                        status.setEnabled(false);
+                        annulera.setEnabled(false);
+                        spara.setEnabled(false);
+                        JOptionPane.showMessageDialog(null, "Dina order är nu annulerat!");
+                }else{
+                
+                }
+            }
+        
+        catch (InfException e) {
 
+            JOptionPane.showMessageDialog(null, "Fel på databasuppkopplingen, prova igen senare!");
+            System.out.println("Databasfel: " + e);
+            
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Något gick snett, prova igen!");
+            
+        }  
+                       
+    }//GEN-LAST:event_annuleraActionPerformed
+
+    private void läggTillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_läggTillActionPerformed
+        
+        String[] options = {"Doktorshatt", "Specialhatt", "Studenthatt"};
+        JComboBox<String> comboBox = new JComboBox<>(options);
+        
+        int result = JOptionPane.showOptionDialog(null, comboBox, "Välj en kategori",
+                JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, null, null);
+        if (result == JOptionPane.OK_OPTION) {
+            String selectedOption = comboBox.getSelectedItem().toString();
+            new Hattar(idb, selectedOption,beställning,this).setVisible(true); 
+            
+            
+        }
+    
+    }//GEN-LAST:event_läggTillActionPerformed
+
+    private void sparaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sparaActionPerformed
+    String bästID = beställningsID.getText();
+    int resultat = JOptionPane.showConfirmDialog(null, "Är du nöjd med allt du har skrivit?", "Bekräfta uppgifter", JOptionPane.YES_NO_OPTION);
+ 
+        try{
+            if(resultat == JOptionPane.YES_OPTION){
+            
+                Date datumet = datumChooser.getDate();
+                String nyDatum = dateFormat.format(datumet);
+                String nyAdress = Adress.getText();     
+                String nySumma = summan.getText();       
+                String nyKund = kundBox.getSelectedItem().toString();
+                String nyAnsvarig = ansvarig.getSelectedItem().toString();
+                String nyStatus = status.getSelectedItem().toString();
+                
+                String hämtaAnsvarig = idb.fetchSingle("select PersonalID from Personal where Namn = '"+nyAnsvarig+"'");
+                String hämtaKund = idb.fetchSingle("select KundID from Kund where Namn = '"+nyKund+"'");
+                
+                idb.update("UPDATE hattmakare.Bestallning t SET t.Leveransadress = '"+nyAdress+"', t.Totalsumma = "+nySumma+", t.Datum= '"+nyDatum+"',t.Kund= "+hämtaKund+", t.Personal = "+hämtaAnsvarig+", t.Status  = '"+nyStatus+"' WHERE t.BestallningsID ="+bästID);
+                
+                
+            JOptionPane.showMessageDialog(null, "Ändringar sparade!");
+            sök();
+        kundBox.setEnabled(false);
+        ansvarig.setEnabled(false);
+        Adress.setEnabled(false);
+        datumChooser.setEnabled(false);
+        jList1.setEnabled(false);
+        läggTill.setEnabled(false);
+        taBort.setEnabled(false);
+        summan.setEnabled(false);
+        status.setEnabled(false);
+        annulera.setEnabled(false);
+        spara.setEnabled(false);
+            
+        }
+    }   
+       
+    
+        catch (InfException e) {
+
+            JOptionPane.showMessageDialog(null, "Fel på databasuppkopplingen, prova igen senare!");
+            System.out.println("Databasfel: " + e);
+            
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Något gick snett, prova igen!");
+            
+        }
+        
+        
+    }//GEN-LAST:event_sparaActionPerformed
+
+    public void populateList(String[] data){
+     
+    for (String s : data) {
+         
+        model.addElement(s);
+        }
+    
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea Adress;
     private javax.swing.JButton annulera;

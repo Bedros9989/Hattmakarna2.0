@@ -10,6 +10,7 @@ import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 import oru.inf.InfDB;
 import oru.inf.InfException;
 
+
 public class RegistreraBestallning extends javax.swing.JFrame {
 
     private InfDB idb; 
@@ -17,6 +18,7 @@ public class RegistreraBestallning extends javax.swing.JFrame {
     private String ID;
     private double Lojalitet;
     DefaultListModel<String> model = new DefaultListModel<String>();
+    private HanteraBestallning hantering;
     
     private String orderNr;
     private String vikt;
@@ -424,7 +426,7 @@ public class RegistreraBestallning extends javax.swing.JFrame {
         }else{
         
         valdHatt = cbHattID.getSelectedItem().toString();
-        new Hattar(idb, valdHatt,this).setVisible(true); 
+        new Hattar(idb, valdHatt,this,hantering).setVisible(true); 
         }
     }//GEN-LAST:event_jbLaggTillHattActionPerformed
 

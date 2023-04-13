@@ -16,13 +16,15 @@ public class Hattar extends javax.swing.JFrame {
     private String valdHatt;
     DefaultTableModel model = new DefaultTableModel();
     private RegistreraBestallning beställning;
+    private HanteraBestallning hantering;
 
     
-    public Hattar(InfDB idb, String valdHatt,RegistreraBestallning beställning) {
+    public Hattar(InfDB idb, String valdHatt,RegistreraBestallning beställning,HanteraBestallning hantering) {
         initComponents();
         this.idb = idb;
         this.valdHatt=valdHatt;
         this.beställning= beställning;
+        this.hantering=hantering;
         this.setLocationRelativeTo(null);
         Hattar.this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         tabell.setModel(model);
@@ -111,15 +113,19 @@ public class Hattar extends javax.swing.JFrame {
     
     private void läggTillBeställningActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_läggTillBeställningActionPerformed
         
-        
-        
-        
         int valdaHatten = tabell.getSelectedRow();
         if (valdaHatten != -1){
             
             String hatten = (String)tabell.getValueAt(valdaHatten, 0)+"- "+valdHatt+" "+(String)tabell.getValueAt(valdaHatten, 1);
             String[] data = {hatten};
+            
+            if (this.beställning != null){
             beställning.populateList(data);
+            }
+
+            if (this.hantering != null){
+            hantering.populateList(data);
+            }
             dispose();
         }else{
             
@@ -166,6 +172,19 @@ public class Hattar extends javax.swing.JFrame {
         for (Window window : Window.getWindows()){
             if (window instanceof RegistreraBestallning){
                 form = (RegistreraBestallning) window;
+                break;
+            }
+            
+        }
+        return form;
+    }
+    
+        private HanteraBestallning getBeställningForm2(){
+        
+        HanteraBestallning form = null;
+        for (Window window : Window.getWindows()){
+            if (window instanceof HanteraBestallning){
+                form = (HanteraBestallning) window;
                 break;
             }
             
