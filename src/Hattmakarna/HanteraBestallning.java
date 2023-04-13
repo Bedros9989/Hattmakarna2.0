@@ -2,6 +2,10 @@
 package Hattmakarna;
 
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import javax.swing.JOptionPane;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 import oru.inf.InfDB;
 import oru.inf.InfException;
@@ -10,7 +14,8 @@ public class HanteraBestallning extends javax.swing.JFrame {
 
     private InfDB idb;
     private String ID;
-
+    private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    
     public HanteraBestallning(InfDB idb, String ID) {
         initComponents();
         this.idb = idb;
@@ -28,6 +33,7 @@ public class HanteraBestallning extends javax.swing.JFrame {
         status.setEnabled(false);
         annulera.setEnabled(false);
         spara.setEnabled(false);
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -36,7 +42,7 @@ public class HanteraBestallning extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        beställningsID = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         kundBox = new javax.swing.JComboBox<>();
         sök = new javax.swing.JButton();
@@ -72,6 +78,7 @@ public class HanteraBestallning extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Helvetica Neue", 0, 17)); // NOI18N
         jLabel3.setText("Kund");
 
+        kundBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
         kundBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 kundBoxActionPerformed(evt);
@@ -79,6 +86,11 @@ public class HanteraBestallning extends javax.swing.JFrame {
         });
 
         sök.setText("Sök");
+        sök.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sökActionPerformed(evt);
+            }
+        });
 
         Adress.setColumns(20);
         Adress.setRows(5);
@@ -163,7 +175,7 @@ public class HanteraBestallning extends javax.swing.JFrame {
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(jLabel8)
                                         .addGap(62, 62, 62)
-                                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(beställningsID, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(jLabel1))
                                 .addGap(18, 18, 18)
                                 .addComponent(sök)))
@@ -196,7 +208,7 @@ public class HanteraBestallning extends javax.swing.JFrame {
                 .addGap(26, 26, 26)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(beställningsID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(sök)
                     .addComponent(hitta))
                 .addGap(27, 27, 27)
@@ -256,6 +268,61 @@ public class HanteraBestallning extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void hämtaKunder(){
+
+        String fraga= "select Namn from Kund";
+        ArrayList<String> allaKundNamn;
+        
+        try{
+            allaKundNamn= idb.fetchColumn(fraga);
+            for (String enKund: allaKundNamn){
+              kundBox.addItem(enKund); 
+            }
+        
+    }
+        catch (InfException e) {
+
+            JOptionPane.showMessageDialog(null, "Fel på databasuppkopplingen, prova igen senare!");
+            System.out.println("Databasfel: " + e);
+            
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Något gick snett, prova igen!");
+            
+        }        
+    }
+    
+    private void hämtaPersonal(){
+        
+        String fraga= "select Namn from Personal";
+        ArrayList<String> allaPersonalNamn;
+        
+        try{
+            allaPersonalNamn= idb.fetchColumn(fraga);
+            for (String ettPersonal: allaPersonalNamn){
+              ansvarig.addItem(ettPersonal); 
+            }
+        
+    }
+        catch (InfException e) {
+
+            JOptionPane.showMessageDialog(null, "Fel på databasuppkopplingen, prova igen senare!");
+            System.out.println("Databasfel: " + e);
+            
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Något gick snett, prova igen!");
+            
+        }      
+        
+    }
+    
+    private void läggStatus(){
+        
+        status.addItem("Pågående");
+        status.addItem("Skickat");
+        status.addItem("Annulerat");
+        
+    }
+    
     private void kundBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kundBoxActionPerformed
 
     }//GEN-LAST:event_kundBoxActionPerformed
@@ -268,11 +335,52 @@ public class HanteraBestallning extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_statusActionPerformed
 
+    private void sökActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sökActionPerformed
+
+        hämtaKunder();
+        hämtaPersonal();
+        läggStatus();
+        
+        try{
+            String bästID = beställningsID.getText();
+            String hämtaKund = idb.fetchSingle("Select Namn from Kund join Bestallning B on Kund.KundID = B.Kund where BestallningsID="+bästID);
+            kundBox.setSelectedItem(hämtaKund);
+            String hämtaAnsvarig = idb.fetchSingle("select Namn from Personal join Bestallning B on Personal.PersonalID = B.Personal where BestallningsID ="+bästID);
+            ansvarig.setSelectedItem(hämtaAnsvarig);
+            String hämtaAdress = idb.fetchSingle("select Leveransadress from Bestallning where BestallningsID="+bästID);
+            Adress.setText(hämtaAdress);
+            String hämtaDatum = idb.fetchSingle("select Datum from Bestallning where BestallningsID="+bästID);
+            Date datumet = dateFormat.parse(hämtaDatum);
+            dateFormat.format(datumet);
+            datumChooser.setDate(datumet);
+            String hämtaSumma = idb.fetchSingle("select Totalsumma from Bestallning where BestallningsID="+bästID);
+            summan.setText(hämtaSumma);
+            String hämtaStatus = idb.fetchSingle("select Status from Bestallning where BestallningsID="+bästID);
+            status.setSelectedItem(hämtaStatus);
+            
+            
+            
+            
+    }
+        catch (InfException e) {
+
+            JOptionPane.showMessageDialog(null, "Fel på databasuppkopplingen, prova igen senare!");
+            System.out.println("Databasfel: " + e);
+            
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Något gick snett, prova igen!");
+            
+        }      
+        
+        
+    }//GEN-LAST:event_sökActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea Adress;
     private javax.swing.JButton annulera;
     private javax.swing.JComboBox<String> ansvarig;
+    private javax.swing.JTextField beställningsID;
     private com.toedter.calendar.JDateChooser datumChooser;
     private javax.swing.JButton hitta;
     private javax.swing.JLabel jLabel1;
@@ -288,7 +396,6 @@ public class HanteraBestallning extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JComboBox<String> kundBox;
     private javax.swing.JButton läggTill;
     private javax.swing.JButton spara;
