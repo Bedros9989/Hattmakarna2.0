@@ -72,5 +72,6 @@
     -->
 <target name="-post-jar">
     <delete file="${dist.jar}/built-jar.properties"/>
+    <delete file="${basedir}/nbproject/private/private.properties"/>
 </target>
 </project>

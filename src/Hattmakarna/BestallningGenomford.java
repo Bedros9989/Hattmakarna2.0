@@ -20,16 +20,14 @@ public class BestallningGenomford extends javax.swing.JFrame {
 
     private InfDB idb;
     private String orderNr;
-    private String vikt;
     private String datum;
     private String mottagare;
     private String kund;
     
-    public BestallningGenomford(InfDB idb, String orderNr,String vikt,String datum, String mottagare,String kund) {
+    public BestallningGenomford(InfDB idb, String orderNr,String datum, String mottagare,String kund) {
         initComponents();
         this.idb = idb;
         this.orderNr=orderNr;
-        this.vikt=vikt;
         this.datum=datum;
         this.mottagare=mottagare;
         this.kund=kund;
@@ -168,7 +166,7 @@ public class BestallningGenomford extends javax.swing.JFrame {
         String text = "Fraktsedel";
         String text2= "Otto och Judiths hattar AB";
         String text3= "Ordernummer:"+orderNr;
-        String text4= "Vikt:"+vikt;
+        String text4= "Vikt:";
         String text5= "Datum:"+datum;
         String text6= "Avsändare: Hattvägen 1, 70281, Örebro";
         String text7= "Mottagare:"+ mottagare;
