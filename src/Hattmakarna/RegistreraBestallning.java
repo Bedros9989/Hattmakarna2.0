@@ -380,10 +380,15 @@ public class RegistreraBestallning extends javax.swing.JFrame {
 
     private void jbLaggTillHattActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbLaggTillHattActionPerformed
 
+        if(cbHattID.getSelectedIndex() == 0){
+            
+            JOptionPane.showMessageDialog(null, "Du har inte valt ett kategori");
+            
+        }else{
+        
         valdHatt = cbHattID.getSelectedItem().toString();
-        
         new Hattar(idb, valdHatt).setVisible(true); 
-        
+        }
     }//GEN-LAST:event_jbLaggTillHattActionPerformed
 
     private void cbHattIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbHattIDActionPerformed
