@@ -5,6 +5,8 @@ package Hattmakarna;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 import oru.inf.InfDB;
@@ -15,6 +17,7 @@ public class HanteraBestallning extends javax.swing.JFrame {
     private InfDB idb;
     private String ID;
     private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    DefaultListModel<String> listModel = new DefaultListModel<>();
     
     public HanteraBestallning(InfDB idb, String ID) {
         initComponents();
@@ -33,7 +36,7 @@ public class HanteraBestallning extends javax.swing.JFrame {
         status.setEnabled(false);
         annulera.setEnabled(false);
         spara.setEnabled(false);
-        
+        jList1.setModel(listModel);
     }
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -105,6 +108,11 @@ public class HanteraBestallning extends javax.swing.JFrame {
         datumChooser.setDateFormatString("yyyy-MM-dd");
 
         hitta.setText("Hitta");
+        hitta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                hittaActionPerformed(evt);
+            }
+        });
 
         jLabel7.setFont(new java.awt.Font("Helvetica Neue", 0, 17)); // NOI18N
         jLabel7.setText("Översikt");
@@ -340,9 +348,17 @@ public class HanteraBestallning extends javax.swing.JFrame {
         hämtaKunder();
         hämtaPersonal();
         läggStatus();
-        
+        String bästID = beställningsID.getText();
         try{
-            String bästID = beställningsID.getText();
+            
+            ArrayList<String> existerandeBeställninga = idb.fetchColumn("select BestallningsID from Bestallning");
+            
+            if (!existerandeBeställninga.contains(bästID)){
+
+                        JOptionPane.showMessageDialog(null, "Beställning med denna ID existerar inte!");
+            }else{
+            
+            
             String hämtaKund = idb.fetchSingle("Select Namn from Kund join Bestallning B on Kund.KundID = B.Kund where BestallningsID="+bästID);
             kundBox.setSelectedItem(hämtaKund);
             String hämtaAnsvarig = idb.fetchSingle("select Namn from Personal join Bestallning B on Personal.PersonalID = B.Personal where BestallningsID ="+bästID);
@@ -358,8 +374,16 @@ public class HanteraBestallning extends javax.swing.JFrame {
             String hämtaStatus = idb.fetchSingle("select Status from Bestallning where BestallningsID="+bästID);
             status.setSelectedItem(hämtaStatus);
             
-            
-            
+            ArrayList<HashMap<String,String>> allaHattar = idb.fetchRows("SELECT * FROM Hatt where Bestallning="+bästID);
+            for (HashMap<String, String> hatt : allaHattar){
+                
+                String id = hatt.get("HattID");
+                String kategori= hatt.get("Kategori");
+                String storlek = hatt.get("Storlek");
+                listModel.addElement(id +"- "+kategori+" "+storlek);
+
+            }
+            }
             
     }
         catch (InfException e) {
@@ -374,6 +398,10 @@ public class HanteraBestallning extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_sökActionPerformed
+
+    private void hittaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hittaActionPerformed
+        new BestallningsLista(idb).setVisible(true);
+    }//GEN-LAST:event_hittaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
