@@ -68,6 +68,11 @@ public class HuvudFonster extends javax.swing.JFrame {
         });
 
         btnPersonal.setText("Personal");
+        btnPersonal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPersonalActionPerformed(evt);
+            }
+        });
 
         leverantorer.setText("Leverantör");
         leverantorer.addActionListener(new java.awt.event.ActionListener() {
@@ -166,6 +171,11 @@ public class HuvudFonster extends javax.swing.JFrame {
     private void leverantorerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_leverantorerActionPerformed
          new Leverantorer(idb,ID).setVisible(true);
     }//GEN-LAST:event_leverantorerActionPerformed
+
+    private void btnPersonalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPersonalActionPerformed
+        
+        
+    }//GEN-LAST:event_btnPersonalActionPerformed
 
 
 
