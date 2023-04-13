@@ -116,7 +116,7 @@ public class BestallningGenomford extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public static PDDocument createSamplePDF(String msg, String msg2, String msg3, String msg4, String msg5, String msg6, String msg7)throws IOException{
+    public static PDDocument createSamplePDF1(String msg, String msg2, String msg3, String msg4, String msg5, String msg6, String msg7)throws IOException{
         
         PDDocument pDDocument = new PDDocument();
         PDPage pDPage = new PDPage();
@@ -150,14 +150,14 @@ public class BestallningGenomford extends javax.swing.JFrame {
         return pDDocument;
     }
     
-    public static void savenclose (PDDocument pdd,String destpath)throws IOException{
+    public static void savenclose1 (PDDocument pdd,String destpath)throws IOException{
         
         pdd.save(new File(destpath));
         pdd.close();
         
     }
     
-    public static void insertImage (String pdfPath, String imagePath)throws IOException{
+    public static void insertImage1 (String pdfPath, String imagePath)throws IOException{
         
        PDDocument pdd = PDDocument.load(new File(pdfPath));
        PDPage page = pdd.getPage(0);
@@ -166,7 +166,7 @@ public class BestallningGenomford extends javax.swing.JFrame {
        PDPageContentStream cs = new PDPageContentStream(pdd,page,PDPageContentStream.AppendMode.APPEND,false);
        cs.drawImage(pdImage,55,50,500,300);
        cs.close();
-       savenclose(pdd,pdfPath);
+       savenclose1(pdd,pdfPath);
         
     }
     
@@ -181,11 +181,11 @@ public class BestallningGenomford extends javax.swing.JFrame {
         String text7= "Mottagare:"+ mottagare;
        
         try {
-       PDDocument pdd = createSamplePDF(text, text2, text3, text4, text5,text6,text7);
-        savenclose (pdd,"./Databasfiler/hej.pdf");
-        insertImage("./Databasfiler/hej.pdf","./Databasfiler/1.png");
+       PDDocument pdd = createSamplePDF1(text, text2, text3, text4, text5,text6,text7);
+        savenclose1 (pdd,"./Databasfiler/fraktsedel.pdf");
+        insertImage1("./Databasfiler/fraktsedel.pdf","./Databasfiler/1.png");
         
-        File file = new File("./Databasfiler/hej.pdf");
+        File file = new File("./Databasfiler/fraktsedel.pdf");
         if (file.exists()) {
             try {
                 Desktop.getDesktop().open(file);
@@ -232,9 +232,90 @@ public class BestallningGenomford extends javax.swing.JFrame {
         
     }//GEN-LAST:event_skickaBekräftelseActionPerformed
 
+        public static PDDocument createSamplePDF2(String msg, String msg2, String msg3, String msg4, String msg5, String msg6, String msg7)throws IOException{
+        
+        PDDocument pDDocument = new PDDocument();
+        PDPage pDPage = new PDPage();
+        pDDocument.addPage(pDPage);
+        PDPageContentStream cs = new PDPageContentStream(pDDocument,pDPage);
+        cs.beginText();
+        cs.setFont(PDType1Font.TIMES_BOLD, 20);
+        cs.setNonStrokingColor(Color.black);
+        cs.moveTextPositionByAmount(250, 750);
+        cs.showText(msg);
+        cs.newLineAtOffset(-70, -30);
+        cs.newLine();
+        cs.showText(msg2);
+        cs.newLineAtOffset(-150, -80);
+        cs.newLine();
+        cs.showText(msg3);
+        cs.newLineAtOffset(0, -50);
+        cs.newLine();
+        cs.showText(msg4);
+        cs.newLineAtOffset(0, -50);
+        cs.newLine();
+        cs.showText(msg5);
+        cs.newLineAtOffset(0, -50);
+        cs.newLine();
+        cs.showText(msg6);
+        cs.newLineAtOffset(0, -50);
+        cs.newLine();
+        cs.showText(msg7);
+        cs.endText();
+        cs.close();
+        return pDDocument;
+    }
+    
+    public static void savenclose2 (PDDocument pdd,String destpath)throws IOException{
+        
+        pdd.save(new File(destpath));
+        pdd.close();
+        
+    }
+    
+    public static void insertImage2 (String pdfPath, String imagePath)throws IOException{
+        
+       PDDocument pdd = PDDocument.load(new File(pdfPath));
+       PDPage page = pdd.getPage(0);
+       
+       PDImageXObject pdImage = PDImageXObject.createFromFile("./Databasfiler/2.png", pdd);
+       PDPageContentStream cs = new PDPageContentStream(pdd,page,PDPageContentStream.AppendMode.APPEND,false);
+       cs.drawImage(pdImage,55,50,500,300);
+       cs.close();
+       savenclose1(pdd,pdfPath);
+        
+    }
+    
     private void visaFakturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_visaFakturaActionPerformed
         
+        String text = "Faktura";
+        String text2= "Otto och Judiths hattar AB";
+        String text3= "Ordernummer:"+orderNr;
+        String text4= "Vikt:";
+        String text5= "Datum:"+datum;
+        String text6= "Avsändare: Hattvägen 1, 70281, Örebro";
+        String text7= "Mottagare:"+ mottagare;
+       
+        try {
+       PDDocument pdd = createSamplePDF1(text, text2, text3, text4, text5,text6,text7);
+        savenclose2 (pdd,"./Databasfiler/faktura.pdf");
+        insertImage2("./Databasfiler/faktura.pdf","./Databasfiler/2.png");
         
+        File file = new File("./Databasfiler/faktura.pdf");
+        if (file.exists()) {
+            try {
+                Desktop.getDesktop().open(file);
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        } else {
+            System.out.println("File not found.");
+        }
+
+        
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
         
     }//GEN-LAST:event_visaFakturaActionPerformed
 
