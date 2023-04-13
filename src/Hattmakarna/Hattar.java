@@ -25,6 +25,7 @@ public class Hattar extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         Hattar.this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         tabell.setModel(model);
+        model.addColumn("ID");
         model.addColumn("Storlek");
         model.addColumn("Skapare");
         model.addColumn("Bild");
@@ -112,7 +113,7 @@ public class Hattar extends javax.swing.JFrame {
         int valdaHatten = tabell.getSelectedRow();
         if (valdaHatten != -1){
             
-            String hatten = valdHatt+" "+(String)tabell.getValueAt(valdaHatten, 0);
+            String hatten = valdHatt+" "+(String)tabell.getValueAt(valdaHatten, 1);
                
             RegistreraBestallning beställning = getBeställningForm();
             String[] data = {hatten};
@@ -175,14 +176,14 @@ public class Hattar extends javax.swing.JFrame {
         
         try
         {
-            String hattar = "Select Namn AS 'Skapare', Storlek from Hatt join Personal P on Hatt.Skapare = P.PersonalID where Kategori='"+valdHatt+"' and bestallning IS NULL;";
+            String hattar = "Select HattID, Namn AS 'Skapare', Storlek from Hatt join Personal P on Hatt.Skapare = P.PersonalID where Kategori='"+valdHatt+"' and bestallning IS NULL;";
             ArrayList<HashMap<String, String>> allaHattar = idb.fetchRows(hattar); 
             
             for (HashMap<String, String> hatt : allaHattar){
                 
                 
                 Object[] hattData = {
-                    
+                    hatt.get("HattID"),
                     hatt.get("Storlek"),
                     hatt.get("Namn"),                    
                 };

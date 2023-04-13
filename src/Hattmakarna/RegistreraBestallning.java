@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
+import javax.swing.ListModel;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 import oru.inf.InfDB;
 import oru.inf.InfException;
@@ -254,7 +255,6 @@ public class RegistreraBestallning extends javax.swing.JFrame {
      
     for (String s : data) {
         
-        model.clear();
         model.addElement(s);
         }
         jList1.setModel(model);   
@@ -357,6 +357,17 @@ public class RegistreraBestallning extends javax.swing.JFrame {
                         idb.insert("INSERT INTO hattmakare.Bestallning (BestallningsID, Leveransadress, Totalsumma, Fraktsedel, Datum, Kund, Personal,Status) VALUES ("+bästID+", '"+adress+"', "+summa+", '"+fraktsedel+"', '"+regDatum+"', "+kundID+", "+ID+",'Pågående');");
                         String pris= Double.toString(summa);
                         new BestallningGenomford(idb,bästID,regDatum,adress,kundID,pris).setVisible(true);
+                        
+                        ListModel<String> listModel = jList1.getModel();
+                        for (int i = 0; i < listModel.getSize(); i++) {
+                        String itemText = listModel.getElementAt(i);
+                        System.out.println(itemText);
+                        }
+
+                        
+                        
+                        
+                        
                         dispose();
                      
                 }
