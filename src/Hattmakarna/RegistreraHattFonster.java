@@ -27,6 +27,10 @@ public class RegistreraHattFonster extends javax.swing.JFrame {
         fyllCbValjPersonal();
         fyllCbHattMaterial();
         fyllCbHattKategori();
+        kontrolleraHattMangd();
+        kontrolleraBestallning();
+        kontrolleraTillverkningstimmar();
+        kontrolleraTextHattStorlek();
         this.setLocationRelativeTo(null);
         conn = RegistreraHattFonster.DBConnect.connect();
         MaterialLista = new ArrayList<>(); //ettMaterialIDDouble, valdMangdDouble, materialPrisAvrundat
@@ -445,23 +449,19 @@ public class RegistreraHattFonster extends javax.swing.JFrame {
         txtHattStorlek.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent e) {
-                ValideringsKlass.rutaEmpty(txtHattStorlek);
-                ValideringsKlass.isPositivt(txtHattStorlek);
-                ValideringsKlass.isTal(txtHattMangd);
+
+                ValideringsKlass.endastNummerTillåten(txtHattMangd);
             }
 
             @Override
             public void removeUpdate(DocumentEvent e) {
-                ValideringsKlass.rutaEmpty(txtHattStorlek);
-                ValideringsKlass.isPositivt(txtHattStorlek);
-                ValideringsKlass.isTal(txtHattMangd);
+
+                ValideringsKlass.endastNummerTillåten(txtHattMangd);
             }
 
             @Override
             public void changedUpdate(DocumentEvent e) {
-                ValideringsKlass.rutaEmpty(txtHattStorlek);
-                ValideringsKlass.isPositivt(txtHattStorlek);
-                ValideringsKlass.isTal(txtHattMangd);
+                ValideringsKlass.endastNummerTillåten(txtHattMangd);
             }
         });
     }
