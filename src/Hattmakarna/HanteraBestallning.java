@@ -8,6 +8,7 @@ import java.util.Date;
 import java.util.HashMap;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
+import javax.swing.ListModel;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 import oru.inf.InfDB;
 import oru.inf.InfException;
@@ -17,7 +18,6 @@ public class HanteraBestallning extends javax.swing.JFrame {
     private InfDB idb;
     private String ID;
     private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-    DefaultListModel<String> listModel = new DefaultListModel<>();
     
     public HanteraBestallning(InfDB idb, String ID) {
         initComponents();
@@ -36,7 +36,6 @@ public class HanteraBestallning extends javax.swing.JFrame {
         status.setEnabled(false);
         annulera.setEnabled(false);
         spara.setEnabled(false);
-        jList1.setModel(listModel);
     }
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -136,10 +135,20 @@ public class HanteraBestallning extends javax.swing.JFrame {
         läggTill.setText("Lägg till");
 
         taBort.setText("Ta bort");
+        taBort.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                taBortActionPerformed(evt);
+            }
+        });
 
         spara.setText("Spara");
 
         ändra.setText("Ändra");
+        ändra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ändraActionPerformed(evt);
+            }
+        });
 
         jLabel9.setFont(new java.awt.Font("Helvetica Neue", 0, 17)); // NOI18N
         jLabel9.setText("Status");
@@ -343,8 +352,10 @@ public class HanteraBestallning extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_statusActionPerformed
 
-    private void sökActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sökActionPerformed
-
+    private void sök(){
+        
+        DefaultListModel<String> listModel = new DefaultListModel<>();
+        jList1.setModel(listModel);
         hämtaKunder();
         hämtaPersonal();
         läggStatus();
@@ -357,8 +368,7 @@ public class HanteraBestallning extends javax.swing.JFrame {
 
                         JOptionPane.showMessageDialog(null, "Beställning med denna ID existerar inte!");
             }else{
-            
-            
+     
             String hämtaKund = idb.fetchSingle("Select Namn from Kund join Bestallning B on Kund.KundID = B.Kund where BestallningsID="+bästID);
             kundBox.setSelectedItem(hämtaKund);
             String hämtaAnsvarig = idb.fetchSingle("select Namn from Personal join Bestallning B on Personal.PersonalID = B.Personal where BestallningsID ="+bästID);
@@ -397,11 +407,61 @@ public class HanteraBestallning extends javax.swing.JFrame {
         }      
         
         
+        
+    }
+    
+    private void sökActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sökActionPerformed
+
+        sök();
+        
     }//GEN-LAST:event_sökActionPerformed
 
     private void hittaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hittaActionPerformed
         new BestallningsLista(idb).setVisible(true);
     }//GEN-LAST:event_hittaActionPerformed
+
+    private void taBortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_taBortActionPerformed
+       
+                try{
+            
+                    int resultat = JOptionPane.showConfirmDialog(null, "Är du säker att du vill ta bort hatten", "Bekräfta uppgifter", JOptionPane.YES_NO_OPTION);
+                
+                if(resultat == JOptionPane.YES_OPTION){
+                    
+                    int index = jList1.getSelectedIndex();
+                    if (index != -1){
+                        String listItem = jList1.getModel().getElementAt(index);
+                        String[] parts = listItem.split("-");
+                        String selectedText = parts[0].trim();
+                        idb.delete("DELETE FROM hattmakare.Hatt WHERE HattID ="+selectedText);
+                        JOptionPane.showMessageDialog(null, "Hatt borttagen från beställning!");
+                        sök();
+                    }
+                        
+                }else{
+                
+                }
+            }
+        
+        catch (InfException e) {
+
+            JOptionPane.showMessageDialog(null, "Fel på databasuppkopplingen, prova igen senare!");
+            System.out.println("Databasfel: " + e);
+            
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Något gick snett, prova igen!");
+            
+        }  
+        
+                        
+    }//GEN-LAST:event_taBortActionPerformed
+
+    private void ändraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ändraActionPerformed
+        
+        taBort.setEnabled(true);
+        jList1.setEnabled(true);
+        
+    }//GEN-LAST:event_ändraActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
