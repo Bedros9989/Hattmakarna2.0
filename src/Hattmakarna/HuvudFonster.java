@@ -144,7 +144,7 @@ public class HuvudFonster extends javax.swing.JFrame {
     }//GEN-LAST:event_beställningarActionPerformed
 
     private void materialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_materialActionPerformed
-        
+    new MaterialFonster(idb).setVisible(true);
     }//GEN-LAST:event_materialActionPerformed
 
     private void kunderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kunderActionPerformed
