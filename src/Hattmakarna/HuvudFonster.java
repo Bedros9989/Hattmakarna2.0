@@ -174,6 +174,7 @@ public class HuvudFonster extends javax.swing.JFrame {
 
     private void btnPersonalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPersonalActionPerformed
         
+        new PersonalFonster(idb).setVisible(true); 
         
     }//GEN-LAST:event_btnPersonalActionPerformed
 

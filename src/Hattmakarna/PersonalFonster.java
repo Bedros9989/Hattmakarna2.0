@@ -1,20 +1,25 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package Hattmakarna;
 
-/**
- *
- * @author auror
- */
+import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
+import javax.swing.JOptionPane;
+import oru.inf.InfDB; 
+import oru.inf.InfException;
+
+
 public class PersonalFonster extends javax.swing.JFrame {
 
-    /**
-     * Creates new form PersonalFonster
-     */
-    public PersonalFonster() {
+    private InfDB idb;
+    
+        public PersonalFonster(InfDB idb) {
         initComponents();
+        this.idb = idb;
+        this.setLocationRelativeTo(null);
+        PersonalFonster.this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+    
+    }
+
+    private PersonalFonster() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     /**
