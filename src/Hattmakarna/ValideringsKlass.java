@@ -156,7 +156,7 @@ public class ValideringsKlass {
         boolean resultat = true;
 
         try {
-            Double.parseDouble(ettTextFalt.getText());
+            Integer.parseInt(ettTextFalt.getText());
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(null, "Var god ange ett tal (decimal tillåtet)!");
             resultat = false;
