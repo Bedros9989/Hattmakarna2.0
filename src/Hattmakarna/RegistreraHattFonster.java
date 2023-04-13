@@ -470,23 +470,19 @@ public class RegistreraHattFonster extends javax.swing.JFrame {
         txtTillverkningstimmar.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent e) {
-                ValideringsKlass.rutaEmpty(txtTillverkningstimmar);
-                ValideringsKlass.isPositivt(txtTillverkningstimmar);
-                ValideringsKlass.isTal(txtTillverkningstimmar);
+
+                ValideringsKlass.endastNummerTillåten(txtTillverkningstimmar);
             }
 
             @Override
             public void removeUpdate(DocumentEvent e) {
-                ValideringsKlass.rutaEmpty(txtTillverkningstimmar);
-                ValideringsKlass.isPositivt(txtTillverkningstimmar);
-                ValideringsKlass.isTal(txtTillverkningstimmar);
+
+                ValideringsKlass.endastNummerTillåten(txtTillverkningstimmar);
             }
 
             @Override
             public void changedUpdate(DocumentEvent e) {
-                ValideringsKlass.rutaEmpty(txtTillverkningstimmar);
-                ValideringsKlass.isPositivt(txtTillverkningstimmar);
-                ValideringsKlass.isTal(txtTillverkningstimmar);
+                ValideringsKlass.endastNummerTillåten(txtTillverkningstimmar);
             }
         });
     }
@@ -495,20 +491,17 @@ public class RegistreraHattFonster extends javax.swing.JFrame {
         txtBestallning.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent e) {
-                ValideringsKlass.isPositivt(txtBestallning);
-                ValideringsKlass.isTal(txtBestallning);
+                ValideringsKlass.endastNummerTillåten(txtBestallning);
             }
 
             @Override
             public void removeUpdate(DocumentEvent e) {
-                ValideringsKlass.isPositivt(txtBestallning);
-                ValideringsKlass.isTal(txtBestallning);
+                ValideringsKlass.endastNummerTillåten(txtBestallning);
             }
 
             @Override
             public void changedUpdate(DocumentEvent e) {
-                ValideringsKlass.isPositivt(txtBestallning);
-                ValideringsKlass.isTal(txtBestallning);
+                ValideringsKlass.endastNummerTillåten(txtBestallning);
             }
         });
     }
@@ -517,20 +510,17 @@ public class RegistreraHattFonster extends javax.swing.JFrame {
         txtHattMangd.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent e) {
-                ValideringsKlass.isPositivt(txtHattMangd);
-                ValideringsKlass.isTal(txtHattMangd);
+                ValideringsKlass.endastNummerTillåten(txtHattMangd);
             }
 
             @Override
             public void removeUpdate(DocumentEvent e) {
-                ValideringsKlass.isPositivt(txtHattMangd);
-                ValideringsKlass.isTal(txtHattMangd);
+                ValideringsKlass.endastNummerTillåten(txtHattMangd);
             }
 
             @Override
             public void changedUpdate(DocumentEvent e) {
-                ValideringsKlass.isPositivt(txtHattMangd);
-                ValideringsKlass.isTal(txtHattMangd);
+                ValideringsKlass.endastNummerTillåten(txtHattMangd);
             }
         });
     }
