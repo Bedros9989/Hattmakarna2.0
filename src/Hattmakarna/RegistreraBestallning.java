@@ -341,7 +341,7 @@ public class RegistreraBestallning extends javax.swing.JFrame {
                     
                         
                         double totalSumma = Double.parseDouble(summan.getText())  * Lojalitet;
-                        idb.insert("INSERT INTO hattmakare.Bestallning (BestallningsID, Leveransadress, Totalsumma, Fraktsedel, Datum, Kund, Personal) VALUES ("+bästID+", '"+adress+"', "+totalSumma+", '"+fraktsedel+"', '"+regDatum+"', "+kundID+", "+ID+");");
+                        idb.insert("INSERT INTO hattmakare.Bestallning (BestallningsID, Leveransadress, Totalsumma, Fraktsedel, Datum, Kund, Personal,Status) VALUES ("+bästID+", '"+adress+"', "+totalSumma+", '"+fraktsedel+"', '"+regDatum+"', "+kundID+", "+ID+",'Pågående');");
                         new BestallningGenomford(idb,bästID,regDatum,adress,kundID).setVisible(true);
                         dispose();
                         
@@ -354,7 +354,7 @@ public class RegistreraBestallning extends javax.swing.JFrame {
                 
                 if(resultat == JOptionPane.YES_OPTION){
                         double summa = Double.parseDouble(summan.getText());
-                        idb.insert("INSERT INTO hattmakare.Bestallning (BestallningsID, Leveransadress, Totalsumma, Fraktsedel, Datum, Kund, Personal) VALUES ("+bästID+", '"+adress+"', "+summa+", '"+fraktsedel+"', '"+regDatum+"', "+kundID+", "+ID+");");
+                        idb.insert("INSERT INTO hattmakare.Bestallning (BestallningsID, Leveransadress, Totalsumma, Fraktsedel, Datum, Kund, Personal,Status) VALUES ("+bästID+", '"+adress+"', "+summa+", '"+fraktsedel+"', '"+regDatum+"', "+kundID+", "+ID+",'Pågående');");
                         new BestallningGenomford(idb,bästID,regDatum,adress,kundID).setVisible(true);
                         dispose();
                      
