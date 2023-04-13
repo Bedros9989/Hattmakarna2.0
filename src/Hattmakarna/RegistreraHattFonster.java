@@ -321,27 +321,28 @@ public class RegistreraHattFonster extends javax.swing.JFrame {
            använda den officiella mysql.java.jar filen som fanns
            istället för InfDB.jar. Den är dock jättenkel att använda
            som ni kanske märker nedanför */
-        try {
-            if (txtBestallning.getText().isEmpty()) {
-                bestallningsID = null;
-            } else {
-                bestallningsID = txtBestallning.getText();
-            }
+        if (ValideringsKlass.rutaEmpty(txtHattStorlek) && ValideringsKlass.rutaEmpty(txtTillverkningstimmar)) {
+            try {
+                if (txtBestallning.getText().isEmpty()) {
+                    bestallningsID = null;
+                } else {
+                    bestallningsID = txtBestallning.getText();
+                }
 
-            String q = "INSERT INTO `hatt`(`hattID`, `Storlek`,`Skapare`,`Kategori`,`Bestallning`,`Tillverkningstimmar`,`BildData`) VALUES (?,?,?,?,?,?,?)";
+                String q = "INSERT INTO `hatt`(`hattID`, `Storlek`,`Skapare`,`Kategori`,`Bestallning`,`Tillverkningstimmar`,`BildData`) VALUES (?,?,?,?,?,?,?)";
 
-            String personalNamn = cbValjPersonal.getSelectedItem().toString();
-            String personalID = idb.fetchSingle("SELECT personalID FROM Personal WHERE namn = '" + personalNamn + "'");
+                String personalNamn = cbValjPersonal.getSelectedItem().toString();
+                String personalID = idb.fetchSingle("SELECT personalID FROM Personal WHERE namn = '" + personalNamn + "'");
 
-            PreparedStatement pst = conn.prepareStatement(q);
-            pst.setString(1, lblHattIDPresentation.getText());
-            pst.setString(2, txtHattStorlek.getText());
-            pst.setString(3, personalID);
-            pst.setString(4, cbHattKategori.getSelectedItem().toString());
-            pst.setString(5, bestallningsID);
-            pst.setString(6, txtTillverkningstimmar.getText());
-            pst.setBytes(7, pimage);
-            pst.execute();
+                PreparedStatement pst = conn.prepareStatement(q);
+                pst.setString(1, lblHattIDPresentation.getText());
+                pst.setString(2, txtHattStorlek.getText());
+                pst.setString(3, personalID);
+                pst.setString(4, cbHattKategori.getSelectedItem().toString());
+                pst.setString(5, bestallningsID);
+                pst.setString(6, txtTillverkningstimmar.getText());
+                pst.setBytes(7, pimage);
+                pst.execute();
 
 //                        
 //            //Hatt 1
@@ -433,15 +434,16 @@ public class RegistreraHattFonster extends javax.swing.JFrame {
 //
 //            
 //         
-            // "Update Antalvara SET Antal ="++ " WHERE MaterialID= " +variableMaterialID
-            //         + ("SELECT Antal FROM Antalvara WHERE MaterialID =" + variableMaterialID +
-            // ") - +variabelmangdMaterial+
-            //Uppdatera HattMaterial genom Arralisten MaterialLista
-            JOptionPane.showMessageDialog(null, "Hatten har registrerats");
-            RegistreraHattFonster.this.dispose();
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, "Något gick fel");
-            System.out.println("Internt felmeddelande" + ex.getMessage());
+                // "Update Antalvara SET Antal ="++ " WHERE MaterialID= " +variableMaterialID
+                //         + ("SELECT Antal FROM Antalvara WHERE MaterialID =" + variableMaterialID +
+                // ") - +variabelmangdMaterial+
+                //Uppdatera HattMaterial genom Arralisten MaterialLista
+                JOptionPane.showMessageDialog(null, "Hatten har registrerats");
+                RegistreraHattFonster.this.dispose();
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, "Något gick fel");
+                System.out.println("Internt felmeddelande" + ex.getMessage());
+            }
         }
     }//GEN-LAST:event_btnRegistreraHattActionPerformed
 
