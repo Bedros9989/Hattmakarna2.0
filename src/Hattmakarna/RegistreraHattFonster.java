@@ -450,18 +450,18 @@ public class RegistreraHattFonster extends javax.swing.JFrame {
             @Override
             public void insertUpdate(DocumentEvent e) {
 
-                ValideringsKlass.endastNummerTillåten(txtHattMangd);
+                ValideringsKlass.endastNummerTillåten(txtHattStorlek);
             }
 
             @Override
             public void removeUpdate(DocumentEvent e) {
 
-                ValideringsKlass.endastNummerTillåten(txtHattMangd);
+                ValideringsKlass.endastNummerTillåten(txtHattStorlek);
             }
 
             @Override
             public void changedUpdate(DocumentEvent e) {
-                ValideringsKlass.endastNummerTillåten(txtHattMangd);
+                ValideringsKlass.endastNummerTillåten(txtHattStorlek);
             }
         });
     }
