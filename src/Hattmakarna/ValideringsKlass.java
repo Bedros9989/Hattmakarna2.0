@@ -101,47 +101,68 @@ public class ValideringsKlass {
         
     
         public static boolean endastNummerTillåtenKID(JTextField  KundID){
-        
-        boolean resultat = true;
-        if (KundID.getText().matches(".*[a-zA-Z].*")){
-            JOptionPane.showMessageDialog(null, "Endast siffror tillåtna!");
-            resultat=false;  
-        }
-        return resultat;
-    }
-        
-        public static boolean endastNummerTillåtenKI(JTextField Ange_KundID){
-        
-        boolean resultat = true;
-        if (Ange_KundID.getText().matches(".*[a-zA-Z].*")){
-            JOptionPane.showMessageDialog(null, "Endast siffror tillåtna!");
-            resultat=false;  
-        }
-        return resultat;
-    }
-        
-        public static boolean endastNummerTillåtenLID(JTextField LeverantörsID){
-        
-        boolean resultat = true;
-        if (LeverantörsID.getText().matches(".*[a-zA-Z].*")){
-            JOptionPane.showMessageDialog(null, "Endast siffror tillåtna!");
-            resultat=false;  
-        }
-        return resultat;
-    }
-        
-
- public static boolean endastNummerTillåtenLIDCB(JComboBox Välj_LeverantörsBeställningsID){
-        
-   boolean resultat = true;
-     if (Välj_LeverantörsBeställningsID.getSelectedItem().toString().matches(".*[a-zA-Z].*")){
-       JOptionPane.showMessageDialog(null, "Endast siffror tillåtna!");
-         resultat=false;  
-       }
-      return resultat;
-    }
-
-
-
     
+        boolean resultat = true;
+        if (KundID.getText().matches(".*[a-zA-Z].*")) {
+            JOptionPane.showMessageDialog(null, "Endast siffror tillåtna!");
+            resultat = false;
+        }
+        return resultat;
+    }
+
+    public static boolean endastNummerTillåtenKI(JTextField Ange_KundID) {
+
+        boolean resultat = true;
+        if (Ange_KundID.getText().matches(".*[a-zA-Z].*")) {
+            JOptionPane.showMessageDialog(null, "Endast siffror tillåtna!");
+            resultat = false;
+        }
+        return resultat;
+    }
+
+    public static boolean endastNummerTillåtenLID(JTextField LeverantörsID) {
+
+        boolean resultat = true;
+        if (LeverantörsID.getText().matches(".*[a-zA-Z].*")) {
+            JOptionPane.showMessageDialog(null, "Endast siffror tillåtna!");
+            resultat = false;
+        }
+        return resultat;
+    }
+
+    public static boolean endastNummerTillåtenLIDCB(JComboBox Välj_LeverantörsBeställningsID) {
+
+        boolean resultat = true;
+        if (Välj_LeverantörsBeställningsID.getSelectedItem().toString().matches(".*[a-zA-Z].*")) {
+            JOptionPane.showMessageDialog(null, "Endast siffror tillåtna!");
+            resultat = false;
+        }
+        return resultat;
+    }
+
+    //Kontrollerar om värdet som fyllts i är positivt
+    public static boolean isPositivt(JTextField ettTextFalt) {
+        boolean resultat = true;
+        int ettTextFaltSiffra = Integer.parseInt(ettTextFalt.getText());
+        if (ettTextFaltSiffra < 0) {
+            JOptionPane.showMessageDialog(null, "Var god ange ett positivt tal!");
+            resultat = false;
+        }
+        return resultat;
+    }
+
+    //Kontrollerar om värdet som fyllts i är en double
+    public static boolean isTal(JTextField ettTextFalt) {
+        boolean resultat = true;
+
+        try {
+            Double.parseDouble(ettTextFalt.getText());
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(null, "Var god ange ett tal (decimal tillåtet)!");
+            resultat = false;
+        }
+        return resultat;
+    }
+
+
 }
