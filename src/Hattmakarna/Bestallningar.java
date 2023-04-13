@@ -83,7 +83,7 @@ public class Bestallningar extends javax.swing.JFrame {
 
     private void hanteraBeställningActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hanteraBeställningActionPerformed
         
-        new HanteraBestallningFonster(idb).setVisible(true);
+        new HanteraBestallning(idb,ID).setVisible(true);
         
     }//GEN-LAST:event_hanteraBeställningActionPerformed
 
