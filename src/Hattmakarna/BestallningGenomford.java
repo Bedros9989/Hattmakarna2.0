@@ -280,7 +280,7 @@ public class BestallningGenomford extends javax.swing.JFrame {
        
        PDImageXObject pdImage = PDImageXObject.createFromFile("./Databasfiler/2.png", pdd);
        PDPageContentStream cs = new PDPageContentStream(pdd,page,PDPageContentStream.AppendMode.APPEND,false);
-       cs.drawImage(pdImage,55,50,500,300);
+       cs.drawImage(pdImage,0,0,610,300);
        cs.close();
        savenclose1(pdd,pdfPath);
         
