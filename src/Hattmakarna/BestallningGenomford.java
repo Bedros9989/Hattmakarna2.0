@@ -42,11 +42,12 @@ public class BestallningGenomford extends javax.swing.JFrame {
         jBVisaFraktsedel = new javax.swing.JButton();
         jLBeställning = new javax.swing.JLabel();
         skickaBekräftelse = new javax.swing.JButton();
+        visaFaktura = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
 
-        jBVisaFraktsedel.setText("Visa fraktsedel");
+        jBVisaFraktsedel.setText("Visa Fraktsedel");
         jBVisaFraktsedel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBVisaFraktsedelActionPerformed(evt);
@@ -63,6 +64,13 @@ public class BestallningGenomford extends javax.swing.JFrame {
             }
         });
 
+        visaFaktura.setText("Visa Faktura");
+        visaFaktura.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                visaFakturaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -74,9 +82,10 @@ public class BestallningGenomford extends javax.swing.JFrame {
                         .addComponent(jLBeställning))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(120, 120, 120)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(skickaBekräftelse, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jBVisaFraktsedel, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(skickaBekräftelse, javax.swing.GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE)
+                            .addComponent(jBVisaFraktsedel, javax.swing.GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE)
+                            .addComponent(visaFaktura, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(74, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -86,18 +95,18 @@ public class BestallningGenomford extends javax.swing.JFrame {
                 .addComponent(jLBeställning)
                 .addGap(31, 31, 31)
                 .addComponent(jBVisaFraktsedel, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(visaFaktura, javax.swing.GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(skickaBekräftelse, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addGap(34, 34, 34))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -223,10 +232,17 @@ public class BestallningGenomford extends javax.swing.JFrame {
         
     }//GEN-LAST:event_skickaBekräftelseActionPerformed
 
+    private void visaFakturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_visaFakturaActionPerformed
+        
+        
+        
+    }//GEN-LAST:event_visaFakturaActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBVisaFraktsedel;
     private javax.swing.JLabel jLBeställning;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JButton skickaBekräftelse;
+    private javax.swing.JButton visaFaktura;
     // End of variables declaration//GEN-END:variables
 }
