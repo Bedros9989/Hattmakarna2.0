@@ -326,7 +326,7 @@ public class RegistreraBestallning extends javax.swing.JFrame {
                 if(resultat == JOptionPane.YES_OPTION){
                         double summa = Double.parseDouble(summan.getText());
                         idb.insert("INSERT INTO hattmakare.Bestallning (BestallningsID, Leveransadress, Totalsumma, Fraktsedel, Datum, Kund, Personal) VALUES ("+bästID+", '"+adress+"', "+summa+", '"+fraktsedel+"', '"+regDatum+"', "+kundID+", "+ID+");");
-                        new BestallningGenomford(idb,orderNr,vikt,datum,mottagare,kund).setVisible(true);
+                        new BestallningGenomford(idb,bästID,"100gr",regDatum,adress,kundID).setVisible(true);
                         dispose();
                      
                 }
