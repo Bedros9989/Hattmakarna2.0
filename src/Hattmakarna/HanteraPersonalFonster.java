@@ -11,14 +11,12 @@ public class HanteraPersonalFonster extends javax.swing.JFrame {
 
     private InfDB idb;
     
-    public HanteraPersonalFonster() {
+    public HanteraPersonalFonster(InfDB idb) {
         initComponents();
+        this.idb = idb;
+        this.setLocationRelativeTo(null);
+        HanteraPersonalFonster.this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
-
-    HanteraPersonalFonster(InfDB idb) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
