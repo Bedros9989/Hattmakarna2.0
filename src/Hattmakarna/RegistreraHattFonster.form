@@ -23,67 +23,59 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="lblHattStorlek" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lblValjMaterial" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lblMängdMaterial" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="lblHattSkapare" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="lblHattID" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="lblTillverkningstimmar" min="-2" max="-2" attributes="0"/>
-                                          <Component id="lblHattKategorier" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
+                                  <Component id="lblHattKategorier" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblTillverkningstimmar" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
+                              <EmptySpace pref="75" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="cbValjPersonal" max="32767" attributes="0"/>
-                                          <Component id="txtHattStorlek" max="32767" attributes="0"/>
-                                          <Component id="cbHattMaterial" max="32767" attributes="0"/>
-                                          <Component id="lblHattIDPresentation" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <Component id="txtHattMangd" min="-2" pref="75" max="-2" attributes="0"/>
-                                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                              <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Component id="cbHattKategori" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="btnValjMaterial" min="-2" max="-2" attributes="0"/>
-                                              </Group>
-                                          </Group>
-                                      </Group>
+                                  <Component id="txtTillverkningstimmar" min="-2" pref="159" max="-2" attributes="0"/>
+                                  <Component id="cbHattKategori" alignment="0" min="-2" pref="159" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="cbValjPersonal" pref="159" max="32767" attributes="0"/>
+                                      <Component id="txtHattStorlek" max="32767" attributes="0"/>
+                                      <Component id="lblHattIDPresentation" alignment="0" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="-2" pref="111" max="-2" attributes="0"/>
-                                      <Component id="txtTillverkningstimmar" min="-2" pref="101" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                          </Group>
-                          <Component id="hattBild" min="-2" pref="132" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="lblValtMaterial" min="-2" max="-2" attributes="0"/>
-                              <Component id="jScrollPane1" min="-2" pref="281" max="-2" attributes="0"/>
-                              <Group type="102" alignment="1" attributes="0">
-                                  <Component id="btnRegistreraHatt" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
                               <Component id="lblBestallningsID" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="txtBestallning" min="-2" pref="94" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="lblKanLamnasTom" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtBestallning" min="-2" pref="159" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="lblValtMaterial" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                              <Component id="jScrollPane1" min="-2" pref="281" max="-2" attributes="0"/>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="lblValjMaterial" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lblMängdMaterial" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="38" max="32767" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" attributes="0">
+                                          <Component id="txtHattMangd" min="-2" pref="75" max="-2" attributes="0"/>
+                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                          <Component id="btnValjMaterial" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Component id="cbHattMaterial" min="-2" pref="159" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
                           </Group>
                       </Group>
                   </Group>
@@ -93,6 +85,13 @@
                   </Group>
               </Group>
               <EmptySpace pref="12" max="32767" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="hattBild" min="-2" pref="132" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
+              <Component id="btnRegistreraHatt" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -107,65 +106,57 @@
                   <Component id="lblHattIDPresentation" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="lblValtMaterial" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="lblHattSkapare" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="cbValjPersonal" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="txtHattStorlek" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lblHattStorlek" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="cbHattMaterial" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lblValjMaterial" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="lblMängdMaterial" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txtHattMangd" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="btnValjMaterial" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                          <Component id="jScrollPane1" min="-2" pref="161" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="jScrollPane1" min="-2" pref="161" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="lblValjMaterial" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="cbHattMaterial" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="lblHattKategorier" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="cbHattKategori" alignment="0" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Component id="lblTillverkningstimmar" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="42" max="32767" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="btnRegistreraHatt" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="hattBild" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" attributes="0">
-                              <Component id="txtTillverkningstimmar" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                          </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="lblMängdMaterial" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtHattMangd" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnValjMaterial" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace max="32767" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="txtBestallning" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblBestallningsID" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblHattSkapare" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="cbValjPersonal" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="133" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="txtHattStorlek" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblHattStorlek" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="lblHattKategorier" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="cbHattKategori" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="lblTillverkningstimmar" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtTillverkningstimmar" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="lblBestallningsID" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtBestallning" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="lblKanLamnasTom" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
+              <EmptySpace pref="28" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="hattBild" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnRegistreraHatt" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -317,6 +308,11 @@
     <Component class="javax.swing.JLabel" name="lblBestallningsID">
       <Properties>
         <Property name="text" type="java.lang.String" value="Best&#xe4;llningsID"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblKanLamnasTom">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Kan l&#xe4;mnas tom!"/>
       </Properties>
     </Component>
   </SubComponents>
