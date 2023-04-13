@@ -1,12 +1,16 @@
 
 package Hattmakarna;
 
+import com.toedter.calendar.JCalendar;
 import java.awt.Color;
 import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import javax.swing.JOptionPane;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
@@ -24,14 +28,16 @@ public class BestallningGenomford extends javax.swing.JFrame {
     private String datum;
     private String mottagare;
     private String kund;
+    private String pris;
     
-    public BestallningGenomford(InfDB idb, String orderNr,String datum, String mottagare,String kund) {
+    public BestallningGenomford(InfDB idb, String orderNr,String datum, String mottagare,String kund,String pris) {
         initComponents();
         this.idb = idb;
         this.orderNr=orderNr;
         this.datum=datum;
         this.mottagare=mottagare;
         this.kund=kund;
+        this.pris=pris;
         this.setLocationRelativeTo(null);
         BestallningGenomford.this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
@@ -307,26 +313,42 @@ public static PDDocument createSamplePDF2(String msg, String msg2, String msg3, 
     
     private void visaFakturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_visaFakturaActionPerformed
         
- Random random = new Random();
+        Random random = new Random();
         int number = random.nextInt(90000) + 10000;
             String fakturanummer = String.format("%05d", number);
         int number2 = random.nextInt(100000);
             String ocr = String.format("%010d", number);
+       
+        JCalendar calendar = new JCalendar();
+        Date date = calendar.getDate();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String dateString = sdf.format(date);
         
+        Date currentDate = calendar.getDate();
+        Calendar calendar2 = Calendar.getInstance();
+        calendar2.setTime(currentDate);
+        calendar2.add(Calendar.DAY_OF_YEAR, 30);
+        Date futureDate = calendar2.getTime();
+        String dateString2 = sdf.format(futureDate); 
         
+        try {
+            
+        String namn = idb.fetchSingle("select Namn from Kund where KundID = "+kund);
+        String adress = idb.fetchSingle("select Adress from Kund where KundID = "+kund);
+            
         String text = "Faktura";
         String text2= "Otto och Judiths hattar AB";
         String text3= "Fakturnanummer:"+" "+fakturanummer;
-        String text4= "Fakturadatum:";
-        String text5= "Namn:";
-        String text6= "Adress:";
-        String text7= "Pris:";
-        String text8= "Förfallodatum:";
+        String text4= "Fakturadatum:"+ " "+dateString;
+        String text5= "Namn:"+" "+namn;
+        String text6= "Adress:"+" "+adress;
+        String text7= "Pris:"+ " "+pris+" "+"kr";
+        String text8= "Förfallodatum:"+" "+dateString2;
         String text9= "Plusgirokontonr: 99 1337-0";
         String text10= "OCR- nummer:"+" "+ocr;
         String text11= "Antal beställda varor:";
-       
-        try {
+        
+        
        PDDocument pdd = createSamplePDF2(text, text2, text3, text4, text5,text6,text7,text8,text9,text10,text11);
         savenclose2 (pdd,"./Databasfiler/faktura.pdf");
         insertImage2("./Databasfiler/faktura.pdf","./Databasfiler/2.png","./Databasfiler/3.png");
@@ -345,7 +367,16 @@ public static PDDocument createSamplePDF2(String msg, String msg2, String msg3, 
         
     } catch (IOException e) {
         e.printStackTrace();
-    }
+    }catch (InfException e) {
+
+            JOptionPane.showMessageDialog(null, "Fel på databasuppkopplingen, prova igen senare!");
+            System.out.println("Databasfel: " + e);
+            
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Något gick snett, prova igen!");
+            
+        
+        }
         
     }//GEN-LAST:event_visaFakturaActionPerformed
 

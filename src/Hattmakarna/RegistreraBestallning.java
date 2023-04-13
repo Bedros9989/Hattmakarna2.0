@@ -331,7 +331,6 @@ public class RegistreraBestallning extends javax.swing.JFrame {
             String fraktsedel = "Adress:"+" "+adress;
             String regDatum = DateFormat.format(jDateChooserReg.getDate());
             String kundID = idb.fetchSingle("select KundID from Kund where Namn = '"+cbKundID.getSelectedItem().toString()+"'"); 
-                 
             
             if (Lojalitet > 0){
                 
@@ -342,7 +341,8 @@ public class RegistreraBestallning extends javax.swing.JFrame {
                         
                         double totalSumma = Double.parseDouble(summan.getText())  * Lojalitet;
                         idb.insert("INSERT INTO hattmakare.Bestallning (BestallningsID, Leveransadress, Totalsumma, Fraktsedel, Datum, Kund, Personal,Status) VALUES ("+bästID+", '"+adress+"', "+totalSumma+", '"+fraktsedel+"', '"+regDatum+"', "+kundID+", "+ID+",'Pågående');");
-                        new BestallningGenomford(idb,bästID,regDatum,adress,kundID).setVisible(true);
+                        String pris= Double.toString(totalSumma);
+                        new BestallningGenomford(idb,bästID,regDatum,adress,kundID,pris).setVisible(true);
                         dispose();
                         
                      
@@ -355,7 +355,8 @@ public class RegistreraBestallning extends javax.swing.JFrame {
                 if(resultat == JOptionPane.YES_OPTION){
                         double summa = Double.parseDouble(summan.getText());
                         idb.insert("INSERT INTO hattmakare.Bestallning (BestallningsID, Leveransadress, Totalsumma, Fraktsedel, Datum, Kund, Personal,Status) VALUES ("+bästID+", '"+adress+"', "+summa+", '"+fraktsedel+"', '"+regDatum+"', "+kundID+", "+ID+",'Pågående');");
-                        new BestallningGenomford(idb,bästID,regDatum,adress,kundID).setVisible(true);
+                        String pris= Double.toString(summa);
+                        new BestallningGenomford(idb,bästID,regDatum,adress,kundID,pris).setVisible(true);
                         dispose();
                      
                 }
