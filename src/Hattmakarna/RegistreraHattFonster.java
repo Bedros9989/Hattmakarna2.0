@@ -6,6 +6,8 @@ import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import java.util.Collections;
 import javax.swing.JOptionPane;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import oru.inf.InfDB;
 import oru.inf.InfException;
 
@@ -69,9 +71,9 @@ public class RegistreraHattFonster extends javax.swing.JFrame {
     }
 
     private void fyllCbHattKategori() {
-            cbHattKategori.addItem("Doktorshatt");
-            cbHattKategori.addItem("Specialhatt");
-            cbHattKategori.addItem("Studenthatt");
+        cbHattKategori.addItem("Doktorshatt");
+        cbHattKategori.addItem("Specialhatt");
+        cbHattKategori.addItem("Studenthatt");
     }
 
     public class DBConnect {
@@ -315,30 +317,27 @@ public class RegistreraHattFonster extends javax.swing.JFrame {
            använda den officiella mysql.java.jar filen som fanns
            istället för InfDB.jar. Den är dock jättenkel att använda
            som ni kanske märker nedanför */
-        if (ValideringsKlass.rutaEmpty(txtHattStorlek) && ValideringsKlass.rutaEmpty(txtTillverkningstimmar) && ValideringsKlass.isPositivt(txtHattStorlek) && ValideringsKlass.isPositivt(txtTillverkningstimmar) && ValideringsKlass.isPositivt(txtBestallning) && ValideringsKlass.isPositivt(txtHattMangd) && ValideringsKlass.isPositivt(txtHattStorlek) && ValideringsKlass.isTal(txtHattStorlek) && ValideringsKlass.isTal(txtTillverkningstimmar) && ValideringsKlass.isTal(txtBestallning) && ValideringsKlass.isTal(txtHattMangd)) 
-        {
+        try {
+            if (txtBestallning.getText().isEmpty()) {
+                bestallningsID = null;
+            } else {
+                bestallningsID = txtBestallning.getText();
+            }
 
-            try {
-                if (txtBestallning.getText().isEmpty()) {
-                    bestallningsID = null;
-                } else {
-                    bestallningsID = txtBestallning.getText();
-                }
+            String q = "INSERT INTO `hatt`(`hattID`, `Storlek`,`Skapare`,`Kategori`,`Bestallning`,`Tillverkningstimmar`,`BildData`) VALUES (?,?,?,?,?,?,?)";
 
-                String q = "INSERT INTO `hatt`(`hattID`, `Storlek`,`Skapare`,`Kategori`,`Bestallning`,`Tillverkningstimmar`,`BildData`) VALUES (?,?,?,?,?,?,?)";
+            String personalNamn = cbValjPersonal.getSelectedItem().toString();
+            String personalID = idb.fetchSingle("SELECT personalID FROM Personal WHERE namn = '" + personalNamn + "'");
 
-                String personalNamn = cbValjPersonal.getSelectedItem().toString();
-                String personalID = idb.fetchSingle("SELECT personalID FROM Personal WHERE namn = '" + personalNamn + "'");
-
-                PreparedStatement pst = conn.prepareStatement(q);
-                pst.setString(1, lblHattIDPresentation.getText());
-                pst.setString(2, txtHattStorlek.getText());
-                pst.setString(3, personalID);
-                pst.setString(4, cbHattKategori.getSelectedItem().toString());
-                pst.setString(5, bestallningsID);
-                pst.setString(6, txtTillverkningstimmar.getText());
-                pst.setBytes(7, pimage);
-                pst.execute();
+            PreparedStatement pst = conn.prepareStatement(q);
+            pst.setString(1, lblHattIDPresentation.getText());
+            pst.setString(2, txtHattStorlek.getText());
+            pst.setString(3, personalID);
+            pst.setString(4, cbHattKategori.getSelectedItem().toString());
+            pst.setString(5, bestallningsID);
+            pst.setString(6, txtTillverkningstimmar.getText());
+            pst.setBytes(7, pimage);
+            pst.execute();
 
 //                        
 //            //Hatt 1
@@ -430,23 +429,113 @@ public class RegistreraHattFonster extends javax.swing.JFrame {
 //
 //            
 //         
-                // "Update Antalvara SET Antal ="++ " WHERE MaterialID= " +variableMaterialID
-                //         + ("SELECT Antal FROM Antalvara WHERE MaterialID =" + variableMaterialID +
-                // ") - +variabelmangdMaterial+
-                //Uppdatera HattMaterial genom Arralisten MaterialLista
-                JOptionPane.showMessageDialog(null, "Hatten har registrerats");
-                RegistreraHattFonster.this.dispose();
-            } catch (Exception ex) {
-                JOptionPane.showMessageDialog(null, "Något gick fel");
-                System.out.println("Internt felmeddelande" + ex.getMessage());
-                
-            }
+            // "Update Antalvara SET Antal ="++ " WHERE MaterialID= " +variableMaterialID
+            //         + ("SELECT Antal FROM Antalvara WHERE MaterialID =" + variableMaterialID +
+            // ") - +variabelmangdMaterial+
+            //Uppdatera HattMaterial genom Arralisten MaterialLista
+            JOptionPane.showMessageDialog(null, "Hatten har registrerats");
+            RegistreraHattFonster.this.dispose();
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Något gick fel");
+            System.out.println("Internt felmeddelande" + ex.getMessage());
         }
-      
-
-
     }//GEN-LAST:event_btnRegistreraHattActionPerformed
 
+    private void kontrolleraTextHattStorlek() {
+        txtHattStorlek.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                ValideringsKlass.rutaEmpty(txtHattStorlek);
+                ValideringsKlass.isPositivt(txtHattStorlek);
+                ValideringsKlass.isTal(txtHattMangd);
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                ValideringsKlass.rutaEmpty(txtHattStorlek);
+                ValideringsKlass.isPositivt(txtHattStorlek);
+                ValideringsKlass.isTal(txtHattMangd);
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                ValideringsKlass.rutaEmpty(txtHattStorlek);
+                ValideringsKlass.isPositivt(txtHattStorlek);
+                ValideringsKlass.isTal(txtHattMangd);
+            }
+        });
+    }
+
+    private void kontrolleraTillverkningstimmar() {
+        txtTillverkningstimmar.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                ValideringsKlass.rutaEmpty(txtTillverkningstimmar);
+                ValideringsKlass.isPositivt(txtTillverkningstimmar);
+                ValideringsKlass.isTal(txtTillverkningstimmar);
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                ValideringsKlass.rutaEmpty(txtTillverkningstimmar);
+                ValideringsKlass.isPositivt(txtTillverkningstimmar);
+                ValideringsKlass.isTal(txtTillverkningstimmar);
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                ValideringsKlass.rutaEmpty(txtTillverkningstimmar);
+                ValideringsKlass.isPositivt(txtTillverkningstimmar);
+                ValideringsKlass.isTal(txtTillverkningstimmar);
+            }
+        });
+    }
+
+    private void kontrolleraBestallning() {
+        txtBestallning.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                ValideringsKlass.isPositivt(txtBestallning);
+                ValideringsKlass.isTal(txtBestallning);
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                ValideringsKlass.isPositivt(txtBestallning);
+                ValideringsKlass.isTal(txtBestallning);
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                ValideringsKlass.isPositivt(txtBestallning);
+                ValideringsKlass.isTal(txtBestallning);
+            }
+        });
+    }
+    
+        private void kontrolleraHattMangd() {
+        txtHattMangd.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                ValideringsKlass.isPositivt(txtHattMangd);
+                ValideringsKlass.isTal(txtHattMangd);
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                ValideringsKlass.isPositivt(txtHattMangd);
+                ValideringsKlass.isTal(txtHattMangd);
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                ValideringsKlass.isPositivt(txtHattMangd);
+                ValideringsKlass.isTal(txtHattMangd);
+            }
+        });
+    }
+    
+    
     private void cbHattMaterialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbHattMaterialActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cbHattMaterialActionPerformed
