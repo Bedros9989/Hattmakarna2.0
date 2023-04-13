@@ -175,7 +175,7 @@ public class Hattar extends javax.swing.JFrame {
         
         try
         {
-            String hattar = "Select Namn AS 'Skapare', Storlek from Hatt join Personal P on Hatt.Skapare = P.PersonalID where Kategori='"+valdHatt+"'";
+            String hattar = "Select Namn AS 'Skapare', Storlek from Hatt join Personal P on Hatt.Skapare = P.PersonalID where Kategori='"+valdHatt+"' and bestallning IS NULL;";
             ArrayList<HashMap<String, String>> allaHattar = idb.fetchRows(hattar); 
             
             for (HashMap<String, String> hatt : allaHattar){
