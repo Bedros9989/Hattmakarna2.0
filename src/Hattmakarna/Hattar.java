@@ -15,13 +15,14 @@ public class Hattar extends javax.swing.JFrame {
     private InfDB idb;
     private String valdHatt;
     DefaultTableModel model = new DefaultTableModel();
-    
+    private RegistreraBestallning beställning;
 
     
-    public Hattar(InfDB idb, String valdHatt) {
+    public Hattar(InfDB idb, String valdHatt,RegistreraBestallning beställning) {
         initComponents();
         this.idb = idb;
         this.valdHatt=valdHatt;
+        this.beställning= beställning;
         this.setLocationRelativeTo(null);
         Hattar.this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         tabell.setModel(model);
@@ -110,12 +111,13 @@ public class Hattar extends javax.swing.JFrame {
     
     private void läggTillBeställningActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_läggTillBeställningActionPerformed
         
+        
+        
+        
         int valdaHatten = tabell.getSelectedRow();
         if (valdaHatten != -1){
             
             String hatten = (String)tabell.getValueAt(valdaHatten, 0)+"- "+valdHatt+" "+(String)tabell.getValueAt(valdaHatten, 1);
-               
-            RegistreraBestallning beställning = getBeställningForm();
             String[] data = {hatten};
             beställning.populateList(data);
             dispose();
