@@ -343,6 +343,7 @@ public class RegistreraBestallning extends javax.swing.JFrame {
                         idb.insert("INSERT INTO hattmakare.Bestallning (BestallningsID, Leveransadress, Totalsumma, Fraktsedel, Datum, Kund, Personal,Status) VALUES ("+bästID+", '"+adress+"', "+totalSumma+", '"+fraktsedel+"', '"+regDatum+"', "+kundID+", "+ID+",'Pågående');");
                         String pris= Double.toString(totalSumma);
                         new BestallningGenomford(idb,bästID,regDatum,adress,kundID,pris).setVisible(true);
+                        updateHattar();
                         dispose();
                         
                      
@@ -357,18 +358,11 @@ public class RegistreraBestallning extends javax.swing.JFrame {
                         idb.insert("INSERT INTO hattmakare.Bestallning (BestallningsID, Leveransadress, Totalsumma, Fraktsedel, Datum, Kund, Personal,Status) VALUES ("+bästID+", '"+adress+"', "+summa+", '"+fraktsedel+"', '"+regDatum+"', "+kundID+", "+ID+",'Pågående');");
                         String pris= Double.toString(summa);
                         new BestallningGenomford(idb,bästID,regDatum,adress,kundID,pris).setVisible(true);
-                        
-                        ListModel<String> listModel = jList1.getModel();
-                        for (int i = 0; i < listModel.getSize(); i++) {
-                        String itemText = listModel.getElementAt(i);
-                        System.out.println(itemText);
-                        }
+                        updateHattar();
+                        dispose();
+                    }
 
                         
-                        
-                        
-                        
-                        dispose();
                      
                 }
 
@@ -376,7 +370,7 @@ public class RegistreraBestallning extends javax.swing.JFrame {
             }
             
         
-    }
+    
         catch (InfException e) {
 
             JOptionPane.showMessageDialog(null, "Fel på databasuppkopplingen, prova igen senare!");
@@ -389,9 +383,35 @@ public class RegistreraBestallning extends javax.swing.JFrame {
         
     }
     }
-    }  
+    }
     }//GEN-LAST:event_jbRegBestallningActionPerformed
 
+    private void updateHattar(){
+        
+        try {
+        
+            ListModel<String> listModel = jList1.getModel();
+                        for (int i = 0; i < jList1.getModel().getSize(); i++) {
+                        String listItem = jList1.getModel().getElementAt(i);
+                        String[] parts = listItem.split("-");
+                        String selectedText = parts[0].trim();
+                        idb.update("UPDATE hattmakare.Hatt t SET t.Bestallning = "+bästID+" WHERE t.HattID = "+selectedText+";");
+
+        }
+    }
+        catch (InfException e) {
+
+            JOptionPane.showMessageDialog(null, "Fel på databasuppkopplingen, prova igen senare!");
+            System.out.println("Databasfel: " + e);
+            
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Något gick snett, prova igen!");
+            
+        }  
+        
+    }
+        
+    
     private void jbLaggTillHattActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbLaggTillHattActionPerformed
 
         if(cbHattID.getSelectedIndex() == 0){

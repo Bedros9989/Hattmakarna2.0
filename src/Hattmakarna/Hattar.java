@@ -113,7 +113,7 @@ public class Hattar extends javax.swing.JFrame {
         int valdaHatten = tabell.getSelectedRow();
         if (valdaHatten != -1){
             
-            String hatten = valdHatt+" "+(String)tabell.getValueAt(valdaHatten, 1);
+            String hatten = (String)tabell.getValueAt(valdaHatten, 0)+"- "+valdHatt+" "+(String)tabell.getValueAt(valdaHatten, 1);
                
             RegistreraBestallning beställning = getBeställningForm();
             String[] data = {hatten};

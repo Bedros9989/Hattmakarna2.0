@@ -335,7 +335,8 @@ public static PDDocument createSamplePDF2(String msg, String msg2, String msg3, 
             
         String namn = idb.fetchSingle("select Namn from Kund where KundID = "+kund);
         String adress = idb.fetchSingle("select Adress from Kund where KundID = "+kund);
-            
+        String antal = idb.fetchSingle("select count(*) from Hatt where Bestallning="+orderNr);
+        
         String text = "Faktura";
         String text2= "Otto och Judiths hattar AB";
         String text3= "Fakturnanummer:"+" "+fakturanummer;
@@ -346,7 +347,7 @@ public static PDDocument createSamplePDF2(String msg, String msg2, String msg3, 
         String text8= "Förfallodatum:"+" "+dateString2;
         String text9= "Plusgirokontonr: 99 1337-0";
         String text10= "OCR- nummer:"+" "+ocr;
-        String text11= "Antal beställda varor:";
+        String text11= "Antal beställda varor:"+" "+antal;
         
         
        PDDocument pdd = createSamplePDF2(text, text2, text3, text4, text5,text6,text7,text8,text9,text10,text11);
