@@ -35,11 +35,8 @@ public class BestallningGenomford extends javax.swing.JFrame {
         this.kund=kund;
         this.setLocationRelativeTo(null);
         BestallningGenomford.this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        jLabel1.setText(vikt);
-        jLabel2.setText(orderNr);
-        jLabel3.setText(datum);
-        jLabel4.setText(mottagare);
-        jLabel5.setText(kund);
+        test();
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -237,6 +234,16 @@ public class BestallningGenomford extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jBVisaFraktsedelActionPerformed
 
+    private void test(){
+        
+        jLabel1.setText(vikt);
+        jLabel2.setText(orderNr);
+        jLabel3.setText(datum);
+        jLabel4.setText(mottagare);
+        jLabel5.setText(kund);
+        
+    }
+    
     private void skickaBekräftelseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_skickaBekräftelseActionPerformed
         
         try {
