@@ -152,7 +152,7 @@ public class ValideringsKlass {
     }
 
     //Kontrollerar om värdet som fyllts i är en double
-    public static boolean isHeltal(JTextField ettTextFalt) {
+    public static boolean isTal(JTextField ettTextFalt) {
         boolean resultat = true;
 
         try {
