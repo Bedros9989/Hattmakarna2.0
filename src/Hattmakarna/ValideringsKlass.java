@@ -141,6 +141,17 @@ public class ValideringsKlass {
       return resultat;
     }
 
+     //Kontrollerar om värdet som fyllts i är positivt
+    public static boolean isPositivt(JTextField ettTextFalt) {
+        boolean resultat = true;
+        int ettTextFaltSiffra = Integer.parseInt(ettTextFalt.getText());
+        if(ettTextFaltSiffra < 0)
+            {
+                JOptionPane.showMessageDialog(null, "Var god ange ett positivt tal!");
+                resultat = false;
+            }
+        return resultat;
+    }
 
 
     
