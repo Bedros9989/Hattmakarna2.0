@@ -15,6 +15,7 @@ import org.apache.pdfbox.pdmodel.font.PDType1Font;
 import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
 import oru.inf.InfDB;
 import oru.inf.InfException;
+import java.util.Random;
 
 public class BestallningGenomford extends javax.swing.JFrame {
 
@@ -232,35 +233,47 @@ public class BestallningGenomford extends javax.swing.JFrame {
         
     }//GEN-LAST:event_skickaBekräftelseActionPerformed
 
-        public static PDDocument createSamplePDF2(String msg, String msg2, String msg3, String msg4, String msg5, String msg6, String msg7)throws IOException{
+public static PDDocument createSamplePDF2(String msg, String msg2, String msg3, String msg4, String msg5, String msg6, String msg7, String msg8,String msg9,String msg10,String msg11)throws IOException{
         
         PDDocument pDDocument = new PDDocument();
         PDPage pDPage = new PDPage();
         pDDocument.addPage(pDPage);
         PDPageContentStream cs = new PDPageContentStream(pDDocument,pDPage);
         cs.beginText();
-        cs.setFont(PDType1Font.TIMES_BOLD, 20);
+        cs.setFont(PDType1Font.TIMES_BOLD, 18);
         cs.setNonStrokingColor(Color.black);
-        cs.moveTextPositionByAmount(250, 750);
+        cs.moveTextPositionByAmount(430, 750);
         cs.showText(msg);
-        cs.newLineAtOffset(-70, -30);
+        cs.newLineAtOffset(-70, -20);
         cs.newLine();
         cs.showText(msg2);
-        cs.newLineAtOffset(-150, -80);
+        cs.newLineAtOffset(-330, -90);
         cs.newLine();
         cs.showText(msg3);
-        cs.newLineAtOffset(0, -50);
+        cs.newLineAtOffset(0, -30);
         cs.newLine();
         cs.showText(msg4);
-        cs.newLineAtOffset(0, -50);
+        cs.newLineAtOffset(0, -30);
         cs.newLine();
         cs.showText(msg5);
-        cs.newLineAtOffset(0, -50);
+        cs.newLineAtOffset(0, -30);
         cs.newLine();
         cs.showText(msg6);
-        cs.newLineAtOffset(0, -50);
+        cs.newLineAtOffset(0, -60);
         cs.newLine();
         cs.showText(msg7);
+        cs.newLineAtOffset(0, -30);
+        cs.newLine();
+        cs.showText(msg8);
+        cs.newLineAtOffset(0, -30);
+        cs.newLine();
+        cs.showText(msg9);
+        cs.newLineAtOffset(0, -30);
+        cs.newLine();
+        cs.showText(msg10);
+        cs.newLineAtOffset(0, -60);
+        cs.newLine();
+        cs.showText(msg11);
         cs.endText();
         cs.close();
         return pDDocument;
@@ -273,35 +286,52 @@ public class BestallningGenomford extends javax.swing.JFrame {
         
     }
     
-    public static void insertImage2 (String pdfPath, String imagePath)throws IOException{
+    public static void insertImage2 (String pdfPath, String imagePath1, String imagepath2)throws IOException{
         
        PDDocument pdd = PDDocument.load(new File(pdfPath));
        PDPage page = pdd.getPage(0);
        
-       PDImageXObject pdImage = PDImageXObject.createFromFile("./Databasfiler/2.png", pdd);
-       PDPageContentStream cs = new PDPageContentStream(pdd,page,PDPageContentStream.AppendMode.APPEND,false);
-       cs.drawImage(pdImage,0,0,610,300);
-       cs.close();
-       savenclose1(pdd,pdfPath);
+       PDImageXObject pdImage1 = PDImageXObject.createFromFile("./Databasfiler/2.png", pdd);
+       PDPageContentStream cs1 = new PDPageContentStream(pdd,page,PDPageContentStream.AppendMode.APPEND,false);
+       cs1.drawImage(pdImage1,-5,0,610,300);
+       cs1.close();
+       
+       PDImageXObject pdImage2 = PDImageXObject.createFromFile("./Databasfiler/3.png", pdd);
+       PDPageContentStream cs2 = new PDPageContentStream(pdd,page,PDPageContentStream.AppendMode.APPEND,false);
+       cs2.drawImage(pdImage2,30,680,150,100);
+       cs2.close();
+       
+       savenclose2(pdd,pdfPath);
         
     }
     
     private void visaFakturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_visaFakturaActionPerformed
         
+ Random random = new Random();
+        int number = random.nextInt(90000) + 10000;
+            String fakturanummer = String.format("%05d", number);
+        int number2 = random.nextInt(100000);
+            String ocr = String.format("%010d", number);
+        
+        
         String text = "Faktura";
         String text2= "Otto och Judiths hattar AB";
-        String text3= "Ordernummer:"+orderNr;
-        String text4= "Vikt:";
-        String text5= "Datum:"+datum;
-        String text6= "Avsändare: Hattvägen 1, 70281, Örebro";
-        String text7= "Mottagare:"+ mottagare;
+        String text3= "Fakturnanummer:"+" "+fakturanummer;
+        String text4= "Fakturadatum:";
+        String text5= "Namn:";
+        String text6= "Adress:";
+        String text7= "Pris:";
+        String text8= "Förfallodatum:";
+        String text9= "Plusgirokontonr: 99 1337-0";
+        String text10= "OCR- nummer:"+" "+ocr;
+        String text11= "Antal beställda varor:";
        
         try {
-       PDDocument pdd = createSamplePDF1(text, text2, text3, text4, text5,text6,text7);
+       PDDocument pdd = createSamplePDF2(text, text2, text3, text4, text5,text6,text7,text8,text9,text10,text11);
         savenclose2 (pdd,"./Databasfiler/faktura.pdf");
-        insertImage2("./Databasfiler/faktura.pdf","./Databasfiler/2.png");
+        insertImage2("./Databasfiler/faktura.pdf","./Databasfiler/2.png","./Databasfiler/3.png");
         
-        File file = new File("./Databasfiler/faktura.pdf");
+        File file = new File("./Databasfiler/faktura.pdf");   
         if (file.exists()) {
             try {
                 Desktop.getDesktop().open(file);
