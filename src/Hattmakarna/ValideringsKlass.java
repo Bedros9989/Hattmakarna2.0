@@ -164,5 +164,15 @@ public class ValideringsKlass {
         return resultat;
     }
 
+    public static boolean textFaltHarVarde(JTextField ettTextFalt) {
+        boolean resultat = true;
+
+        if (ettTextFalt.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Vissa inmatningsrutor får ej lämnas tomma!");
+            resultat = false;
+        }
+        return resultat;
+    }
+
 
 }

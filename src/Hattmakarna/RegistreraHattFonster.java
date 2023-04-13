@@ -316,12 +316,11 @@ public class RegistreraHattFonster extends javax.swing.JFrame {
     }//GEN-LAST:event_cbValjPersonalActionPerformed
 
     private void btnRegistreraHattActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistreraHattActionPerformed
-
         /* För att lägga-bild funktionen ska funka så behövde vi 
            använda den officiella mysql.java.jar filen som fanns
            istället för InfDB.jar. Den är dock jättenkel att använda
            som ni kanske märker nedanför */
-        if (ValideringsKlass.rutaEmpty(txtHattStorlek) && ValideringsKlass.rutaEmpty(txtTillverkningstimmar)) {
+        if (ValideringsKlass.textFaltHarVarde(txtHattStorlek) && ValideringsKlass.textFaltHarVarde(txtTillverkningstimmar)) {
             try {
                 if (txtBestallning.getText().isEmpty()) {
                     bestallningsID = null;
