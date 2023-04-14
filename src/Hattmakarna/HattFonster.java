@@ -4,10 +4,6 @@ package Hattmakarna;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 import oru.inf.InfDB;
 
-/**
- *
- * @author augus
- */
 public class HattFonster extends javax.swing.JFrame {
 
     private InfDB idb;
@@ -88,7 +84,7 @@ public class HattFonster extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAndraHattActionPerformed
 
     private void btnAndraHatt1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAndraHatt1ActionPerformed
-new SeHattLager(idb).setVisible(true);        
+        new SeHattLager(idb).setVisible(true);
     }//GEN-LAST:event_btnAndraHatt1ActionPerformed
 
 
