@@ -405,8 +405,6 @@ public class RegistreraHattFonster extends javax.swing.JFrame {
 //            double materialMangd10 = MaterialLista.get(28);
 //            double materialPris10 = MaterialLista.get(29);
 //
-//            
-//            
 //            //Uppdatera Material genom Arralisten MaterialLista
 //            //0, 3, 6= MaterialID
 //            //1, 4, 7= mangdMangd
@@ -433,10 +431,12 @@ public class RegistreraHattFonster extends javax.swing.JFrame {
 //
 //            
 //         
-                // "Update Antalvara SET Antal ="++ " WHERE MaterialID= " +variableMaterialID
-                //         + ("SELECT Antal FROM Antalvara WHERE MaterialID =" + variableMaterialID +
-                // ") - +variabelmangdMaterial+
-                //Uppdatera HattMaterial genom Arralisten MaterialLista
+//          "Update Antalvara SET Antal ="++ " WHERE MaterialID= " +variableMaterialID
+//          + ("SELECT Antal FROM Antalvara WHERE MaterialID =" + variableMaterialID +   ") - +variabelmangdMaterial+
+//          Uppdatera HattMaterial genom Arralisten MaterialLista
+                
+                
+                
                 JOptionPane.showMessageDialog(null, "Hatten har registrerats");
                 RegistreraHattFonster.this.dispose();
             } catch (Exception ex) {

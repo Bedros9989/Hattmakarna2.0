@@ -163,7 +163,8 @@ public class ValideringsKlass {
         }
         return resultat;
     }
-
+    
+    //Kontrollerar att fältet är ifyllt
     public static boolean textFaltHarVarde(JTextField ettTextFalt) {
         boolean resultat = true;
 
