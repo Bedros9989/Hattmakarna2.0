@@ -67,7 +67,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnAndraHatt1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Se hattar i Lager"/>
+        <Property name="text" type="java.lang.String" value="Se hattar i lager"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAndraHatt1ActionPerformed"/>

@@ -39,7 +39,7 @@ public class HattFonster extends javax.swing.JFrame {
             }
         });
 
-        btnAndraHatt1.setText("Se hattar i Lager");
+        btnAndraHatt1.setText("Se hattar i lager");
         btnAndraHatt1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAndraHatt1ActionPerformed(evt);
