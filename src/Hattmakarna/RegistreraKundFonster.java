@@ -116,7 +116,7 @@ public class RegistreraKundFonster extends javax.swing.JFrame {
                             .addComponent(jAngivenKundAdress)
                             .addComponent(jAngiventKundTel)
                             .addComponent(jAngivetKundNamn)
-                            .addComponent(btnRegistreraKund, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btnRegistreraKund, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(100, 100, 100))))
         );
         jPanel1Layout.setVerticalGroup(

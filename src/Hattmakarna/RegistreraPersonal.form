@@ -24,53 +24,84 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jPersonalNamn" alignment="0" min="-2" pref="75" max="-2" attributes="0"/>
-                  <Component id="jPersonalLosen" alignment="0" min="-2" pref="101" max="-2" attributes="0"/>
-                  <Component id="lblRegKund" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="jPersonalTelefon" min="-2" pref="139" max="-2" attributes="0"/>
-                  <Component id="jPersonalTimpris" min="-2" pref="101" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jPersonalNamn" alignment="0" min="-2" pref="75" max="-2" attributes="0"/>
+                          <Component id="jPersonalLosen" alignment="0" min="-2" pref="101" max="-2" attributes="0"/>
+                          <Component id="jPersonalTimpris" min="-2" pref="101" max="-2" attributes="0"/>
+                          <Component id="jPersonalTelefon" alignment="0" min="-2" pref="139" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="64" max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="meddelandeKonfirmera" min="-2" pref="214" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jTextField1" pref="165" max="32767" attributes="0"/>
-                  <Component id="jTextField2" alignment="0" max="32767" attributes="0"/>
-                  <Component id="jTextField3" alignment="0" max="32767" attributes="0"/>
-                  <Component id="jTextField4" max="32767" attributes="0"/>
+                  <Component id="jRegistreraPersonalKnapp" pref="182" max="32767" attributes="0"/>
+                  <Component id="jAngivetPersonalNamn" max="32767" attributes="0"/>
+                  <Component id="jAngivetPersonalLosen" alignment="0" max="32767" attributes="0"/>
+                  <Component id="jAngivetPersonalTelefon" alignment="0" max="32767" attributes="0"/>
+                  <Component id="jAngivetPersonalTimpris" max="32767" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="82" max="-2" attributes="0"/>
+          </Group>
+          <Group type="102" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="83" max="-2" attributes="0"/>
+                      <Component id="jfelMeddelandet" min="-2" pref="157" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="133" max="-2" attributes="0"/>
+                      <Component id="lblRegKund" min="-2" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Group type="102" attributes="0">
+              <EmptySpace pref="44" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
                       <Component id="lblRegKund" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
-                      <Component id="jPersonalNamn" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+                      <Component id="jAngivetPersonalNamn" min="-2" pref="32" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="jTextField1" min="-2" pref="36" max="-2" attributes="0"/>
+                  <Component id="jPersonalNamn" alignment="1" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
+                  <Component id="jAngivetPersonalLosen" min="-2" pref="32" max="-2" attributes="0"/>
                   <Component id="jPersonalLosen" min="-2" max="-2" attributes="0"/>
-                  <Component id="jTextField2" min="-2" pref="36" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="jTextField3" min="-2" pref="36" max="-2" attributes="0"/>
-                  <Component id="jPersonalTelefon" min="-2" pref="32" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="jAngivetPersonalTelefon" min="-2" pref="32" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="jPersonalTelefon" min="-2" pref="32" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jPersonalTimpris" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jAngivetPersonalTimpris" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
               </Group>
-              <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jTextField4" alignment="3" min="-2" pref="37" max="-2" attributes="0"/>
-                  <Component id="jPersonalTimpris" alignment="3" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="jfelMeddelandet" min="-2" pref="26" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="jRegistreraPersonalKnapp" min="-2" pref="33" max="-2" attributes="0"/>
+                  <Component id="meddelandeKonfirmera" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace pref="66" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -116,13 +147,25 @@
         <Property name="text" type="java.lang.String" value="Timpris"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField1">
+    <Component class="javax.swing.JTextField" name="jAngivetPersonalNamn">
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField2">
+    <Component class="javax.swing.JTextField" name="jAngivetPersonalLosen">
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField3">
+    <Component class="javax.swing.JTextField" name="jAngivetPersonalTelefon">
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField4">
+    <Component class="javax.swing.JTextField" name="jAngivetPersonalTimpris">
+    </Component>
+    <Component class="javax.swing.JButton" name="jRegistreraPersonalKnapp">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Registrera personal"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jRegistreraPersonalKnappActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jfelMeddelandet">
+    </Component>
+    <Component class="javax.swing.JLabel" name="meddelandeKonfirmera">
     </Component>
   </SubComponents>
 </Form>
