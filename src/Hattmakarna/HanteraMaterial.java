@@ -7,6 +7,7 @@ package Hattmakarna;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import oru.inf.InfDB;
 import oru.inf.InfException;
 
@@ -50,6 +51,11 @@ private InfDB idb;
         jCMaterialNamn.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jBAndra.setText("Ändra");
+        jBAndra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBAndraActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -82,6 +88,25 @@ private InfDB idb;
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jBAndraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAndraActionPerformed
+        // TODO add your handling code here:
+       String materialNamn = jCMaterialNamn.getSelectedItem().toString();
+       String materialID = ("");
+     try{
+        materialID = idb.fetchSingle("SELECT MaterialID from Material WHERE Materialnamn = '"+ materialNamn + "'");
+        
+        idb.update("UPDATE antalvara SET Antal = '" + 0 + "' WHERE MaterialID = '"+ materialID +"'");
+        idb.update("UPDATE kvadratmetervara SET Kvadratmeter = '" + 0 + "' WHERE MaterialID = '"+ materialID +"'");
+        idb.update("UPDATE metervara SET Meter = '" + 0 + "' WHERE MaterialID = '"+ materialID +"'");
+        
+        JOptionPane.showMessageDialog(null, "Nu har lagersaldot ändrats till 0");
+     } 
+    catch(InfException ex){
+        Logger.getLogger(HanteraMaterial.class.getName()).log(Level.SEVERE, null, ex);
+    }
+       
+    }//GEN-LAST:event_jBAndraActionPerformed
 
      private void fillComboboxMaterialNamn(){ 
     jCMaterialNamn.removeAllItems();

@@ -6,6 +6,9 @@ package Hattmakarna;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import oru.inf.InfDB;
 import oru.inf.InfException;
@@ -282,17 +285,48 @@ public class HanteraHatt extends javax.swing.JFrame {
 
     private void btnSokHattActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSokHattActionPerformed
         
-        String hattID = txtHattID.getText();
-        
-        
-        
-        
-        fyllCbKategori();
-        fyllCbSkapare();
-        
-        btnAndra.setEnabled(true);
-      
-        
+        try {
+            String hattID = txtHattID.getText();
+            
+            
+            
+            
+            fyllCbKategori();
+            fyllCbSkapare();
+            
+            btnAndra.setEnabled(true);
+            
+            
+            
+            
+            ArrayList<String> existerandeHattar;
+            existerandeHattar = idb.fetchColumn("select HattID from Hatt");
+            
+            if (!existerandeHattar.contains(hattID)){
+                
+                JOptionPane.showMessageDialog(null, "Beställning med denna ID existerar inte!");
+            }else{
+                
+                cbSkapare.setSelectedItem("Select Namn from Personal where PersonalID = (Select PersonalID from personal where Personal = (select Skapare from Hatt where HattID = " + hattID + "))");
+                
+//            String hämtaAnsvarig = idb.fetchSingle("select Namn from Personal join Bestallning B on Personal.PersonalID = B.Personal where BestallningsID ="+bästID);
+//            ansvarig.setSelectedItem(hämtaAnsvarig);
+//            String hämtaAdress = idb.fetchSingle("select Leveransadress from Bestallning where BestallningsID="+bästID);
+//            Adress.setText(hämtaAdress);
+//            String hämtaDatum = idb.fetchSingle("select Datum from Bestallning where BestallningsID="+bästID);
+//            Date datumet = dateFormat.parse(hämtaDatum);
+//            dateFormat.format(datumet);
+//            datumChooser.setDate(datumet);
+//            String hämtaSumma = idb.fetchSingle("select Totalsumma from Bestallning where BestallningsID="+bästID);
+//            summan.setText(hämtaSumma);
+//            String hämtaStatus = idb.fetchSingle("select Status from Bestallning where BestallningsID="+bästID);
+//            status.setSelectedItem(hämtaStatus);
+            }
+        } catch (InfException ex) {
+            Logger.getLogger(HanteraHatt.class.getName()).log(Level.SEVERE, null, ex);
+        }
+         
+                       
     }//GEN-LAST:event_btnSokHattActionPerformed
 
 
