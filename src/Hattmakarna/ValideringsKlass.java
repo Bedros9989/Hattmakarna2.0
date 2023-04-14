@@ -90,9 +90,9 @@ public class ValideringsKlass {
     //Kontrollerar om värdet som fyllts i är positivt
     public static boolean isPositivt(JTextField ettTextFalt) {
         boolean resultat = true;
-        int ettTextFaltSiffra = Integer.parseInt(ettTextFalt.getText());
+        double ettTextFaltSiffra = Double.parseDouble(ettTextFalt.getText());
         if (ettTextFaltSiffra < 0) {
-            JOptionPane.showMessageDialog(null, "Var god ange ett positivt tal!");
+            JOptionPane.showMessageDialog(null, "Endast positivt tal tillåtet!");
             resultat = false;
         }
         return resultat;
