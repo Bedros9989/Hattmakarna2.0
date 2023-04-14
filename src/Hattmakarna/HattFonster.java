@@ -20,7 +20,7 @@ public class HattFonster extends javax.swing.JFrame {
     private void initComponents() {
 
         btnRegistreraHatt = new javax.swing.JButton();
-        btnAndraHatt = new javax.swing.JButton();
+        btnHanteraHatt = new javax.swing.JButton();
         btnAndraHatt1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -32,10 +32,10 @@ public class HattFonster extends javax.swing.JFrame {
             }
         });
 
-        btnAndraHatt.setText("Ändra hatt");
-        btnAndraHatt.addActionListener(new java.awt.event.ActionListener() {
+        btnHanteraHatt.setText("Hantera hatt");
+        btnHanteraHatt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAndraHattActionPerformed(evt);
+                btnHanteraHattActionPerformed(evt);
             }
         });
 
@@ -51,25 +51,23 @@ public class HattFonster extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(48, 48, 48)
+                .addGap(82, 82, 82)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnAndraHatt1, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnAndraHatt, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnRegistreraHatt, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(60, Short.MAX_VALUE))
+                    .addComponent(btnHanteraHatt, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnRegistreraHatt, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(86, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(42, 42, 42)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAndraHatt, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnRegistreraHatt, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(17, 17, 17)
+                .addComponent(btnRegistreraHatt, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnHanteraHatt, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnAndraHatt1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(56, Short.MAX_VALUE))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         pack();
@@ -79,9 +77,9 @@ public class HattFonster extends javax.swing.JFrame {
         new RegistreraHattFonster(idb).setVisible(true);
     }//GEN-LAST:event_btnRegistreraHattActionPerformed
 
-    private void btnAndraHattActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAndraHattActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnAndraHattActionPerformed
+    private void btnHanteraHattActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHanteraHattActionPerformed
+        new HanteraHatt(idb).setVisible(true);
+    }//GEN-LAST:event_btnHanteraHattActionPerformed
 
     private void btnAndraHatt1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAndraHatt1ActionPerformed
         new SeHattLager(idb).setVisible(true);
@@ -91,8 +89,8 @@ public class HattFonster extends javax.swing.JFrame {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAndraHatt;
     private javax.swing.JButton btnAndraHatt1;
+    private javax.swing.JButton btnHanteraHatt;
     private javax.swing.JButton btnRegistreraHatt;
     // End of variables declaration//GEN-END:variables
 }
