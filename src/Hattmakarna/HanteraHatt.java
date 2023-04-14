@@ -15,7 +15,6 @@ import oru.inf.InfException;
 public class HanteraHatt extends javax.swing.JFrame {
 
     private InfDB idb;
-    public byte[] pimage = null;
     private Connection conn = null;
 
     public HanteraHatt(InfDB idb) {
@@ -23,7 +22,6 @@ public class HanteraHatt extends javax.swing.JFrame {
         this.idb = idb;
         HanteraHatt.this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         this.setLocationRelativeTo(null);
-        conn = RegistreraHattFonster.DBConnect.connect();
         cbSkapare.setEnabled(false);
         cbKategori.setEnabled(false);
         txtStorlek.setEnabled(false);
@@ -56,29 +54,6 @@ public class HanteraHatt extends javax.swing.JFrame {
         cbKategori.addItem("Studenthatt");
     }
 
-    public class DBConnect {
-
-        public static Connection connect() {
-            Connection con = null;
-            try {
-                Class.forName("com.mysql.jdbc.Driver");
-                con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hattmakare", "hattuser", "hattkey");
-            } catch (Exception e) {
-                System.out.println("inter.DBConnect.connect()");
-            }
-            return con;
-        }
-    }
-
-    public void hämtabild(byte[] pimage2) {
-        pimage = pimage2;
-    }
-
-    
-    
-    
-    
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -286,47 +261,24 @@ public class HanteraHatt extends javax.swing.JFrame {
         try {
             String hattID = txtHattID.getText();
 
-            // Establish a new connection to the BildData table
-            Connection bildDataConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/hattmakare", "hattuser", "hattkey");
+            String skapareString = cbSkapare.getSelectedItem().toString();
+            String nySkapare = idb.fetchSingle("SELECT PersonalID FROM Personal WHERE Namn= '" + skapareString + "'");
+            String nyKategori = cbKategori.getSelectedItem().toString();
+            String nyStorlek = txtStorlek.getText();
+            String nyTillverkningstimmar = txtTillverkningstimmar.getText();
+            String nyBestallning = txtBestallningsID.getText();
 
-            // Insert the image data into the BildData table
-            PreparedStatement ps = bildDataConn.prepareStatement("UPDATE BildData SET bildData = ? WHERE HattID = ?");
-            ps.setBytes(1, pimage);
-            ps.setString(2, hattID);
-            ps.executeUpdate();
+            String SQLfraga = ("UPDATE hatt SET Skapare= " + nySkapare + ", Kategori= '" + nyKategori + "', Storlek= " + nyStorlek + ", Tillverkningstimmar= " + nyTillverkningstimmar + ", Bestallning= " + nyBestallning + " WHERE HattID= " + hattID);
 
-            // Close the connection
-            bildDataConn.close();
+            idb.update(SQLfraga);
 
-            JOptionPane.showMessageDialog(null, "Bilden har uppdaterats för hatt med ID: " + hattID);
-        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ("Hatt " + hattID + " har uppdaterats"));
+        } catch (InfException ex) {
             JOptionPane.showMessageDialog(null, "Något gick fel");
             System.out.println("Internt felmeddelande" + ex.getMessage());
         }
     }//GEN-LAST:event_btnSparaActionPerformed
 
-//    
-//                String hattID = txtHattID.getText();
-//
-//            String SQLfraga = ("UPDATE `hatt` SET `BildData` = `?` WHERE hattID =`" + hattID + "`");
-//
-//           
-//            PreparedStatement pst = conn.prepareStatement(SQLfraga);
-//
-//            pst.setBytes(1, pimage);
-//            pst.execute();
-//    
-////          String q = "INSERT INTO `hatt`(`hattID`, `Storlek`,`Skapare`,`Kategori`,`Bestallning`,`Tillverkningstimmar`,`BildData`) VALUES (?,?,?,?,?,?,?)";
-//        pst.setString(1, lblHattIDPresentation.getText());
-//        pst.setString(2, txtHattStorlek.getText());
-//        pst.setString(3, personalID);
-//        pst.setString(4, cbHattKategori.getSelectedItem().toString());
-//        pst.setString(5, bestallningsID);
-//        pst.setString(6, txtTillverkningstimmar.getText());
-    
-    
-    
-    
     private void btnAndraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAndraActionPerformed
         cbSkapare.setEnabled(true);
         cbKategori.setEnabled(true);
@@ -336,7 +288,7 @@ public class HanteraHatt extends javax.swing.JFrame {
         btnUppdateraBild.setEnabled(true);
         cbMaterial.setEnabled(true);
         txtMangd.setEnabled(true);
-        btnSpara.setEnabled(false);
+        btnSpara.setEnabled(true);
     }//GEN-LAST:event_btnAndraActionPerformed
 
     private void txtMangdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMangdActionPerformed
@@ -365,31 +317,15 @@ public class HanteraHatt extends javax.swing.JFrame {
             } else {
 
                 cbSkapare.setSelectedItem(idb.fetchSingle("SELECT Namn FROM Personal WHERE PersonalID = (Select PersonalID from personal where PersonalID = (select Skapare from Hatt where HattID = " + hattID + "))"));
-                cbKategori.setSelectedItem(idb.fetchSingle("SELECT Kategori FROM Hatt WHERE HattID = " + hattID));              
-                txtStorlek.setText(idb.fetchSingle("SELECT Storlek FROM Hatt WHERE HattID = " +hattID));
-                txtTillverkningstimmar.setText(idb.fetchSingle("SELECT Tillverkningstimmar FROM Hatt WHERE HattID = " +hattID));
-                txtBestallningsID.setText(idb.fetchSingle("SELECT Bestallning FROM Hatt WHERE HattID = " +hattID));
-                
-
-                
-                
-                
-//            String hämtaAnsvarig = idb.fetchSingle("select Namn from Personal join Bestallning B on Personal.PersonalID = B.Personal where BestallningsID ="+bästID);
-//            ansvarig.setSelectedItem(hämtaAnsvarig);
-//            String hämtaAdress = idb.fetchSingle("select Leveransadress from Bestallning where BestallningsID="+bästID);
-//            Adress.setText(hämtaAdress);
-//            String hämtaDatum = idb.fetchSingle("select Datum from Bestallning where BestallningsID="+bästID);
-//            Date datumet = dateFormat.parse(hämtaDatum);
-//            dateFormat.format(datumet);
-//            datumChooser.setDate(datumet);
-//            String hämtaSumma = idb.fetchSingle("select Totalsumma from Bestallning where BestallningsID="+bästID);
-//            summan.setText(hämtaSumma);
-//            String hämtaStatus = idb.fetchSingle("select Status from Bestallning where BestallningsID="+bästID);
-//            status.setSelectedItem(hämtaStatus);
+                cbKategori.setSelectedItem(idb.fetchSingle("SELECT Kategori FROM Hatt WHERE HattID = " + hattID));
+                txtStorlek.setText(idb.fetchSingle("SELECT Storlek FROM Hatt WHERE HattID = " + hattID));
+                txtTillverkningstimmar.setText(idb.fetchSingle("SELECT Tillverkningstimmar FROM Hatt WHERE HattID = " + hattID));
+                txtBestallningsID.setText(idb.fetchSingle("SELECT Bestallning FROM Hatt WHERE HattID = " + hattID));
             }
         } catch (InfException ex) {
-            Logger.getLogger(HanteraHatt.class.getName()).log(Level.SEVERE, null, ex);
-        }                   
+            JOptionPane.showMessageDialog(null, "Något gick fel");
+            System.out.println("Internt felmeddelande" + ex.getMessage());
+        }
     }//GEN-LAST:event_btnSokHattActionPerformed
 
     private void btnUppdateraBildActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUppdateraBildActionPerformed
