@@ -96,9 +96,9 @@ private InfDB idb;
      try{
         materialID = idb.fetchSingle("SELECT MaterialID from Material WHERE Materialnamn = '"+ materialNamn + "'");
         
-        idb.update("UPDATE antalvara SET Antal = '" + 0 + "' WHERE MaterialID = '"+ materialID +"'");
-        idb.update("UPDATE kvadratmetervara SET Kvadratmeter = '" + 0 + "' WHERE MaterialID = '"+ materialID +"'");
-        idb.update("UPDATE metervara SET Meter = '" + 0 + "' WHERE MaterialID = '"+ materialID +"'");
+        idb.update("UPDATE antalvara SET Antal = 0 WHERE MaterialID = '"+ materialID +"'");
+        idb.update("UPDATE kvadratmetervara SET Kvadratmeter = 0 WHERE MaterialID = '"+ materialID +"'");
+        idb.update("UPDATE metervara SET Meter = 0 WHERE MaterialID = '"+ materialID +"'");
         
         JOptionPane.showMessageDialog(null, "Nu har lagersaldot ändrats till 0");
      } 
