@@ -41,6 +41,7 @@ private InfDB idb;
         jLValjMaterial = new javax.swing.JLabel();
         jCMaterialNamn = new javax.swing.JComboBox<>();
         jBAndra = new javax.swing.JButton();
+        jLRubrik = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -57,33 +58,42 @@ private InfDB idb;
             }
         });
 
+        jLRubrik.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLRubrik.setText("Hantera material");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jBAndra)
-                    .addComponent(jCMaterialNamn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLMaterialMangd)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLMaterialMangd)
-                        .addGap(68, 68, 68)
-                        .addComponent(jLValjMaterial)))
-                .addContainerGap(81, Short.MAX_VALUE))
+                        .addComponent(jLValjMaterial)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jCMaterialNamn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(34, 34, 34)
+                .addComponent(jBAndra)
+                .addContainerGap(102, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLRubrik)
+                .addGap(130, 130, 130))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLMaterialMangd)
-                    .addComponent(jLValjMaterial))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jCMaterialNamn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(25, 25, 25)
+                .addComponent(jLRubrik)
                 .addGap(18, 18, 18)
-                .addComponent(jBAndra)
-                .addContainerGap(177, Short.MAX_VALUE))
+                .addComponent(jLMaterialMangd)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLValjMaterial)
+                    .addComponent(jCMaterialNamn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jBAndra))
+                .addContainerGap(181, Short.MAX_VALUE))
         );
 
         pack();
@@ -129,6 +139,7 @@ private InfDB idb;
     private javax.swing.JButton jBAndra;
     private javax.swing.JComboBox<String> jCMaterialNamn;
     private javax.swing.JLabel jLMaterialMangd;
+    private javax.swing.JLabel jLRubrik;
     private javax.swing.JLabel jLValjMaterial;
     // End of variables declaration//GEN-END:variables
 }
