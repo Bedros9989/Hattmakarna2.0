@@ -4,6 +4,7 @@ package Hattmakarna;
 import java.awt.Window;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
@@ -140,11 +141,36 @@ public class Hattar extends javax.swing.JFrame {
         if (evt.getClickCount() == 2){
         int index = tabell.getSelectedRow();
         TableModel model = tabell.getModel();
-        if (index != -1){
+        try
+        {
+            if (index != -1){
             
             String hatt = (String)tabell.getValueAt(index, 0);
-            new KollaBild(hatt).setVisible(true);
+            HashMap<String,String> allaHattar = idb.fetchRow("SELECT * FROM Hatt WHERE HattID="+hatt);
+            
+            String bildData = allaHattar.get("BildData");
+            if (bildData == null) {
+                JOptionPane.showMessageDialog(null, "Denna hatt har ingen bild!");
+                }else{
+                    new KollaBild(hatt).setVisible(true);
+                }
+    
         }
+    
+        }catch (InfException ettUndantag) {
+            
+            JOptionPane.showMessageDialog(null, "Databasfel!");
+            System.out.println("Internt felmeddelande" + ettUndantag.getMessage());
+            
+        }
+        
+        catch (Exception ettUndantag) {
+            
+            JOptionPane.showMessageDialog(null, "Något gick fel!");
+            System.out.println("Internt felmeddelande" + ettUndantag.getMessage());
+            
+        }
+        
         }
     }//GEN-LAST:event_tabellMouseClicked
 
