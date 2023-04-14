@@ -47,23 +47,15 @@
                           <EmptySpace max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="96" max="-2" attributes="0"/>
-                                  <Component id="felMeddelande" pref="143" max="32767" attributes="0"/>
-                              </Group>
-                              <Group type="102" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jKundNamn" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jKundTelefon" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jKundAdress" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="confirmMeddelande" alignment="0" min="-2" pref="183" max="-2" attributes="0"/>
-                                      <Component id="jKundMejl" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                              </Group>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="jKundNamn" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jKundTelefon" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jKundAdress" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="confirmMeddelande" alignment="0" pref="183" max="32767" attributes="0"/>
+                              <Component id="jKundMejl" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="felMeddelande" max="32767" attributes="0"/>
                           </Group>
-                          <EmptySpace max="-2" attributes="0"/>
+                          <EmptySpace pref="62" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Component id="jAngivenKundMejl" pref="185" max="32767" attributes="0"/>
                               <Component id="jAngivenKundAdress" max="32767" attributes="0"/>
@@ -104,14 +96,14 @@
                   </Group>
                   <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <Component id="felMeddelande" min="-2" pref="24" max="-2" attributes="0"/>
-                          <EmptySpace pref="7" max="32767" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="0" pref="31" max="32767" attributes="0"/>
                           <Component id="btnRegistreraKund" min="-2" pref="34" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
-                          <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
+                          <Component id="felMeddelande" min="-2" pref="24" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="confirmMeddelande" pref="36" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
