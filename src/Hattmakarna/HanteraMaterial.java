@@ -45,7 +45,7 @@ private InfDB idb;
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLMaterialMangd.setText("Sätt materialmängd till 0 i lager");
+        jLMaterialMangd.setText("Sätt materialmängd till 0 i lager:");
 
         jLValjMaterial.setText("Välj material");
 
@@ -75,7 +75,7 @@ private InfDB idb;
                         .addComponent(jCMaterialNamn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(34, 34, 34)
                 .addComponent(jBAndra)
-                .addContainerGap(102, Short.MAX_VALUE))
+                .addContainerGap(100, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jLRubrik)
