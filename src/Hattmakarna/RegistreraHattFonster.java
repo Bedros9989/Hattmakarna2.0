@@ -15,7 +15,7 @@ public class RegistreraHattFonster extends javax.swing.JFrame {
 
     private InfDB idb;
     public byte[] pimage = null;
-    Connection conn = null;
+    private Connection conn = null;
     private ArrayList<Double> MaterialLista;
     private String bestallningsID;
 
@@ -81,7 +81,6 @@ public class RegistreraHattFonster extends javax.swing.JFrame {
     }
 
     public class DBConnect {
-
         public static Connection connect() {
             Connection con = null;
             try {

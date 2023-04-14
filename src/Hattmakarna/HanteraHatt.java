@@ -1,12 +1,11 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package Hattmakarna;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -14,13 +13,17 @@ import oru.inf.InfDB;
 import oru.inf.InfException;
 
 public class HanteraHatt extends javax.swing.JFrame {
+
     private InfDB idb;
-    
+    public byte[] pimage = null;
+    private Connection conn = null;
+
     public HanteraHatt(InfDB idb) {
         initComponents();
         this.idb = idb;
         HanteraHatt.this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         this.setLocationRelativeTo(null);
+        conn = RegistreraHattFonster.DBConnect.connect();
         cbSkapare.setEnabled(false);
         cbKategori.setEnabled(false);
         txtStorlek.setEnabled(false);
@@ -53,9 +56,24 @@ public class HanteraHatt extends javax.swing.JFrame {
         cbKategori.addItem("Studenthatt");
     }
 
+    public class DBConnect {
 
-    
-    
+        public static Connection connect() {
+            Connection con = null;
+            try {
+                Class.forName("com.mysql.jdbc.Driver");
+                con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hattmakare", "hattuser", "hattkey");
+            } catch (Exception e) {
+                System.out.println("inter.DBConnect.connect()");
+            }
+            return con;
+        }
+    }
+
+    public void hämtabild(byte[] pimage2) {
+        pimage = pimage2;
+    }
+
     
     
     
@@ -150,6 +168,11 @@ public class HanteraHatt extends javax.swing.JFrame {
         });
 
         btnUppdateraBild.setText("Uppdatera bild");
+        btnUppdateraBild.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUppdateraBildActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -260,9 +283,50 @@ public class HanteraHatt extends javax.swing.JFrame {
     }//GEN-LAST:event_btnHattListaActionPerformed
 
     private void btnSparaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSparaActionPerformed
-        // TODO add your handling code here:
+        try {
+            String hattID = txtHattID.getText();
+
+            // Establish a new connection to the BildData table
+            Connection bildDataConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/hattmakare", "hattuser", "hattkey");
+
+            // Insert the image data into the BildData table
+            PreparedStatement ps = bildDataConn.prepareStatement("UPDATE BildData SET bildData = ? WHERE HattID = ?");
+            ps.setBytes(1, pimage);
+            ps.setString(2, hattID);
+            ps.executeUpdate();
+
+            // Close the connection
+            bildDataConn.close();
+
+            JOptionPane.showMessageDialog(null, "Bilden har uppdaterats för hatt med ID: " + hattID);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Något gick fel");
+            System.out.println("Internt felmeddelande" + ex.getMessage());
+        }
     }//GEN-LAST:event_btnSparaActionPerformed
 
+//    
+//                String hattID = txtHattID.getText();
+//
+//            String SQLfraga = ("UPDATE `hatt` SET `BildData` = `?` WHERE hattID =`" + hattID + "`");
+//
+//           
+//            PreparedStatement pst = conn.prepareStatement(SQLfraga);
+//
+//            pst.setBytes(1, pimage);
+//            pst.execute();
+//    
+////          String q = "INSERT INTO `hatt`(`hattID`, `Storlek`,`Skapare`,`Kategori`,`Bestallning`,`Tillverkningstimmar`,`BildData`) VALUES (?,?,?,?,?,?,?)";
+//        pst.setString(1, lblHattIDPresentation.getText());
+//        pst.setString(2, txtHattStorlek.getText());
+//        pst.setString(3, personalID);
+//        pst.setString(4, cbHattKategori.getSelectedItem().toString());
+//        pst.setString(5, bestallningsID);
+//        pst.setString(6, txtTillverkningstimmar.getText());
+    
+    
+    
+    
     private void btnAndraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAndraActionPerformed
         cbSkapare.setEnabled(true);
         cbKategori.setEnabled(true);
@@ -284,30 +348,31 @@ public class HanteraHatt extends javax.swing.JFrame {
     }//GEN-LAST:event_txtTillverkningstimmarActionPerformed
 
     private void btnSokHattActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSokHattActionPerformed
-        
+
         try {
             String hattID = txtHattID.getText();
-            
-            
-            
-            
+
             fyllCbKategori();
             fyllCbSkapare();
-            
+
             btnAndra.setEnabled(true);
-            
-            
-            
-            
+
             ArrayList<String> existerandeHattar;
             existerandeHattar = idb.fetchColumn("select HattID from Hatt");
-            
-            if (!existerandeHattar.contains(hattID)){
-                
+
+            if (!existerandeHattar.contains(hattID)) {
                 JOptionPane.showMessageDialog(null, "Beställning med denna ID existerar inte!");
-            }else{
+            } else {
+
+                cbSkapare.setSelectedItem(idb.fetchSingle("SELECT Namn FROM Personal WHERE PersonalID = (Select PersonalID from personal where PersonalID = (select Skapare from Hatt where HattID = " + hattID + "))"));
+                cbKategori.setSelectedItem(idb.fetchSingle("SELECT Kategori FROM Hatt WHERE HattID = " + hattID));              
+                txtStorlek.setText(idb.fetchSingle("SELECT Storlek FROM Hatt WHERE HattID = " +hattID));
+                txtTillverkningstimmar.setText(idb.fetchSingle("SELECT Tillverkningstimmar FROM Hatt WHERE HattID = " +hattID));
+                txtBestallningsID.setText(idb.fetchSingle("SELECT Bestallning FROM Hatt WHERE HattID = " +hattID));
                 
-                cbSkapare.setSelectedItem("Select Namn from Personal where PersonalID = (Select PersonalID from personal where Personal = (select Skapare from Hatt where HattID = " + hattID + "))");
+
+                
+                
                 
 //            String hämtaAnsvarig = idb.fetchSingle("select Namn from Personal join Bestallning B on Personal.PersonalID = B.Personal where BestallningsID ="+bästID);
 //            ansvarig.setSelectedItem(hämtaAnsvarig);
@@ -324,10 +389,12 @@ public class HanteraHatt extends javax.swing.JFrame {
             }
         } catch (InfException ex) {
             Logger.getLogger(HanteraHatt.class.getName()).log(Level.SEVERE, null, ex);
-        }
-         
-                       
+        }                   
     }//GEN-LAST:event_btnSokHattActionPerformed
+
+    private void btnUppdateraBildActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUppdateraBildActionPerformed
+        new ValjBild().setVisible(true);
+    }//GEN-LAST:event_btnUppdateraBildActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
