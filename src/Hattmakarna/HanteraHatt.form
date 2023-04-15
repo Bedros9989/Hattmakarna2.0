@@ -67,8 +67,8 @@
                                   <Component id="txtHattID" alignment="1" max="32767" attributes="0"/>
                                   <Group type="102" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="btnUppdateraBild" min="-2" pref="115" max="-2" attributes="0"/>
-                                          <Component id="cbMaterial" alignment="0" min="-2" pref="198" max="-2" attributes="0"/>
+                                          <Component id="cbMaterial" min="-2" pref="198" max="-2" attributes="0"/>
+                                          <Component id="btnUppdateraBild" min="-2" pref="138" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   </Group>
