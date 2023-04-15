@@ -17,6 +17,8 @@ public class HanteraHatt extends javax.swing.JFrame {
     private InfDB idb;
     public byte[] pimage = null;
     private Connection conn = null;
+    private RegistreraHattFonster registrera;
+    private String bestallningsID =null;
 
     public HanteraHatt(InfDB idb) {
         initComponents();
@@ -289,21 +291,36 @@ public class HanteraHatt extends javax.swing.JFrame {
         try {
             String hattID = txtHattID.getText();
 
+            if (txtBestallningsID.getText().isEmpty()) {
+                        bestallningsID = null;
+                    } else {
+                        bestallningsID = txtBestallningsID.getText();
+                    }
+            
             String skapareString = cbSkapare.getSelectedItem().toString();
             String nySkapare = idb.fetchSingle("SELECT PersonalID FROM Personal WHERE Namn= '" + skapareString + "'");
             String nyKategori = cbKategori.getSelectedItem().toString();
             String nyStorlek = txtStorlek.getText();
             String nyTillverkningstimmar = txtTillverkningstimmar.getText();
-            String nyBestallning = txtBestallningsID.getText();
-
-            String SQLfraga = ("UPDATE hatt SET Skapare= " + nySkapare + ", Kategori= '" + nyKategori + "', Storlek= " + nyStorlek + ", Tillverkningstimmar= " + nyTillverkningstimmar + ", Bestallning= " + nyBestallning + " WHERE HattID= " + hattID);
-
-            idb.update(SQLfraga);
-
+            String nyBestallning = bestallningsID;
+                    
+            String q = "UPDATE hattmakare.Hatt t SET t.Storlek = ?, t.Skapare= ?,t.Kategori= ?,t.Tillverkningstimmar = ?,t.Bestallning= ?, t.BildData = ? WHERE t.HattID = ?";
+            PreparedStatement pst = conn.prepareStatement(q);
+            pst.setString(1, nyStorlek);
+            pst.setString(2, nySkapare);
+            pst.setString(3, nyKategori);
+            pst.setString(4, nyTillverkningstimmar);
+            pst.setString(5, nyBestallning);
+            pst.setBytes(6, pimage);
+            pst.setString(7, hattID);
+            pst.execute();
+            
             JOptionPane.showMessageDialog(null, ("Hatt " + hattID + " har uppdaterats"));
         } catch (InfException ex) {
             JOptionPane.showMessageDialog(null, "Något gick fel");
             System.out.println("Internt felmeddelande" + ex.getMessage());
+        } catch (SQLException ex) {
+            Logger.getLogger(HanteraHatt.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnSparaActionPerformed
 
@@ -357,7 +374,7 @@ public class HanteraHatt extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSokHattActionPerformed
 
     private void btnUppdateraBildActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUppdateraBildActionPerformed
-        new ValjBild().setVisible(true);
+        new ValjBild(registrera,this).setVisible(true);
     }//GEN-LAST:event_btnUppdateraBildActionPerformed
 
 

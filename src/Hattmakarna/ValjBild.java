@@ -22,8 +22,10 @@ public class ValjBild extends javax.swing.JFrame {
     private RegistreraHattFonster registrera;
     private HanteraHatt hantera;
 
-    public ValjBild() {
+    public ValjBild(RegistreraHattFonster registrera,HanteraHatt hantera) {
         initComponents();
+        this.registrera=registrera;
+        this.hantera=hantera;
         this.setLocationRelativeTo(null);
         ValjBild.this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         conn = ValjBild.DBConnect.connect();
@@ -35,27 +37,28 @@ public class ValjBild extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        väljBild = new javax.swing.JButton();
         spara = new javax.swing.JButton();
+        väljBild = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        väljBild.setText("Spara");
-        väljBild.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                väljBildActionPerformed(evt);
-            }
-        });
-
-        spara.setText("Välj en bild");
+        spara.setText("Spara");
         spara.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 sparaActionPerformed(evt);
+            }
+        });
+
+        väljBild.setText("Välj en bild");
+        väljBild.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                väljBildActionPerformed(evt);
             }
         });
 
@@ -70,9 +73,9 @@ public class ValjBild extends javax.swing.JFrame {
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 735, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addGap(49, 49, 49)
-                        .addComponent(spara, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(väljBild, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(väljBild, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(spara, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(18, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -82,8 +85,8 @@ public class ValjBild extends javax.swing.JFrame {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 572, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(väljBild, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(spara, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(spara, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(väljBild, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20))
         );
 
@@ -103,20 +106,7 @@ public class ValjBild extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private HanteraHatt getBildForm2(){
-        
-        HanteraHatt form = null;
-        for (Window window : Window.getWindows()){
-            if (window instanceof HanteraHatt){
-                form = (HanteraHatt) window;
-                break;
-            }
-            
-        }
-        return form;
-    }
-
-    private void sparaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sparaActionPerformed
+    private void väljBildActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_väljBildActionPerformed
 
         JFileChooser filechooser = new JFileChooser();
         filechooser.showOpenDialog(null);
@@ -142,28 +132,39 @@ public class ValjBild extends javax.swing.JFrame {
         }
 
 
-    }//GEN-LAST:event_sparaActionPerformed
+    }//GEN-LAST:event_väljBildActionPerformed
 
-    private void väljBildActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_väljBildActionPerformed
+    private void sparaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sparaActionPerformed
 
         int resultat = JOptionPane.showConfirmDialog(null, "Är du nöjd med bilden du har valt?", "Bekräfta bild", JOptionPane.YES_NO_OPTION);
 
         if (resultat == JOptionPane.YES_OPTION) {
-            RegistreraHattFonster hatt1 = getBildForm();
-            HanteraHatt hatt2 = getBildForm2();
-            registrera.hämtabild(pimage);
-            hantera.hämtabild(pimage);
-            if (this.registrera != null){
             
+            if (this.registrera != null){
+            registrera.hämtabild(pimage);
             }
 
             if (this.hantera != null){
-            
+            hantera.hämtabild(pimage);
             }
 
             dispose();
         }
-    }//GEN-LAST:event_väljBildActionPerformed
+        
+    }//GEN-LAST:event_sparaActionPerformed
+
+        private HanteraHatt getBildForm2(){
+        
+        HanteraHatt form = null;
+        for (Window window : Window.getWindows()){
+            if (window instanceof HanteraHatt){
+                form = (HanteraHatt) window;
+                break;
+            }
+            
+        }
+        return form;
+    }
 
     private RegistreraHattFonster getBildForm() {
 

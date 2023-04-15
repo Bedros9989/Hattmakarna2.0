@@ -18,6 +18,7 @@ public class RegistreraHattFonster extends javax.swing.JFrame {
     private Connection conn = null;
     private ArrayList<Double> MaterialLista;
     private String bestallningsID;
+    private HanteraHatt hantera;
 
     public RegistreraHattFonster(InfDB idb) {
         initComponents();
@@ -574,7 +575,7 @@ public class RegistreraHattFonster extends javax.swing.JFrame {
 
     private void hattBildActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hattBildActionPerformed
 
-        new ValjBild().setVisible(true);
+        new ValjBild(this,hantera).setVisible(true);
 
     }//GEN-LAST:event_hattBildActionPerformed
 
