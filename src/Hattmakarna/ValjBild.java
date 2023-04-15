@@ -19,6 +19,8 @@ public class ValjBild extends javax.swing.JFrame {
     int s = 0;
     public byte[] pimage = null;
     Connection conn = null;
+    private RegistreraHattFonster registrera;
+    private HanteraHatt hantera;
 
     public ValjBild() {
         initComponents();
@@ -101,6 +103,19 @@ public class ValjBild extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private HanteraHatt getBildForm2(){
+        
+        HanteraHatt form = null;
+        for (Window window : Window.getWindows()){
+            if (window instanceof HanteraHatt){
+                form = (HanteraHatt) window;
+                break;
+            }
+            
+        }
+        return form;
+    }
+
     private void sparaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sparaActionPerformed
 
         JFileChooser filechooser = new JFileChooser();
@@ -134,8 +149,18 @@ public class ValjBild extends javax.swing.JFrame {
         int resultat = JOptionPane.showConfirmDialog(null, "Är du nöjd med bilden du har valt?", "Bekräfta bild", JOptionPane.YES_NO_OPTION);
 
         if (resultat == JOptionPane.YES_OPTION) {
-            RegistreraHattFonster hatt = getBildForm();
-            hatt.hämtabild(pimage);
+            RegistreraHattFonster hatt1 = getBildForm();
+            HanteraHatt hatt2 = getBildForm2();
+            registrera.hämtabild(pimage);
+            hantera.hämtabild(pimage);
+            if (this.registrera != null){
+            
+            }
+
+            if (this.hantera != null){
+            
+            }
+
             dispose();
         }
     }//GEN-LAST:event_väljBildActionPerformed

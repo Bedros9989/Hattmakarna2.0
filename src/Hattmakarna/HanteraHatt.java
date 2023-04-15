@@ -15,6 +15,7 @@ import oru.inf.InfException;
 public class HanteraHatt extends javax.swing.JFrame {
 
     private InfDB idb;
+    public byte[] pimage = null;
     private Connection conn = null;
 
     public HanteraHatt(InfDB idb) {
@@ -32,8 +33,28 @@ public class HanteraHatt extends javax.swing.JFrame {
         txtMangd.setEnabled(false);
         btnAndra.setEnabled(false);
         btnSpara.setEnabled(false);
+        conn = DBConnect.connect();
     }
 
+     public class DBConnect {
+        public static Connection connect() {
+            Connection con = null;
+            try {
+                Class.forName("com.mysql.jdbc.Driver");
+                con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hattmakare", "hattuser", "hattkey");
+            } catch (Exception e) {
+                System.out.println("inter.DBConnect.connect()");
+            }
+            return con;
+        }
+    }
+
+     public void hämtabild(byte[] pimage2) {
+
+        pimage = pimage2;
+        jLabel1.setText("Test");
+    }
+     
     private void fyllCbSkapare() {
         try {
             ArrayList<String> allaPersonalNamn = idb.fetchColumn("Select namn from personal");
@@ -80,6 +101,7 @@ public class HanteraHatt extends javax.swing.JFrame {
         txtTillverkningstimmar = new javax.swing.JTextField();
         txtBestallningsID = new javax.swing.JTextField();
         btnUppdateraBild = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -149,16 +171,12 @@ public class HanteraHatt extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setText("jLabel1");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(103, 103, 103)
-                .addComponent(btnAndra, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnSpara, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -201,6 +219,14 @@ public class HanteraHatt extends javax.swing.JFrame {
                     .addComponent(btnHattLista, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtMangd))
                 .addGap(18, 18, 18))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(103, 103, 103)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel1)
+                    .addComponent(btnAndra, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(btnSpara, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -243,7 +269,9 @@ public class HanteraHatt extends javax.swing.JFrame {
                     .addComponent(lblMaterial)
                     .addComponent(cbMaterial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtMangd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(62, 62, 62)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel1)
+                .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAndra, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSpara, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -342,6 +370,7 @@ public class HanteraHatt extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cbKategori;
     private javax.swing.JComboBox<String> cbMaterial;
     private javax.swing.JComboBox<String> cbSkapare;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lblBestallningsID;
     private javax.swing.JLabel lblHattID;
     private javax.swing.JLabel lblKategori;
