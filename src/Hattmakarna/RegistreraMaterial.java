@@ -123,7 +123,7 @@ public class RegistreraMaterial extends javax.swing.JFrame {
         } else {
             try {
                 String mID = idb.getAutoIncrement("Material", "MaterialID");
-                idb.insert("INSERT INTO Kund VALUES (" + mID + ", '" + txtMaterialNamn.getText() + "', '" + txtEnhetsPris.getText() + "');");
+                idb.insert("INSERT INTO Material VALUES (" + mID + ", '" + txtMaterialNamn.getText() + "', '" + txtEnhetsPris.getText() + "');");
                 confirmMeddelande.setText("Ett nytt material har registrerats!");
             } catch (InfException exc) {
                 JOptionPane.showMessageDialog(null, "Något gick fel!");
