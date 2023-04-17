@@ -126,7 +126,7 @@ public class HanteraHatt extends javax.swing.JFrame {
             
             //Mängden före är samma som fältet nuvarandeMaterialMangd.
             String mangdEfter = txtMangdHatt.getText();
-            double mangdSkillnad = Double.parseDouble(mangdEfter) - Double.parseDouble(nuvarandeMaterialMangd); 
+            double mangdSkillnad = Double.parseDouble(nuvarandeMaterialMangd) - Double.parseDouble(mangdEfter); 
             
             ArrayList<String> allaAntal = new ArrayList<String>();
             ArrayList<String> allaMetervara = new ArrayList<String>();
@@ -142,7 +142,7 @@ public class HanteraHatt extends javax.swing.JFrame {
                 if (materialID.equals(idAntal)) {
                     String antal = idb.fetchSingle("SELECT antal FROM antalvara WHERE materialID= " +idAntal);
                     double antalDouble = Double.parseDouble(antal);                   
-                    double nyttAntal= antalDouble - mangdSkillnad;  
+                    double nyttAntal= antalDouble + mangdSkillnad;  
                     String nyttAntalString= String.valueOf(nyttAntal);
                     //Uppdatera antalcellen
                     idb.update("UPDATE antalvara SET antal= " +nyttAntalString+ " WHERE materialID= " +idAntal);
