@@ -186,18 +186,11 @@ private InfDB idb;
         String fraga3 = idb.fetchSingle("SELECT Meter FROM metervara WHERE MaterialID = '"+ materialID +"'");
         
         idb.update("UPDATE antalvara SET Antal = '"+mangd+"' + '"+fraga1+"' WHERE MaterialID = '"+ materialID +"'");
-        String nyttSaldo1 = idb.fetchSingle("SELECT Antal FROM antalvara");
-        JOptionPane.showMessageDialog(null, "Det nya saldot är "+nyttSaldo1+"");
-        
         idb.update("UPDATE kvadratmetervara SET Kvadratmeter = '"+mangd+"' + '"+fraga2+"' WHERE MaterialID = '"+ materialID +"'");
-        String nyttSaldo2 = idb.fetchSingle("SELECT Kvadratmeter FROM kvadratmetervara");
-        JOptionPane.showMessageDialog(null, "Det nya saldot är "+nyttSaldo2+"");
-        
         idb.update("UPDATE metervara SET Meter = '"+mangd+"' + '"+fraga3+"' WHERE MaterialID = '"+ materialID +"'");
-        String nyttSaldo3 = idb.fetchSingle("SELECT Meter FROM metervara");
-        JOptionPane.showMessageDialog(null, "Det nya saldot är "+nyttSaldo3+"");
+       
+        JOptionPane.showMessageDialog(null, "Nu har saldot fyllts på med "+mangd+"");
         
-     
      } 
     catch(InfException ex){
         Logger.getLogger(HanteraMaterial.class.getName()).log(Level.SEVERE, null, ex);
