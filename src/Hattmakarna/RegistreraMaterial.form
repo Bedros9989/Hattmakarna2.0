@@ -23,7 +23,7 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jLabel1" min="-2" pref="205" max="-2" attributes="0"/>
@@ -36,15 +36,28 @@
                           <EmptySpace max="32767" attributes="0"/>
                           <Component id="btnRegMaterial" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="lblMaterialNamn" pref="98" max="32767" attributes="0"/>
-                              <Component id="lblEnhetsPris" max="32767" attributes="0"/>
+                      <Group type="102" alignment="1" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="103" alignment="1" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="lblMaterialNamn" pref="98" max="32767" attributes="0"/>
+                                          <Component id="lblEnhetsPris" max="32767" attributes="0"/>
+                                      </Group>
+                                      <Component id="lblKvantTyp" alignment="0" min="-2" pref="98" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="77" pref="77" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="lblExtra" min="-2" pref="116" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
-                          <EmptySpace min="-2" pref="77" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="cbxTyp" max="32767" attributes="0"/>
                               <Component id="txtMaterialNamn" pref="168" max="32767" attributes="0"/>
                               <Component id="txtEnhetsPris" max="32767" attributes="0"/>
+                              <Component id="txtExtra" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -68,20 +81,24 @@
                   <Component id="lblEnhetsPris" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
                   <Component id="txtEnhetsPris" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
               </Group>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Component id="btnRegMaterial" min="-2" pref="36" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="63" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
-                      <Component id="felMeddelande" min="-2" pref="30" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="confirmMeddelande" min="-2" pref="29" max="-2" attributes="0"/>
-                      <EmptySpace pref="73" max="32767" attributes="0"/>
-                  </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="cbxTyp" pref="35" max="32767" attributes="0"/>
+                  <Component id="lblKvantTyp" max="32767" attributes="0"/>
               </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="txtExtra" pref="35" max="32767" attributes="0"/>
+                  <Component id="lblExtra" max="32767" attributes="0"/>
+              </Group>
+              <EmptySpace max="32767" attributes="0"/>
+              <Component id="felMeddelande" min="-2" pref="30" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="confirmMeddelande" min="-2" pref="29" max="-2" attributes="0"/>
+                  <Component id="btnRegMaterial" min="-2" pref="36" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -132,6 +149,41 @@
     <Component class="javax.swing.JLabel" name="felMeddelande">
     </Component>
     <Component class="javax.swing.JLabel" name="confirmMeddelande">
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblKvantTyp">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI" size="14" style="0"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Kvantitetstyp"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="cbxTyp">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="3">
+            <StringItem index="0" value="Kvadratmetervara"/>
+            <StringItem index="1" value="Antalvara"/>
+            <StringItem index="2" value="Metervara"/>
+          </StringArray>
+        </Property>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cbxTypActionPerformed"/>
+      </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblExtra">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI" size="14" style="0"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Kvadratmeter"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtExtra">
     </Component>
   </SubComponents>
 </Form>

@@ -24,6 +24,7 @@ private InfDB idb;
         initComponents();
         this.idb = idb;
         fillComboboxMaterialNamn();
+        fillComboboxMaterialNamnet();
         this.setLocationRelativeTo(null);
         HanteraMaterial.this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
@@ -42,6 +43,12 @@ private InfDB idb;
         jCMaterialNamn = new javax.swing.JComboBox<>();
         jBAndra = new javax.swing.JButton();
         jLRubrik = new javax.swing.JLabel();
+        jLFyllPa = new javax.swing.JLabel();
+        jLValj2 = new javax.swing.JLabel();
+        jCMaterialNamnet = new javax.swing.JComboBox<>();
+        jLabel3 = new javax.swing.JLabel();
+        jTLagerMangd = new javax.swing.JTextField();
+        jBFyllPa = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -61,25 +68,56 @@ private InfDB idb;
         jLRubrik.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLRubrik.setText("Hantera material");
 
+        jLFyllPa.setText("Fyll på befintligt material:");
+
+        jLValj2.setText("Välj material");
+
+        jCMaterialNamnet.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jLabel3.setText("Skriv mängd");
+
+        jBFyllPa.setText("Fyll på lagersaldo");
+        jBFyllPa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBFyllPaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLMaterialMangd)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLValjMaterial)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jCMaterialNamn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(34, 34, 34)
-                .addComponent(jBAndra)
-                .addContainerGap(100, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jLRubrik)
                 .addGap(130, 130, 130))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(27, 27, 27)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLFyllPa)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jLMaterialMangd, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(jLValjMaterial)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jCMaterialNamn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLValj2)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(jLabel3)
+                                        .addGap(58, 58, 58)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTLagerMangd, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jCMaterialNamnet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(34, 34, 34)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jBAndra)
+                            .addComponent(jBFyllPa))))
+                .addContainerGap(62, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -93,7 +131,22 @@ private InfDB idb;
                     .addComponent(jLValjMaterial)
                     .addComponent(jCMaterialNamn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jBAndra))
-                .addContainerGap(181, Short.MAX_VALUE))
+                .addGap(56, 56, 56)
+                .addComponent(jLFyllPa)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLValj2)
+                            .addComponent(jCMaterialNamnet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jBFyllPa)
+                        .addGap(4, 4, 4)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3)
+                    .addComponent(jTLagerMangd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
 
         pack();
@@ -118,7 +171,47 @@ private InfDB idb;
        
     }//GEN-LAST:event_jBAndraActionPerformed
 
-     private void fillComboboxMaterialNamn(){ 
+    private void jBFyllPaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBFyllPaActionPerformed
+        // TODO add your handling code here:
+       //if(ValideringsKlass.rutanÄrTom(jTLagerMangd))
+       String materialNamn = jCMaterialNamnet.getSelectedItem().toString();
+       String mangd = jTLagerMangd.getText();
+       double mangdDouble = Double.parseDouble(mangd);
+       String materialID = ("");
+     
+     try{
+        materialID = idb.fetchSingle("SELECT MaterialID from Material WHERE Materialnamn = '"+ materialNamn + "'");
+        String fraga1 = idb.fetchSingle("SELECT Antal FROM antalvara WHERE MaterialID = '"+ materialID +"'");
+        String fraga2 = idb.fetchSingle("SELECT Kvadratmeter FROM kvadratmetervara WHERE MaterialID = '"+ materialID +"'");
+        String fraga3 = idb.fetchSingle("SELECT Meter FROM metervara WHERE MaterialID = '"+ materialID +"'");
+        ArrayList<String> sqlfraga1 = idb.fetchColumn("SELECT MaterialID from antalvara");
+        ArrayList<String> sqlfraga2 = idb.fetchColumn("SELECT MaterialID from kvadratmetervara");
+        ArrayList<String> sqlfraga3 = idb.fetchColumn("SELECT MaterialID from metervara");
+        String nymangd1 = idb.fetchSingle("SELECT Antal from Antalvara");
+        String nymangd2 = idb.fetchSingle("SELECT Kvadratmeter from kvadratmetervara");
+        String nymangd3 = idb.fetchSingle("SELECT Meter from metervara");
+        
+        if(materialID == sqlfraga1)
+        idb.update("UPDATE antalvara SET Antal = '"+mangd+"' + '"+fraga1+"' WHERE MaterialID = '"+ materialID +"'");
+        JOptionPane.showMessageDialog(null, "Nu är det nya lagersaldot "+nymangd1+"");
+        
+        if(sqlfraga2.contains(materialID))
+        idb.update("UPDATE kvadratmetervara SET Kvadratmeter = '"+mangd+"' + '"+fraga2+"' WHERE MaterialID = '"+ materialID +"'");
+        JOptionPane.showMessageDialog(null, "Nu är det nya lagersaldot "+nymangd2+"");
+        
+        if(sqlfraga3.contains(materialID))
+        idb.update("UPDATE metervara SET Meter = '"+mangd+"' + '"+fraga3+"' WHERE MaterialID = '"+ materialID +"'");
+        JOptionPane.showMessageDialog(null, "Nu är det nya lagersaldot "+nymangd3+"");
+        
+              
+     } 
+    catch(InfException ex){
+        Logger.getLogger(HanteraMaterial.class.getName()).log(Level.SEVERE, null, ex);
+    }
+       
+    }//GEN-LAST:event_jBFyllPaActionPerformed
+
+    private void fillComboboxMaterialNamn(){ 
     jCMaterialNamn.removeAllItems();
     String fraga = "SELECT MaterialNamn FROM Material";
     
@@ -134,12 +227,35 @@ private InfDB idb;
         Logger.getLogger(HanteraMaterial.class.getName()).log(Level.SEVERE, null, ex);
         }
     } 
+     
+    private void fillComboboxMaterialNamnet(){ 
+    jCMaterialNamnet.removeAllItems();
+    String fraga = "SELECT MaterialNamn FROM Material";
+    
+    ArrayList<String> MaterialNamnLista = new ArrayList<String>();
+    try {
+    MaterialNamnLista= idb.fetchColumn(fraga);
+    
+    for(String material: MaterialNamnLista)
+    {
+      jCMaterialNamnet.addItem(material);
+    }
+    }   catch (InfException ex){
+        Logger.getLogger(HanteraMaterial.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    } 
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBAndra;
+    private javax.swing.JButton jBFyllPa;
     private javax.swing.JComboBox<String> jCMaterialNamn;
+    private javax.swing.JComboBox<String> jCMaterialNamnet;
+    private javax.swing.JLabel jLFyllPa;
     private javax.swing.JLabel jLMaterialMangd;
     private javax.swing.JLabel jLRubrik;
+    private javax.swing.JLabel jLValj2;
     private javax.swing.JLabel jLValjMaterial;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JTextField jTLagerMangd;
     // End of variables declaration//GEN-END:variables
 }
