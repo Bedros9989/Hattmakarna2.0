@@ -77,6 +77,7 @@ public class RegistreraMaterial extends javax.swing.JFrame {
         });
 
         lblExtra.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblExtra.setText("Kvadratmeter");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
