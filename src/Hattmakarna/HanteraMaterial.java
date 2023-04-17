@@ -186,10 +186,18 @@ private InfDB idb;
         String fraga3 = idb.fetchSingle("SELECT Meter FROM metervara WHERE MaterialID = '"+ materialID +"'");
         
         idb.update("UPDATE antalvara SET Antal = '"+mangd+"' + '"+fraga1+"' WHERE MaterialID = '"+ materialID +"'");
-        idb.update("UPDATE kvadratmetervara SET Kvadratmeter = '"+mangd+"' + '"+fraga2+"' WHERE MaterialID = '"+ materialID +"'");
-        idb.update("UPDATE metervara SET Meter = '"+mangd+"' + '"+fraga3+"' WHERE MaterialID = '"+ materialID +"'");
+        String nyttSaldo1 = idb.fetchSingle("SELECT Antal FROM antalvara");
+        JOptionPane.showMessageDialog(null, "Det nya saldot är "+nyttSaldo1+"");
         
-        JOptionPane.showMessageDialog(null, "Nu har saldot fyllts på med "+mangd+"");
+        idb.update("UPDATE kvadratmetervara SET Kvadratmeter = '"+mangd+"' + '"+fraga2+"' WHERE MaterialID = '"+ materialID +"'");
+        String nyttSaldo2 = idb.fetchSingle("SELECT Kvadratmeter FROM kvadratmetervara");
+        JOptionPane.showMessageDialog(null, "Det nya saldot är "+nyttSaldo2+"");
+        
+        idb.update("UPDATE metervara SET Meter = '"+mangd+"' + '"+fraga3+"' WHERE MaterialID = '"+ materialID +"'");
+        String nyttSaldo3 = idb.fetchSingle("SELECT Meter FROM metervara");
+        JOptionPane.showMessageDialog(null, "Det nya saldot är "+nyttSaldo3+"");
+        
+     
      } 
     catch(InfException ex){
         Logger.getLogger(HanteraMaterial.class.getName()).log(Level.SEVERE, null, ex);
@@ -197,7 +205,7 @@ private InfDB idb;
        
     }//GEN-LAST:event_jBFyllPaActionPerformed
 
-     private void fillComboboxMaterialNamn(){ 
+    private void fillComboboxMaterialNamn(){ 
     jCMaterialNamn.removeAllItems();
     String fraga = "SELECT MaterialNamn FROM Material";
     
