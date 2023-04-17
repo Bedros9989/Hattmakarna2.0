@@ -184,23 +184,23 @@ private InfDB idb;
         String fraga1 = idb.fetchSingle("SELECT Antal FROM antalvara WHERE MaterialID = '"+ materialID +"'");
         String fraga2 = idb.fetchSingle("SELECT Kvadratmeter FROM kvadratmetervara WHERE MaterialID = '"+ materialID +"'");
         String fraga3 = idb.fetchSingle("SELECT Meter FROM metervara WHERE MaterialID = '"+ materialID +"'");
-        String sqlfraga1 = idb.fetchSingle("SELECT MaterialID from antalvara");
-        String sqlfraga2 = idb.fetchSingle("SELECT MaterialID from kvadratmetervara");
-        String sqlfraga3 = idb.fetchSingle("SELECT MaterialID from metervara");
-        
-        if(materialID.equals(sqlfraga1))
-        idb.update("UPDATE antalvara SET Antal = '"+mangd+"' + '"+fraga1+"' WHERE MaterialID = '"+ materialID +"'");
+        ArrayList<String> sqlfraga1 = idb.fetchColumn("SELECT MaterialID from antalvara");
+        ArrayList<String> sqlfraga2 = idb.fetchColumn("SELECT MaterialID from kvadratmetervara");
+        ArrayList<String> sqlfraga3 = idb.fetchColumn("SELECT MaterialID from metervara");
         String nymangd1 = idb.fetchSingle("SELECT Antal from Antalvara");
+        String nymangd2 = idb.fetchSingle("SELECT Kvadratmeter from kvadratmetervara");
+        String nymangd3 = idb.fetchSingle("SELECT Meter from metervara");
+        
+        if(materialID == sqlfraga1)
+        idb.update("UPDATE antalvara SET Antal = '"+mangd+"' + '"+fraga1+"' WHERE MaterialID = '"+ materialID +"'");
         JOptionPane.showMessageDialog(null, "Nu är det nya lagersaldot "+nymangd1+"");
         
-        if(materialID.equals(sqlfraga2))
+        if(sqlfraga2.contains(materialID))
         idb.update("UPDATE kvadratmetervara SET Kvadratmeter = '"+mangd+"' + '"+fraga2+"' WHERE MaterialID = '"+ materialID +"'");
-        String nymangd2 = idb.fetchSingle("SELECT Kvadratmeter from kvadratmetervara");
         JOptionPane.showMessageDialog(null, "Nu är det nya lagersaldot "+nymangd2+"");
         
-        if(materialID.equals(sqlfraga3))
+        if(sqlfraga3.contains(materialID))
         idb.update("UPDATE metervara SET Meter = '"+mangd+"' + '"+fraga3+"' WHERE MaterialID = '"+ materialID +"'");
-        String nymangd3 = idb.fetchSingle("SELECT Meter from metervara");
         JOptionPane.showMessageDialog(null, "Nu är det nya lagersaldot "+nymangd3+"");
         
               
