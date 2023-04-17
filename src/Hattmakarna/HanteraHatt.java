@@ -116,7 +116,7 @@ public class HanteraHatt extends javax.swing.JFrame {
 
     private void uppdateraMaterial() {
         try {
-            if (!cbMaterialHatt.getSelectedItem().toString().isEmpty() && !txtMangdHatt.getText().isEmpty()) {
+            if (cbMaterialHatt.getSelectedItem() != null && !txtMangdHatt.getText().isEmpty()) {
 
                 String materialNamn = cbMaterialHatt.getSelectedItem().toString();
                 String materialID = idb.fetchSingle("SELECT materialID FROM material WHERE materialnamn= '" + materialNamn + "'");
@@ -177,7 +177,7 @@ public class HanteraHatt extends javax.swing.JFrame {
 
     private void uppdateraHattMaterial() {
         try {
-            if (!cbMaterialHatt.getSelectedItem().toString().isEmpty() && !txtMangdHatt.getText().isEmpty()) {
+            if (cbMaterialHatt.getSelectedItem() != null && !txtMangdHatt.getText().isEmpty()) {
 
                 String hattID = txtHattID.getText();
 
