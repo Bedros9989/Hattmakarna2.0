@@ -83,15 +83,15 @@ public class HanteraHatt extends javax.swing.JFrame {
     private void fyllCbMaterialHatt() {
         try {
             String hattID = txtHattID.getText();
-            
-            ArrayList<String> hattMaterial = idb.fetchColumn("SELECT materialnamn FROM material where materialID in (SELECT material FROM hattmaterial WHERE hatt= " +hattID+ ")");
+
+            ArrayList<String> hattMaterial = idb.fetchColumn("SELECT materialnamn FROM material where materialID in (SELECT material FROM hattmaterial WHERE hatt= " + hattID + ")");
             Collections.sort(hattMaterial);
 
             for (String ettMaterial : hattMaterial) {
                 cbMaterialHatt.addItem(ettMaterial);
             }
             cbMaterialHatt.setSelectedIndex(-1);
-            
+
         } catch (InfException ex) {
             JOptionPane.showMessageDialog(null, "Något gick fel");
             System.out.println("Internt felmeddelande" + ex.getMessage());
@@ -107,82 +107,86 @@ public class HanteraHatt extends javax.swing.JFrame {
                 cbMaterialLager.addItem(ettMaterial);
             }
             cbMaterialLager.setSelectedIndex(-1);
-            
+
         } catch (InfException ex) {
             JOptionPane.showMessageDialog(null, "Något gick fel");
             System.out.println("Internt felmeddelande" + ex.getMessage());
         }
     }
 
-    private void uppdateraMaterial(){
+    private void uppdateraMaterial() {
         try {
-            String materialNamn = cbMaterialHatt.getSelectedItem().toString();
-            String materialID = idb.fetchSingle("SELECT materialID FROM material WHERE materialnamn= '" +materialNamn+ "'");
-            String materialMangd = txtMangdHatt.getText();
-            
-            //Mängden före är samma som fältet nuvarandeMaterialMangd.
-            String mangdEfter = txtMangdHatt.getText();
-            double mangdSkillnad = Double.parseDouble(nuvarandeMaterialMangd) - Double.parseDouble(mangdEfter); 
-            
-            ArrayList<String> allaAntal = new ArrayList<String>();
-            ArrayList<String> allaMetervara = new ArrayList<String>();
-            ArrayList<String> allaKvadratmetervara= new ArrayList<String>();
-            String fragaAntal = "SELECT materialID FROM antalvara";
-            String fragaMetervara = "SELECT materialID FROM metervara";
-            String fragaKvadratmetervara = "SELECT materialID FROM kvadratmetervara";
-            allaAntal = idb.fetchColumn(fragaAntal);
-            allaMetervara = idb.fetchColumn(fragaMetervara);
-            allaKvadratmetervara = idb.fetchColumn(fragaKvadratmetervara);
+            if (!cbMaterialHatt.getSelectedItem().toString().isEmpty() && !txtMangdHatt.getText().isEmpty()) {
 
-            for (String idAntal : allaAntal) {
-                if (materialID.equals(idAntal)) {
-                    String antal = idb.fetchSingle("SELECT antal FROM antalvara WHERE materialID= " +idAntal);
-                    double antalDouble = Double.parseDouble(antal);                   
-                    double nyttAntal= antalDouble + mangdSkillnad;  
-                    String nyttAntalString= String.valueOf(nyttAntal);
-                    //Uppdatera antalcellen
-                    idb.update("UPDATE antalvara SET antal= " +nyttAntalString+ " WHERE materialID= " +idAntal);
+                String materialNamn = cbMaterialHatt.getSelectedItem().toString();
+                String materialID = idb.fetchSingle("SELECT materialID FROM material WHERE materialnamn= '" + materialNamn + "'");
+                String materialMangd = txtMangdHatt.getText();
+
+                //Mängden före är samma som fältet nuvarandeMaterialMangd.
+                String mangdEfter = txtMangdHatt.getText();
+                double mangdSkillnad = Double.parseDouble(nuvarandeMaterialMangd) - Double.parseDouble(mangdEfter);
+
+                ArrayList<String> allaAntal = new ArrayList<String>();
+                ArrayList<String> allaMetervara = new ArrayList<String>();
+                ArrayList<String> allaKvadratmetervara = new ArrayList<String>();
+                String fragaAntal = "SELECT materialID FROM antalvara";
+                String fragaMetervara = "SELECT materialID FROM metervara";
+                String fragaKvadratmetervara = "SELECT materialID FROM kvadratmetervara";
+                allaAntal = idb.fetchColumn(fragaAntal);
+                allaMetervara = idb.fetchColumn(fragaMetervara);
+                allaKvadratmetervara = idb.fetchColumn(fragaKvadratmetervara);
+
+                for (String idAntal : allaAntal) {
+                    if (materialID.equals(idAntal)) {
+                        String antal = idb.fetchSingle("SELECT antal FROM antalvara WHERE materialID= " + idAntal);
+                        double antalDouble = Double.parseDouble(antal);
+                        double nyttAntal = antalDouble + mangdSkillnad;
+                        String nyttAntalString = String.valueOf(nyttAntal);
+                        //Uppdatera antalcellen
+                        idb.update("UPDATE antalvara SET antal= " + nyttAntalString + " WHERE materialID= " + idAntal);
+                    }
+                }
+
+                for (String idMetervara : allaMetervara) {
+                    if (materialID.equals(idMetervara)) {
+                        String meter = idb.fetchSingle("SELECT meter FROM metervara WHERE materialID= " + idMetervara);
+                        double meterDouble = Double.parseDouble(meter);
+                        double nyttMeter = meterDouble + mangdSkillnad;
+                        String nyttMeterString = String.valueOf(nyttMeter);
+                        //Uppdatera antalcellen
+                        idb.update("UPDATE metervara SET meter= " + nyttMeterString + " WHERE materialID= " + idMetervara);
+                    }
+                }
+
+                for (String idKvadratmetervara : allaKvadratmetervara) {
+                    if (materialID.equals(idKvadratmetervara)) {
+                        String kvadratmeter = idb.fetchSingle("SELECT kvadratmeter FROM kvadratmetervara WHERE materialID= " + idKvadratmetervara);
+                        double kvadratmeterDouble = Double.parseDouble(kvadratmeter);
+                        double nyttKvadratmeter = kvadratmeterDouble + mangdSkillnad;
+                        String nyttKvadratmeterString = String.valueOf(nyttKvadratmeter);
+                        //Uppdatera antalcellen
+                        idb.update("UPDATE kvadratmetervara SET kvadratmeter= " + nyttKvadratmeterString + " WHERE materialID= " + idKvadratmetervara);
+                    }
                 }
             }
-
-            for (String idMetervara : allaMetervara) {
-                if (materialID.equals(idMetervara)) {
-                    String meter = idb.fetchSingle("SELECT meter FROM metervara WHERE materialID= " +idMetervara);
-                    double meterDouble = Double.parseDouble(meter);                   
-                    double nyttMeter= meterDouble + mangdSkillnad;  
-                    String nyttMeterString= String.valueOf(nyttMeter);
-                    //Uppdatera antalcellen
-                    idb.update("UPDATE metervara SET meter= " +nyttMeterString+ " WHERE materialID= " +idMetervara);
-                }
-            }
-
-            for (String idKvadratmetervara : allaKvadratmetervara) {
-                if (materialID.equals(idKvadratmetervara)) {
-                    String kvadratmeter = idb.fetchSingle("SELECT kvadratmeter FROM kvadratmetervara WHERE materialID= " +idKvadratmetervara);
-                    double kvadratmeterDouble = Double.parseDouble(kvadratmeter);                   
-                    double nyttKvadratmeter= kvadratmeterDouble + mangdSkillnad;  
-                    String nyttKvadratmeterString= String.valueOf(nyttKvadratmeter);
-                    //Uppdatera antalcellen
-                    idb.update("UPDATE kvadratmetervara SET kvadratmeter= " +nyttKvadratmeterString+ " WHERE materialID= " +idKvadratmetervara);
-                }
-            }         
         } catch (InfException ex) {
             JOptionPane.showMessageDialog(null, "Något gick fel");
             System.out.println("Internt felmeddelande" + ex.getMessage());
         }
-        
     }
-    
+
     private void uppdateraHattMaterial() {
         try {
-            String hattID = txtHattID.getText();
-            
-            String materialNamn = cbMaterialHatt.getSelectedItem().toString();
-            String materialID = idb.fetchSingle("SELECT materialID FROM material WHERE materialnamn= '" + materialNamn + "'");
-            String materialMangd = txtMangdHatt.getText();
-            
-            idb.update("UPDATE hattmaterial SET mangd= " +materialMangd+ " WHERE material= " +materialID+ " AND hatt= " +hattID);
-               
+            if (!cbMaterialHatt.getSelectedItem().toString().isEmpty() && !txtMangdHatt.getText().isEmpty()) {
+
+                String hattID = txtHattID.getText();
+
+                String materialNamn = cbMaterialHatt.getSelectedItem().toString();
+                String materialID = idb.fetchSingle("SELECT materialID FROM material WHERE materialnamn= '" + materialNamn + "'");
+                String materialMangd = txtMangdHatt.getText();
+
+                idb.update("UPDATE hattmaterial SET mangd= " + materialMangd + " WHERE material= " + materialID + " AND hatt= " + hattID);
+            }
         } catch (InfException ex) {
             JOptionPane.showMessageDialog(null, "Något gick fel");
             System.out.println("Internt felmeddelande" + ex.getMessage());
@@ -427,9 +431,8 @@ public class HanteraHatt extends javax.swing.JFrame {
         try {
             String hattID = txtHattID.getText();
             
-            //Uppdaterar materialtabellen
+            //Uppdaterar materialtabellen och hattmaterialtabellen
             uppdateraMaterial();
-            //Uppdaterar hattmaterialtabellen
             uppdateraHattMaterial();
 
             if (txtBestallningsID.getText().isEmpty()) {
