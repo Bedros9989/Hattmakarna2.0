@@ -24,7 +24,6 @@ private InfDB idb;
         initComponents();
         this.idb = idb;
         fillComboboxMaterialNamn();
-        fillComboboxMaterialNamnet();
         this.setLocationRelativeTo(null);
         HanteraMaterial.this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
@@ -234,22 +233,6 @@ private InfDB idb;
 
     private void fillComboboxMaterialNamn(){ 
     jCMaterialNamn.removeAllItems();
-    String fraga = "SELECT MaterialNamn FROM Material";
-    
-    ArrayList<String> MaterialNamnLista = new ArrayList<String>();
-    try {
-    MaterialNamnLista= idb.fetchColumn(fraga);
-    
-    for(String material: MaterialNamnLista)
-    {
-      jCMaterialNamn.addItem(material);
-    }
-    }   catch (InfException ex){
-        Logger.getLogger(HanteraMaterial.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    } 
-     
-    private void fillComboboxMaterialNamnet(){ 
     jCMaterialNamnet.removeAllItems();
     String fraga = "SELECT MaterialNamn FROM Material";
     
@@ -259,12 +242,15 @@ private InfDB idb;
     
     for(String material: MaterialNamnLista)
     {
+      jCMaterialNamn.addItem(material);
       jCMaterialNamnet.addItem(material);
     }
     }   catch (InfException ex){
         Logger.getLogger(HanteraMaterial.class.getName()).log(Level.SEVERE, null, ex);
         }
     } 
+     
+  
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBAndra;
