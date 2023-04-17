@@ -181,11 +181,13 @@ private InfDB idb;
      
      try{
         materialID = idb.fetchSingle("SELECT MaterialID from Material WHERE Materialnamn = '"+ materialNamn + "'");
-        String fraga = idb.fetchSingle("SELECT Antal FROM antalvara");
+        String fraga1 = idb.fetchSingle("SELECT Antal FROM antalvara");
+        String fraga2 = idb.fetchSingle("SELECT Kvadratmeter FROM kvadratmetervara");
+        String fraga3 = idb.fetchSingle("SELECT Meter FROM metervara");
         
-        idb.update("UPDATE antalvara SET Antal = '"+mangd+"' + '"+fraga+"' WHERE MaterialID = '"+ materialID +"'");
-        //idb.update("UPDATE kvadratmetervara SET Kvadratmeter = '"+mangd+"' WHERE MaterialID = '"+ materialID +"'");
-       // idb.update("UPDATE metervara SET Meter = '"+mangd+"' WHERE MaterialID = '"+ materialID +"'");
+        idb.update("UPDATE antalvara SET Antal = '"+mangd+"' + '"+fraga1+"' WHERE MaterialID = '"+ materialID +"'");
+        idb.update("UPDATE kvadratmetervara SET Kvadratmeter = '"+mangd+"' + '"+fraga2+"' WHERE MaterialID = '"+ materialID +"'");
+        idb.update("UPDATE metervara SET Meter = '"+mangd+"' + '"+fraga3+"' WHERE MaterialID = '"+ materialID +"'");
         
         JOptionPane.showMessageDialog(null, "Nu har saldot fyllts på med "+mangd+"");
      } 
