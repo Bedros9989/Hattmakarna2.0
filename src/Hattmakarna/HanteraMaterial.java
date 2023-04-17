@@ -175,6 +175,8 @@ private InfDB idb;
         // TODO add your handling code here:
        //if(ValideringsKlass.rutanÄrTom(jTLagerMangd))
        ArrayList<String> sqlfraga1 = new ArrayList<String>();
+       ArrayList<String> sqlfraga2 = new ArrayList<String>();
+       ArrayList<String> sqlfraga3 = new ArrayList<String>();
        String materialNamn = jCMaterialNamnet.getSelectedItem().toString();
        String mangd = jTLagerMangd.getText();
        double mangdDouble = Double.parseDouble(mangd);
@@ -185,26 +187,43 @@ private InfDB idb;
     
         materialID = idb.fetchSingle("SELECT MaterialID from Material WHERE Materialnamn = '"+ materialNamn + "'");
         String fraga1 = idb.fetchSingle("SELECT Antal FROM antalvara WHERE MaterialID = '"+ materialID +"'");
-        //String fraga2 = idb.fetchSingle("SELECT Kvadratmeter FROM kvadratmetervara WHERE MaterialID = '"+ materialID +"'");
-        //String fraga3 = idb.fetchSingle("SELECT Meter FROM metervara WHERE MaterialID = '"+ materialID +"'");
-           sqlfraga1 = idb.fetchColumn("SELECT MaterialID FROM antalvara");
-           String nymangd1 = idb.fetchSingle("SELECT Antal FROM antalvara");
+        String fraga2 = idb.fetchSingle("SELECT Kvadratmeter FROM kvadratmetervara WHERE MaterialID = '"+ materialID +"'");
+        String fraga3 = idb.fetchSingle("SELECT Meter FROM metervara WHERE MaterialID = '"+ materialID +"'");
+        sqlfraga1 = idb.fetchColumn("SELECT MaterialID FROM antalvara");
+        sqlfraga2 = idb.fetchColumn("SELECT MaterialID FROM kvadratmetervara");
+        sqlfraga3 = idb.fetchColumn("SELECT MaterialID FROM metervara");
+           
 
-          for(String antal: sqlfraga1) { 
-          if(materialID.equals(sqlfraga1) && !jTLagerMangd.getText().isEmpty())
+          for(String antal1: sqlfraga1) { 
+          if(materialID.equals(antal1))
             {
                idb.update("UPDATE antalvara SET Antal = '"+mangd+"' + '"+fraga1+"' WHERE MaterialID = '"+ materialID +"'");
-               
+               String nymangd1 = idb.fetchSingle("SELECT Antal FROM antalvara");
                JOptionPane.showMessageDialog(null, "Nytt saldo är "+nymangd1+"");
             }
+          
           }
-        //idb.update("UPDATE antalvara SET Antal = '"+mangd+"' + '"+fraga1+"' WHERE MaterialID = '"+ materialID +"'");
-       // idb.update("UPDATE kvadratmetervara SET Kvadratmeter = '"+mangd+"' + '"+fraga2+"' WHERE MaterialID = '"+ materialID +"'");
-        //idb.update("UPDATE metervara SET Meter = '"+mangd+"' + '"+fraga3+"' WHERE MaterialID = '"+ materialID +"'");
+          
+           for(String antal2: sqlfraga2) { 
+           if(materialID.equals(antal2))
+           {
+               idb.update("UPDATE kvadratmetervara SET Kvadratmeter = '"+mangd+"' + '"+fraga2+"' WHERE MaterialID = '"+ materialID +"'");
+               String nymangd2 = idb.fetchSingle("SELECT kvadratmeter FROM Kvadratmetervara");
+               JOptionPane.showMessageDialog(null, "Nytt saldo är "+nymangd2+"");
+           }
+          }
+          
+           for(String antal3: sqlfraga3) { 
+           if(materialID.equals(antal3))
+           {
+               idb.update("UPDATE metervara SET Meter = '"+mangd+"' + '"+fraga3+"' WHERE MaterialID = '"+ materialID +"'");
         
-        //JOptionPane.showMessageDialog(null, "Nu har saldo fyllts på med "+mangd+"");
-        
-              
+               String nymangd3 = idb.fetchSingle("SELECT Meter FROM metervara");
+               JOptionPane.showMessageDialog(null, "Nytt saldo är "+nymangd3+"");
+           }
+          }
+ 
+             
      } 
     catch(InfException ex){
         Logger.getLogger(HanteraMaterial.class.getName()).log(Level.SEVERE, null, ex);
