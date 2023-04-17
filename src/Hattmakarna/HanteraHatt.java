@@ -1,5 +1,7 @@
 package Hattmakarna;
 
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -19,13 +21,13 @@ public class HanteraHatt extends javax.swing.JFrame {
     private Connection conn = null;
     private RegistreraHattFonster registrera;
     private String bestallningsID =null;
+    private String nuvarandeMaterialMangd =null;
 
     public HanteraHatt(InfDB idb) {
         initComponents();
         this.idb = idb;
         HanteraHatt.this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         this.setLocationRelativeTo(null);
-        fyllCbMaterialLager();
         cbSkapare.setEnabled(false);
         cbKategori.setEnabled(false);
         txtStorlek.setEnabled(false);
@@ -88,6 +90,8 @@ public class HanteraHatt extends javax.swing.JFrame {
             for (String ettMaterial : hattMaterial) {
                 cbMaterialHatt.addItem(ettMaterial);
             }
+            cbMaterialHatt.setSelectedIndex(-1);
+            
         } catch (InfException ex) {
             JOptionPane.showMessageDialog(null, "Något gick fel");
             System.out.println("Internt felmeddelande" + ex.getMessage());
@@ -96,18 +100,90 @@ public class HanteraHatt extends javax.swing.JFrame {
 
     private void fyllCbMaterialLager() {
         try {
-            ArrayList<String> allaMaterial = idb.fetchColumn("Select materialnamn from material");
+            ArrayList<String> allaMaterial = idb.fetchColumn("SELECT materialnamn FROM material");
             Collections.sort(allaMaterial);
 
             for (String ettMaterial : allaMaterial) {
                 cbMaterialLager.addItem(ettMaterial);
             }
+            cbMaterialLager.setSelectedIndex(-1);
+            
         } catch (InfException ex) {
             JOptionPane.showMessageDialog(null, "Något gick fel");
             System.out.println("Internt felmeddelande" + ex.getMessage());
         }
     }
 
+    private void uppdateraMaterialHatt(){
+        
+        try {
+            String materialNamn = cbMaterialHatt.getSelectedItem().toString();
+            String materialID = idb.fetchSingle("SELECT materialID FROM material WHERE materialnamn= '" +materialNamn+ "'");
+            String materialMangd = txtMangdHatt.getText();
+            
+            
+            //Uppdaterar materialtabellen!
+            
+            //Mängden före är samma som fältet nuvarandeMaterialMangd.
+            String mangdEfter = txtMangdHatt.getText();
+            double mangdSkillnad = Double.parseDouble(mangdEfter) - Double.parseDouble(nuvarandeMaterialMangd); 
+            
+            ArrayList<String> allaAntal = new ArrayList<String>();
+            ArrayList<String> allaMetervara = new ArrayList<String>();
+            ArrayList<String> allaKvadratmetervara= new ArrayList<String>();
+            String fragaAntal = "SELECT materialID FROM antalvara";
+            String fragaMetervara = "SELECT materialID FROM metervara";
+            String fragaKvadratmetervara = "SELECT materialID FROM kvadratmetervara";
+            allaAntal = idb.fetchColumn(fragaAntal);
+            allaMetervara = idb.fetchColumn(fragaMetervara);
+            allaKvadratmetervara = idb.fetchColumn(fragaKvadratmetervara);
+
+            for (String idAntal : allaAntal) {
+                if (materialID.equals(idAntal)) {
+                    String antal = idb.fetchSingle("SELECT antal FROM antalvara WHERE materialID= " +idAntal);
+                    double antalDouble = Double.parseDouble(antal);                   
+                    double nyttAntal= antalDouble + mangdSkillnad;  
+                    String nyttAntalString= String.valueOf(nyttAntal);
+                    //Uppdatera antalcellen
+                    idb.update("UPDATE antalvara SET antal= " +nyttAntalString+ " WHERE materialID= " +idAntal);
+                }
+            }
+
+            for (String idMetervara : allaMetervara) {
+                if (materialID.equals(idMetervara)) {
+                    String meter = idb.fetchSingle("SELECT meter FROM metervara WHERE materialID= " +idMetervara);
+                    double meterDouble = Double.parseDouble(meter);                   
+                    double nyttMeter= meterDouble + mangdSkillnad;  
+                    String nyttMeterString= String.valueOf(nyttMeter);
+                    //Uppdatera antalcellen
+                    idb.update("UPDATE metervara SET meter= " +nyttMeterString+ " WHERE materialID= " +idMetervara);
+                }
+            }
+
+            for (String idKvadratmetervara : allaKvadratmetervara) {
+                if (materialID.equals(idKvadratmetervara)) {
+                    String kvadratmeter = idb.fetchSingle("SELECT kvadratmeter FROM kvadratmetervara WHERE materialID= " +idKvadratmetervara);
+                    double kvadratmeterDouble = Double.parseDouble(kvadratmeter);                   
+                    double nyttKvadratmeter= kvadratmeterDouble + mangdSkillnad;  
+                    String nyttKvadratmeterString= String.valueOf(nyttKvadratmeter);
+                    //Uppdatera antalcellen
+                    idb.update("UPDATE kvadratmetervara SET kvadratmeter= " +nyttKvadratmeterString+ " WHERE materialID= " +idKvadratmetervara);
+                }
+            }
+
+//            
+//            //Uppdaterar hattmaterialtabellen!
+//            
+//            cbMaterialLager.getSelectedItem().toString();
+//            txtMangdMaterial.getText();
+//            
+        } catch (InfException ex) {
+            JOptionPane.showMessageDialog(null, "Något gick fel");
+            System.out.println("Internt felmeddelande" + ex.getMessage());
+        }
+        
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -345,6 +421,9 @@ public class HanteraHatt extends javax.swing.JFrame {
     private void btnSparaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSparaActionPerformed
         try {
             String hattID = txtHattID.getText();
+            
+            //Uppdaterar materialtabellen
+            uppdateraMaterialHatt();
 
             if (txtBestallningsID.getText().isEmpty()) {
                         bestallningsID = null;
@@ -402,13 +481,18 @@ public class HanteraHatt extends javax.swing.JFrame {
     }//GEN-LAST:event_txtTillverkningstimmarActionPerformed
 
     private void btnSokHattActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSokHattActionPerformed
-
+        cbSkapare.removeAllItems();
+        cbKategori.removeAllItems();
+        cbMaterialHatt.removeAllItems();
+        cbMaterialLager.removeAllItems();
+         
         try {
             String hattID = txtHattID.getText();
-            
+
             fyllCbKategori();
             fyllCbSkapare();
             fyllCbMaterialHatt();
+            fyllCbMaterialLager();
 
             btnAndra.setEnabled(true);
 
@@ -425,7 +509,31 @@ public class HanteraHatt extends javax.swing.JFrame {
                 txtTillverkningstimmar.setText(idb.fetchSingle("SELECT Tillverkningstimmar FROM Hatt WHERE HattID = " + hattID));
                 txtBestallningsID.setText(idb.fetchSingle("SELECT Bestallning FROM Hatt WHERE HattID = " + hattID));
             }
-        } catch (InfException ex) {
+            
+            // Add an ItemListener to cbMaterialHatt
+            cbMaterialHatt.addItemListener(new ItemListener() {
+                public void itemStateChanged(ItemEvent event) {
+                    // Check if the selected item has changed
+                    if (event.getStateChange() == ItemEvent.SELECTED) {
+                        try {
+                            // Get the selected material name
+                            String selectedMaterialName = cbMaterialHatt.getSelectedItem().toString();
+                            // Get the material ID from the database
+                            String selectedMaterialID = idb.fetchSingle("SELECT materialID FROM material WHERE materialnamn= '" + selectedMaterialName + "'");
+                            // Get the material quantity for the selected hat and material from the database
+                            String materialMangd = idb.fetchSingle("SELECT mangd FROM hattmaterial WHERE hatt= " + hattID + " AND material= " + selectedMaterialID);
+                            // Update the txtMangdHatt field with the material quantity
+                            txtMangdHatt.setText(materialMangd);
+                            nuvarandeMaterialMangd = materialMangd;
+                        } catch (InfException ex) {
+                            JOptionPane.showMessageDialog(null, "Något gick fel");
+                            System.out.println("Internt felmeddelande" + ex.getMessage());
+                        }
+                    }
+                }
+            });
+                    
+            } catch (InfException ex) {
             JOptionPane.showMessageDialog(null, "Något gick fel");
             System.out.println("Internt felmeddelande" + ex.getMessage());
         }
@@ -436,10 +544,8 @@ public class HanteraHatt extends javax.swing.JFrame {
     }//GEN-LAST:event_btnUppdateraBildActionPerformed
 
     private void nuvarandeBildActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuvarandeBildActionPerformed
-        
         String hatt = txtHattID.getText();
-        new KollaBild(hatt).setVisible(true);
-        
+        new KollaBild(hatt).setVisible(true);      
     }//GEN-LAST:event_nuvarandeBildActionPerformed
 
 
