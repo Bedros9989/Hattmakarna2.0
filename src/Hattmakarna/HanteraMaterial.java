@@ -184,22 +184,24 @@ private InfDB idb;
         String fraga1 = idb.fetchSingle("SELECT Antal FROM antalvara WHERE MaterialID = '"+ materialID +"'");
         String fraga2 = idb.fetchSingle("SELECT Kvadratmeter FROM kvadratmetervara WHERE MaterialID = '"+ materialID +"'");
         String fraga3 = idb.fetchSingle("SELECT Meter FROM metervara WHERE MaterialID = '"+ materialID +"'");
+        String sqlfraga1 = idb.fetchSingle("SELECT MaterialID from antalvara");
+        String sqlfraga2 = idb.fetchSingle("SELECT MaterialID from kvadratmetervara");
+        String sqlfraga3 = idb.fetchSingle("SELECT MaterialID from metervara");
         
-        String sqlfraga = "SELECT MaterialID from Antalvara";
-        if(materialID.equals(sqlfraga))
+        if(materialID.equals(sqlfraga1))
         idb.update("UPDATE antalvara SET Antal = '"+mangd+"' + '"+fraga1+"' WHERE MaterialID = '"+ materialID +"'");
-        String nymangd = "SELECT Antal from Antalvara";
+        String nymangd = idb.fetchSingle("SELECT Antal from Antalvara");
         JOptionPane.showMessageDialog(null, "Nu är det nya lagersaldot "+nymangd+"");
         
-        //JOptionPane.showMessageDialog(null, "Nu har saldot fyllts på med "+mangd+"");
+        if(materialID.equals(sqlfraga2))
+        idb.update("UPDATE kvadratmetervara SET Kvadratmeter = '"+mangd+"' + '"+fraga2+"' WHERE MaterialID = '"+ materialID +"'");
+        JOptionPane.showMessageDialog(null, "Nu är det nya lagersaldot "+nymangd+"");
         
-        //idb.update("UPDATE kvadratmetervara SET Kvadratmeter = '"+mangd+"' + '"+fraga2+"' WHERE MaterialID = '"+ materialID +"'");
-        //idb.update("UPDATE metervara SET Meter = '"+mangd+"' + '"+fraga3+"' WHERE MaterialID = '"+ materialID +"'");
+        if(materialID.equals(sqlfraga3))
+        idb.update("UPDATE metervara SET Meter = '"+mangd+"' + '"+fraga3+"' WHERE MaterialID = '"+ materialID +"'");
+        JOptionPane.showMessageDialog(null, "Nu är det nya lagersaldot "+nymangd+"");
         
-        
-            
-       
-        
+              
      } 
     catch(InfException ex){
         Logger.getLogger(HanteraMaterial.class.getName()).log(Level.SEVERE, null, ex);
