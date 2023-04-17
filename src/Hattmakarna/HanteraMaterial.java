@@ -173,20 +173,21 @@ private InfDB idb;
 
     private void jBFyllPaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBFyllPaActionPerformed
         // TODO add your handling code here:
+       //if(ValideringsKlass.rutanÄrTom(jTLagerMangd))
        String materialNamn = jCMaterialNamnet.getSelectedItem().toString();
        String mangd = jTLagerMangd.getText();
        double mangdDouble = Double.parseDouble(mangd);
        String materialID = ("");
-       
-       
+     
      try{
         materialID = idb.fetchSingle("SELECT MaterialID from Material WHERE Materialnamn = '"+ materialNamn + "'");
+        String fraga = idb.fetchSingle("SELECT Antal FROM antalvara");
         
-        idb.update("UPDATE antalvara SET Antal = 0 WHERE MaterialID = '"+ materialID +"'");
-        idb.update("UPDATE kvadratmetervara SET Kvadratmeter = 0 WHERE MaterialID = '"+ materialID +"'");
-        idb.update("UPDATE metervara SET Meter = 0 WHERE MaterialID = '"+ materialID +"'");
+        idb.update("UPDATE antalvara SET Antal = '"+mangd+"' + '"+fraga+"' WHERE MaterialID = '"+ materialID +"'");
+        //idb.update("UPDATE kvadratmetervara SET Kvadratmeter = '"+mangd+"' WHERE MaterialID = '"+ materialID +"'");
+       // idb.update("UPDATE metervara SET Meter = '"+mangd+"' WHERE MaterialID = '"+ materialID +"'");
         
-        JOptionPane.showMessageDialog(null, "Nu har lagersaldot ändrats till 0");
+        JOptionPane.showMessageDialog(null, "Nu har saldot fyllts på med "+mangd+"");
      } 
     catch(InfException ex){
         Logger.getLogger(HanteraMaterial.class.getName()).log(Level.SEVERE, null, ex);
