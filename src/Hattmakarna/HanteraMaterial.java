@@ -174,23 +174,35 @@ private InfDB idb;
     private void jBFyllPaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBFyllPaActionPerformed
         // TODO add your handling code here:
        //if(ValideringsKlass.rutanÄrTom(jTLagerMangd))
-       
+       ArrayList<String> sqlfraga1 = new ArrayList<String>();
        String materialNamn = jCMaterialNamnet.getSelectedItem().toString();
        String mangd = jTLagerMangd.getText();
        double mangdDouble = Double.parseDouble(mangd);
        String materialID = ("");
      
      try{
+         
+    
         materialID = idb.fetchSingle("SELECT MaterialID from Material WHERE Materialnamn = '"+ materialNamn + "'");
         String fraga1 = idb.fetchSingle("SELECT Antal FROM antalvara WHERE MaterialID = '"+ materialID +"'");
-        String fraga2 = idb.fetchSingle("SELECT Kvadratmeter FROM kvadratmetervara WHERE MaterialID = '"+ materialID +"'");
-        String fraga3 = idb.fetchSingle("SELECT Meter FROM metervara WHERE MaterialID = '"+ materialID +"'");
-       
-        idb.update("UPDATE antalvara SET Antal = '"+mangd+"' + '"+fraga1+"' WHERE MaterialID = '"+ materialID +"'");
-        idb.update("UPDATE kvadratmetervara SET Kvadratmeter = '"+mangd+"' + '"+fraga2+"' WHERE MaterialID = '"+ materialID +"'");
-        idb.update("UPDATE metervara SET Meter = '"+mangd+"' + '"+fraga3+"' WHERE MaterialID = '"+ materialID +"'");
+        //String fraga2 = idb.fetchSingle("SELECT Kvadratmeter FROM kvadratmetervara WHERE MaterialID = '"+ materialID +"'");
+        //String fraga3 = idb.fetchSingle("SELECT Meter FROM metervara WHERE MaterialID = '"+ materialID +"'");
+           sqlfraga1 = idb.fetchColumn("SELECT MaterialID FROM antalvara");
+           String nymangd1 = idb.fetchSingle("SELECT Antal FROM antalvara");
+
+          for(String antal: sqlfraga1) { 
+          if(materialID.equals(sqlfraga1) && !jTLagerMangd.getText().isEmpty())
+            {
+               idb.update("UPDATE antalvara SET Antal = '"+mangd+"' + '"+fraga1+"' WHERE MaterialID = '"+ materialID +"'");
+               
+               JOptionPane.showMessageDialog(null, "Nytt saldo är "+nymangd1+"");
+            }
+          }
+        //idb.update("UPDATE antalvara SET Antal = '"+mangd+"' + '"+fraga1+"' WHERE MaterialID = '"+ materialID +"'");
+       // idb.update("UPDATE kvadratmetervara SET Kvadratmeter = '"+mangd+"' + '"+fraga2+"' WHERE MaterialID = '"+ materialID +"'");
+        //idb.update("UPDATE metervara SET Meter = '"+mangd+"' + '"+fraga3+"' WHERE MaterialID = '"+ materialID +"'");
         
-        JOptionPane.showMessageDialog(null, "Nu har saldo fyllts på med "+mangd+"");
+        //JOptionPane.showMessageDialog(null, "Nu har saldo fyllts på med "+mangd+"");
         
               
      } 
