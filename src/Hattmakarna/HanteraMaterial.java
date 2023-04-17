@@ -190,16 +190,18 @@ private InfDB idb;
         
         if(materialID.equals(sqlfraga1))
         idb.update("UPDATE antalvara SET Antal = '"+mangd+"' + '"+fraga1+"' WHERE MaterialID = '"+ materialID +"'");
-        String nymangd = idb.fetchSingle("SELECT Antal from Antalvara");
-        JOptionPane.showMessageDialog(null, "Nu är det nya lagersaldot "+nymangd+"");
+        String nymangd1 = idb.fetchSingle("SELECT Antal from Antalvara");
+        JOptionPane.showMessageDialog(null, "Nu är det nya lagersaldot "+nymangd1+"");
         
         if(materialID.equals(sqlfraga2))
         idb.update("UPDATE kvadratmetervara SET Kvadratmeter = '"+mangd+"' + '"+fraga2+"' WHERE MaterialID = '"+ materialID +"'");
-        JOptionPane.showMessageDialog(null, "Nu är det nya lagersaldot "+nymangd+"");
+        String nymangd2 = idb.fetchSingle("SELECT Kvadratmeter from kvadratmetervara");
+        JOptionPane.showMessageDialog(null, "Nu är det nya lagersaldot "+nymangd2+"");
         
         if(materialID.equals(sqlfraga3))
         idb.update("UPDATE metervara SET Meter = '"+mangd+"' + '"+fraga3+"' WHERE MaterialID = '"+ materialID +"'");
-        JOptionPane.showMessageDialog(null, "Nu är det nya lagersaldot "+nymangd+"");
+        String nymangd3 = idb.fetchSingle("SELECT Meter from metervara");
+        JOptionPane.showMessageDialog(null, "Nu är det nya lagersaldot "+nymangd3+"");
         
               
      } 
