@@ -114,15 +114,11 @@ public class HanteraHatt extends javax.swing.JFrame {
         }
     }
 
-    private void uppdateraMaterialHatt(){
-        
+    private void uppdateraMaterial(){
         try {
             String materialNamn = cbMaterialHatt.getSelectedItem().toString();
             String materialID = idb.fetchSingle("SELECT materialID FROM material WHERE materialnamn= '" +materialNamn+ "'");
             String materialMangd = txtMangdHatt.getText();
-            
-            
-            //Uppdaterar materialtabellen!
             
             //Mängden före är samma som fältet nuvarandeMaterialMangd.
             String mangdEfter = txtMangdHatt.getText();
@@ -169,14 +165,7 @@ public class HanteraHatt extends javax.swing.JFrame {
                     //Uppdatera antalcellen
                     idb.update("UPDATE kvadratmetervara SET kvadratmeter= " +nyttKvadratmeterString+ " WHERE materialID= " +idKvadratmetervara);
                 }
-            }
-
-//            
-//            //Uppdaterar hattmaterialtabellen!
-//            
-//            cbMaterialLager.getSelectedItem().toString();
-//            txtMangdMaterial.getText();
-//            
+            }         
         } catch (InfException ex) {
             JOptionPane.showMessageDialog(null, "Något gick fel");
             System.out.println("Internt felmeddelande" + ex.getMessage());
@@ -184,6 +173,22 @@ public class HanteraHatt extends javax.swing.JFrame {
         
     }
     
+    private void uppdateraHattMaterial() {
+        try {
+            String hattID = txtHattID.getText();
+            
+            String materialNamn = cbMaterialHatt.getSelectedItem().toString();
+            String materialID = idb.fetchSingle("SELECT materialID FROM material WHERE materialnamn= '" + materialNamn + "'");
+            String materialMangd = txtMangdHatt.getText();
+            
+            idb.update("UPDATE hattmaterial SET mangd= " +materialMangd+ " WHERE material= " +materialID+ " AND hatt= " +hattID);
+               
+        } catch (InfException ex) {
+            JOptionPane.showMessageDialog(null, "Något gick fel");
+            System.out.println("Internt felmeddelande" + ex.getMessage());
+        }
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -423,7 +428,7 @@ public class HanteraHatt extends javax.swing.JFrame {
             String hattID = txtHattID.getText();
             
             //Uppdaterar materialtabellen
-            uppdateraMaterialHatt();
+            uppdateraMaterial();
 
             if (txtBestallningsID.getText().isEmpty()) {
                         bestallningsID = null;
