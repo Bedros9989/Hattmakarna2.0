@@ -175,10 +175,6 @@ private InfDB idb;
         // TODO add your handling code here:
        //if(ValideringsKlass.rutanÄrTom(jTLagerMangd))
        
-       ArrayList<String> sqlfraga1 = new ArrayList<String>();
-       ArrayList<String> sqlfraga2 = new ArrayList<String>();
-       ArrayList<String> sqlfraga3 = new ArrayList<String>();
-       
        String materialNamn = jCMaterialNamnet.getSelectedItem().toString();
        String mangd = jTLagerMangd.getText();
        double mangdDouble = Double.parseDouble(mangd);
@@ -189,24 +185,12 @@ private InfDB idb;
         String fraga1 = idb.fetchSingle("SELECT Antal FROM antalvara WHERE MaterialID = '"+ materialID +"'");
         String fraga2 = idb.fetchSingle("SELECT Kvadratmeter FROM kvadratmetervara WHERE MaterialID = '"+ materialID +"'");
         String fraga3 = idb.fetchSingle("SELECT Meter FROM metervara WHERE MaterialID = '"+ materialID +"'");
-        sqlfraga1 = idb.fetchColumn("SELECT MaterialID from antalvara");
-        sqlfraga2 = idb.fetchColumn("SELECT MaterialID from kvadratmetervara");
-        sqlfraga3 = idb.fetchColumn("SELECT MaterialID from metervara");
-        String nymangd1 = idb.fetchSingle("SELECT Antal from Antalvara");
-        String nymangd2 = idb.fetchSingle("SELECT Kvadratmeter from kvadratmetervara");
-        String nymangd3 = idb.fetchSingle("SELECT Meter from metervara");
-        
-        if(sqlfraga1.equals(materialID))
+       
         idb.update("UPDATE antalvara SET Antal = '"+mangd+"' + '"+fraga1+"' WHERE MaterialID = '"+ materialID +"'");
-        JOptionPane.showMessageDialog(null, "Nu är det nya lagersaldot "+nymangd1+"");
-        
-        if(sqlfraga2.equals(materialID))
         idb.update("UPDATE kvadratmetervara SET Kvadratmeter = '"+mangd+"' + '"+fraga2+"' WHERE MaterialID = '"+ materialID +"'");
-        JOptionPane.showMessageDialog(null, "Nu är det nya lagersaldot "+nymangd2+"");
-        
-        if(sqlfraga3.equals(materialID))
         idb.update("UPDATE metervara SET Meter = '"+mangd+"' + '"+fraga3+"' WHERE MaterialID = '"+ materialID +"'");
-        JOptionPane.showMessageDialog(null, "Nu är det nya lagersaldot "+nymangd3+"");
+        
+        JOptionPane.showMessageDialog(null, "Nu har saldo fyllts på med "+mangd+"");
         
               
      } 
