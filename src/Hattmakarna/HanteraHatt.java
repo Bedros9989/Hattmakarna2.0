@@ -429,6 +429,8 @@ public class HanteraHatt extends javax.swing.JFrame {
             
             //Uppdaterar materialtabellen
             uppdateraMaterial();
+            //Uppdaterar hattmaterialtabellen
+            uppdateraHattMaterial();
 
             if (txtBestallningsID.getText().isEmpty()) {
                         bestallningsID = null;
