@@ -149,12 +149,13 @@ public class RegistreraMaterial extends javax.swing.JFrame {
     felMeddelande.setText("");
     confirmMeddelande.setText("");
         
-        if (ValideringsKlass.rutaEmpty(txtMaterialNamn) || ValideringsKlass.rutaEmpty(txtEnhetsPris)) {
+        if (ValideringsKlass.rutaEmpty(txtMaterialNamn) || ValideringsKlass.rutaEmpty(txtEnhetsPris) || ValideringsKlass.rutaEmpty(txtExtra)) {
            felMeddelande.setText("Fel: Vänligen fyll i alla fält");
         } else {
             try {
                 String mID = idb.getAutoIncrement("Material", "MaterialID");
                 idb.insert("INSERT INTO Material VALUES (" + mID + ", '" + txtMaterialNamn.getText() + "', '" + txtEnhetsPris.getText() + "');");
+                idb.insert("INSERT INTO " + cbxTyp.getSelectedItem().toString() + " VALUES (" + mID + ", '" + txtExtra.getText() + "');");
                 confirmMeddelande.setText("Ett nytt material har registrerats!");
             } catch (InfException exc) {
                 JOptionPane.showMessageDialog(null, "Något gick fel!");
