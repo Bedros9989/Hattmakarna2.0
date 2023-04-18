@@ -495,6 +495,19 @@ public class HanteraHatt extends javax.swing.JFrame {
         cbKategori.removeAllItems();
         cbMaterialHatt.removeAllItems();
         cbMaterialLager.removeAllItems();
+        
+        cbSkapare.setEnabled(false);
+        cbKategori.setEnabled(false);
+        txtStorlek.setEnabled(false);
+        txtTillverkningstimmar.setEnabled(false);
+        txtBestallningsID.setEnabled(false);
+        btnUppdateraBild.setEnabled(false);
+        cbMaterialHatt.setEnabled(false);
+        txtMangdHatt.setEnabled(false);
+        btnAndra.setEnabled(false);
+        btnSpara.setEnabled(false);
+        cbMaterialLager.setEnabled(false);
+        txtMangdMaterial.setEnabled(false);
          
         try {
             String hattID = txtHattID.getText();
