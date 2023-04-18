@@ -203,7 +203,7 @@ public class HanteraHatt extends javax.swing.JFrame {
                 String materialID = idb.fetchSingle("SELECT materialID FROM material WHERE materialnamn= '" + materialNamn + "'");
                 String materialMangd = txtMangdMaterial.getText();
 
-                idb.update("INSERT INTO hattmaterial VALUES (" +hattID+ ", " +materialID+ ", " +materialMangd+ ")");
+                idb.insert("INSERT INTO hattmaterial VALUES (" +hattID+ ", " +materialID+ ", " +materialMangd+ ")");
             }
         } catch (InfException ex) {
             JOptionPane.showMessageDialog(null, "Något gick fel");
@@ -452,6 +452,7 @@ public class HanteraHatt extends javax.swing.JFrame {
             //Uppdaterar materialtabellen och hattmaterialtabellen
             uppdateraMaterial();
             uppdateraHattMaterial();
+            laggTillNyttHattMaterial();            
 
             if (txtBestallningsID.getText().isEmpty()) {
                         bestallningsID = null;
