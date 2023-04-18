@@ -192,6 +192,24 @@ public class HanteraHatt extends javax.swing.JFrame {
             System.out.println("Internt felmeddelande" + ex.getMessage());
         }
     }
+    
+    private void laggTillNyttHattMaterial() {
+        try {
+            if (cbMaterialLager.getSelectedItem() != null && !txtMangdMaterial.getText().isEmpty()) {
+
+                String hattID = txtHattID.getText();
+
+                String materialNamn = cbMaterialLager.getSelectedItem().toString();
+                String materialID = idb.fetchSingle("SELECT materialID FROM material WHERE materialnamn= '" + materialNamn + "'");
+                String materialMangd = txtMangdMaterial.getText();
+
+                idb.update("INSERT INTO hattmaterial VALUES (" +hattID+ ", " +materialID+ ", " +materialMangd+ ")");
+            }
+        } catch (InfException ex) {
+            JOptionPane.showMessageDialog(null, "Något gick fel");
+            System.out.println("Internt felmeddelande" + ex.getMessage());
+        }
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
