@@ -41,6 +41,7 @@ public class HanteraBestallning extends javax.swing.JFrame {
         annulera.setEnabled(false);
         spara.setEnabled(false);
         ändra.setEnabled(false);
+        spara2.setVisible(false);
         jList1.setModel(model);
         
     }
@@ -75,6 +76,7 @@ public class HanteraBestallning extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         status = new javax.swing.JComboBox<>();
         annulera = new javax.swing.JButton();
+        spara2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -182,6 +184,13 @@ public class HanteraBestallning extends javax.swing.JFrame {
             }
         });
 
+        spara2.setText("Spara");
+        spara2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                spara2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -235,7 +244,11 @@ public class HanteraBestallning extends javax.swing.JFrame {
                                     .addComponent(summan)
                                     .addComponent(status, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                         .addGap(18, 18, 18)
-                        .addComponent(annulera)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(annulera)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(spara2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(3, 3, 3)))))
                 .addGap(41, 41, 41))
         );
         jPanel1Layout.setVerticalGroup(
@@ -276,7 +289,9 @@ public class HanteraBestallning extends javax.swing.JFrame {
                         .addComponent(läggTill)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(taBort)
-                        .addGap(60, 60, 60)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(spara2)
+                        .addGap(25, 25, 25)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(summan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -567,7 +582,7 @@ public class HanteraBestallning extends javax.swing.JFrame {
         if (result == JOptionPane.OK_OPTION) {
             String selectedOption = comboBox.getSelectedItem().toString();
             new Hattar(idb, selectedOption,beställning,this).setVisible(true); 
-            
+            spara2.setVisible(true);
             
         }
     
@@ -607,6 +622,7 @@ public class HanteraBestallning extends javax.swing.JFrame {
         status.setEnabled(false);
         annulera.setEnabled(false);
         spara.setEnabled(false);
+        spara2.setVisible(false);
             
         }
     }   
@@ -624,6 +640,59 @@ public class HanteraBestallning extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_sparaActionPerformed
+
+    private void spara2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_spara2ActionPerformed
+        
+        String bästID = beställningsID.getText();
+    int resultat = JOptionPane.showConfirmDialog(null, "Är du nöjd med allt du har skrivit?", "Bekräfta uppgifter", JOptionPane.YES_NO_OPTION);
+        
+        try{
+            if(resultat == JOptionPane.YES_OPTION){
+            
+                int size = jList1.getModel().getSize();
+                for(int i = 0; i < size; i++){
+                    String hattar = jList1.getModel().getElementAt(i);
+                    String[] parts = hattar.split("-");
+                    String selectedText = parts[0].trim();
+                    if (idb.fetchSingle("select Bestallning from Hatt where HattID="+selectedText) == null){
+                        
+                        idb.update("UPDATE hattmakare.Hatt t SET t.Bestallning = "+bästID+" WHERE t.HattID ="+selectedText);
+                        
+                        
+                    }
+                    
+                }
+                    JOptionPane.showMessageDialog(null, "Ändringar sparade!");
+                    sök();
+                    kundBox.setEnabled(false);
+                    ansvarig.setEnabled(false);
+                    Adress.setEnabled(false);
+                    datumChooser.setEnabled(false);
+                    jList1.setEnabled(false);
+                    läggTill.setEnabled(false);
+                    taBort.setEnabled(false);
+                    summan.setEnabled(false);
+                    status.setEnabled(false);
+                    annulera.setEnabled(false);
+                    spara.setEnabled(false);
+                    spara2.setVisible(false);
+                }
+  
+        }
+ 
+       
+    
+        catch (InfException e) {
+
+            JOptionPane.showMessageDialog(null, "Fel på databasuppkopplingen, prova igen senare!");
+            System.out.println("Databasfel: " + e);
+            
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Något gick snett, prova igen!");
+            
+        }
+        
+    }//GEN-LAST:event_spara2ActionPerformed
 
     public void populateList(String[] data){
      
@@ -657,6 +726,7 @@ public class HanteraBestallning extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> kundBox;
     private javax.swing.JButton läggTill;
     private javax.swing.JButton spara;
+    private javax.swing.JButton spara2;
     private javax.swing.JComboBox<String> status;
     private javax.swing.JTextField summan;
     private javax.swing.JButton sök;
