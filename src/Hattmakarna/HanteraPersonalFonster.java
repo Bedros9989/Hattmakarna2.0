@@ -12,17 +12,23 @@ public class HanteraPersonalFonster extends javax.swing.JFrame {
     private InfDB idb;
     
     public HanteraPersonalFonster(InfDB idb) {
-        initComponents();
-        this.idb = idb;
-        this.setLocationRelativeTo(null);
-        HanteraPersonalFonster.this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+    initComponents();
+    this.idb = idb;
+    this.setLocationRelativeTo(null);
+    HanteraPersonalFonster.this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+    ID.setEnabled(false);
+    Namn.setEnabled(false);
+    Telefonnummer.setEnabled(false);
+    Losenord.setEnabled(false);
+    Timpris.setEnabled(false);
+    hämtaPersonal();
     }
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         lblHanteraPersonal = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cbPersonalID = new javax.swing.JComboBox<>();
         jÄndraPersonalID = new javax.swing.JLabel();
         jÄndraPersonalNamn = new javax.swing.JLabel();
         jÄndraPersonalLosen = new javax.swing.JLabel();
@@ -33,18 +39,17 @@ public class HanteraPersonalFonster extends javax.swing.JFrame {
         Losenord = new javax.swing.JTextField();
         Telefonnummer = new javax.swing.JTextField();
         Timpris = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        ändra = new javax.swing.JButton();
+        spara = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         lblHanteraPersonal.setFont(new java.awt.Font("Calibri", 0, 22)); // NOI18N
         lblHanteraPersonal.setText("Hantera personal information");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        cbPersonalID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                cbPersonalIDActionPerformed(evt);
             }
         });
 
@@ -63,9 +68,19 @@ public class HanteraPersonalFonster extends javax.swing.JFrame {
         jÄndraPersonalTimpris.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jÄndraPersonalTimpris.setText("Timpris");
 
-        jButton1.setText("Ändra");
+        ändra.setText("Ändra");
+        ändra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ändraActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText("Spara");
+        spara.setText("Spara");
+        spara.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sparaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -88,12 +103,12 @@ public class HanteraPersonalFonster extends javax.swing.JFrame {
                         .addGap(91, 91, 91))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jButton1)
+                        .addComponent(ändra)
                         .addGap(18, 18, 18)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton2)
+                    .addComponent(spara)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jComboBox1, 0, 181, Short.MAX_VALUE)
+                        .addComponent(cbPersonalID, 0, 181, Short.MAX_VALUE)
                         .addComponent(ID)
                         .addComponent(Namn)
                         .addComponent(Losenord)
@@ -107,7 +122,7 @@ public class HanteraPersonalFonster extends javax.swing.JFrame {
                 .addGap(26, 26, 26)
                 .addComponent(lblHanteraPersonal, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cbPersonalID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(17, 17, 17)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jÄndraPersonalID, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -130,17 +145,117 @@ public class HanteraPersonalFonster extends javax.swing.JFrame {
                     .addComponent(Timpris, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(ändra)
+                    .addComponent(spara))
                 .addGap(18, 18, 18))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    private void hämtaPersonal(){
+        
+        String fraga= "select Namn from Personal";
+        ArrayList<String> allaPersonalNamn;
+        
+        try{
+            allaPersonalNamn= idb.fetchColumn(fraga);
+            for (String enKund: allaPersonalNamn){
+              cbPersonalID.addItem(enKund);
+              
+            }
+            cbPersonalID.addItem("+ Lägg till ny personal");
+            
+            
+            
+        }  catch (InfException e) {
+
+            JOptionPane.showMessageDialog(null, "Fel på databasuppkopplingen, prova igen senare!");
+            System.out.println("Databasfel: " + e);
+            
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Något gick snett, prova igen!");
+            
+    }
+    }
+    
+    private void cbPersonalIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbPersonalIDActionPerformed
+    if (cbPersonalID.getSelectedItem().toString().equals("+ Lägg till ny personal")){
+
+            new RegistreraPersonal(idb).setVisible(true);
+            dispose();
+
+            
+            
+        }else{
+
+            try {
+                String personal = cbPersonalID.getSelectedItem().toString();
+                String hämtaID = idb.fetchSingle("select PersonalID from Personal where Namn= '"+personal+"'");
+                String hämtaNamn = idb.fetchSingle("select Namn from Personal where Namn= '"+personal+"'");
+                String hämtaTelefon = idb.fetchSingle("select Telefonnummer from Personal where Namn= '"+personal+"'");
+                String hämtaLosenord = idb.fetchSingle("select Losenord from Personal where Namn= '"+personal+"'");
+                String hämtaTimpris = idb.fetchSingle("select Timpris from Personal where Namn= '"+personal+"'");
+                
+                ID.setText(hämtaID);
+                Namn.setText(hämtaNamn);
+                Telefonnummer.setText(hämtaTelefon);
+                Losenord.setText(hämtaLosenord);
+                Timpris.setText(hämtaTimpris);
+
+            }
+            catch (InfException e) {
+
+                JOptionPane.showMessageDialog(null, "Fel på databasuppkopplingen, prova igen senare!");
+                System.out.println("Databasfel: " + e);
+
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, "Något gick snett, prova igen!");
+
+            }
+        }                              
+    }//GEN-LAST:event_cbPersonalIDActionPerformed
+
+    private void ändraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ändraActionPerformed
+        Namn.setEnabled(true);
+        Telefonnummer.setEnabled(true);
+        Losenord.setEnabled(true);
+        Timpris.setEnabled(true);
+    }//GEN-LAST:event_ändraActionPerformed
+
+    private void sparaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sparaActionPerformed
+        int resultat = JOptionPane.showConfirmDialog(null, "Är du nöjd med allt du har skrivit?", "Bekräfta uppgifter", JOptionPane.YES_NO_OPTION);
+    
+    if(resultat == JOptionPane.YES_OPTION){
+        
+        try {
+                String personal = cbPersonalID.getSelectedItem().toString();
+                String hämtaID = idb.fetchSingle("select PersonalID from Personal where Namn= '"+personal+"'");
+            
+                String nyNamn = Namn.getText();
+                String nyTelefon = Telefonnummer.getText();
+                String nyLosenord = Losenord.getText();
+                String nyTimpris = Timpris.getText();
+                String ändraInfo = "UPDATE hattmakare.Personal t SET t.Namn = '"+nyNamn+"', t.Telefonnummer= '"+nyTelefon+"', t.Losenord = '"+nyLosenord+"', t.Timpris = "+nyTimpris+" WHERE t.PersonalID = "+hämtaID+";";
+                idb.update(ändraInfo);
+                
+                JOptionPane.showMessageDialog(null, "Ändringar sparade!");
+                new HanteraPersonalFonster(idb).setVisible(true);
+                dispose();
+            
+        } catch (InfException ettUndantag) {
+            JOptionPane.showMessageDialog(null, "Databasfel!");
+            System.out.println("Internt felmeddelande" + ettUndantag.getMessage());
+        }
+        
+        catch (Exception ettUndantag) {
+            JOptionPane.showMessageDialog(null, "Något gick fel!");
+            System.out.println("Internt felmeddelande" + ettUndantag.getMessage());
+        }
+        
+        
+    }                                     
+    }//GEN-LAST:event_sparaActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField ID;
@@ -148,14 +263,14 @@ public class HanteraPersonalFonster extends javax.swing.JFrame {
     private javax.swing.JTextField Namn;
     private javax.swing.JTextField Telefonnummer;
     private javax.swing.JTextField Timpris;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> cbPersonalID;
     private javax.swing.JLabel jÄndraPersonalID;
     private javax.swing.JLabel jÄndraPersonalLosen;
     private javax.swing.JLabel jÄndraPersonalNamn;
     private javax.swing.JLabel jÄndraPersonalTelefon;
     private javax.swing.JLabel jÄndraPersonalTimpris;
     private javax.swing.JLabel lblHanteraPersonal;
+    private javax.swing.JButton spara;
+    private javax.swing.JButton ändra;
     // End of variables declaration//GEN-END:variables
 }
