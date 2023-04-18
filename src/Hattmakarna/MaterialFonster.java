@@ -23,6 +23,9 @@ public class MaterialFonster extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         btnRegMaterial.setText("Registrera nytt material");
+        btnRegMaterial.setMaximumSize(new java.awt.Dimension(117, 23));
+        btnRegMaterial.setMinimumSize(new java.awt.Dimension(117, 23));
+        btnRegMaterial.setPreferredSize(new java.awt.Dimension(117, 23));
         btnRegMaterial.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRegMaterialActionPerformed(evt);
@@ -37,6 +40,9 @@ public class MaterialFonster extends javax.swing.JFrame {
         });
 
         jButton1.setText("Visa materiallager");
+        jButton1.setMaximumSize(new java.awt.Dimension(117, 23));
+        jButton1.setMinimumSize(new java.awt.Dimension(117, 23));
+        jButton1.setPreferredSize(new java.awt.Dimension(117, 23));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -50,10 +56,10 @@ public class MaterialFonster extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(141, 141, 141)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnRegMaterial, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
                     .addComponent(jBHanteraMaterial, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnRegMaterial, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(0, 132, Short.MAX_VALUE))
+                .addGap(0, 130, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -61,9 +67,9 @@ public class MaterialFonster extends javax.swing.JFrame {
                 .addGap(51, 51, 51)
                 .addComponent(btnRegMaterial, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(40, 40, 40)
-                .addComponent(jBHanteraMaterial, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(43, 43, 43)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jBHanteraMaterial, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(38, 38, 38)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(100, Short.MAX_VALUE))
         );
 
@@ -80,7 +86,7 @@ public class MaterialFonster extends javax.swing.JFrame {
     }//GEN-LAST:event_jBHanteraMaterialActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-      new SeMaterialLager(idb).setVisible(true);
+        new SeMaterialLager(idb).setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
 
