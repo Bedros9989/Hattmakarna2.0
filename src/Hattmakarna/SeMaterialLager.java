@@ -161,25 +161,25 @@ public class SeMaterialLager extends javax.swing.JFrame {
                     material.get("MaterialID"),
                     material.get("Materialnamn"),
                     material.get("Antal"),
-                material.get("Meter"),};
+                 material.get("Meter"),};
                 model.addRow(materialData);
             }
         
                 // Bortkommenterad då den inte är klar, men ska vara för kvadratmetervaror nedan:
                 
-//                 ArrayList<HashMap<String, String>> kvadratLager = idb.fetchRows();
-//
-//            for (HashMap<String, String> kvadrat : kvadratLager) {
-//                Object[] materialData = {
-//                    kvadrat.get("MaterialID"),
-//                    kvadrat.get("Materialnamn"),
-//                    kvadrat.get("Antal"),
-//                kvadrat.get("Meter"),
-//                model.addRow(materialData);
+                 ArrayList<HashMap<String, String>> kvadratLager = idb.fetchRows("select material.MaterialID, Material.Materialnamn, kvadratmeter from material"+
+" join Kvadratmetervara on material.MaterialID=Kvadratmetervara.MaterialID");
+
+            for (HashMap<String, String> kvadrat : kvadratLager) {
+                Object[] materialData = {
+                    kvadrat.get("MaterialID"),
+                    kvadrat.get("Materialnamn"),
+                    kvadrat.get("kvadratmetervara"), };
+                model.addRow(materialData);
             
                       
             
-//            }
+            }
             }
             
         } catch (InfException e) {
