@@ -127,7 +127,9 @@ public class SeMaterialLager extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnHanteraMaterialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHanteraMaterialActionPerformed
-        btnUppdatera.setVisible(true);
+        //btnUppdatera.setVisible(true);
+        
+          new HanteraMaterial(idb).setVisible(true);
     }//GEN-LAST:event_btnHanteraMaterialActionPerformed
 
     private void btnUppdateraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUppdateraActionPerformed
