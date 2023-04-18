@@ -174,7 +174,8 @@ public class SeMaterialLager extends javax.swing.JFrame {
                 Object[] materialData = {
                     kvadrat.get("MaterialID"),
                     kvadrat.get("Materialnamn"),
-                    kvadrat.get("kvadratmetervara"), };
+                     kvadrat.get("Antal"),
+                     kvadrat.get("kvadratmetervara"), };
                 model.addRow(materialData);
             
                       
