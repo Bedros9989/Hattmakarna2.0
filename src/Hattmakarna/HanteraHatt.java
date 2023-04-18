@@ -210,6 +210,66 @@ public class HanteraHatt extends javax.swing.JFrame {
             System.out.println("Internt felmeddelande" + ex.getMessage());
         }
     }
+    
+        private void laggTillNyttHattMaterialuppdateraMaterial() {
+        try {
+            if (cbMaterialLager.getSelectedItem() != null && !txtMangdMaterial.getText().isEmpty()) {
+
+                String materialNamn = cbMaterialLager.getSelectedItem().toString();
+                String materialID = idb.fetchSingle("SELECT materialID FROM material WHERE materialnamn= '" + materialNamn + "'");
+                String materialMangd = txtMangdMaterial.getText();
+              
+                double mangdNyttMaterial = Double.parseDouble(materialMangd);
+
+                ArrayList<String> allaAntal = new ArrayList<String>();
+                ArrayList<String> allaMetervara = new ArrayList<String>();
+                ArrayList<String> allaKvadratmetervara = new ArrayList<String>();
+                String fragaAntal = "SELECT materialID FROM antalvara";
+                String fragaMetervara = "SELECT materialID FROM metervara";
+                String fragaKvadratmetervara = "SELECT materialID FROM kvadratmetervara";
+                allaAntal = idb.fetchColumn(fragaAntal);
+                allaMetervara = idb.fetchColumn(fragaMetervara);
+                allaKvadratmetervara = idb.fetchColumn(fragaKvadratmetervara);
+
+                for (String idAntal : allaAntal) {
+                    if (materialID.equals(idAntal)) {
+                        String antal = idb.fetchSingle("SELECT antal FROM antalvara WHERE materialID= " + idAntal);
+                        double antalDouble = Double.parseDouble(antal);
+                        double nyttAntal = antalDouble - mangdNyttMaterial;
+                        String nyttAntalString = String.valueOf(nyttAntal);
+                        //Uppdatera antalcellen
+                        idb.update("UPDATE antalvara SET antal= " + nyttAntalString + " WHERE materialID= " + idAntal);
+                    }
+                }
+
+                for (String idMetervara : allaMetervara) {
+                    if (materialID.equals(idMetervara)) {
+                        String meter = idb.fetchSingle("SELECT meter FROM metervara WHERE materialID= " + idMetervara);
+                        double meterDouble = Double.parseDouble(meter);
+                        double nyttMeter = meterDouble - mangdNyttMaterial;
+                        String nyttMeterString = String.valueOf(nyttMeter);
+                        //Uppdatera antalcellen
+                        idb.update("UPDATE metervara SET meter= " + nyttMeterString + " WHERE materialID= " + idMetervara);
+                    }
+                }
+
+                for (String idKvadratmetervara : allaKvadratmetervara) {
+                    if (materialID.equals(idKvadratmetervara)) {
+                        String kvadratmeter = idb.fetchSingle("SELECT kvadratmeter FROM kvadratmetervara WHERE materialID= " + idKvadratmetervara);
+                        double kvadratmeterDouble = Double.parseDouble(kvadratmeter);
+                        double nyttKvadratmeter = kvadratmeterDouble - mangdNyttMaterial;
+                        String nyttKvadratmeterString = String.valueOf(nyttKvadratmeter);
+                        //Uppdatera antalcellen
+                        idb.update("UPDATE kvadratmetervara SET kvadratmeter= " + nyttKvadratmeterString + " WHERE materialID= " + idKvadratmetervara);
+                    }
+                }
+            }
+        } catch (InfException ex) {
+            JOptionPane.showMessageDialog(null, "Något gick fel");
+            System.out.println("Internt felmeddelande" + ex.getMessage());
+        }
+    }
+    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -452,7 +512,8 @@ public class HanteraHatt extends javax.swing.JFrame {
             //Uppdaterar materialtabellen och hattmaterialtabellen
             uppdateraMaterial();
             uppdateraHattMaterial();
-            laggTillNyttHattMaterial();            
+            laggTillNyttHattMaterial();
+            laggTillNyttHattMaterialuppdateraMaterial();            
 
             if (txtBestallningsID.getText().isEmpty()) {
                         bestallningsID = null;
