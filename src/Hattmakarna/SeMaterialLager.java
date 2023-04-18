@@ -130,6 +130,7 @@ public class SeMaterialLager extends javax.swing.JFrame {
         //btnUppdatera.setVisible(true);
         
           new HanteraMaterial(idb).setVisible(true);
+          btnUppdatera.setVisible(true);
     }//GEN-LAST:event_btnHanteraMaterialActionPerformed
 
     private void btnUppdateraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUppdateraActionPerformed
@@ -175,7 +176,9 @@ public class SeMaterialLager extends javax.swing.JFrame {
                     kvadrat.get("MaterialID"),
                     kvadrat.get("Materialnamn"),
                      kvadrat.get("Antal"),
-                     kvadrat.get("kvadratmetervara"), };
+                      kvadrat.get("Meter"),
+                     kvadrat.get("Kvadratmeter"),
+               };
                 model.addRow(materialData);
             
                       
