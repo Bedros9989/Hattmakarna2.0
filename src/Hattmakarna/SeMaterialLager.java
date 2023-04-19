@@ -58,6 +58,7 @@ public class SeMaterialLager extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
+        tabell.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         tabell.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
