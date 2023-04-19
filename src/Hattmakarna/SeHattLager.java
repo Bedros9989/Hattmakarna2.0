@@ -31,7 +31,8 @@ public class SeHattLager extends javax.swing.JFrame {
         model.addColumn("Storlek");
         model.addColumn("Kategori");
         tabell.setDefaultEditor(Object.class, null);
-        
+        setHattarTable();
+        btnUppdatera.setVisible(false);
 
     }
 
@@ -48,8 +49,8 @@ public class SeHattLager extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jToggleButton1 = new javax.swing.JToggleButton();
+        btnHantera = new javax.swing.JButton();
+        btnUppdatera = new javax.swing.JToggleButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         tabell = new javax.swing.JTable();
 
@@ -73,18 +74,19 @@ public class SeHattLager extends javax.swing.JFrame {
 
         jLabel2.setText("Dessa hattar finns för närvarande i lager:");
 
-        jButton1.setText("Hantera hattinformation");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnHantera.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        btnHantera.setText("Hantera hattinformation");
+        btnHantera.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnHanteraActionPerformed(evt);
             }
         });
 
-        jToggleButton1.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
-        jToggleButton1.setText("Visa hattar");
-        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnUppdatera.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        btnUppdatera.setText("Uppdatera saldo");
+        btnUppdatera.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton1ActionPerformed(evt);
+                btnUppdateraActionPerformed(evt);
             }
         });
 
@@ -111,8 +113,6 @@ public class SeHattLager extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addGap(18, 18, 18)
-                        .addComponent(jToggleButton1)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -121,36 +121,39 @@ public class SeHattLager extends javax.swing.JFrame {
                         .addGap(0, 186, Short.MAX_VALUE))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(14, 14, 14))
+                .addComponent(btnUppdatera)
+                .addGap(18, 18, 18)
+                .addComponent(btnHantera, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(33, 33, 33)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jToggleButton1))
-                .addGap(24, 24, 24)
+                .addComponent(jLabel1)
+                .addGap(25, 25, 25)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnHantera, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnUppdatera))
+                .addContainerGap(7, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
+    private void btnUppdateraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUppdateraActionPerformed
         setHattarTable();
 
-    }//GEN-LAST:event_jToggleButton1ActionPerformed
+    }//GEN-LAST:event_btnUppdateraActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnHanteraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHanteraActionPerformed
         new HanteraHatt(idb).setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
+        btnUppdatera.setVisible(true);
+    }//GEN-LAST:event_btnHanteraActionPerformed
 
     private void setHattarTable() {
 
@@ -174,13 +177,13 @@ public class SeHattLager extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnHantera;
+    private javax.swing.JToggleButton btnUppdatera;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTable1;
-    private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JTable tabell;
     // End of variables declaration//GEN-END:variables
 }

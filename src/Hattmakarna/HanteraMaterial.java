@@ -172,7 +172,7 @@ private InfDB idb;
 
     private void jBFyllPaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBFyllPaActionPerformed
         // TODO add your handling code here:
-      if(ValideringsKlass.textFaltHarVarde(jTLagerMangd)){
+      if(ValideringsKlass.textFaltHarVarde2(jTLagerMangd)){
       if(ValideringsKlass.isTal(jTLagerMangd)){
         
        ArrayList<String> sqlfraga1 = new ArrayList<String>();
