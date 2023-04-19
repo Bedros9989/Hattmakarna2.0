@@ -159,9 +159,6 @@
           </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="jAngiventKundTel">
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jAngiventKundTelActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="jAngivenKundAdress">
           <Events>
@@ -169,9 +166,6 @@
           </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="jAngivenKundMejl">
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jAngivenKundMejlActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnRegistreraKund">
           <Properties>

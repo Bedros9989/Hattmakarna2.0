@@ -59,21 +59,9 @@ public class RegistreraKundFonster extends javax.swing.JFrame {
             }
         });
 
-        jAngiventKundTel.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jAngiventKundTelActionPerformed(evt);
-            }
-        });
-
         jAngivenKundAdress.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jAngivenKundAdressActionPerformed(evt);
-            }
-        });
-
-        jAngivenKundMejl.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jAngivenKundMejlActionPerformed(evt);
             }
         });
 
@@ -177,6 +165,9 @@ public class RegistreraKundFonster extends javax.swing.JFrame {
         if (ValideringsKlass.rutaEmpty(jAngivetKundNamn) || ValideringsKlass.rutaEmpty(jAngiventKundTel) || ValideringsKlass.rutaEmpty(jAngivenKundAdress) || ValideringsKlass.rutaEmpty(jAngivenKundMejl)) {
            felMeddelande.setText("Fel: Vänligen fyll i alla fält");
         } else {
+            if (!ValideringsKlass.endastNummerTillåten(jAngiventKundTel)) {
+                }
+                else {
             try {
                 String kID = idb.getAutoIncrement("Kund", "KundID");
                 idb.insert("INSERT INTO Kund VALUES (" + kID + ", '" + jAngivetKundNamn.getText() + "', '" + jAngivenKundAdress.getText() + "', '" + jAngiventKundTel.getText() + "', 0 , '" + jAngivenKundMejl.getText() + "');");
@@ -186,15 +177,7 @@ public class RegistreraKundFonster extends javax.swing.JFrame {
             } 
         }
     }//GEN-LAST:event_btnRegistreraKundActionPerformed
-
-    private void jAngiventKundTelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAngiventKundTelActionPerformed
-   
-    }//GEN-LAST:event_jAngiventKundTelActionPerformed
-
-    private void jAngivenKundMejlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAngivenKundMejlActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jAngivenKundMejlActionPerformed
-
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnRegistreraKund;
