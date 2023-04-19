@@ -153,7 +153,7 @@ public class SeMaterialLager extends javax.swing.JFrame {
                     antal.get("Materialnamn"),
                 antal.get("Antal"),};
                 model.addRow(antalData);
-        
+            }
             ArrayList<HashMap<String, String>> meterLager = idb.fetchRows("select material.MaterialID, Material.Materialnamn, meter from material"+
 " join Metervara on material.MaterialID=metervara.MaterialID");
 
@@ -178,20 +178,21 @@ public class SeMaterialLager extends javax.swing.JFrame {
                      kvadrat.get("Antal"),
                       kvadrat.get("Meter"),
                      kvadrat.get("Kvadratmeter"),
+                
                };
                 model.addRow(materialData);
             
-                      
-            
+                     
             }
             }
             
-        } catch (InfException e) {
+         catch (InfException e) {
             JOptionPane.showMessageDialog(null, "Databasfel!");
             System.out.println("Databasfel: " + e);
         }
     
             }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnHanteraMaterial;
