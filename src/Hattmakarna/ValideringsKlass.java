@@ -121,5 +121,15 @@ public class ValideringsKlass {
         }
         return resultat;
     }
+    
+     public static boolean textFaltHarVarde2(JTextField ettTextFalt) {
+        boolean resultat = true;
+
+        if (ettTextFalt.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Inmatningsrutan får ej lämnas tom!");
+            resultat = false;
+        }
+        return resultat;
+    }
 
 }
