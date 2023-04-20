@@ -302,27 +302,33 @@ private InfDB idb;
           String materialNamn = jCMaterialNamnen.getSelectedItem().toString();
           String nyttNamn = jTÄndraNamn.getText();
           String nyttEnhetspris = jTÄndraEnhetspris.getText();
-          int prisInt = Integer.parseInt(nyttEnhetspris);
           String materialID = ("");
         
-       
-          
-          
-            try {
-                  materialID = idb.fetchSingle("SELECT MaterialID from Material WHERE Materialnamn = '"+ materialNamn + "'");
+       try {
+         materialID = idb.fetchSingle("SELECT MaterialID from Material WHERE Materialnamn = '"+ materialNamn + "'");
             
-             if(nyttNamn.equals("")){
-                  idb.update("UPDATE material SET Materialnamn = '"+nyttNamn+"' WHERE MaterialID = '"+ materialID +"'");
-                   System.out.println("Namnet har ändrats till '"+nyttNamn+"'");
-             }
-             if(nyttEnhetspris.equals(nyttEnhetspris)){
-                  idb.update("UPDATE material SET Enhetspris = '"+nyttEnhetspris+"' WHERE MaterialID = '"+ materialID +"'");
-                  System.out.println("Enhetspriset har ändrats till "+nyttEnhetspris+"");
-            }} catch (InfException ex) {
-                  Logger.getLogger(HanteraMaterial.class.getName()).log(Level.SEVERE, null, ex);
-             }
-    
-                 
+        if(ValideringsKlass.rutaEmpty(jTÄndraNamn)){     
+         System.out.println("Namnet har inte ändrats");   
+         }
+      
+        else{
+        idb.update("UPDATE material SET Materialnamn = '"+nyttNamn+"' WHERE MaterialID = '"+ materialID +"'");
+        JOptionPane.showMessageDialog(null, "Namnet har ändrats till "+nyttNamn+"!"); 
+        }
+      
+        if(ValideringsKlass.rutaEmpty(jTÄndraEnhetspris)){
+         System.out.println("Enhetspriset har inte ändrats");       
+        }
+      
+        else  {
+        int prisInt = Integer.parseInt(nyttEnhetspris);
+        idb.update("UPDATE material SET Enhetspris = '"+nyttEnhetspris+"' WHERE MaterialID = '"+ materialID +"'");
+        JOptionPane.showMessageDialog(null, "Enhetspriset har ändrats till "+nyttEnhetspris+"!"); 
+      }
+            
+      } catch (InfException ex) {
+        Logger.getLogger(HanteraMaterial.class.getName()).log(Level.SEVERE, null, ex);
+      }
           
           
     }//GEN-LAST:event_jBÄndraInformationActionPerformed
