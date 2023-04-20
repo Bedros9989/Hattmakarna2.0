@@ -373,6 +373,7 @@ public class HanteraBestallning extends javax.swing.JFrame {
         status.addItem("Pågående");
         status.addItem("Skickat");
         status.addItem("Annulerat");
+        status.addItem("Returnerat");
         
     }
     
