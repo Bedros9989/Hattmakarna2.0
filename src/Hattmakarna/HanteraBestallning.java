@@ -329,7 +329,8 @@ public class HanteraBestallning extends javax.swing.JFrame {
         try{
             allaKundNamn= idb.fetchColumn(fraga);
             for (String enKund: allaKundNamn){
-              kundBox.addItem(enKund); 
+              kundBox.addItem(enKund);
+              
             }
         
     }
@@ -473,6 +474,7 @@ public class HanteraBestallning extends javax.swing.JFrame {
                         String listItem = jList1.getModel().getElementAt(index);
                         String[] parts = listItem.split("-");
                         String selectedText = parts[0].trim();
+                        
                         
                         ArrayList<String> existerandeBeställninga = idb.fetchColumn("select HattID from Hatt where Bestallning is not null ");
                         
