@@ -27,6 +27,7 @@ public class BestallningsLista extends javax.swing.JFrame {
         model.addColumn("Ansvarig");
         beställningar();
         jTable1.setModel(model);
+        jTable1.setDefaultEditor(Object.class, null);
     }
 
 
