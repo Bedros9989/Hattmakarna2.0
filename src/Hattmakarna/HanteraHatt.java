@@ -42,7 +42,6 @@ public class HanteraHatt extends javax.swing.JFrame {
         cbMaterialLager.setEnabled(false);
         txtMangdMaterial.setEnabled(false);
         txtTillverkningskostnad.setEnabled(false);
-        btnRaknaUtTillverkningskostnad.setEnabled(false);
         conn = DBConnect.connect();
     }
 
@@ -221,7 +220,7 @@ public class HanteraHatt extends javax.swing.JFrame {
                 String materialNamn = cbMaterialLager.getSelectedItem().toString();
                 String materialID = idb.fetchSingle("SELECT materialID FROM material WHERE materialnamn= '" + materialNamn + "'");
                 String materialMangd = txtMangdMaterial.getText();
-              
+
                 double mangdNyttMaterial = Double.parseDouble(materialMangd);
 
                 ArrayList<String> allaAntal = new ArrayList<String>();
@@ -272,7 +271,48 @@ public class HanteraHatt extends javax.swing.JFrame {
             System.out.println("Internt felmeddelande" + ex.getMessage());
         }
     }
-    
+
+    private void raknaUtTotalkostnad() {
+        try {
+            String hattID = txtHattID.getText();
+
+            //Räknar ut arbetskostnad
+            double arbetskostnad = 0;
+            double tillverkningstimmar = Double.parseDouble(idb.fetchSingle("SELECT Tillverkningstimmar FROM hatt WHERE hattID= " + hattID));
+            double timpris = Double.parseDouble(idb.fetchSingle("SELECT Timpris FROM personal WHERE personalID= (SELECT skapare FROM hatt WHERE hattID= " + hattID + " )"));
+            arbetskostnad = tillverkningstimmar * timpris;
+
+            //Räknar ut materialkostnad
+            double totalMaterialkostnad = 0;
+            ArrayList<Double> listaMaterialkostnad = new ArrayList<>();
+            ArrayList<HashMap<String, String>> allaMaterialIHatten = idb.fetchRows("SELECT Material, Mangd FROM Hattmaterial WHERE Hatt= " + hattID);
+
+            for (HashMap<String, String> enMaterialRad : allaMaterialIHatten) {
+                String material = enMaterialRad.get("Material");
+                String mangd = enMaterialRad.get("Mangd");
+                double mangdDouble = Double.parseDouble(mangd);
+                double enhetspris = Double.parseDouble(idb.fetchSingle("SELECT enhetspris FROM material WHERE materialID= " + material));
+
+                double materialkostnad = mangdDouble * enhetspris;
+
+                listaMaterialkostnad.add(materialkostnad);
+            }
+
+            for (Double enMaterialkostnad : listaMaterialkostnad) {
+                totalMaterialkostnad = totalMaterialkostnad + enMaterialkostnad;
+            }
+
+            //Räknar ut tillverkningskostnad
+            double tillverkningskostnad = totalMaterialkostnad + arbetskostnad;
+
+            txtTillverkningskostnad.setText(String.valueOf(tillverkningskostnad));
+
+        } catch (InfException ex) {
+            JOptionPane.showMessageDialog(null, "Något gick fel");
+            System.out.println("Internt felmeddelande" + ex.getMessage());
+        }
+    }
+
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -307,8 +347,6 @@ public class HanteraHatt extends javax.swing.JFrame {
         lblMangd2 = new javax.swing.JLabel();
         lblTillverkningskostnad = new javax.swing.JLabel();
         txtTillverkningskostnad = new javax.swing.JTextField();
-        btnRaknaUtTillverkningskostnad = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -386,16 +424,6 @@ public class HanteraHatt extends javax.swing.JFrame {
 
         lblTillverkningskostnad.setText("Tillverkningskostnad");
 
-        btnRaknaUtTillverkningskostnad.setText("Räkna ut");
-        btnRaknaUtTillverkningskostnad.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRaknaUtTillverkningskostnadActionPerformed(evt);
-            }
-        });
-
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        jLabel1.setText("Tryck räkna ut och sedan spara för att spara tillverkningskostnaden");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -435,30 +463,23 @@ public class HanteraHatt extends javax.swing.JFrame {
                         .addComponent(btnSokHatt)
                         .addGap(33, 33, 33))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(jLabel1))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(lblTillverkningskostnad)
-                                        .addGap(31, 31, 31)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(lblNyttMaterial)
-                                            .addComponent(lblHattNuvarandeMaterial)
-                                            .addComponent(txtTillverkningskostnad)
-                                            .addComponent(cbMaterialLager, 0, 200, Short.MAX_VALUE)
-                                            .addComponent(cbMaterialHatt, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                                    .addComponent(lblMaterial))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblMangd)
-                                    .addComponent(lblMangd2)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(txtMangdMaterial, javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(btnRaknaUtTillverkningskostnad, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addComponent(txtMangdHatt, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(lblTillverkningskostnad)
+                                .addGap(31, 31, 31)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(lblNyttMaterial)
+                                    .addComponent(lblHattNuvarandeMaterial)
+                                    .addComponent(txtTillverkningskostnad)
+                                    .addComponent(cbMaterialLager, 0, 200, Short.MAX_VALUE)
+                                    .addComponent(cbMaterialHatt, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(lblMaterial))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblMangd)
+                            .addComponent(lblMangd2)
+                            .addComponent(txtMangdMaterial, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtMangdHatt, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(66, 66, 66))))
             .addGroup(layout.createSequentialGroup()
                 .addGap(103, 103, 103)
@@ -521,11 +542,8 @@ public class HanteraHatt extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtTillverkningskostnad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblTillverkningskostnad)
-                    .addComponent(btnRaknaUtTillverkningskostnad))
-                .addGap(1, 1, 1)
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
+                    .addComponent(lblTillverkningskostnad))
+                .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAndra, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSpara, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -543,7 +561,8 @@ public class HanteraHatt extends javax.swing.JFrame {
             uppdateraMaterial();
             uppdateraHattMaterial();
             laggTillNyttHattMaterial();
-            laggTillNyttHattMaterialuppdateraMaterial();            
+            laggTillNyttHattMaterialuppdateraMaterial();   
+            raknaUtTotalkostnad();
 
             if (txtBestallningsID.getText().isEmpty()) {
                         bestallningsID = null;
@@ -592,7 +611,6 @@ public class HanteraHatt extends javax.swing.JFrame {
         btnSpara.setEnabled(true);
         cbMaterialLager.setEnabled(true);
         txtMangdMaterial.setEnabled(true);
-        btnRaknaUtTillverkningskostnad.setEnabled(true);
     }//GEN-LAST:event_btnAndraActionPerformed
 
     private void txtMangdHattActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMangdHattActionPerformed
@@ -621,7 +639,6 @@ public class HanteraHatt extends javax.swing.JFrame {
         btnSpara.setEnabled(false);
         cbMaterialLager.setEnabled(false);
         txtMangdMaterial.setEnabled(false);
-        btnRaknaUtTillverkningskostnad.setEnabled(false);
 
         try {
             String hattID = txtHattID.getText();
@@ -630,6 +647,7 @@ public class HanteraHatt extends javax.swing.JFrame {
             fyllCbSkapare();
             fyllCbMaterialHatt();
             fyllCbMaterialLager();
+            raknaUtTotalkostnad();
 
             btnAndra.setEnabled(true);
 
@@ -685,51 +703,9 @@ public class HanteraHatt extends javax.swing.JFrame {
         new KollaBild(hatt).setVisible(true);
     }//GEN-LAST:event_nuvarandeBildActionPerformed
 
-    private void btnRaknaUtTillverkningskostnadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRaknaUtTillverkningskostnadActionPerformed
-        try {
-            String hattID = txtHattID.getText();
-            
-            //Räknar ut arbetskostnad
-            double arbetskostnad = 0;
-            double tillverkningstimmar = Double.parseDouble(idb.fetchSingle("SELECT Tillverkningstimmar FROM hatt WHERE hattID= " + hattID));
-            double timpris = Double.parseDouble(idb.fetchSingle("SELECT Timpris FROM personal WHERE personalID= (SELECT skapare FROM hatt WHERE hattID= " + hattID + " )"));
-            arbetskostnad = tillverkningstimmar * timpris;
-            
-            //Räknar ut materialkostnad
-            double totalMaterialkostnad = 0;
-            ArrayList<Double> listaMaterialkostnad = new ArrayList<>();
-            ArrayList<HashMap<String, String>> allaMaterialIHatten = idb.fetchRows("SELECT Material, Mangd FROM Hattmaterial WHERE Hatt= " + hattID);
-            
-            for (HashMap<String, String> enMaterialRad : allaMaterialIHatten) {
-                String material = enMaterialRad.get("Material");
-                String mangd = enMaterialRad.get("Mangd");
-                double mangdDouble = Double.parseDouble(mangd);
-                double enhetspris = Double.parseDouble(idb.fetchSingle("SELECT enhetspris FROM material WHERE materialID= " +material));
-                
-                double materialkostnad = mangdDouble * enhetspris;
-                
-                listaMaterialkostnad.add(materialkostnad);
-            }
-            
-            for (Double enMaterialkostnad : listaMaterialkostnad) {
-                totalMaterialkostnad = totalMaterialkostnad + enMaterialkostnad;
-            }
-               
-            //Räknar ut tillverkningskostnad
-            double tillverkningskostnad = totalMaterialkostnad + arbetskostnad;
-            
-            txtTillverkningskostnad.setText(String.valueOf(tillverkningskostnad));
-            
-        } catch (InfException ex) {
-            JOptionPane.showMessageDialog(null, "Något gick fel");
-            System.out.println("Internt felmeddelande" + ex.getMessage());
-        }
-    }//GEN-LAST:event_btnRaknaUtTillverkningskostnadActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAndra;
-    private javax.swing.JButton btnRaknaUtTillverkningskostnad;
     private javax.swing.JButton btnSokHatt;
     private javax.swing.JButton btnSpara;
     private javax.swing.JButton btnUppdateraBild;
@@ -737,7 +713,6 @@ public class HanteraHatt extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cbMaterialHatt;
     private javax.swing.JComboBox<String> cbMaterialLager;
     private javax.swing.JComboBox<String> cbSkapare;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lblBestallningsID;
     private javax.swing.JLabel lblHattID;
     private javax.swing.JLabel lblHattNuvarandeMaterial;
