@@ -8,6 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -40,6 +41,8 @@ public class HanteraHatt extends javax.swing.JFrame {
         btnSpara.setEnabled(false);
         cbMaterialLager.setEnabled(false);
         txtMangdMaterial.setEnabled(false);
+        txtTillverkningskostnad.setEnabled(false);
+        btnRaknaUtTillverkningskostnad.setEnabled(false);
         conn = DBConnect.connect();
     }
 
@@ -302,6 +305,10 @@ public class HanteraHatt extends javax.swing.JFrame {
         cbMaterialLager = new javax.swing.JComboBox<>();
         txtMangdMaterial = new javax.swing.JTextField();
         lblMangd2 = new javax.swing.JLabel();
+        lblTillverkningskostnad = new javax.swing.JLabel();
+        txtTillverkningskostnad = new javax.swing.JTextField();
+        btnRaknaUtTillverkningskostnad = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -377,41 +384,25 @@ public class HanteraHatt extends javax.swing.JFrame {
 
         lblMangd2.setText("Mängd");
 
+        lblTillverkningskostnad.setText("Tillverkningskostnad");
+
+        btnRaknaUtTillverkningskostnad.setText("Räkna ut");
+        btnRaknaUtTillverkningskostnad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRaknaUtTillverkningskostnadActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        jLabel1.setText("Tryck räkna ut och sedan spara för att spara tillverkningskostnaden");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(103, 103, 103)
-                .addComponent(btnAndra, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnSpara, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(111, 111, 111)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(cbMaterialHatt, 0, 198, Short.MAX_VALUE)
-                                    .addComponent(lblHattNuvarandeMaterial)
-                                    .addComponent(lblNyttMaterial)
-                                    .addComponent(cbMaterialLager, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtMangdHatt)
-                                    .addComponent(txtMangdMaterial, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(lblMangd)
-                                            .addComponent(lblMangd2))
-                                        .addGap(0, 0, Short.MAX_VALUE))))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblMaterial)
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addGap(123, 123, 123))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -421,28 +412,60 @@ public class HanteraHatt extends javax.swing.JFrame {
                                     .addComponent(lblTillverkningstimmar)
                                     .addComponent(lblBestallningsID)
                                     .addComponent(lblSkapare))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(nuvarandeBild, javax.swing.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(btnUppdateraBild, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(txtBestallningsID, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(txtTillverkningstimmar, javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(txtStorlek, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(cbKategori, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(cbSkapare, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txtHattID, javax.swing.GroupLayout.Alignment.TRAILING)))
+                                    .addComponent(cbKategori, javax.swing.GroupLayout.Alignment.TRAILING, 0, 225, Short.MAX_VALUE)
+                                    .addComponent(cbSkapare, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(txtHattID, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(txtBestallningsID, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(txtTillverkningstimmar)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(lblValkommen, javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(lblKategori)
                                         .addGap(89, 89, 89)))
-                                .addGap(0, 0, Short.MAX_VALUE)))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(nuvarandeBild)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnUppdateraBild)))
                         .addGap(18, 18, 18)
                         .addComponent(btnSokHatt)
-                        .addGap(33, 33, 33))))
+                        .addGap(33, 33, 33))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(jLabel1))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(lblTillverkningskostnad)
+                                        .addGap(31, 31, 31)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(lblNyttMaterial)
+                                            .addComponent(lblHattNuvarandeMaterial)
+                                            .addComponent(txtTillverkningskostnad)
+                                            .addComponent(cbMaterialLager, 0, 200, Short.MAX_VALUE)
+                                            .addComponent(cbMaterialHatt, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                    .addComponent(lblMaterial))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblMangd)
+                                    .addComponent(lblMangd2)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(txtMangdMaterial, javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(btnRaknaUtTillverkningskostnad, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(txtMangdHatt, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(66, 66, 66))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(103, 103, 103)
+                .addComponent(btnAndra, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnSpara, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -478,10 +501,10 @@ public class HanteraHatt extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnUppdateraBild)
                     .addComponent(nuvarandeBild))
-                .addGap(45, 45, 45)
+                .addGap(53, 53, 53)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblMangd)
-                    .addComponent(lblHattNuvarandeMaterial))
+                    .addComponent(lblHattNuvarandeMaterial)
+                    .addComponent(lblMangd))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblMaterial)
@@ -495,7 +518,14 @@ public class HanteraHatt extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cbMaterialLager, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtMangdMaterial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtTillverkningskostnad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblTillverkningskostnad)
+                    .addComponent(btnRaknaUtTillverkningskostnad))
+                .addGap(1, 1, 1)
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAndra, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSpara, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -527,8 +557,9 @@ public class HanteraHatt extends javax.swing.JFrame {
             String nyStorlek = txtStorlek.getText();
             String nyTillverkningstimmar = txtTillverkningstimmar.getText();
             String nyBestallning = bestallningsID;
+            String nyTillverkningskostnad = txtTillverkningskostnad.getText();
                     
-            String q = "UPDATE hattmakare.Hatt t SET t.Storlek = ?, t.Skapare= ?,t.Kategori= ?,t.Tillverkningstimmar = ?,t.Bestallning= ?, t.BildData = ? WHERE t.HattID = ?";
+            String q = "UPDATE hattmakare.Hatt t SET t.Storlek = ?, t.Skapare= ?,t.Kategori= ?,t.Tillverkningstimmar = ?,t.Bestallning= ?, t.BildData = ?, t.Tillverkningskostnad= ? WHERE t.HattID = ?";
             PreparedStatement pst = conn.prepareStatement(q);
             pst.setString(1, nyStorlek);
             pst.setString(2, nySkapare);
@@ -536,7 +567,8 @@ public class HanteraHatt extends javax.swing.JFrame {
             pst.setString(4, nyTillverkningstimmar);
             pst.setString(5, nyBestallning);
             pst.setBytes(6, pimage);
-            pst.setString(7, hattID);
+            pst.setString(7, nyTillverkningskostnad);
+            pst.setString(8, hattID);
             pst.execute();
             
             JOptionPane.showMessageDialog(null, ("Hatt " + hattID + " har uppdaterats"));
@@ -560,6 +592,7 @@ public class HanteraHatt extends javax.swing.JFrame {
         btnSpara.setEnabled(true);
         cbMaterialLager.setEnabled(true);
         txtMangdMaterial.setEnabled(true);
+        btnRaknaUtTillverkningskostnad.setEnabled(true);
     }//GEN-LAST:event_btnAndraActionPerformed
 
     private void txtMangdHattActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMangdHattActionPerformed
@@ -575,7 +608,7 @@ public class HanteraHatt extends javax.swing.JFrame {
         cbKategori.removeAllItems();
         cbMaterialHatt.removeAllItems();
         cbMaterialLager.removeAllItems();
-        
+
         cbSkapare.setEnabled(false);
         cbKategori.setEnabled(false);
         txtStorlek.setEnabled(false);
@@ -588,7 +621,8 @@ public class HanteraHatt extends javax.swing.JFrame {
         btnSpara.setEnabled(false);
         cbMaterialLager.setEnabled(false);
         txtMangdMaterial.setEnabled(false);
-         
+        btnRaknaUtTillverkningskostnad.setEnabled(false);
+
         try {
             String hattID = txtHattID.getText();
 
@@ -612,7 +646,7 @@ public class HanteraHatt extends javax.swing.JFrame {
                 txtTillverkningstimmar.setText(idb.fetchSingle("SELECT Tillverkningstimmar FROM Hatt WHERE HattID = " + hattID));
                 txtBestallningsID.setText(idb.fetchSingle("SELECT Bestallning FROM Hatt WHERE HattID = " + hattID));
             }
-            
+
             // Add an ItemListener to cbMaterialHatt
             cbMaterialHatt.addItemListener(new ItemListener() {
                 public void itemStateChanged(ItemEvent event) {
@@ -635,25 +669,67 @@ public class HanteraHatt extends javax.swing.JFrame {
                     }
                 }
             });
-                    
-            } catch (InfException ex) {
+
+        } catch (InfException ex) {
             JOptionPane.showMessageDialog(null, "Något gick fel");
             System.out.println("Internt felmeddelande" + ex.getMessage());
         }
     }//GEN-LAST:event_btnSokHattActionPerformed
 
     private void btnUppdateraBildActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUppdateraBildActionPerformed
-        new ValjBild(registrera,this).setVisible(true);
+        new ValjBild(registrera, this).setVisible(true);
     }//GEN-LAST:event_btnUppdateraBildActionPerformed
 
     private void nuvarandeBildActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuvarandeBildActionPerformed
         String hatt = txtHattID.getText();
-        new KollaBild(hatt).setVisible(true);      
+        new KollaBild(hatt).setVisible(true);
     }//GEN-LAST:event_nuvarandeBildActionPerformed
+
+    private void btnRaknaUtTillverkningskostnadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRaknaUtTillverkningskostnadActionPerformed
+        try {
+            String hattID = txtHattID.getText();
+            
+            //Räknar ut arbetskostnad
+            double arbetskostnad = 0;
+            double tillverkningstimmar = Double.parseDouble(idb.fetchSingle("SELECT Tillverkningstimmar FROM hatt WHERE hattID= " + hattID));
+            double timpris = Double.parseDouble(idb.fetchSingle("SELECT Timpris FROM personal WHERE personalID= (SELECT skapare FROM hatt WHERE hattID= " + hattID + " )"));
+            arbetskostnad = tillverkningstimmar * timpris;
+            
+            //Räknar ut materialkostnad
+            double totalMaterialkostnad = 0;
+            ArrayList<Double> listaMaterialkostnad = new ArrayList<>();
+            ArrayList<HashMap<String, String>> allaMaterialIHatten = idb.fetchRows("SELECT Material, Mangd FROM Hattmaterial WHERE Hatt= " + hattID);
+            
+            for (HashMap<String, String> enMaterialRad : allaMaterialIHatten) {
+                String material = enMaterialRad.get("Material");
+                String mangd = enMaterialRad.get("Mangd");
+                double mangdDouble = Double.parseDouble(mangd);
+                double enhetspris = Double.parseDouble(idb.fetchSingle("SELECT enhetspris FROM material WHERE materialID= " +material));
+                
+                double materialkostnad = mangdDouble * enhetspris;
+                
+                listaMaterialkostnad.add(materialkostnad);
+            }
+            
+            for (Double enMaterialkostnad : listaMaterialkostnad) {
+                totalMaterialkostnad = totalMaterialkostnad + enMaterialkostnad;
+            }
+               
+            //Räknar ut tillverkningskostnad
+            double tillverkningskostnad = totalMaterialkostnad + arbetskostnad;
+            
+            txtTillverkningskostnad.setText(String.valueOf(tillverkningskostnad));
+            
+        } catch (InfException ex) {
+            JOptionPane.showMessageDialog(null, "Något gick fel");
+            System.out.println("Internt felmeddelande" + ex.getMessage());
+        }
+    }//GEN-LAST:event_btnRaknaUtTillverkningskostnadActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAndra;
+    private javax.swing.JButton btnRaknaUtTillverkningskostnad;
     private javax.swing.JButton btnSokHatt;
     private javax.swing.JButton btnSpara;
     private javax.swing.JButton btnUppdateraBild;
@@ -661,6 +737,7 @@ public class HanteraHatt extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cbMaterialHatt;
     private javax.swing.JComboBox<String> cbMaterialLager;
     private javax.swing.JComboBox<String> cbSkapare;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lblBestallningsID;
     private javax.swing.JLabel lblHattID;
     private javax.swing.JLabel lblHattNuvarandeMaterial;
@@ -671,6 +748,7 @@ public class HanteraHatt extends javax.swing.JFrame {
     private javax.swing.JLabel lblNyttMaterial;
     private javax.swing.JLabel lblSkapare;
     private javax.swing.JLabel lblStorlek;
+    private javax.swing.JLabel lblTillverkningskostnad;
     private javax.swing.JLabel lblTillverkningstimmar;
     private javax.swing.JLabel lblValkommen;
     private javax.swing.JButton nuvarandeBild;
@@ -679,6 +757,7 @@ public class HanteraHatt extends javax.swing.JFrame {
     private javax.swing.JTextField txtMangdHatt;
     private javax.swing.JTextField txtMangdMaterial;
     private javax.swing.JTextField txtStorlek;
+    private javax.swing.JTextField txtTillverkningskostnad;
     private javax.swing.JTextField txtTillverkningstimmar;
     // End of variables declaration//GEN-END:variables
 }
