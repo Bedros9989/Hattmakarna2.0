@@ -3,6 +3,8 @@ package Hattmakarna;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import javax.swing.ListModel;
@@ -479,18 +481,18 @@ public class RegistreraBestallning extends javax.swing.JFrame {
             
     }//GEN-LAST:event_taBortActionPerformed
 
-//    private void updateLojalitet(){
-//     
-//     String KundID = idb.fetchSingle("select KundID from Kund where Namn ='"+cbKundID.getSelectedItem().toString()+"'");
-//     String KundBestallningar = idb.fetchSingle("select BestallningsID from Bestallning where Kund = '"+KundID+"'");
-//     String Hattar = idb.fetchSingle("select HattID from Hatt where BestallningsID = '"+KundBestallningar+"'");
-//        
-//     String hattar = "Select HattID from Hatt join Bestallning on Hatt.Bestallning = BestallningID where Kategori='"+valdHatt+"' and bestallning IS NULL;";
-//     
-//     if(){
-//         
-//     }
-//     }   
+    private void updateLojalitet(){
+    
+        try {
+         String KundID = idb.fetchSingle("select KundID from Kund where Namn ='"+cbKundID.getSelectedItem().toString()+"'");
+         String hattar = "Select HattID from Hatt join Bestallning B on Hatt.Bestallning = B.BestallningsID join Kund K on K.KundID = B.Kund where KundID = '"+KundID+"'";
+        
+        } catch (InfException ex) {
+            JOptionPane.showMessageDialog(null, "Något gick fel!");
+        }
+    
+     }   
+   
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea Adress;
