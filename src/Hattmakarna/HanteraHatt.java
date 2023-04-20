@@ -562,7 +562,6 @@ public class HanteraHatt extends javax.swing.JFrame {
             uppdateraHattMaterial();
             laggTillNyttHattMaterial();
             laggTillNyttHattMaterialuppdateraMaterial();   
-            raknaUtTotalkostnad();
 
             if (txtBestallningsID.getText().isEmpty()) {
                         bestallningsID = null;
@@ -590,6 +589,7 @@ public class HanteraHatt extends javax.swing.JFrame {
             pst.setString(8, hattID);
             pst.execute();
             
+            raknaUtTotalkostnad();
             JOptionPane.showMessageDialog(null, ("Hatt " + hattID + " har uppdaterats"));
         } catch (InfException ex) {
             JOptionPane.showMessageDialog(null, "Något gick fel");
@@ -665,7 +665,7 @@ public class HanteraHatt extends javax.swing.JFrame {
                 txtBestallningsID.setText(idb.fetchSingle("SELECT Bestallning FROM Hatt WHERE HattID = " + hattID));
             }
 
-            // Add an ItemListener to cbMaterialHatt
+            // Add an ItemListener to cbMaterialHatt§
             cbMaterialHatt.addItemListener(new ItemListener() {
                 public void itemStateChanged(ItemEvent event) {
                     // Check if the selected item has changed
