@@ -48,12 +48,24 @@ private InfDB idb;
         jLabel3 = new javax.swing.JLabel();
         jTLagerMangd = new javax.swing.JTextField();
         jBFyllPa = new javax.swing.JButton();
+        jSeparator1 = new javax.swing.JSeparator();
+        jSeparator2 = new javax.swing.JSeparator();
+        jLÄndraInformation = new javax.swing.JLabel();
+        jLMaterial = new javax.swing.JLabel();
+        jLÄndraNamn = new javax.swing.JLabel();
+        jCMaterialNamnen = new javax.swing.JComboBox<>();
+        jLÄndraEnhetspris = new javax.swing.JLabel();
+        jTAndraNamn = new javax.swing.JTextField();
+        jTAndraEnhetspris = new javax.swing.JTextField();
+        jBAndraInformation = new javax.swing.JButton();
+        jLFyllI = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLMaterialMangd.setText("Sätt materialmängd till 0 i lager:");
+        jLMaterialMangd.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLMaterialMangd.setText("Sätt materialmängd till 0 i lager");
 
-        jLValjMaterial.setText("Välj material");
+        jLValjMaterial.setText("Välj material:");
 
         jCMaterialNamn.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -64,16 +76,17 @@ private InfDB idb;
             }
         });
 
-        jLRubrik.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLRubrik.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLRubrik.setText("Hantera material");
 
-        jLFyllPa.setText("Fyll på befintligt material:");
+        jLFyllPa.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLFyllPa.setText("Fyll på befintligt material");
 
-        jLValj2.setText("Välj material");
+        jLValj2.setText("Välj material:");
 
         jCMaterialNamnet.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jLabel3.setText("Skriv mängd");
+        jLabel3.setText("Skriv mängd:");
 
         jBFyllPa.setText("Fyll på lagersaldo");
         jBFyllPa.addActionListener(new java.awt.event.ActionListener() {
@@ -82,55 +95,100 @@ private InfDB idb;
             }
         });
 
+        jLÄndraInformation.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLÄndraInformation.setText("Ändra information om material");
+
+        jLMaterial.setText("Välj material:");
+
+        jLÄndraNamn.setText("Ändra namn:");
+
+        jCMaterialNamnen.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jLÄndraEnhetspris.setText("Ändra enhetspris:");
+
+        jBAndraInformation.setText("Ändra information");
+        jBAndraInformation.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBAndraInformationActionPerformed(evt);
+            }
+        });
+
+        jLFyllI.setText("Fyll i vilken information som ska ändras:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLRubrik)
-                .addGap(130, 130, 130))
+            .addComponent(jSeparator1)
+            .addComponent(jSeparator2)
             .addGroup(layout.createSequentialGroup()
-                .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLFyllPa)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jLMaterialMangd, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addComponent(jLValjMaterial)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jCMaterialNamn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(27, 27, 27)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLFyllPa)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(jLMaterialMangd, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                        .addComponent(jLValjMaterial)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jCMaterialNamn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(jLValj2)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                                .addComponent(jLabel3)
+                                                .addGap(58, 58, 58)))
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jCMaterialNamnet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jTLagerMangd, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGap(34, 34, 34)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jBAndra)
+                                    .addComponent(jBFyllPa)))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLÄndraInformation, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLValj2)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(jLabel3)
-                                        .addGap(58, 58, 58)))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(jLÄndraNamn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 75, Short.MAX_VALUE)
+                                        .addComponent(jLMaterial, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(jLÄndraEnhetspris, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTLagerMangd, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jCMaterialNamnet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(34, 34, 34)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jBAndra)
-                            .addComponent(jBFyllPa))))
-                .addContainerGap(62, Short.MAX_VALUE))
+                                    .addComponent(jCMaterialNamnen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jTAndraNamn, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jTAndraEnhetspris, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 111, Short.MAX_VALUE)
+                                        .addComponent(jBAndraInformation))))
+                            .addComponent(jLFyllI)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(186, 186, 186)
+                        .addComponent(jLRubrik)))
+                .addGap(97, 97, 97))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(25, 25, 25)
+                .addGap(31, 31, 31)
                 .addComponent(jLRubrik)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLMaterialMangd)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLValjMaterial)
                     .addComponent(jCMaterialNamn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jBAndra))
-                .addGap(56, 56, 56)
+                .addGap(18, 18, 18)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
                 .addComponent(jLFyllPa)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -145,7 +203,26 @@ private InfDB idb;
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
                     .addComponent(jTLagerMangd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addGap(38, 38, 38)
+                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLÄndraInformation)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLMaterial)
+                    .addComponent(jCMaterialNamnen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(24, 24, 24)
+                .addComponent(jLFyllI)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLÄndraNamn)
+                    .addComponent(jTAndraNamn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jBAndraInformation))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTAndraEnhetspris, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLÄndraEnhetspris))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         pack();
@@ -231,9 +308,47 @@ private InfDB idb;
       }
     }//GEN-LAST:event_jBFyllPaActionPerformed
 
+    private void jBAndraInformationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAndraInformationActionPerformed
+          if(ValideringsKlass.endastNummerTillåten(jTAndraEnhetspris)) {
+        
+          String materialNamn = jCMaterialNamnen.getSelectedItem().toString();
+          String nyttNamn = jTAndraNamn.getText();
+          String nyttEnhetspris = jTAndraEnhetspris.getText();
+          String materialID = ("");
+        
+       try {
+         materialID = idb.fetchSingle("SELECT MaterialID from Material WHERE Materialnamn = '"+ materialNamn + "'");
+            
+        if(ValideringsKlass.rutaEmpty(jTAndraNamn)){     
+         System.out.println("Namnet har inte ändrats");   
+         }
+      
+        else{
+        idb.update("UPDATE material SET Materialnamn = '"+nyttNamn+"' WHERE MaterialID = '"+ materialID +"'");
+        JOptionPane.showMessageDialog(null, "Namnet har ändrats till "+nyttNamn+"!"); 
+        }
+      
+        if(ValideringsKlass.rutaEmpty(jTAndraEnhetspris)){
+         System.out.println("Enhetspriset har inte ändrats");       
+        }
+      
+        else  {
+        int prisInt = Integer.parseInt(nyttEnhetspris);
+        idb.update("UPDATE material SET Enhetspris = '"+nyttEnhetspris+"' WHERE MaterialID = '"+ materialID +"'");
+        JOptionPane.showMessageDialog(null, "Enhetspriset har ändrats till "+nyttEnhetspris+"!"); 
+      }
+            
+      } catch (InfException ex) {
+        Logger.getLogger(HanteraMaterial.class.getName()).log(Level.SEVERE, null, ex);
+      }
+          
+          }
+    }//GEN-LAST:event_jBAndraInformationActionPerformed
+
     private void fillComboboxMaterialNamn(){ 
     jCMaterialNamn.removeAllItems();
     jCMaterialNamnet.removeAllItems();
+    jCMaterialNamnen.removeAllItems();
     String fraga = "SELECT MaterialNamn FROM Material";
     
     ArrayList<String> MaterialNamnLista = new ArrayList<String>();
@@ -244,6 +359,7 @@ private InfDB idb;
     {
       jCMaterialNamn.addItem(material);
       jCMaterialNamnet.addItem(material);
+      jCMaterialNamnen.addItem(material);
     }
     }   catch (InfException ex){
         Logger.getLogger(HanteraMaterial.class.getName()).log(Level.SEVERE, null, ex);
@@ -254,15 +370,26 @@ private InfDB idb;
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBAndra;
+    private javax.swing.JButton jBAndraInformation;
     private javax.swing.JButton jBFyllPa;
     private javax.swing.JComboBox<String> jCMaterialNamn;
+    private javax.swing.JComboBox<String> jCMaterialNamnen;
     private javax.swing.JComboBox<String> jCMaterialNamnet;
+    private javax.swing.JLabel jLFyllI;
     private javax.swing.JLabel jLFyllPa;
+    private javax.swing.JLabel jLMaterial;
     private javax.swing.JLabel jLMaterialMangd;
     private javax.swing.JLabel jLRubrik;
     private javax.swing.JLabel jLValj2;
     private javax.swing.JLabel jLValjMaterial;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLÄndraEnhetspris;
+    private javax.swing.JLabel jLÄndraInformation;
+    private javax.swing.JLabel jLÄndraNamn;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JTextField jTAndraEnhetspris;
+    private javax.swing.JTextField jTAndraNamn;
     private javax.swing.JTextField jTLagerMangd;
     // End of variables declaration//GEN-END:variables
 }
