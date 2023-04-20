@@ -48,6 +48,16 @@ private InfDB idb;
         jLabel3 = new javax.swing.JLabel();
         jTLagerMangd = new javax.swing.JTextField();
         jBFyllPa = new javax.swing.JButton();
+        jSeparator1 = new javax.swing.JSeparator();
+        jSeparator2 = new javax.swing.JSeparator();
+        jLÄndraInformation = new javax.swing.JLabel();
+        jLMaterial = new javax.swing.JLabel();
+        jLÄndraNamn = new javax.swing.JLabel();
+        jCMaterialNamnen = new javax.swing.JComboBox<>();
+        jLÄndraEnhetspris = new javax.swing.JLabel();
+        jTÄndraNamn = new javax.swing.JTextField();
+        jTÄndraEnhetspris = new javax.swing.JTextField();
+        jBÄndraInformation = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -82,55 +92,95 @@ private InfDB idb;
             }
         });
 
+        jLÄndraInformation.setText("Ändra information om material:");
+
+        jLMaterial.setText("Välj material");
+
+        jLÄndraNamn.setText("Ändra namn:");
+
+        jCMaterialNamnen.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jLÄndraEnhetspris.setText("Ändra enhetspris:");
+
+        jBÄndraInformation.setText("Ändra information");
+        jBÄndraInformation.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBÄndraInformationActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLRubrik)
-                .addGap(130, 130, 130))
+            .addComponent(jSeparator1)
+            .addComponent(jSeparator2)
             .addGroup(layout.createSequentialGroup()
-                .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLFyllPa)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jLMaterialMangd, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addComponent(jLValjMaterial)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jCMaterialNamn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(27, 27, 27)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLFyllPa)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(jLMaterialMangd, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                        .addComponent(jLValjMaterial)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jCMaterialNamn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(jLValj2)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                                .addComponent(jLabel3)
+                                                .addGap(58, 58, 58)))
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jCMaterialNamnet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jTLagerMangd, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGap(34, 34, 34)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jBAndra)
+                                    .addComponent(jBFyllPa)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLRubrik)
+                                .addGap(52, 52, 52))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLÄndraInformation, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLValj2)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(jLabel3)
-                                        .addGap(58, 58, 58)))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(jLÄndraNamn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 75, Short.MAX_VALUE)
+                                        .addComponent(jLMaterial, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(jLÄndraEnhetspris, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTLagerMangd, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jCMaterialNamnet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(34, 34, 34)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jBAndra)
-                            .addComponent(jBFyllPa))))
-                .addContainerGap(62, Short.MAX_VALUE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jTÄndraEnhetspris, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(50, 50, 50)
+                                        .addComponent(jBÄndraInformation))
+                                    .addComponent(jCMaterialNamnen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTÄndraNamn, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                .addContainerGap(158, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(25, 25, 25)
+                .addGap(31, 31, 31)
                 .addComponent(jLRubrik)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLMaterialMangd)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLValjMaterial)
                     .addComponent(jCMaterialNamn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jBAndra))
-                .addGap(56, 56, 56)
+                .addGap(18, 18, 18)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
                 .addComponent(jLFyllPa)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -145,7 +195,24 @@ private InfDB idb;
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
                     .addComponent(jTLagerMangd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addGap(38, 38, 38)
+                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLÄndraInformation)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLMaterial)
+                    .addComponent(jCMaterialNamnen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLÄndraNamn)
+                    .addComponent(jTÄndraNamn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLÄndraEnhetspris)
+                    .addComponent(jTÄndraEnhetspris, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jBÄndraInformation))
+                .addContainerGap(61, Short.MAX_VALUE))
         );
 
         pack();
@@ -231,9 +298,39 @@ private InfDB idb;
       }
     }//GEN-LAST:event_jBFyllPaActionPerformed
 
+    private void jBÄndraInformationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBÄndraInformationActionPerformed
+          String materialNamn = jCMaterialNamnen.getSelectedItem().toString();
+          String nyttNamn = jTÄndraNamn.getText();
+          String nyttEnhetspris = jTÄndraEnhetspris.getText();
+          int prisInt = Integer.parseInt(nyttEnhetspris);
+          String materialID = ("");
+        
+       
+          
+          
+            try {
+                  materialID = idb.fetchSingle("SELECT MaterialID from Material WHERE Materialnamn = '"+ materialNamn + "'");
+            
+             if(nyttNamn.equals("")){
+                  idb.update("UPDATE material SET Materialnamn = '"+nyttNamn+"' WHERE MaterialID = '"+ materialID +"'");
+                   System.out.println("Namnet har ändrats till '"+nyttNamn+"'");
+             }
+             if(nyttEnhetspris.equals(nyttEnhetspris)){
+                  idb.update("UPDATE material SET Enhetspris = '"+nyttEnhetspris+"' WHERE MaterialID = '"+ materialID +"'");
+                  System.out.println("Enhetspriset har ändrats till "+nyttEnhetspris+"");
+            }} catch (InfException ex) {
+                  Logger.getLogger(HanteraMaterial.class.getName()).log(Level.SEVERE, null, ex);
+             }
+    
+                 
+          
+          
+    }//GEN-LAST:event_jBÄndraInformationActionPerformed
+
     private void fillComboboxMaterialNamn(){ 
     jCMaterialNamn.removeAllItems();
     jCMaterialNamnet.removeAllItems();
+    jCMaterialNamnen.removeAllItems();
     String fraga = "SELECT MaterialNamn FROM Material";
     
     ArrayList<String> MaterialNamnLista = new ArrayList<String>();
@@ -244,6 +341,7 @@ private InfDB idb;
     {
       jCMaterialNamn.addItem(material);
       jCMaterialNamnet.addItem(material);
+      jCMaterialNamnen.addItem(material);
     }
     }   catch (InfException ex){
         Logger.getLogger(HanteraMaterial.class.getName()).log(Level.SEVERE, null, ex);
@@ -255,14 +353,24 @@ private InfDB idb;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBAndra;
     private javax.swing.JButton jBFyllPa;
+    private javax.swing.JButton jBÄndraInformation;
     private javax.swing.JComboBox<String> jCMaterialNamn;
+    private javax.swing.JComboBox<String> jCMaterialNamnen;
     private javax.swing.JComboBox<String> jCMaterialNamnet;
     private javax.swing.JLabel jLFyllPa;
+    private javax.swing.JLabel jLMaterial;
     private javax.swing.JLabel jLMaterialMangd;
     private javax.swing.JLabel jLRubrik;
     private javax.swing.JLabel jLValj2;
     private javax.swing.JLabel jLValjMaterial;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLÄndraEnhetspris;
+    private javax.swing.JLabel jLÄndraInformation;
+    private javax.swing.JLabel jLÄndraNamn;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTextField jTLagerMangd;
+    private javax.swing.JTextField jTÄndraEnhetspris;
+    private javax.swing.JTextField jTÄndraNamn;
     // End of variables declaration//GEN-END:variables
 }
