@@ -475,11 +475,23 @@ public class RegistreraBestallning extends javax.swing.JFrame {
             if (index != -1) {
         DefaultListModel model = (DefaultListModel) jList1.getModel();
         model.remove(index);
-    }
-        
-        
+    }  
+            
     }//GEN-LAST:event_taBortActionPerformed
 
+//    private void updateLojalitet(){
+//     
+//     String KundID = idb.fetchSingle("select KundID from Kund where Namn ='"+cbKundID.getSelectedItem().toString()+"'");
+//     String KundBestallningar = idb.fetchSingle("select BestallningsID from Bestallning where Kund = '"+KundID+"'");
+//     String Hattar = idb.fetchSingle("select HattID from Hatt where BestallningsID = '"+KundBestallningar+"'");
+//        
+//     String hattar = "Select HattID from Hatt join Bestallning on Hatt.Bestallning = BestallningID where Kategori='"+valdHatt+"' and bestallning IS NULL;";
+//     
+//     if(){
+//         
+//     }
+//     }   
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea Adress;
     private javax.swing.JComboBox<String> cbHattID;

@@ -62,10 +62,6 @@
                                   <Component id="jBFyllPa" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <Group type="102" alignment="1" attributes="0">
-                              <Component id="jLRubrik" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
-                          </Group>
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
@@ -82,19 +78,26 @@
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <Component id="jTÄndraEnhetspris" min="-2" pref="71" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
-                                      <Component id="jBÄndraInformation" min="-2" max="-2" attributes="0"/>
-                                  </Group>
                                   <Component id="jCMaterialNamnen" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jTÄndraNamn" min="-2" pref="71" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="jTAndraNamn" alignment="0" min="-2" pref="71" max="-2" attributes="0"/>
+                                          <Component id="jTAndraEnhetspris" alignment="0" min="-2" pref="71" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace pref="111" max="32767" attributes="0"/>
+                                      <Component id="jBAndraInformation" min="-2" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
                           </Group>
+                          <Component id="jLFyllI" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="186" max="-2" attributes="0"/>
+                      <Component id="jLRubrik" min="-2" max="-2" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace pref="158" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="97" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -142,18 +145,20 @@
                   <Component id="jLMaterial" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jCMaterialNamnen" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
+              <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+              <Component id="jLFyllI" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLÄndraNamn" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jTÄndraNamn" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jTAndraNamn" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jBAndraInformation" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jTAndraEnhetspris" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLÄndraEnhetspris" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jTÄndraEnhetspris" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jBÄndraInformation" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="61" max="32767" attributes="0"/>
+              <EmptySpace pref="14" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -161,12 +166,15 @@
   <SubComponents>
     <Component class="javax.swing.JLabel" name="jLMaterialMangd">
       <Properties>
-        <Property name="text" type="java.lang.String" value="S&#xe4;tt materialm&#xe4;ngd till 0 i lager:"/>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI" size="14" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="S&#xe4;tt materialm&#xe4;ngd till 0 i lager"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLValjMaterial">
       <Properties>
-        <Property name="text" type="java.lang.String" value="V&#xe4;lj material"/>
+        <Property name="text" type="java.lang.String" value="V&#xe4;lj material:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JComboBox" name="jCMaterialNamn">
@@ -195,19 +203,22 @@
     <Component class="javax.swing.JLabel" name="jLRubrik">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Segoe UI" size="18" style="0"/>
+          <Font name="Segoe UI" size="24" style="0"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Hantera material"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLFyllPa">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Fyll p&#xe5; befintligt material:"/>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI" size="14" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Fyll p&#xe5; befintligt material"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLValj2">
       <Properties>
-        <Property name="text" type="java.lang.String" value="V&#xe4;lj material"/>
+        <Property name="text" type="java.lang.String" value="V&#xe4;lj material:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JComboBox" name="jCMaterialNamnet">
@@ -227,7 +238,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Skriv m&#xe4;ngd"/>
+        <Property name="text" type="java.lang.String" value="Skriv m&#xe4;ngd:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="jTLagerMangd">
@@ -246,12 +257,15 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jL&#xc4;ndraInformation">
       <Properties>
-        <Property name="text" type="java.lang.String" value="&#xc4;ndra information om material:"/>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI" size="14" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="&#xc4;ndra information om material"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLMaterial">
       <Properties>
-        <Property name="text" type="java.lang.String" value="V&#xe4;lj material"/>
+        <Property name="text" type="java.lang.String" value="V&#xe4;lj material:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jL&#xc4;ndraNamn">
@@ -279,17 +293,22 @@
         <Property name="text" type="java.lang.String" value="&#xc4;ndra enhetspris:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jT&#xc4;ndraNamn">
+    <Component class="javax.swing.JTextField" name="jTAndraNamn">
     </Component>
-    <Component class="javax.swing.JTextField" name="jT&#xc4;ndraEnhetspris">
+    <Component class="javax.swing.JTextField" name="jTAndraEnhetspris">
     </Component>
-    <Component class="javax.swing.JButton" name="jB&#xc4;ndraInformation">
+    <Component class="javax.swing.JButton" name="jBAndraInformation">
       <Properties>
         <Property name="text" type="java.lang.String" value="&#xc4;ndra information"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jB&#xc4;ndraInformationActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBAndraInformationActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLFyllI">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Fyll i vilken information som ska &#xe4;ndras:"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>
