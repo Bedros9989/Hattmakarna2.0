@@ -476,10 +476,10 @@ public class RegistreraBestallning extends javax.swing.JFrame {
         DefaultListModel model = (DefaultListModel) jList1.getModel();
         model.remove(index);
     }
-        
-        
+            
     }//GEN-LAST:event_taBortActionPerformed
 
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea Adress;
     private javax.swing.JComboBox<String> cbHattID;
