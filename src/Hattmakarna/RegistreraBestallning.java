@@ -494,18 +494,18 @@ public class RegistreraBestallning extends javax.swing.JFrame {
     }
     
     if(count > 10){
-     String aktuellLojalitet = idb.fetchSingle("Select Lojalitet from Kund where KundID = '"+KundID+"'");
-     Lojalitet = 10;
+    Lojalitet = 10;
     }
-    else
-    {
-      }
-    
+    else if (count > 20)
+    Lojalitet = 20;
+   
         } catch (InfException ex) {
             JOptionPane.showMessageDialog(null, "Något gick fel!");
         }
         
-     }   
+     }  
+    
+
    
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
