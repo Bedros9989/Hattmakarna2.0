@@ -482,16 +482,29 @@ public class RegistreraBestallning extends javax.swing.JFrame {
     }//GEN-LAST:event_taBortActionPerformed
 
     private void updateLojalitet(){
-    
-        try {
-         String KundID = idb.fetchSingle("select KundID from Kund where Namn ='"+cbKundID.getSelectedItem().toString()+"'");
-         String aktuellLojalitet = idb.fetchSingle("Select Lojalitet from Kund where KundID = '"+KundID+"'");
-         String hattar = "Select HattID from Hatt join Bestallning B on Hatt.Bestallning = B.BestallningsID join Kund K on K.KundID = B.Kund where KundID = '"+KundID+"'";
         
+    try {
+     ArrayList<String> HattIDn = new ArrayList<>();
+     String KundID = idb.fetchSingle("select KundID from Kund where Namn ='"+cbKundID.getSelectedItem().toString()+"'");
+     HattIDn = idb.fetchColumn("Select HattID from Hatt join Bestallning B on Hatt.Bestallning = B.BestallningsID join Kund K on K.KundID = B.Kund where KundID = '"+KundID+"'");
+     int count = 0;
+     
+    for(String hatt : HattIDn){
+        count++;
+    }
+    
+    if(count > 10){
+     String aktuellLojalitet = idb.fetchSingle("Select Lojalitet from Kund where KundID = '"+KundID+"'");
+     Lojalitet = 10;
+    }
+    else
+    {
+      }
+    
         } catch (InfException ex) {
             JOptionPane.showMessageDialog(null, "Något gick fel!");
         }
-    
+        
      }   
    
     
