@@ -387,7 +387,54 @@ public class HanteraBestallning extends javax.swing.JFrame {
     }//GEN-LAST:event_ansvarigActionPerformed
 
     private void statusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statusActionPerformed
-        // TODO add your handling code here:
+        String bästID = beställningsID.getText();
+        try{
+            if (status.getSelectedItem().equals("Returnerat")){
+                
+                int resultat = JOptionPane.showConfirmDialog(null, "Är du säker att du markera ordern som returnerat", "Bekräfta uppgifter", JOptionPane.YES_NO_OPTION);
+                
+                if(resultat == JOptionPane.YES_OPTION){
+                    
+                    ListModel<String> listModel = jList1.getModel();
+                        for (int i = 0; i < jList1.getModel().getSize(); i++) {
+                        String listItem = jList1.getModel().getElementAt(i);
+                        String[] parts = listItem.split("-");
+                        String selectedText = parts[0].trim();
+                        idb.update("UPDATE hattmakare.Hatt t SET t.Bestallning = null WHERE t.HattID ="+selectedText);
+                        }
+                        
+                        
+                        idb.update("UPDATE hattmakare.Bestallning t SET t.Status = 'Returnerat' WHERE t.BestallningsID = "+bästID);
+                        sök();
+                        kundBox.setEnabled(false);
+                        ansvarig.setEnabled(false);
+                        Adress.setEnabled(false);
+                        datumChooser.setEnabled(false);
+                        jList1.setEnabled(false);
+                        läggTill.setEnabled(false);
+                        taBort.setEnabled(false);
+                        summan.setEnabled(false);
+                        status.setEnabled(false);
+                        annulera.setEnabled(false);
+                        spara.setEnabled(false);
+                        JOptionPane.showMessageDialog(null, "Dina order är nu returnerat!");
+                    
+                    
+                }
+                
+            }
+        
+    }
+        catch (InfException e) {
+
+            JOptionPane.showMessageDialog(null, "Fel på databasuppkopplingen, prova igen senare!");
+            System.out.println("Databasfel: " + e);
+            
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Något gick snett, prova igen!");
+            
+        }  
+        
     }//GEN-LAST:event_statusActionPerformed
 
     private void sök(){
