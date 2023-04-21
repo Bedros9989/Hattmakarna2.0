@@ -493,11 +493,21 @@ public class RegistreraBestallning extends javax.swing.JFrame {
         count++;
     }
     
-    if(count > 10){
+    if(count == 10){
     Lojalitet = 10;
     }
-    else if (count > 20)
+    else if (count == 20)
     Lojalitet = 20;
+    
+    else if(count == 30){
+    Lojalitet = 30;
+    }
+    else if(count == 40)
+    Lojalitet = 40;
+    
+    else if(count == 50){
+    Lojalitet = 50;  
+    }
    
         } catch (InfException ex) {
             JOptionPane.showMessageDialog(null, "Något gick fel!");

@@ -3,6 +3,7 @@ package Hattmakarna;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
 import oru.inf.InfDB;
 import oru.inf.InfException;
 
@@ -134,6 +135,12 @@ public class RegistreraPersonal extends javax.swing.JFrame {
         if (ValideringsKlass.rutaEmpty(jAngivetPersonalNamn) || ValideringsKlass.rutaEmpty(jAngivetPersonalLosen) || ValideringsKlass.rutaEmpty(jAngivetPersonalTelefon) || ValideringsKlass.rutaEmpty(jAngivetPersonalTimpris)) {
            jfelMeddelandet.setText("Fel: Vänligen fyll i alla fält");
         } else {
+            if (ValideringsKlass.endastNummerTillåten(jAngivetPersonalTelefon) || ValideringsKlass.endastNummerTillåten(jAngivetPersonalTimpris)) {
+                }
+            else {
+            if(ValideringsKlass.isPositivt(jAngivetPersonalTimpris)){
+                }
+            else{
             try {
                 String pID = idb.getAutoIncrement("Personal", "PersonalID");
                 idb.insert("INSERT INTO Personal VALUES (" + pID + ", '" + jAngivetPersonalNamn.getText() + "', '" + jAngivetPersonalLosen.getText() + "', '" + jAngivetPersonalTelefon.getText() + "','" + jAngivetPersonalTimpris.getText() + "');");
@@ -142,8 +149,7 @@ public class RegistreraPersonal extends javax.swing.JFrame {
                 
                 JOptionPane.showMessageDialog(null, "Något gick fel!");
             } 
-        }
-//                                                     
+            } }}                                            
     }//GEN-LAST:event_jRegistreraPersonalKnappActionPerformed
 
 

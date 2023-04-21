@@ -165,7 +165,7 @@ public class RegistreraKundFonster extends javax.swing.JFrame {
         if (ValideringsKlass.rutaEmpty(jAngivetKundNamn) || ValideringsKlass.rutaEmpty(jAngiventKundTel) || ValideringsKlass.rutaEmpty(jAngivenKundAdress) || ValideringsKlass.rutaEmpty(jAngivenKundMejl)) {
            felMeddelande.setText("Fel: Vänligen fyll i alla fält");
         } else {
-            if (!ValideringsKlass.endastNummerTillåten(jAngiventKundTel)) {
+            if (ValideringsKlass.endastNummerTillåten(jAngiventKundTel)) {
                 }
                 else {
             try {
