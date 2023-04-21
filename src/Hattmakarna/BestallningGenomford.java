@@ -217,7 +217,7 @@ public class BestallningGenomford extends javax.swing.JFrame {
             String email= idb.fetchSingle("select Email from Kund where KundID = "+kund);
             try {
             String subject = "Email subject";
-            String body = "This is the email body text";
+            String body = "Hej,\n\n Tack for din forfragan om att bestalla en hatt fran Otto och Judiths hattar. Hatten du osnkar kommer att kosta"+" "+pris+". For att bestalla den vanligen svara pa detta meddelande. \n\n Mvh \n Otto och Judith";
             URI emailUri = new URI("mailto", email, null, "subject=" + subject + "&body=" + body, null);
             Desktop.getDesktop().mail(emailUri);
             
