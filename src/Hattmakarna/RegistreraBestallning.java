@@ -485,6 +485,7 @@ public class RegistreraBestallning extends javax.swing.JFrame {
     
         try {
          String KundID = idb.fetchSingle("select KundID from Kund where Namn ='"+cbKundID.getSelectedItem().toString()+"'");
+         String aktuellLojalitet = idb.fetchSingle("Select Lojalitet from Kund where KundID = '"+KundID+"'");
          String hattar = "Select HattID from Hatt join Bestallning B on Hatt.Bestallning = B.BestallningsID join Kund K on K.KundID = B.Kund where KundID = '"+KundID+"'";
         
         } catch (InfException ex) {
