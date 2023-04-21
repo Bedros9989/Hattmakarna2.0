@@ -9,17 +9,17 @@ import javax.swing.event.DocumentListener;
 import oru.inf.InfDB;
 import oru.inf.InfException;
 
-public class NyLeverantor extends javax.swing.JFrame {
+public class RegistreraLeverantor extends javax.swing.JFrame {
     
      private InfDB idb;
      private String lID;
 
  
-    public NyLeverantor(InfDB idb) {
+    public RegistreraLeverantor(InfDB idb) {
         initComponents();
         this.idb = idb;
         this.setLocationRelativeTo(null);
-        NyLeverantor.this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        RegistreraLeverantor.this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         jTLevID.setEnabled(false);
         visaInfo();
         kontrolleraText();
@@ -140,7 +140,7 @@ public class NyLeverantor extends javax.swing.JFrame {
              lID = idb.getAutoIncrement("Leverantor","LeverantorsID");
              jTLevID.setText(lID);
          } catch (InfException ex) {
-             Logger.getLogger(NyLeverantor.class.getName()).log(Level.SEVERE, null, ex);
+             Logger.getLogger(RegistreraLeverantor.class.getName()).log(Level.SEVERE, null, ex);
          }
         
     }
