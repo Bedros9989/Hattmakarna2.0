@@ -77,7 +77,7 @@ public class Leverantorer extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void nyLeverantörActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nyLeverantörActionPerformed
-        new NyLeverantor(idb).setVisible(true);
+        new RegistreraLeverantor(idb).setVisible(true);
     }//GEN-LAST:event_nyLeverantörActionPerformed
 
     private void visaLeverantörerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_visaLeverantörerActionPerformed
