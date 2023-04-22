@@ -157,23 +157,10 @@ public class SeMaterialLager extends javax.swing.JFrame {
     private void btnUppdateraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUppdateraActionPerformed
        setMaterialTable2();
     }//GEN-LAST:event_btnUppdateraActionPerformed
-
-    
-  //  private void hämtaMaterialID(){
-        
-    //    String fraga= "select MaterialID from Material";
-      //  ArrayList<String> allaMaterialID;
-        
-      //  try{
-        //    allaMaterialID= idb.fetchColumn(fraga);
-          //  for (String ettPersonal: allaPersonalNamn){
-          //    ansvarig.addItem(ettPersonal); 
-           // }
-    
     
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        //model.addItem(enKund);
+        
         
         
         String searchText = searchBox.getText();
@@ -231,7 +218,6 @@ public class SeMaterialLager extends javax.swing.JFrame {
                 model.addRow(materialData);
             }
         
-                // Bortkommenterad då den inte är klar, men ska vara för kvadratmetervaror nedan:
                 
                  ArrayList<HashMap<String, String>> kvadratLager = idb.fetchRows("select material.MaterialID, Material.Materialnamn, kvadratmeter from material"+
 " join Kvadratmetervara on material.MaterialID=Kvadratmetervara.MaterialID");
