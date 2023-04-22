@@ -166,7 +166,12 @@ public class SeMaterialLager extends javax.swing.JFrame {
         String searchText = searchBox.getText();
     model.setRowCount(0);
     try {
-        ArrayList<HashMap<String, String>> results = idb.fetchRows("SELECT MaterialNamn FROM Material WHERE Materialnamn LIKE '%" + searchText + "%'");
+        ArrayList<HashMap<String, String>> results = idb.fetchRows("SELECT MaterialNamn, "
+                + "Material.MaterialID, antal, meter, kvadratmeter FROM Material "
+                + "LEFT JOIN Antalvara ON Material.MaterialID = Antalvara.MaterialID LEFT JOIN Metervara "
+                + "ON Material.MaterialID = Metervara.MaterialID LEFT JOIN Kvadratmetervara on "
+                + "Material.MaterialID = Kvadratmetervara.MaterialID WHERE Materialnamn LIKE "
+                + "'%" + searchText + "%'");
         for (HashMap<String, String> row : results) {
             Object[] rowData = {
                 row.get("MaterialID"),
