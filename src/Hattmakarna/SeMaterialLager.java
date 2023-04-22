@@ -54,7 +54,7 @@ public class SeMaterialLager extends javax.swing.JFrame {
         btnHanteraMaterial = new javax.swing.JButton();
         btnUppdatera = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
+        searchBox = new javax.swing.JTextField();
 
         jToggleButton1.setText("jToggleButton1");
 
@@ -93,8 +93,13 @@ public class SeMaterialLager extends javax.swing.JFrame {
         });
 
         jButton1.setText("Sök material");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
-        jTextField1.setColumns(7);
+        searchBox.setColumns(7);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -110,7 +115,7 @@ public class SeMaterialLager extends javax.swing.JFrame {
                                 .addGap(522, 522, 522)
                                 .addComponent(btnUppdatera))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(searchBox, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -132,7 +137,7 @@ public class SeMaterialLager extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnHanteraMaterial, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(searchBox, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addComponent(btnUppdatera)
@@ -152,6 +157,50 @@ public class SeMaterialLager extends javax.swing.JFrame {
     private void btnUppdateraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUppdateraActionPerformed
        setMaterialTable2();
     }//GEN-LAST:event_btnUppdateraActionPerformed
+
+    
+  //  private void hämtaMaterialID(){
+        
+    //    String fraga= "select MaterialID from Material";
+      //  ArrayList<String> allaMaterialID;
+        
+      //  try{
+        //    allaMaterialID= idb.fetchColumn(fraga);
+          //  for (String ettPersonal: allaPersonalNamn){
+          //    ansvarig.addItem(ettPersonal); 
+           // }
+    
+    
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        //model.addItem(enKund);
+        
+        
+        String searchText = searchBox.getText();
+    model.setRowCount(0);
+    try {
+        ArrayList<HashMap<String, String>> results = idb.fetchRows("SELECT MaterialNamn FROM Material WHERE Materialnamn LIKE '%" + searchText + "%'");
+        for (HashMap<String, String> row : results) {
+            Object[] rowData = {
+                row.get("MaterialID"),
+                row.get("Materialnamn"),
+                row.get("Antal"),
+                row.get("Meter"),
+                row.get("Kvadratmeter"),
+                
+                
+                // add more columns as needed
+        };
+            model.addRow(rowData);
+        }
+        tabell.repaint();
+    } catch (InfException e) {
+        JOptionPane.showMessageDialog(null, "Database error!");
+        System.out.println("Database error: " + e);
+    }
+        
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
 
         
             private void setMaterialTable2() {
@@ -216,8 +265,8 @@ public class SeMaterialLager extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JToggleButton jToggleButton1;
+    private javax.swing.JTextField searchBox;
     private javax.swing.JTable tabell;
     // End of variables declaration//GEN-END:variables
 }
