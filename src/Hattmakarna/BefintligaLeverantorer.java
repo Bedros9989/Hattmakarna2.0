@@ -52,6 +52,7 @@ public class BefintligaLeverantorer extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel3 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         valdLeverantör = new javax.swing.JComboBox<>();
         namn = new javax.swing.JTextField();
@@ -63,14 +64,18 @@ public class BefintligaLeverantorer extends javax.swing.JFrame {
         jLTelefon = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         statistik = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Logga.png"))); // NOI18N
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(249, 248, 244));
 
-        valdLeverantör.setFont(new java.awt.Font("Futura", 0, 13)); // NOI18N
+        valdLeverantör.setFont(new java.awt.Font("Futura", 0, 14)); // NOI18N
         valdLeverantör.setForeground(new java.awt.Color(51, 51, 51));
         valdLeverantör.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -78,33 +83,34 @@ public class BefintligaLeverantorer extends javax.swing.JFrame {
             }
         });
 
-        namn.setFont(new java.awt.Font("Futura", 0, 13)); // NOI18N
+        namn.setFont(new java.awt.Font("Futura", 0, 14)); // NOI18N
         namn.setForeground(new java.awt.Color(51, 51, 51));
 
-        adress.setFont(new java.awt.Font("Futura", 0, 13)); // NOI18N
+        adress.setFont(new java.awt.Font("Futura", 0, 14)); // NOI18N
         adress.setForeground(new java.awt.Color(51, 51, 51));
 
-        telefonnummer.setFont(new java.awt.Font("Futura", 0, 13)); // NOI18N
+        telefonnummer.setFont(new java.awt.Font("Futura", 0, 14)); // NOI18N
         telefonnummer.setForeground(new java.awt.Color(51, 51, 51));
 
-        jLVald.setFont(new java.awt.Font("Futura", 0, 13)); // NOI18N
+        jLVald.setFont(new java.awt.Font("Futura", 0, 14)); // NOI18N
         jLVald.setForeground(new java.awt.Color(51, 51, 51));
         jLVald.setText("Vald Leverantör");
 
-        jLNamn.setFont(new java.awt.Font("Futura", 0, 13)); // NOI18N
+        jLNamn.setFont(new java.awt.Font("Futura", 0, 14)); // NOI18N
         jLNamn.setForeground(new java.awt.Color(51, 51, 51));
         jLNamn.setText("Namn");
 
-        jLAdress.setFont(new java.awt.Font("Futura", 0, 13)); // NOI18N
+        jLAdress.setFont(new java.awt.Font("Futura", 0, 14)); // NOI18N
         jLAdress.setForeground(new java.awt.Color(51, 51, 51));
         jLAdress.setText("Telefonnummer");
 
-        jLTelefon.setFont(new java.awt.Font("Futura", 0, 13)); // NOI18N
+        jLTelefon.setFont(new java.awt.Font("Futura", 0, 14)); // NOI18N
         jLTelefon.setForeground(new java.awt.Color(51, 51, 51));
         jLTelefon.setText("Adress");
 
         jPanel2.setBackground(new java.awt.Color(102, 102, 102));
 
+        statistik.setFont(new java.awt.Font("Futura", 0, 14)); // NOI18N
         statistik.setText("Statistik");
         statistik.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -112,21 +118,40 @@ public class BefintligaLeverantorer extends javax.swing.JFrame {
             }
         });
 
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Hattmakarna/Leverantör.png"))); // NOI18N
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(89, 89, 89)
-                .addComponent(statistik, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(94, Short.MAX_VALUE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(121, 121, 121)
+                        .addComponent(jLabel2))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(55, 55, 55)
+                        .addComponent(statistik, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addGap(59, 59, 59)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGap(98, 98, 98)))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(101, 101, 101)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(statistik, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34))
+                .addGap(30, 30, 30))
+            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addGap(62, 62, 62)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE)
+                    .addGap(95, 95, 95)))
         );
 
         jLabel1.setFont(new java.awt.Font("Futura", 0, 30)); // NOI18N
@@ -137,8 +162,8 @@ public class BefintligaLeverantorer extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -165,9 +190,9 @@ public class BefintligaLeverantorer extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(33, 33, 33)
+                .addGap(24, 24, 24)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(valdLeverantör, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLVald))
@@ -238,6 +263,9 @@ public class BefintligaLeverantorer extends javax.swing.JFrame {
     private javax.swing.JLabel jLTelefon;
     private javax.swing.JLabel jLVald;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JTextField namn;
