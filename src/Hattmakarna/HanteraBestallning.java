@@ -470,6 +470,8 @@ public class HanteraBestallning extends javax.swing.JFrame {
                     
                 }
                 
+            }else{
+                
             }
         
     }
@@ -479,7 +481,7 @@ public class HanteraBestallning extends javax.swing.JFrame {
             System.out.println("Databasfel: " + e);
             
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, "Något gick snett, prova igen!");
+//            JOptionPane.showMessageDialog(null, "Något gick snett, prova igen!");
             
         }  
         
