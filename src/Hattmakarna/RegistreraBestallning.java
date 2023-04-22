@@ -69,18 +69,26 @@ public class RegistreraBestallning extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
 
-        jLabel1.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
+        jPanel1.setBackground(new java.awt.Color(249, 248, 244));
+
+        jLabel1.setFont(new java.awt.Font("Futura", 0, 30)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(51, 51, 51));
         jLabel1.setText("Registrera beställning");
 
-        jLabel2.setFont(new java.awt.Font("Helvetica Neue", 0, 17)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Futura", 0, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(51, 51, 51));
         jLabel2.setText("Datum (åååå-mm-dd)");
 
-        jLabel4.setFont(new java.awt.Font("Helvetica Neue", 0, 17)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Futura", 0, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(51, 51, 51));
         jLabel4.setText("Leveransadress");
 
-        jLabel6.setFont(new java.awt.Font("Helvetica Neue", 0, 17)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Futura", 0, 18)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(51, 51, 51));
         jLabel6.setText("Hatt");
 
+        cbKundID.setFont(new java.awt.Font("Futura", 0, 14)); // NOI18N
+        cbKundID.setForeground(new java.awt.Color(51, 51, 51));
         cbKundID.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Välj Kund" }));
         cbKundID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -88,6 +96,8 @@ public class RegistreraBestallning extends javax.swing.JFrame {
             }
         });
 
+        cbHattID.setFont(new java.awt.Font("Futura", 0, 14)); // NOI18N
+        cbHattID.setForeground(new java.awt.Color(51, 51, 51));
         cbHattID.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Välj Hatt" }));
         cbHattID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -95,6 +105,8 @@ public class RegistreraBestallning extends javax.swing.JFrame {
             }
         });
 
+        jbLaggTillHatt.setFont(new java.awt.Font("Futura", 0, 14)); // NOI18N
+        jbLaggTillHatt.setForeground(new java.awt.Color(51, 51, 51));
         jbLaggTillHatt.setText("Lägg till hatt");
         jbLaggTillHatt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -102,15 +114,24 @@ public class RegistreraBestallning extends javax.swing.JFrame {
             }
         });
 
+        jScrollPane1.setForeground(new java.awt.Color(51, 51, 51));
+
         Adress.setColumns(20);
+        Adress.setFont(new java.awt.Font("Futura", 0, 14)); // NOI18N
+        Adress.setForeground(new java.awt.Color(51, 51, 51));
         Adress.setRows(5);
         jScrollPane1.setViewportView(Adress);
 
-        jLabel3.setFont(new java.awt.Font("Helvetica Neue", 0, 17)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Futura", 0, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(51, 51, 51));
         jLabel3.setText("Kund");
 
+        jDateChooserReg.setForeground(new java.awt.Color(51, 51, 51));
         jDateChooserReg.setDateFormatString("yyyy-MM-dd");
+        jDateChooserReg.setFont(new java.awt.Font("Futura", 0, 14)); // NOI18N
 
+        jbRegBestallning.setFont(new java.awt.Font("Futura", 0, 14)); // NOI18N
+        jbRegBestallning.setForeground(new java.awt.Color(51, 51, 51));
         jbRegBestallning.setText("Registrera beställning");
         jbRegBestallning.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -118,16 +139,26 @@ public class RegistreraBestallning extends javax.swing.JFrame {
             }
         });
 
-        jLabel5.setFont(new java.awt.Font("Helvetica Neue", 0, 17)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Futura", 0, 18)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(51, 51, 51));
         jLabel5.setText("Totalsumma:");
 
+        summan.setFont(new java.awt.Font("Futura", 0, 14)); // NOI18N
+        summan.setForeground(new java.awt.Color(51, 51, 51));
         summan.setText("\n");
 
+        jScrollPane3.setForeground(new java.awt.Color(51, 51, 51));
+
+        jList1.setFont(new java.awt.Font("Futura", 0, 14)); // NOI18N
+        jList1.setForeground(new java.awt.Color(51, 51, 51));
         jScrollPane3.setViewportView(jList1);
 
-        jLabel7.setFont(new java.awt.Font("Helvetica Neue", 0, 17)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Futura", 0, 18)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(51, 51, 51));
         jLabel7.setText("Översikt");
 
+        taBort.setFont(new java.awt.Font("Futura", 0, 14)); // NOI18N
+        taBort.setForeground(new java.awt.Color(51, 51, 51));
         taBort.setText("Ta bort");
         taBort.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -135,17 +166,21 @@ public class RegistreraBestallning extends javax.swing.JFrame {
             }
         });
 
-        jLabel8.setFont(new java.awt.Font("Helvetica Neue", 0, 17)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Futura", 0, 18)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(51, 51, 51));
         jLabel8.setText("BeställningsID");
+
+        jTextField1.setFont(new java.awt.Font("Futura", 0, 14)); // NOI18N
+        jTextField1.setForeground(new java.awt.Color(51, 51, 51));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(37, 37, 37)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(37, 37, 37)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addGroup(jPanel1Layout.createSequentialGroup()
@@ -158,7 +193,7 @@ public class RegistreraBestallning extends javax.swing.JFrame {
                                     .addComponent(jLabel7)
                                     .addComponent(jLabel2)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addGroup(jPanel1Layout.createSequentialGroup()
                                                 .addComponent(jLabel3)
                                                 .addGap(18, 18, 18)
@@ -166,34 +201,32 @@ public class RegistreraBestallning extends javax.swing.JFrame {
                                                     .addComponent(cbHattID, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                     .addComponent(cbKundID, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                             .addComponent(jLabel6)
-                                            .addComponent(jLabel4))
+                                            .addComponent(jLabel4)
+                                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addComponent(jLabel8)
+                                                .addGap(62, 62, 62)
+                                                .addComponent(jTextField1)))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(jbLaggTillHatt))
                                     .addComponent(jScrollPane3)
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 382, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(108, 108, 108)
-                                .addComponent(jbRegBestallning))
-                            .addComponent(jLabel1)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel8)
-                                .addGap(62, 62, 62)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(45, Short.MAX_VALUE))
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 382, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel1)))
+                            .addComponent(jDateChooserReg, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jDateChooserReg, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(153, 153, 153)
+                        .addComponent(jbRegBestallning)))
+                .addContainerGap(55, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(21, 21, 21)
+                .addContainerGap(17, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addGap(19, 19, 19)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
+                .addGap(27, 27, 27)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(cbKundID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -219,9 +252,9 @@ public class RegistreraBestallning extends javax.swing.JFrame {
                     .addComponent(jLabel5)
                     .addComponent(summan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(taBort))
-                .addGap(28, 28, 28)
+                .addGap(26, 26, 26)
                 .addComponent(jbRegBestallning, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18))
+                .addGap(20, 20, 20))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
