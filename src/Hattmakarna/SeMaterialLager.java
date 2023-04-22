@@ -19,13 +19,14 @@ public class SeMaterialLager extends javax.swing.JFrame {
 
     private InfDB idb;
     DefaultTableModel model = new DefaultTableModel();
+
     /**
      * Creates new form SeMaterialLager
      */
     public SeMaterialLager(InfDB idb) {
         initComponents();
         this.idb = idb;
-     
+
         this.setLocationRelativeTo(null);
         tabell.setModel(model);
         model.addColumn("MaterialID");
@@ -149,105 +150,115 @@ public class SeMaterialLager extends javax.swing.JFrame {
 
     private void btnHanteraMaterialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHanteraMaterialActionPerformed
         //btnUppdatera.setVisible(true);
-        
-          new HanteraMaterial(idb).setVisible(true);
-          btnUppdatera.setVisible(true);
+
+        new HanteraMaterial(idb).setVisible(true);
+        btnUppdatera.setVisible(true);
     }//GEN-LAST:event_btnHanteraMaterialActionPerformed
 
     private void btnUppdateraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUppdateraActionPerformed
-       setMaterialTable2();
+        setMaterialTable2();
     }//GEN-LAST:event_btnUppdateraActionPerformed
-    
+
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        
-        
-        
+
         String searchText = searchBox.getText();
-    model.setRowCount(0);
-    try {
-        ArrayList<HashMap<String, String>> results = idb.fetchRows("SELECT MaterialNamn, "
-                + "Material.MaterialID, antal, meter, kvadratmeter FROM Material "
-                + "LEFT JOIN Antalvara ON Material.MaterialID = Antalvara.MaterialID LEFT JOIN Metervara "
-                + "ON Material.MaterialID = Metervara.MaterialID LEFT JOIN Kvadratmetervara on "
-                + "Material.MaterialID = Kvadratmetervara.MaterialID WHERE Materialnamn LIKE "
-                + "'%" + searchText + "%'");
-        for (HashMap<String, String> row : results) {
-            Object[] rowData = {
-                row.get("MaterialID"),
-                row.get("Materialnamn"),
-                row.get("Antal"),
-                row.get("Meter"),
-                row.get("Kvadratmeter"),
-                
-                
-                // add more columns as needed
-        };
-            model.addRow(rowData);
+        model.setRowCount(0);
+        
+        if (ValideringsKlass.textFaltHarVarde2(searchBox)){
+        
+        try {
+            ArrayList<HashMap<String, String>> results = idb.fetchRows("SELECT MaterialNamn, "
+                    + "Material.MaterialID, antal, meter, kvadratmeter FROM Material "
+                    + "LEFT JOIN Antalvara ON Material.MaterialID = Antalvara.MaterialID LEFT JOIN Metervara "
+                    + "ON Material.MaterialID = Metervara.MaterialID LEFT JOIN Kvadratmetervara on "
+                    + "Material.MaterialID = Kvadratmetervara.MaterialID WHERE Materialnamn LIKE "
+                    + "'%" + searchText + "%'");
+            for (HashMap<String, String> row : results) {
+                Object[] rowData = {
+                    row.get("MaterialID"),
+                    row.get("Materialnamn"),
+                    row.get("Antal"),
+                    row.get("Meter"),
+                    row.get("Kvadratmeter"),};
+                model.addRow(rowData);
+            }
+
+            ArrayList<HashMap<String, String>> materialID = idb.fetchRows("SELECT MaterialNamn, "
+                    + "Material.MaterialID, antal, meter, kvadratmeter FROM Material "
+                    + "LEFT JOIN Antalvara ON Material.MaterialID = Antalvara.MaterialID LEFT JOIN Metervara "
+                    + "ON Material.MaterialID = Metervara.MaterialID LEFT JOIN Kvadratmetervara on "
+                    + "Material.MaterialID = Kvadratmetervara.MaterialID WHERE Material.MaterialID LIKE "
+                    + "'%" + searchText + "%'");
+            for (HashMap<String, String> row : materialID) {
+                Object[] rowData = {
+                    row.get("MaterialID"),
+                    row.get("Materialnamn"),
+                    row.get("Antal"),
+                    row.get("Meter"),
+                    row.get("Kvadratmeter"),};
+                model.addRow(rowData);
+
+            }
+            tabell.repaint();
+        } catch (InfException e) {
+            JOptionPane.showMessageDialog(null, "Database error!");
+            System.out.println("Database error: " + e);
         }
-        tabell.repaint();
-    } catch (InfException e) {
-        JOptionPane.showMessageDialog(null, "Database error!");
-        System.out.println("Database error: " + e);
-    }
-        
-        
+        }
+        else{
+            // skulle varit optimalt att ha kvar sökningen innan, istället för att orginaltabellen kommer fram, men vet ej hur?
+            setMaterialTable2();
+        }
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
-        
-            private void setMaterialTable2() {
+    private void setMaterialTable2() {
 
         model.setRowCount(0);
 
         try {
-            
-                  ArrayList<HashMap<String, String>> antalLager = idb.fetchRows("select material.MaterialID, Material.Materialnamn, Antal from material " +
-"join Antalvara on Material.MaterialID = antalvara.MaterialID");
+
+            ArrayList<HashMap<String, String>> antalLager = idb.fetchRows("select material.MaterialID, Material.Materialnamn, Antal from material "
+                    + "join Antalvara on Material.MaterialID = antalvara.MaterialID");
 
             for (HashMap<String, String> antal : antalLager) {
                 Object[] antalData = {
                     antal.get("MaterialID"),
                     antal.get("Materialnamn"),
-                antal.get("Antal"),};
+                    antal.get("Antal"),};
                 model.addRow(antalData);
             }
-            ArrayList<HashMap<String, String>> meterLager = idb.fetchRows("select material.MaterialID, Material.Materialnamn, meter from material"+
-" join Metervara on material.MaterialID=metervara.MaterialID");
+            ArrayList<HashMap<String, String>> meterLager = idb.fetchRows("select material.MaterialID, Material.Materialnamn, meter from material"
+                    + " join Metervara on material.MaterialID=metervara.MaterialID");
 
             for (HashMap<String, String> material : meterLager) {
                 Object[] materialData = {
                     material.get("MaterialID"),
                     material.get("Materialnamn"),
                     material.get("Antal"),
-                 material.get("Meter"),};
+                    material.get("Meter"),};
                 model.addRow(materialData);
             }
-        
-                
-                 ArrayList<HashMap<String, String>> kvadratLager = idb.fetchRows("select material.MaterialID, Material.Materialnamn, kvadratmeter from material"+
-" join Kvadratmetervara on material.MaterialID=Kvadratmetervara.MaterialID");
+
+            ArrayList<HashMap<String, String>> kvadratLager = idb.fetchRows("select material.MaterialID, Material.Materialnamn, kvadratmeter from material"
+                    + " join Kvadratmetervara on material.MaterialID=Kvadratmetervara.MaterialID");
 
             for (HashMap<String, String> kvadrat : kvadratLager) {
                 Object[] materialData = {
                     kvadrat.get("MaterialID"),
                     kvadrat.get("Materialnamn"),
-                     kvadrat.get("Antal"),
-                      kvadrat.get("Meter"),
-                     kvadrat.get("Kvadratmeter"),
-                
-               };
+                    kvadrat.get("Antal"),
+                    kvadrat.get("Meter"),
+                    kvadrat.get("Kvadratmeter"),};
                 model.addRow(materialData);
-            
-                     
+
             }
-            }
-            
-         catch (InfException e) {
+        } catch (InfException e) {
             JOptionPane.showMessageDialog(null, "Databasfel!");
             System.out.println("Databasfel: " + e);
         }
-    
-            }
+
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
