@@ -93,7 +93,8 @@ public class SeMaterialLager extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Sök material");
+        jButton1.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
+        jButton1.setText("Sök ID eller namn");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -215,7 +216,7 @@ public class SeMaterialLager extends javax.swing.JFrame {
    private void setMaterialTable2() {
     model.setRowCount(0);
     try {
-        String query = "SELECT DISTINCT material.MaterialID, Material.Materialnamn, Antalvara.Antal, Metervara.meter, Kvadratmetervara.kvadratmeter "
+        String query = "SELECT material.MaterialID, Material.Materialnamn, Antalvara.Antal, Metervara.meter, Kvadratmetervara.kvadratmeter "
                      + "FROM material "
                      + "LEFT JOIN Antalvara ON Material.MaterialID = antalvara.MaterialID "
                      + "LEFT JOIN Metervara ON Material.MaterialID = metervara.MaterialID "
@@ -228,9 +229,8 @@ public class SeMaterialLager extends javax.swing.JFrame {
     row.get("MaterialID"),
     row.get("Materialnamn"),
     row.get("Antal"),
-    row.get("Meter") == null ? "" : row.get("Meter"),
-    row.get("Kvadratmeter") == null ? "" : row.get("Kvadratmeter")
-};
+    row.get("Meter"),
+    row.get("Kvadratmeter") };
             model.addRow(rowData);
         }
     } catch (InfException e) {
