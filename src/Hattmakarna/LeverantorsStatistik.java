@@ -41,6 +41,7 @@ public class LeverantorsStatistik extends javax.swing.JFrame {
         tabell = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(249, 248, 244));
 

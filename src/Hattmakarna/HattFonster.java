@@ -28,6 +28,7 @@ public class HattFonster extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(249, 248, 244));
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(249, 248, 244));
 
