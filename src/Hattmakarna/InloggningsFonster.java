@@ -9,6 +9,7 @@ public class InloggningsFonster extends javax.swing.JFrame {
 
     private InfDB idb;
     private String ID;
+    private boolean showingPassword = false;
 
     public InloggningsFonster(InfDB idb) {
         initComponents();
@@ -31,6 +32,7 @@ public class InloggningsFonster extends javax.swing.JFrame {
         titel = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        döljLösenord1 = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -100,6 +102,12 @@ public class InloggningsFonster extends javax.swing.JFrame {
                 .addGap(101, 101, 101))
         );
 
+        döljLösenord1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                döljLösenord1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -108,7 +116,10 @@ public class InloggningsFonster extends javax.swing.JFrame {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(70, 70, 70)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lösenord, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(lösenord, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(döljLösenord1))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(31, 31, 31)
                         .addComponent(loggaIn, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -116,7 +127,7 @@ public class InloggningsFonster extends javax.swing.JFrame {
                     .addComponent(textAnvändarnamn)
                     .addComponent(personalID, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(textLösenord))
-                .addContainerGap(56, Short.MAX_VALUE))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -131,7 +142,9 @@ public class InloggningsFonster extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(textLösenord)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lösenord, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(döljLösenord1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lösenord, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addComponent(loggaIn, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(47, 47, 47))
@@ -206,9 +219,24 @@ public class InloggningsFonster extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_loggaInActionPerformed
 
+    private void döljLösenord1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_döljLösenord1ActionPerformed
+
+        if(showingPassword)
+        {
+            lösenord.setEchoChar('*');
+            showingPassword = false;
+        }else
+        {
+            lösenord.setEchoChar('\u0000');
+            showingPassword = true;
+        }
+
+    }//GEN-LAST:event_döljLösenord1ActionPerformed
+
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JRadioButton döljLösenord1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

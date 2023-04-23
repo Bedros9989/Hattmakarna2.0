@@ -1,6 +1,8 @@
 package Hattmakarna;
 
+import javax.swing.JOptionPane;
 import oru.inf.InfDB;
+import oru.inf.InfException;
 
 
 public class HuvudFonster extends javax.swing.JFrame {
@@ -14,6 +16,7 @@ public class HuvudFonster extends javax.swing.JFrame {
         this.ID = ID;
         this.setLocationRelativeTo(null);
         HuvudFonster.this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        hej();
     }
 
 
@@ -28,7 +31,7 @@ public class HuvudFonster extends javax.swing.JFrame {
         loggaUt = new javax.swing.JButton();
         btnPersonal = new javax.swing.JButton();
         leverantorer = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        hej = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -98,9 +101,9 @@ public class HuvudFonster extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Futura", 0, 13)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("jLabel1");
+        hej.setFont(new java.awt.Font("Futura", 0, 18)); // NOI18N
+        hej.setForeground(new java.awt.Color(255, 255, 255));
+        hej.setText("jLabel1");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -109,7 +112,7 @@ public class HuvudFonster extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(74, 74, 74)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
+                    .addComponent(hej)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(material, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -129,8 +132,8 @@ public class HuvudFonster extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(32, 32, 32)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                .addComponent(hej)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(kunder, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(beställningar, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -161,6 +164,30 @@ public class HuvudFonster extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void hej(){
+        
+        try
+        {
+            
+            String hejMeddelande = idb.fetchSingle("Select Namn from Personal where PersonalID="+ID);
+            String welcome = "Välkommen"+" "+hejMeddelande+" "+"vad vill du göra idag?";
+            hej.setText(welcome);
+            
+        }catch (InfException ettUndantag) {
+            
+            JOptionPane.showMessageDialog(null, "Databasfel!");
+           
+            
+        }
+        
+        catch (Exception ettUndantag) {
+            
+            JOptionPane.showMessageDialog(null, "Något gick fel!");
+            
+            
+        }
+    }
+    
     private void beställningarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_beställningarActionPerformed
         
         new Bestallningar(idb, ID).setVisible(true);
@@ -208,7 +235,7 @@ public class HuvudFonster extends javax.swing.JFrame {
     private javax.swing.JButton beställningar;
     private javax.swing.JButton btnHattar;
     private javax.swing.JButton btnPersonal;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel hej;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JButton kunder;
     private javax.swing.JButton leverantorer;
