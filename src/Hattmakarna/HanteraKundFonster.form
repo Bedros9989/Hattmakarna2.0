@@ -139,8 +139,8 @@
                       </Group>
                   </Group>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="spara" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
-                      <Component id="ändra" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
+                      <Component id="spara" alignment="3" min="-2" pref="44" max="-2" attributes="0"/>
+                      <Component id="ändra" alignment="3" min="-2" pref="44" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
               </Group>
