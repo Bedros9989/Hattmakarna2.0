@@ -212,53 +212,36 @@ public class SeMaterialLager extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void setMaterialTable2() {
+   private void setMaterialTable2() {
+    model.setRowCount(0);
+    try {
+        String query = "SELECT DISTINCT material.MaterialID, Material.Materialnamn, Antalvara.Antal, Metervara.meter, Kvadratmetervara.kvadratmeter "
+                     + "FROM material "
+                     + "LEFT JOIN Antalvara ON Material.MaterialID = antalvara.MaterialID "
+                     + "LEFT JOIN Metervara ON Material.MaterialID = metervara.MaterialID "
+                     + "LEFT JOIN Kvadratmetervara ON Material.MaterialID = Kvadratmetervara.MaterialID "
+                     + "ORDER BY material.MaterialID ASC";
 
-        model.setRowCount(0);
-
-        try {
-
-            ArrayList<HashMap<String, String>> antalLager = idb.fetchRows("select material.MaterialID, Material.Materialnamn, Antal from material "
-                    + "join Antalvara on Material.MaterialID = antalvara.MaterialID");
-
-            for (HashMap<String, String> antal : antalLager) {
-                Object[] antalData = {
-                    antal.get("MaterialID"),
-                    antal.get("Materialnamn"),
-                    antal.get("Antal"),};
-                model.addRow(antalData);
-            }
-            ArrayList<HashMap<String, String>> meterLager = idb.fetchRows("select material.MaterialID, Material.Materialnamn, meter from material"
-                    + " join Metervara on material.MaterialID=metervara.MaterialID");
-
-            for (HashMap<String, String> material : meterLager) {
-                Object[] materialData = {
-                    material.get("MaterialID"),
-                    material.get("Materialnamn"),
-                    material.get("Antal"),
-                    material.get("Meter"),};
-                model.addRow(materialData);
-            }
-
-            ArrayList<HashMap<String, String>> kvadratLager = idb.fetchRows("select material.MaterialID, Material.Materialnamn, kvadratmeter from material"
-                    + " join Kvadratmetervara on material.MaterialID=Kvadratmetervara.MaterialID");
-
-            for (HashMap<String, String> kvadrat : kvadratLager) {
-                Object[] materialData = {
-                    kvadrat.get("MaterialID"),
-                    kvadrat.get("Materialnamn"),
-                    kvadrat.get("Antal"),
-                    kvadrat.get("Meter"),
-                    kvadrat.get("Kvadratmeter"),};
-                model.addRow(materialData);
-
-            }
-        } catch (InfException e) {
-            JOptionPane.showMessageDialog(null, "Databasfel!");
-            System.out.println("Databasfel: " + e);
+        ArrayList<HashMap<String, String>> rows = idb.fetchRows(query);
+        for (HashMap<String, String> row : rows) {
+            Object[] rowData = {
+    row.get("MaterialID"),
+    row.get("Materialnamn"),
+    row.get("Antal"),
+    row.get("Meter") == null ? "" : row.get("Meter"),
+    row.get("Kvadratmeter") == null ? "" : row.get("Kvadratmeter")
+};
+            model.addRow(rowData);
         }
-
+    } catch (InfException e) {
+        JOptionPane.showMessageDialog(null, "Databasfel!");
+        System.out.println("Databasfel: " + e);
     }
+}
+
+
+
+
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
