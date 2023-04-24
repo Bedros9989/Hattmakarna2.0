@@ -12,6 +12,8 @@ import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import oru.inf.InfDB;
 import oru.inf.InfException;
 
@@ -43,6 +45,11 @@ public class HanteraHatt extends javax.swing.JFrame {
         txtMangdMaterial.setEnabled(false);
         txtTillverkningskostnad.setEnabled(false);
         conn = DBConnect.connect();
+        kontrolleraTextStorlek();
+        kontrolleraTextTillverkningstimmar();
+        kontrolleraTextBestallningsID();
+        kontrolleraTextMangdHatt();
+        kontrolleraTextMangdMaterial();
     }
 
      public class DBConnect {
@@ -311,6 +318,109 @@ public class HanteraHatt extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Något gick fel");
             System.out.println("Internt felmeddelande" + ex.getMessage());
         }
+    }
+
+    private void kontrolleraTextStorlek() {
+        txtStorlek.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+
+                ValideringsKlass.endastNummerTillåten(txtStorlek);
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+
+                ValideringsKlass.endastNummerTillåten(txtStorlek);
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                ValideringsKlass.endastNummerTillåten(txtStorlek);
+            }
+        });
+    }
+
+    private void kontrolleraTextTillverkningstimmar() {
+        txtTillverkningstimmar.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+
+                ValideringsKlass.endastNummerTillåten(txtTillverkningstimmar);
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+
+                ValideringsKlass.endastNummerTillåten(txtTillverkningstimmar);
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                ValideringsKlass.endastNummerTillåten(txtTillverkningstimmar);
+            }
+        });
+    }
+
+    private void kontrolleraTextBestallningsID() {
+        txtBestallningsID.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                ValideringsKlass.endastNummerTillåten(txtBestallningsID);
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                ValideringsKlass.endastNummerTillåten(txtBestallningsID);
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                ValideringsKlass.endastNummerTillåten(txtBestallningsID);
+            }
+        });
+    }
+
+    private void kontrolleraTextMangdHatt() {
+        txtMangdHatt.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+
+                ValideringsKlass.endastNummerTillåten(txtMangdHatt);
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+
+                ValideringsKlass.endastNummerTillåten(txtMangdHatt);
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                ValideringsKlass.endastNummerTillåten(txtMangdHatt);
+            }
+        });
+    }
+
+    private void kontrolleraTextMangdMaterial() {
+        txtMangdMaterial.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+
+                ValideringsKlass.endastNummerTillåten(txtMangdMaterial);
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+
+                ValideringsKlass.endastNummerTillåten(txtMangdMaterial);
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                ValideringsKlass.endastNummerTillåten(txtMangdMaterial);
+            }
+        });
     }
 
     @SuppressWarnings("unchecked")
