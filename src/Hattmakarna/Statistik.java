@@ -35,6 +35,7 @@ public class Statistik extends javax.swing.JFrame {
         model.addColumn("Datum");
         model.addColumn("Skapare");
         tabell.setDefaultEditor(Object.class, null);
+        
     }
 
     
@@ -137,21 +138,20 @@ public class Statistik extends javax.swing.JFrame {
                                     .addComponent(vinst, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(17, 17, 17))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGap(0, 117, Short.MAX_VALUE)
                         .addComponent(lblHattID)
                         .addGap(18, 18, 18)
                         .addComponent(förstaDatum, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(andraDatum, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(andraDatum, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(lblValkommen))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(ok)
                         .addGap(307, 307, 307))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lblValkommen)
-                .addGap(364, 364, 364))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -192,7 +192,9 @@ public class Statistik extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -216,16 +218,23 @@ public class Statistik extends javax.swing.JFrame {
             String beställningar = "SELECT BestallningsID,(SELECT COUNT(*) FROM hatt WHERE Bestallning = Bestallning.BestallningsID) AS AntalHattar, Totalsumma, Datum, Namn FROM Bestallning JOIN hatt h ON Bestallning.BestallningsID = h.Bestallning JOIN Personal P ON P.PersonalID = Bestallning.Personal where Datum between '"+förstaDatumet+"' and '"+andraDatumet+"'";
             ArrayList<HashMap<String, String>> allaHattar = idb.fetchRows(beställningar); 
             
-            for (HashMap<String, String> hatt : allaHattar){            
+            for (HashMap<String, String> hatt : allaHattar){     
+                
+                String beställningsID = hatt.get("BestallningsID");
+                String antalHattar = hatt.get("AntalHattar");
+                String totalsumma = hatt.get("Totalsumma");
+                String datum = hatt.get("Datum");
+                String namn = hatt.get("Namn");
+                
                 Object[] hattData = {
                     
-                    hatt.get("BestallningsID"),
-                    hatt.get("AntalHattar"),  
-                    hatt.get("Totalsumma"),
-                    hatt.get("123"),
-                    hatt.get("123"),
-                    hatt.get("Datum"), 
-                    hatt.get("Namn"), 
+                    beställningsID,
+                    antalHattar,
+                    totalsumma+"kr",
+                    raknaUtTotalkostnad1(beställningsID)+"kr",
+                    "123",
+                    datum,
+                    namn, 
                 };
                 model.addRow(hattData);
             }
@@ -248,9 +257,40 @@ public class Statistik extends javax.swing.JFrame {
         
     }//GEN-LAST:event_okActionPerformed
 
-    
-        private void raknaUtTotalkostnad(String hattID) {
+        private double raknaUtTotalkostnad1(String beställID){
             
+            double i=0;
+            
+            try{
+            
+                ArrayList<String> allaHattar = idb.fetchColumn("select HattID from hatt where Bestallning="+beställID);
+                
+                for (String hattar : allaHattar){
+                    
+                    i= i + raknaUtTotalkostnad2(hattar);
+                    
+                    
+                }
+
+            
+            
+        }  catch (InfException e) {
+
+            JOptionPane.showMessageDialog(null, "Fel på databasuppkopplingen, prova igen senare!");
+            System.out.println("Databasfel: " + e);
+            
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Något gick snett, prova igen!");
+            
+    }
+         return i;   
+            
+        }
+    
+    
+        private double raknaUtTotalkostnad2(String hattID) {
+            
+            double tillverkningskostnad=0;
         try {
             
 
@@ -261,7 +301,7 @@ public class Statistik extends javax.swing.JFrame {
             arbetskostnad = tillverkningstimmar * timpris;
 
             //Räknar ut materialkostnad
-            double totalMaterialkostnad = 0;
+            
             ArrayList<Double> listaMaterialkostnad = new ArrayList<>();
             ArrayList<HashMap<String, String>> allaMaterialIHatten = idb.fetchRows("SELECT Material, Mangd FROM Hattmaterial WHERE Hatt= " + hattID);
 
@@ -275,13 +315,13 @@ public class Statistik extends javax.swing.JFrame {
 
                 listaMaterialkostnad.add(materialkostnad);
             }
-
+            double totalMaterialkostnad = 0;
             for (Double enMaterialkostnad : listaMaterialkostnad) {
                 totalMaterialkostnad = totalMaterialkostnad + enMaterialkostnad;
             }
 
             //Räknar ut tillverkningskostnad
-            double tillverkningskostnad = totalMaterialkostnad + arbetskostnad;
+             tillverkningskostnad = totalMaterialkostnad + arbetskostnad;
 
             //txtTillverkningskostnad.setText(String.valueOf(tillverkningskostnad));
 
@@ -289,6 +329,9 @@ public class Statistik extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Något gick fel");
             System.out.println("Internt felmeddelande" + ex.getMessage());
         }
+        
+        return tillverkningskostnad;
+        
     }
     
         
