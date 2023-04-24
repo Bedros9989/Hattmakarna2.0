@@ -10,35 +10,47 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import oru.inf.InfDB;
 import oru.inf.InfException;
+import javax.swing.JComboBox;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  *
  * @author Victo
  */
-public class SeMaterialLager extends javax.swing.JFrame {
+public class SeMaterialLager extends javax.swing.JFrame implements ActionListener {
 
     private InfDB idb;
+    private JComboBox<String> columnComboBox;
     DefaultTableModel model = new DefaultTableModel();
+    
 
     /**
      * Creates new form SeMaterialLager
      */
     public SeMaterialLager(InfDB idb) {
-        initComponents();
-        this.idb = idb;
+    initComponents();
+    this.idb = idb;
 
-        this.setLocationRelativeTo(null);
-        tabell.setModel(model);
-        model.addColumn("MaterialID");
-        model.addColumn("Materialnamn");
-        model.addColumn("Antal");
-        model.addColumn("Meter");
-        model.addColumn("Kvadratmeter");
-        tabell.setDefaultEditor(Object.class, null);
-        setMaterialTable2();
-        btnUppdatera.setVisible(false);
-    }
-
+    this.setLocationRelativeTo(null);
+    tabell.setModel(model);
+    model.addColumn("MaterialID");
+    model.addColumn("Materialnamn");
+    model.addColumn("Antal");
+    model.addColumn("Meter");
+    model.addColumn("Kvadratmeter");
+    tabell.setDefaultEditor(Object.class, null);
+    btnUppdatera.setVisible(false);
+    
+    
+    columnComboBox = new JComboBox<>(new String[]{"MaterialID", "Materialnamn", "Antal", "Meter", "Kvadratmeter"});
+    columnComboBox.addActionListener(this);
+    jPanel1.add(columnComboBox);
+    
+    setMaterialTable2("MaterialID");
+    
+    
+}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -192,9 +204,17 @@ public class SeMaterialLager extends javax.swing.JFrame {
     }//GEN-LAST:event_btnHanteraMaterialActionPerformed
 
     private void btnUppdateraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUppdateraActionPerformed
-        setMaterialTable2();
+        setMaterialTable2("MaterialID");
     }//GEN-LAST:event_btnUppdateraActionPerformed
 
+    
+     public void actionPerformed(ActionEvent e) {
+         JComboBox comboBox = (JComboBox) e.getSource();
+        String selectedColumn = (String) comboBox.getSelectedItem();
+        setMaterialTable2(selectedColumn);
+    }
+    
+    
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
         String searchText = searchBox.getText();
@@ -243,16 +263,23 @@ public class SeMaterialLager extends javax.swing.JFrame {
         }
         else{
             // skulle varit optimalt att ha kvar sökningen innan, istället för att orginaltabellen kommer fram, men vet ej hur?
-            setMaterialTable2();
+            setMaterialTable2("MaterialID");
         }
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
+        
+        String selectedColumn = (String) columnComboBox.getSelectedItem();
+        setMaterialTable2(selectedColumn);
+        
+        
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
-   private void setMaterialTable2() {
+  private void setMaterialTable2(String orderByColumn) {
+      
+      System.out.println("Setting table to column " + orderByColumn);
     model.setRowCount(0);
     try {
         String query = "SELECT material.MaterialID, Material.Materialnamn, Antalvara.Antal, Metervara.meter, Kvadratmetervara.kvadratmeter "
@@ -260,16 +287,17 @@ public class SeMaterialLager extends javax.swing.JFrame {
                      + "LEFT JOIN Antalvara ON Material.MaterialID = antalvara.MaterialID "
                      + "LEFT JOIN Metervara ON Material.MaterialID = metervara.MaterialID "
                      + "LEFT JOIN Kvadratmetervara ON Material.MaterialID = Kvadratmetervara.MaterialID "
-                     + "ORDER BY material.MaterialID ASC";
+                     + "ORDER BY " + orderByColumn + " ASC";
 
         ArrayList<HashMap<String, String>> rows = idb.fetchRows(query);
         for (HashMap<String, String> row : rows) {
             Object[] rowData = {
-    row.get("MaterialID"),
-    row.get("Materialnamn"),
-    row.get("Antal"),
-    row.get("Meter"),
-    row.get("Kvadratmeter") };
+                row.get("MaterialID"),
+                row.get("Materialnamn"),
+                row.get("Antal"),
+                row.get("Meter"),
+                row.get("Kvadratmeter")
+            };
             model.addRow(rowData);
         }
     } catch (InfException e) {
@@ -277,7 +305,6 @@ public class SeMaterialLager extends javax.swing.JFrame {
         System.out.println("Databasfel: " + e);
     }
 }
-
 
 
 
