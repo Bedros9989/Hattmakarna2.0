@@ -313,7 +313,6 @@ public class HanteraHatt extends javax.swing.JFrame {
         }
     }
 
-
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -650,48 +649,64 @@ public class HanteraHatt extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSparaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSparaActionPerformed
-        try {
-            String hattID = txtHattID.getText();
-            
-            //Uppdaterar materialtabellen och hattmaterialtabellen
-            uppdateraMaterial();
-            uppdateraHattMaterial();
-            laggTillNyttHattMaterial();
-            laggTillNyttHattMaterialuppdateraMaterial();   
+        if (ValideringsKlass.endastPunkt(txtStorlek) && ValideringsKlass.endastPunkt(txtTillverkningstimmar) && ValideringsKlass.endastPunkt(txtMangdHatt) && ValideringsKlass.endastPunkt(txtMangdMaterial) && ValideringsKlass.textFaltHarVarde(txtStorlek) && ValideringsKlass.textFaltHarVarde(txtTillverkningstimmar) && ValideringsKlass.isPositivt(txtStorlek) && ValideringsKlass.isPositivt(txtTillverkningstimmar) && ValideringsKlass.isPositivt(txtMangdHatt) && ValideringsKlass.isPositivt(txtMangdMaterial) && ValideringsKlass.isTal(txtMangdHatt) && ValideringsKlass.isTal(txtMangdMaterial)) {
+            try {
+                ArrayList<String> allaBestallningar = idb.fetchColumn("SELECT BestallningsID FROM bestallning");
+                boolean bestallningFinns = false;
 
-            if (txtBestallningsID.getText().isEmpty()) {
+                for (String enBestallning : allaBestallningar) {
+                    if (enBestallning.equals(txtBestallningsID.getText())) {
+                        bestallningFinns = true;
+                    }
+                }
+
+                if (txtBestallningsID.getText().isEmpty() || bestallningFinns == true) {
+                    String hattID = txtHattID.getText();
+
+                    //Uppdaterar materialtabellen och hattmaterialtabellen
+                    uppdateraMaterial();
+                    uppdateraHattMaterial();
+                    laggTillNyttHattMaterial();
+                    laggTillNyttHattMaterialuppdateraMaterial();
+
+                    if (txtBestallningsID.getText().isEmpty()) {
                         bestallningsID = null;
                     } else {
                         bestallningsID = txtBestallningsID.getText();
                     }
-            
-            String skapareString = cbSkapare.getSelectedItem().toString();
-            String nySkapare = idb.fetchSingle("SELECT PersonalID FROM Personal WHERE Namn= '" + skapareString + "'");
-            String nyKategori = cbKategori.getSelectedItem().toString();
-            String nyStorlek = txtStorlek.getText();
-            String nyTillverkningstimmar = txtTillverkningstimmar.getText();
-            String nyBestallning = bestallningsID;
-            String nyTillverkningskostnad = txtTillverkningskostnad.getText();
-                    
-            String q = "UPDATE hattmakare.Hatt t SET t.Storlek = ?, t.Skapare= ?,t.Kategori= ?,t.Tillverkningstimmar = ?,t.Bestallning= ?, t.BildData = ?, t.Tillverkningskostnad= ? WHERE t.HattID = ?";
-            PreparedStatement pst = conn.prepareStatement(q);
-            pst.setString(1, nyStorlek);
-            pst.setString(2, nySkapare);
-            pst.setString(3, nyKategori);
-            pst.setString(4, nyTillverkningstimmar);
-            pst.setString(5, nyBestallning);
-            pst.setBytes(6, pimage);
-            pst.setString(7, nyTillverkningskostnad);
-            pst.setString(8, hattID);
-            pst.execute();
-            
-            raknaUtTotalkostnad();
-            JOptionPane.showMessageDialog(null, ("Hatt " + hattID + " har uppdaterats"));
-        } catch (InfException ex) {
-            JOptionPane.showMessageDialog(null, "Något gick fel");
-            System.out.println("Internt felmeddelande" + ex.getMessage());
-        } catch (SQLException ex) {
-            Logger.getLogger(HanteraHatt.class.getName()).log(Level.SEVERE, null, ex);
+
+                    String skapareString = cbSkapare.getSelectedItem().toString();
+                    String nySkapare = idb.fetchSingle("SELECT PersonalID FROM Personal WHERE Namn= '" + skapareString + "'");
+                    String nyKategori = cbKategori.getSelectedItem().toString();
+                    String nyStorlek = txtStorlek.getText();
+                    String nyTillverkningstimmar = txtTillverkningstimmar.getText();
+                    String nyBestallning = bestallningsID;
+                    String nyTillverkningskostnad = txtTillverkningskostnad.getText();
+
+                    String q = "UPDATE hattmakare.Hatt t SET t.Storlek = ?, t.Skapare= ?,t.Kategori= ?,t.Tillverkningstimmar = ?,t.Bestallning= ?, t.BildData = ?, t.Tillverkningskostnad= ? WHERE t.HattID = ?";
+                    PreparedStatement pst = conn.prepareStatement(q);
+                    pst.setString(1, nyStorlek);
+                    pst.setString(2, nySkapare);
+                    pst.setString(3, nyKategori);
+                    pst.setString(4, nyTillverkningstimmar);
+                    pst.setString(5, nyBestallning);
+                    pst.setBytes(6, pimage);
+                    pst.setString(7, nyTillverkningskostnad);
+                    pst.setString(8, hattID);
+                    pst.execute();
+
+                    raknaUtTotalkostnad();
+                    JOptionPane.showMessageDialog(null, ("Hatt " + hattID + " har uppdaterats"));
+
+                } else {
+                    JOptionPane.showMessageDialog(null, "BeställningsIDt existerar inte!");
+                }
+            } catch (InfException ex) {
+                JOptionPane.showMessageDialog(null, "Något gick fel");
+                System.out.println("Internt felmeddelande" + ex.getMessage());
+            } catch (SQLException ex) {
+                Logger.getLogger(HanteraHatt.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }//GEN-LAST:event_btnSparaActionPerformed
 

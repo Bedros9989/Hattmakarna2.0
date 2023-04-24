@@ -35,6 +35,16 @@ public class ValideringsKlass {
         return resultat;
     }
     
+        public static boolean endastNummerTillåtenSträngare(JTextField ettTextfält){
+        
+        boolean resultat = true;
+        if (ettTextfält.getText().matches(".*[a-zA-Z@._].*")){
+            JOptionPane.showMessageDialog(null, "Endast siffror tillåtna!");
+            resultat=false;  
+        }
+        return resultat;
+    }
+    
     public static boolean rutanÄrTom (JTextField enRuta, JLabel namn){
         
         boolean resultat = true;
