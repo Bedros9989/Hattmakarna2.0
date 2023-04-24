@@ -5,6 +5,8 @@ import java.util.Collections;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import oru.inf.InfDB;
 import oru.inf.InfException;
 
@@ -17,6 +19,8 @@ public class RegistreraMaterial extends javax.swing.JFrame {
         this.idb = idb;
         this.setLocationRelativeTo(null);
         RegistreraMaterial.this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        kontrolleraTextEnhetspris();
+        kontrolleraTxtExtra();
     }
 
  
@@ -217,11 +221,7 @@ public class RegistreraMaterial extends javax.swing.JFrame {
 
     private void btnRegMaterialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegMaterialActionPerformed
     
-     
-     if(ValideringsKlass.endastNummerTillåten(txtEnhetsPris)) { 
-     if(ValideringsKlass.isDouble(txtExtra)) {
-     
-     confirmMeddelande.setText("");
+    confirmMeddelande.setText("");
      
         
         if (ValideringsKlass.rutaEmpty(txtMaterialNamn) || ValideringsKlass.rutaEmpty(txtEnhetsPris) || ValideringsKlass.rutaEmpty(txtExtra)) {
@@ -238,11 +238,54 @@ public class RegistreraMaterial extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Något gick fel!");
             } 
         
-     }
-     }
+     
+     
      
     }//GEN-LAST:event_btnRegMaterialActionPerformed
 
+      private void kontrolleraTextEnhetspris() {
+        txtEnhetsPris.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                ValideringsKlass.endastNummerTillåten(txtEnhetsPris);
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                ValideringsKlass.endastNummerTillåten(txtEnhetsPris);
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                ValideringsKlass.endastNummerTillåten(txtEnhetsPris);
+            }
+        });
+      }
+
+  private void kontrolleraTxtExtra() {
+        txtExtra.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                ValideringsKlass.endastNummerTillåten(txtExtra);
+                ValideringsKlass.endastPunkt(txtExtra);
+                ValideringsKlass.endastPositivt(txtExtra);
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                ValideringsKlass.endastNummerTillåten(txtExtra);
+                ValideringsKlass.endastPunkt(txtExtra);
+                ValideringsKlass.endastPositivt(txtExtra);
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                ValideringsKlass.endastNummerTillåten(txtExtra);
+                ValideringsKlass.endastPunkt(txtExtra);
+                ValideringsKlass.endastPositivt(txtExtra);
+            }
+        });
+    }
     private void txtMaterialNamnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMaterialNamnActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtMaterialNamnActionPerformed
