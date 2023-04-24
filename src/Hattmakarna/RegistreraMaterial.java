@@ -1,9 +1,5 @@
 package Hattmakarna;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
@@ -227,7 +223,7 @@ public class RegistreraMaterial extends javax.swing.JFrame {
         if (ValideringsKlass.rutaEmpty(txtMaterialNamn) || ValideringsKlass.rutaEmpty(txtEnhetsPris) || ValideringsKlass.rutaEmpty(txtExtra)) {
            confirmMeddelande.setText("Fel: Vänligen fyll i alla fält");
         
-        } 
+        } else {
         
             try {
                 String mID = idb.getAutoIncrement("Material", "MaterialID");
@@ -239,7 +235,7 @@ public class RegistreraMaterial extends javax.swing.JFrame {
             } 
         
      
-     
+        }
      
     }//GEN-LAST:event_btnRegMaterialActionPerformed
 

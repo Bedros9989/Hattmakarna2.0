@@ -35,6 +35,7 @@ public class ValideringsKlass {
         return resultat;
     }
     
+    
         public static boolean endastNummerTillåtenSträngare(JTextField ettTextfält){
         
         boolean resultat = true;
@@ -121,6 +122,7 @@ public class ValideringsKlass {
         return resultat;
     }
     
+   
      public static boolean isDouble(JTextField ettTextFalt) {
         boolean resultat = true;
 
@@ -133,6 +135,7 @@ public class ValideringsKlass {
         return resultat;
     }
     
+     
     //Kontrollerar att fältet är ifyllt
     public static boolean textFaltHarVarde(JTextField ettTextFalt) {
         boolean resultat = true;
