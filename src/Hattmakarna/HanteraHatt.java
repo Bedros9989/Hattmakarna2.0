@@ -908,6 +908,7 @@ public class HanteraHatt extends javax.swing.JFrame {
                         } catch (InfException ex) {
                             JOptionPane.showMessageDialog(null, "Något gick fel");
                             System.out.println("Internt felmeddelande" + ex.getMessage());
+                            HanteraHatt.this.dispose();
                         }
                     }
                 }
