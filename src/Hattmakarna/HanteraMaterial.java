@@ -319,14 +319,13 @@ private InfDB idb;
     private void jBFyllPaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBFyllPaActionPerformed
         // TODO add your handling code here:
         if(ValideringsKlass.textFaltHarVarde2(jTLagerMangd)){
-            if(ValideringsKlass.isTal(jTLagerMangd)){
+        if(ValideringsKlass.isDouble(jTLagerMangd)){
 
                 ArrayList<String> sqlfraga1 = new ArrayList<String>();
                 ArrayList<String> sqlfraga2 = new ArrayList<String>();
                 ArrayList<String> sqlfraga3 = new ArrayList<String>();
                 String materialNamn = jCMaterialNamnet.getSelectedItem().toString();
                 String mangd = jTLagerMangd.getText();
-                double mangdDouble = Double.parseDouble(mangd);
                 String materialID = ("");
 
                 try{

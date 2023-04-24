@@ -121,6 +121,18 @@ public class ValideringsKlass {
         return resultat;
     }
     
+     public static boolean isDouble(JTextField ettTextFalt) {
+        boolean resultat = true;
+
+        try {
+            Double.parseDouble(ettTextFalt.getText());
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(null, "Var god ange ett tal (decimal tillåtet)!");
+            resultat = false;
+        }
+        return resultat;
+    }
+    
     //Kontrollerar att fältet är ifyllt
     public static boolean textFaltHarVarde(JTextField ettTextFalt) {
         boolean resultat = true;

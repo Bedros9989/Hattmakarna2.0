@@ -217,14 +217,16 @@ public class RegistreraMaterial extends javax.swing.JFrame {
 
     private void btnRegMaterialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegMaterialActionPerformed
     
+     
      if(ValideringsKlass.endastNummerTillåten(txtEnhetsPris)) { 
-         if(ValideringsKlass.isTal(txtExtra)){
-    confirmMeddelande.setText("");
+     if(ValideringsKlass.isDouble(txtExtra)) {
+     
+     confirmMeddelande.setText("");
      
         
         if (ValideringsKlass.rutaEmpty(txtMaterialNamn) || ValideringsKlass.rutaEmpty(txtEnhetsPris) || ValideringsKlass.rutaEmpty(txtExtra)) {
            confirmMeddelande.setText("Fel: Vänligen fyll i alla fält");
-         double mangdDouble = Double.parseDouble(txtExtra.getText());
+        
         } 
         
             try {
@@ -236,8 +238,9 @@ public class RegistreraMaterial extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Något gick fel!");
             } 
         
-         }
      }
+     }
+     
     }//GEN-LAST:event_btnRegMaterialActionPerformed
 
     private void txtMaterialNamnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMaterialNamnActionPerformed
