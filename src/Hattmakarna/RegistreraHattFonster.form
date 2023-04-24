@@ -67,23 +67,13 @@
                               </Group>
                               <Group type="102" alignment="1" attributes="0">
                                   <Group type="103" groupAlignment="1" attributes="0">
-                                      <Group type="102" alignment="1" attributes="0">
-                                          <Component id="lblHattID" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" pref="90" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" alignment="1" attributes="0">
-                                          <Component id="lblTillverkningstimmar" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Group type="103" groupAlignment="1" attributes="0">
-                                              <Component id="lblHattKategorier" alignment="0" min="-2" max="-2" attributes="0"/>
-                                              <Component id="lblHattStorlek" alignment="0" min="-2" max="-2" attributes="0"/>
-                                              <Component id="lblHattSkapare" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          </Group>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                      </Group>
+                                      <Component id="lblTillverkningstimmar" alignment="1" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lblHattKategorier" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lblHattStorlek" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lblHattSkapare" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lblHattID" alignment="0" min="-2" max="-2" attributes="0"/>
                                   </Group>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="txtTillverkningstimmar" min="-2" pref="159" max="-2" attributes="0"/>
                                       <Component id="cbHattKategori" alignment="0" min="-2" pref="159" max="-2" attributes="0"/>
