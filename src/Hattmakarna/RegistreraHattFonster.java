@@ -295,7 +295,7 @@ public class RegistreraHattFonster extends javax.swing.JFrame {
            använda den officiella mysql.java.jar filen som fanns
            istället för InfDB.jar. Den är dock jättenkel att använda
            som ni kanske märker nedanför */
-        if (ValideringsKlass.textFaltHarVarde(txtHattStorlek) && ValideringsKlass.textFaltHarVarde(txtTillverkningstimmar) && ValideringsKlass.isPositivt(txtHattStorlek) && ValideringsKlass.isPositivt(txtTillverkningstimmar)) {
+        if (ValideringsKlass.textFaltHarVarde(txtHattStorlek) && ValideringsKlass.textFaltHarVarde(txtTillverkningstimmar) && ValideringsKlass.isPositivt(txtHattStorlek) && ValideringsKlass.isPositivt(txtTillverkningstimmar) && ValideringsKlass.endastPunkt(txtHattStorlek)) {
             try {
                 ArrayList<String> allaBestallningar = idb.fetchColumn("SELECT BestallningsID FROM bestallning");
                 boolean bestallningFinns = false;
