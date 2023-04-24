@@ -324,13 +324,11 @@ public class HanteraHatt extends javax.swing.JFrame {
         txtStorlek.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent e) {
-
                 ValideringsKlass.endastNummerTillåten(txtStorlek);
             }
 
             @Override
             public void removeUpdate(DocumentEvent e) {
-
                 ValideringsKlass.endastNummerTillåten(txtStorlek);
             }
 
@@ -345,13 +343,11 @@ public class HanteraHatt extends javax.swing.JFrame {
         txtTillverkningstimmar.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent e) {
-
                 ValideringsKlass.endastNummerTillåten(txtTillverkningstimmar);
             }
 
             @Override
             public void removeUpdate(DocumentEvent e) {
-
                 ValideringsKlass.endastNummerTillåten(txtTillverkningstimmar);
             }
 
@@ -385,19 +381,23 @@ public class HanteraHatt extends javax.swing.JFrame {
         txtMangdHatt.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent e) {
-
                 ValideringsKlass.endastNummerTillåten(txtMangdHatt);
+                ValideringsKlass.endastPunkt(txtMangdHatt);
+                ValideringsKlass.endastPositivt(txtMangdHatt);
             }
 
             @Override
             public void removeUpdate(DocumentEvent e) {
-
                 ValideringsKlass.endastNummerTillåten(txtMangdHatt);
+                ValideringsKlass.endastPunkt(txtMangdHatt);
+                ValideringsKlass.endastPositivt(txtMangdHatt);
             }
 
             @Override
             public void changedUpdate(DocumentEvent e) {
                 ValideringsKlass.endastNummerTillåten(txtMangdHatt);
+                ValideringsKlass.endastPunkt(txtMangdHatt);
+                ValideringsKlass.endastPositivt(txtMangdHatt);
             }
         });
     }
@@ -406,19 +406,23 @@ public class HanteraHatt extends javax.swing.JFrame {
         txtMangdMaterial.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent e) {
-
                 ValideringsKlass.endastNummerTillåten(txtMangdMaterial);
+                ValideringsKlass.endastPunkt(txtMangdMaterial);
+                ValideringsKlass.endastPositivt(txtMangdMaterial);
             }
 
             @Override
             public void removeUpdate(DocumentEvent e) {
-
                 ValideringsKlass.endastNummerTillåten(txtMangdMaterial);
+                ValideringsKlass.endastPunkt(txtMangdMaterial);
+                ValideringsKlass.endastPositivt(txtMangdMaterial);
             }
 
             @Override
             public void changedUpdate(DocumentEvent e) {
                 ValideringsKlass.endastNummerTillåten(txtMangdMaterial);
+                ValideringsKlass.endastPunkt(txtMangdMaterial);
+                ValideringsKlass.endastPositivt(txtMangdMaterial);
             }
         });
     }

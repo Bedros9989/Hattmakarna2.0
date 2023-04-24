@@ -163,5 +163,13 @@ public class ValideringsKlass {
         return resultat;
     }
 
+    public static boolean endastPositivt(JTextField ettTextfält) {
+        boolean resultat = true;
+        if (ettTextfält.getText().contains("-")) {
+            JOptionPane.showMessageDialog(null, "Endast positiva tal tillåtna");
+            resultat = false;
+        }
+        return resultat;
+    }
 
 }
