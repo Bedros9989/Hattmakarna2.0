@@ -649,7 +649,7 @@ public class HanteraHatt extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSparaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSparaActionPerformed
-        if (ValideringsKlass.endastPunkt(txtStorlek) && ValideringsKlass.endastPunkt(txtTillverkningstimmar) && ValideringsKlass.endastPunkt(txtMangdHatt) && ValideringsKlass.endastPunkt(txtMangdMaterial) && ValideringsKlass.textFaltHarVarde(txtStorlek) && ValideringsKlass.textFaltHarVarde(txtTillverkningstimmar) && ValideringsKlass.isPositivt(txtStorlek) && ValideringsKlass.isPositivt(txtTillverkningstimmar) && ValideringsKlass.isPositivt(txtMangdHatt) && ValideringsKlass.isPositivt(txtMangdMaterial) && ValideringsKlass.isTal(txtMangdHatt) && ValideringsKlass.isTal(txtMangdMaterial)) {
+        if (ValideringsKlass.endastPunkt(txtStorlek) && ValideringsKlass.endastPunkt(txtTillverkningstimmar) && ValideringsKlass.endastPunkt(txtMangdHatt) && ValideringsKlass.endastPunkt(txtMangdMaterial) && ValideringsKlass.textFaltHarVarde(txtStorlek) && ValideringsKlass.textFaltHarVarde(txtTillverkningstimmar) && ValideringsKlass.isPositivt(txtStorlek) && ValideringsKlass.isPositivt(txtTillverkningstimmar) && ValideringsKlass.isPositivt(txtMangdHatt) && ValideringsKlass.isPositivt(txtMangdMaterial) && ValideringsKlass.endastNummerTillåten(txtMangdHatt) && ValideringsKlass.endastNummerTillåten(txtMangdMaterial)) {
             try {
                 ArrayList<String> allaBestallningar = idb.fetchColumn("SELECT BestallningsID FROM bestallning");
                 boolean bestallningFinns = false;
