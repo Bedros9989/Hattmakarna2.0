@@ -731,28 +731,33 @@ public class HanteraHatt extends javax.swing.JFrame {
         btnUppdateraBild.setEnabled(false);
         cbMaterialHatt.setEnabled(false);
         txtMangdHatt.setEnabled(false);
-        btnAndra.setEnabled(false);
         btnSpara.setEnabled(false);
         cbMaterialLager.setEnabled(false);
         txtMangdMaterial.setEnabled(false);
-
+        btnAndra.setEnabled(true);
+        
         try {
             String hattID = txtHattID.getText();
-
-            fyllCbKategori();
-            fyllCbSkapare();
-            fyllCbMaterialHatt();
-            fyllCbMaterialLager();
-            raknaUtTotalkostnad();
-
-            btnAndra.setEnabled(true);
 
             ArrayList<String> existerandeHattar;
             existerandeHattar = idb.fetchColumn("select HattID from Hatt");
 
-            if (!existerandeHattar.contains(hattID)) {
-                JOptionPane.showMessageDialog(null, "Beställning med denna ID existerar inte!");
+            boolean hattenFinns = false;
+            for (String ettHattID : existerandeHattar) {
+                if(ettHattID.contains(hattID)){
+                    hattenFinns = true;
+                }
+            }
+
+            if (hattenFinns == false) {
+                JOptionPane.showMessageDialog(null, "Hatt med detta ID existerar inte!");
+                btnAndra.setEnabled(false);
             } else {
+                fyllCbKategori();
+                fyllCbSkapare();
+                fyllCbMaterialHatt();
+                fyllCbMaterialLager();
+                raknaUtTotalkostnad();
 
                 cbSkapare.setSelectedItem(idb.fetchSingle("SELECT Namn FROM Personal WHERE PersonalID = (Select PersonalID from personal where PersonalID = (select Skapare from Hatt where HattID = " + hattID + "))"));
                 cbKategori.setSelectedItem(idb.fetchSingle("SELECT Kategori FROM Hatt WHERE HattID = " + hattID));
