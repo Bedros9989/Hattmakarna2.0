@@ -220,10 +220,13 @@ public class RegistreraMaterial extends javax.swing.JFrame {
      if(ValideringsKlass.endastNummerTillåten(txtEnhetsPris)) { 
          if(ValideringsKlass.isTal(txtExtra)){
     confirmMeddelande.setText("");
+     
         
         if (ValideringsKlass.rutaEmpty(txtMaterialNamn) || ValideringsKlass.rutaEmpty(txtEnhetsPris) || ValideringsKlass.rutaEmpty(txtExtra)) {
            confirmMeddelande.setText("Fel: Vänligen fyll i alla fält");
-        } else {
+         double mangdDouble = Double.parseDouble(txtExtra.getText());
+        } 
+        
             try {
                 String mID = idb.getAutoIncrement("Material", "MaterialID");
                 idb.insert("INSERT INTO Material VALUES (" + mID + ", '" + txtMaterialNamn.getText() + "', '" + txtEnhetsPris.getText() + "');");
@@ -232,7 +235,7 @@ public class RegistreraMaterial extends javax.swing.JFrame {
             } catch (InfException exc) {
                 JOptionPane.showMessageDialog(null, "Något gick fel!");
             } 
-        }
+        
          }
      }
     }//GEN-LAST:event_btnRegMaterialActionPerformed
