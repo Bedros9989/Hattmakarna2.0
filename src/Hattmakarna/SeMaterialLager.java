@@ -298,6 +298,10 @@ public class SeMaterialLager extends javax.swing.JFrame implements ActionListene
 
 if (sorteringsVal.equals("MaterialID")){
     //HÄR SKA SORTERINGEN ENLIGT MATERIAL-ID IN
+    
+     String selectedColumn = (String) columnComboBox.getSelectedItem();
+    setMaterialTable2(selectedColumn);    
+    
 }
 
         if (sorteringsVal.equals("Materialnamn")) {
