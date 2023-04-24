@@ -205,7 +205,8 @@ public class RegistreraKundFonster extends javax.swing.JFrame {
            felMeddelande.setText("Fel: Vänligen fyll i alla fält");
         } else {
             if (ValideringsKlass.endastNummerTillåten(jAngiventKundTel)) {
-                }
+               felMeddelande.setText("Fel: telefonnummer och lojalitet kräver numeriska tecken");
+            }
                 else {
             try {
                 String kID = idb.getAutoIncrement("Kund", "KundID");

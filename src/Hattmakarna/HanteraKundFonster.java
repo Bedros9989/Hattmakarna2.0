@@ -320,7 +320,15 @@ public class HanteraKundFonster extends javax.swing.JFrame {
         int resultat = JOptionPane.showConfirmDialog(null, "Är du nöjd med allt du har skrivit?", "Bekräfta uppgifter", JOptionPane.YES_NO_OPTION);
     
     if(resultat == JOptionPane.YES_OPTION){
-        
+       
+        if (ValideringsKlass.rutaEmpty(namn) || ValideringsKlass.rutaEmpty(nummer) || ValideringsKlass.rutaEmpty(adress) || ValideringsKlass.rutaEmpty(mail) || ValideringsKlass.rutaEmpty(lojalitet)) {
+           JOptionPane.showMessageDialog(null, "Fel: Vänligen fyll i alla fält");
+        } else {
+            if(ValideringsKlass.endastNummerTillåten(nummer) || ValideringsKlass.endastNummerTillåten(lojalitet)) {
+            JOptionPane.showMessageDialog(null, "Fel: telefonnummer och lojalitet kräver numeriska tecken");
+            }
+                else {
+                   }
         try {
                 String kunden = cbKundID.getSelectedItem().toString();
                 String hämtaID = idb.fetchSingle("select KundID from Kund where Namn= '"+kunden+"'");
@@ -349,7 +357,7 @@ public class HanteraKundFonster extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_sparaActionPerformed
-    }
+    }}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField adress;

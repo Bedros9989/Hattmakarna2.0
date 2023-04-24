@@ -192,10 +192,12 @@ public class RegistreraPersonal extends javax.swing.JFrame {
            jfelMeddelandet.setText("Fel: Vänligen fyll i alla fält");
         } else {
             if (ValideringsKlass.endastNummerTillåten(jAngivetPersonalTelefon) || ValideringsKlass.endastNummerTillåten(jAngivetPersonalTimpris)) {
-                }
+                jfelMeddelandet.setText("Fel: Telefonnummer och Timpris kräver numeriska tecken");
+            }
             else {
             if(ValideringsKlass.isPositivt(jAngivetPersonalTimpris)){
-                }
+               jfelMeddelandet.setText("Fel: Timpriset får inte vara negativt");
+            }
             else{
             try {
                 String pID = idb.getAutoIncrement("Personal", "PersonalID");

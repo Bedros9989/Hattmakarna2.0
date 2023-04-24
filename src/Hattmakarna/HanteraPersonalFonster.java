@@ -285,6 +285,16 @@ public class HanteraPersonalFonster extends javax.swing.JFrame {
         int resultat = JOptionPane.showConfirmDialog(null, "Är du nöjd med allt du har skrivit?", "Bekräfta uppgifter", JOptionPane.YES_NO_OPTION);
     
     if(resultat == JOptionPane.YES_OPTION){
+       
+        if (ValideringsKlass.rutaEmpty(Namn) || ValideringsKlass.rutaEmpty(Losenord) || ValideringsKlass.rutaEmpty(Telefonnummer) || ValideringsKlass.rutaEmpty(Timpris)) {
+           JOptionPane.showMessageDialog(null, "Fel: Vänligen fyll i alla fält");
+        } else {
+            if (ValideringsKlass.endastNummerTillåten(Telefonnummer) || ValideringsKlass.endastNummerTillåten(Timpris)) {
+                }
+            else {
+            if(ValideringsKlass.isPositivt(Timpris)){
+                }
+            else{
         
         try {
                 String personal = cbPersonalID.getSelectedItem().toString();
@@ -312,7 +322,7 @@ public class HanteraPersonalFonster extends javax.swing.JFrame {
         }
         
         
-    }                                     
+    } }}}                                    
     }//GEN-LAST:event_sparaActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
