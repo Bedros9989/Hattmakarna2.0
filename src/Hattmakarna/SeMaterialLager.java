@@ -23,34 +23,32 @@ public class SeMaterialLager extends javax.swing.JFrame implements ActionListene
     private InfDB idb;
     private JComboBox<String> columnComboBox;
     DefaultTableModel model = new DefaultTableModel();
-    
 
     /**
      * Creates new form SeMaterialLager
      */
     public SeMaterialLager(InfDB idb) {
-    initComponents();
-    this.idb = idb;
+        initComponents();
+        this.idb = idb;
 
-    this.setLocationRelativeTo(null);
-    tabell.setModel(model);
-    model.addColumn("MaterialID");
-    model.addColumn("Materialnamn");
-    model.addColumn("Antal");
-    model.addColumn("Meter");
-    model.addColumn("Kvadratmeter");
-    tabell.setDefaultEditor(Object.class, null);
-    btnUppdatera.setVisible(false);
-    
-    
-    columnComboBox = new JComboBox<>(new String[]{"MaterialID", "Materialnamn", "Antal", "Meter", "Kvadratmeter"});
-    columnComboBox.addActionListener(this);
-    jPanel1.add(columnComboBox);
-    
-    setMaterialTable2("MaterialID");
-    
-    
-}
+        this.setLocationRelativeTo(null);
+        tabell.setModel(model);
+        model.addColumn("MaterialID");
+        model.addColumn("Materialnamn");
+        model.addColumn("Antal");
+        model.addColumn("Meter");
+        model.addColumn("Kvadratmeter");
+        tabell.setDefaultEditor(Object.class, null);
+        btnUppdatera.setVisible(false);
+
+        columnComboBox = new JComboBox<>(new String[]{"MaterialID", "Materialnamn", "Antal", "Meter", "Kvadratmeter"});
+        columnComboBox.addActionListener(this);
+        jPanel1.add(columnComboBox);
+
+        setMaterialTable2("MaterialID");
+
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -69,8 +67,9 @@ public class SeMaterialLager extends javax.swing.JFrame implements ActionListene
         btnUppdatera = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         searchBox = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jTextField1 = new javax.swing.JTextField();
+        cbSortera = new javax.swing.JComboBox<>();
+        jLabel2 = new javax.swing.JLabel();
+        btnSortera = new javax.swing.JButton();
 
         jToggleButton1.setText("jToggleButton1");
 
@@ -123,62 +122,71 @@ public class SeMaterialLager extends javax.swing.JFrame implements ActionListene
         searchBox.setColumns(7);
         searchBox.setFont(new java.awt.Font("Futura", 2, 14)); // NOI18N
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "MaterialID", "Materialnamn", "Antal", "Meter", "Kvadratmeter" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        cbSortera.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        cbSortera.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "MaterialID", "Materialnamn", "Antal", "Meter", "Kvadratmeter" }));
+        cbSortera.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                cbSorteraActionPerformed(evt);
             }
         });
 
-        jTextField1.setEditable(false);
-        jTextField1.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
-        jTextField1.setText("Sortera efter");
+        jLabel2.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        jLabel2.setText("Sortera efter:");
+
+        btnSortera.setText("Sortera");
+        btnSortera.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSorteraActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(searchBox, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE)
-                            .addComponent(jTextField1))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnHanteraMaterial, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnUppdatera, javax.swing.GroupLayout.Alignment.TRAILING)))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 630, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(38, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(201, 201, 201))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(163, 163, 163))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(18, 18, 18)
+                        .addComponent(cbSortera, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(28, 28, 28)
+                        .addComponent(btnSortera))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(searchBox, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(btnHanteraMaterial, javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(btnUppdatera, javax.swing.GroupLayout.Alignment.TRAILING)))
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 630, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(38, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
+                .addGap(3, 3, 3)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(cbSortera, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSortera))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnHanteraMaterial, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(searchBox, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnUppdatera, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(btnUppdatera, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18))
         );
 
@@ -186,7 +194,9 @@ public class SeMaterialLager extends javax.swing.JFrame implements ActionListene
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(84, 84, 84))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -197,7 +207,6 @@ public class SeMaterialLager extends javax.swing.JFrame implements ActionListene
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnHanteraMaterialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHanteraMaterialActionPerformed
-        //btnUppdatera.setVisible(true);
 
         new HanteraMaterial(idb).setVisible(true);
         btnUppdatera.setVisible(true);
@@ -207,118 +216,255 @@ public class SeMaterialLager extends javax.swing.JFrame implements ActionListene
         setMaterialTable2("MaterialID");
     }//GEN-LAST:event_btnUppdateraActionPerformed
 
-    
-     public void actionPerformed(ActionEvent e) {
-         JComboBox comboBox = (JComboBox) e.getSource();
+    public void actionPerformed(ActionEvent e) {
+        JComboBox comboBox = (JComboBox) e.getSource();
         String selectedColumn = (String) comboBox.getSelectedItem();
         setMaterialTable2(selectedColumn);
+
     }
-    
-    
+
+
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
         String searchText = searchBox.getText();
         model.setRowCount(0);
-        
-        if (ValideringsKlass.textFaltHarVarde2(searchBox)){
-        
-        try {
-            ArrayList<HashMap<String, String>> results = idb.fetchRows("SELECT MaterialNamn, "
-                    + "Material.MaterialID, antal, meter, kvadratmeter FROM Material "
-                    + "LEFT JOIN Antalvara ON Material.MaterialID = Antalvara.MaterialID LEFT JOIN Metervara "
-                    + "ON Material.MaterialID = Metervara.MaterialID LEFT JOIN Kvadratmetervara on "
-                    + "Material.MaterialID = Kvadratmetervara.MaterialID WHERE Materialnamn LIKE "
-                    + "'%" + searchText + "%'");
-            for (HashMap<String, String> row : results) {
-                Object[] rowData = {
-                    row.get("MaterialID"),
-                    row.get("Materialnamn"),
-                    row.get("Antal"),
-                    row.get("Meter"),
-                    row.get("Kvadratmeter"),};
-                model.addRow(rowData);
-            }
 
-            ArrayList<HashMap<String, String>> materialID = idb.fetchRows("SELECT MaterialNamn, "
-                    + "Material.MaterialID, antal, meter, kvadratmeter FROM Material "
-                    + "LEFT JOIN Antalvara ON Material.MaterialID = Antalvara.MaterialID LEFT JOIN Metervara "
-                    + "ON Material.MaterialID = Metervara.MaterialID LEFT JOIN Kvadratmetervara on "
-                    + "Material.MaterialID = Kvadratmetervara.MaterialID WHERE Material.MaterialID LIKE "
-                    + "'%" + searchText + "%'");
-            for (HashMap<String, String> row : materialID) {
-                Object[] rowData = {
-                    row.get("MaterialID"),
-                    row.get("Materialnamn"),
-                    row.get("Antal"),
-                    row.get("Meter"),
-                    row.get("Kvadratmeter"),};
-                model.addRow(rowData);
+        if (ValideringsKlass.textFaltHarVarde2(searchBox)) {
 
+            try {
+                ArrayList<HashMap<String, String>> results = idb.fetchRows("SELECT MaterialNamn, "
+                        + "Material.MaterialID, antal, meter, kvadratmeter FROM Material "
+                        + "LEFT JOIN Antalvara ON Material.MaterialID = Antalvara.MaterialID LEFT JOIN Metervara "
+                        + "ON Material.MaterialID = Metervara.MaterialID LEFT JOIN Kvadratmetervara on "
+                        + "Material.MaterialID = Kvadratmetervara.MaterialID WHERE Materialnamn LIKE "
+                        + "'%" + searchText + "%'");
+                for (HashMap<String, String> row : results) {
+                    Object[] rowData = {
+                        row.get("MaterialID"),
+                        row.get("Materialnamn"),
+                        row.get("Antal"),
+                        row.get("Meter"),
+                        row.get("Kvadratmeter"),};
+                    model.addRow(rowData);
+                }
+
+                ArrayList<HashMap<String, String>> materialID = idb.fetchRows("SELECT MaterialNamn, "
+                        + "Material.MaterialID, antal, meter, kvadratmeter FROM Material "
+                        + "LEFT JOIN Antalvara ON Material.MaterialID = Antalvara.MaterialID LEFT JOIN Metervara "
+                        + "ON Material.MaterialID = Metervara.MaterialID LEFT JOIN Kvadratmetervara on "
+                        + "Material.MaterialID = Kvadratmetervara.MaterialID WHERE Material.MaterialID LIKE "
+                        + "'%" + searchText + "%'");
+                for (HashMap<String, String> row : materialID) {
+                    Object[] rowData = {
+                        row.get("MaterialID"),
+                        row.get("Materialnamn"),
+                        row.get("Antal"),
+                        row.get("Meter"),
+                        row.get("Kvadratmeter"),};
+                    model.addRow(rowData);
+
+                }
+                tabell.repaint();
+            } catch (InfException e) {
+                JOptionPane.showMessageDialog(null, "Database error!");
+                System.out.println("Database error: " + e);
             }
-            tabell.repaint();
-        } catch (InfException e) {
-            JOptionPane.showMessageDialog(null, "Database error!");
-            System.out.println("Database error: " + e);
-        }
-        }
-        else{
+        } else {
             // skulle varit optimalt att ha kvar sökningen innan, istället för att orginaltabellen kommer fram, men vet ej hur?
             setMaterialTable2("MaterialID");
         }
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        // TODO add your handling code here:
-        
-        String selectedColumn = (String) columnComboBox.getSelectedItem();
-        setMaterialTable2(selectedColumn);
-        
-        
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    private void cbSorteraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbSorteraActionPerformed
 
-  private void setMaterialTable2(String orderByColumn) {
-      
-      System.out.println("Setting table to column " + orderByColumn);
-    model.setRowCount(0);
-    try {
-        String query = "SELECT material.MaterialID, Material.Materialnamn, Antalvara.Antal, Metervara.meter, Kvadratmetervara.kvadratmeter "
-                     + "FROM material "
-                     + "LEFT JOIN Antalvara ON Material.MaterialID = antalvara.MaterialID "
-                     + "LEFT JOIN Metervara ON Material.MaterialID = metervara.MaterialID "
-                     + "LEFT JOIN Kvadratmetervara ON Material.MaterialID = Kvadratmetervara.MaterialID "
-                     + "ORDER BY " + orderByColumn + " ASC";
+//        String selectedColumn = (String) columnComboBox.getSelectedItem();
+        String sorteringsVal = cbSortera.getSelectedItem().toString();
+//        setMaterialTable2(selectedColumn);
 
-        ArrayList<HashMap<String, String>> rows = idb.fetchRows(query);
-        for (HashMap<String, String> row : rows) {
-            Object[] rowData = {
-                row.get("MaterialID"),
-                row.get("Materialnamn"),
-                row.get("Antal"),
-                row.get("Meter"),
-                row.get("Kvadratmeter")
-            };
-            model.addRow(rowData);
+        if (sorteringsVal.equals("MaterialNamn")) {
+
+            sorteraNamn();
+
         }
-    } catch (InfException e) {
-        JOptionPane.showMessageDialog(null, "Databasfel!");
-        System.out.println("Databasfel: " + e);
-    }
+
+
+    }//GEN-LAST:event_cbSorteraActionPerformed
+
+    private void btnSorteraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSorteraActionPerformed
+        //        String selectedColumn = (String) columnComboBox.getSelectedItem();
+        String sorteringsVal = cbSortera.getSelectedItem().toString();
+//        setMaterialTable2(selectedColumn);
+
+if (sorteringsVal.equals("MaterialID")){
+    //HÄR SKA SORTERINGEN ENLIGT MATERIAL-ID IN
 }
 
+        if (sorteringsVal.equals("Materialnamn")) {
+
+            sorteraNamn();
+
+        }
+        if (sorteringsVal.equals("Antal")) {
+            sorteraAntal();
+        }
+
+        if (sorteringsVal.equals("Meter")) {
+            sorteraMeter();
+        }
+
+        if (sorteringsVal.equals("Kvadratmeter")) {
+            sorteraKvadratMeter();
+        }
 
 
+    }//GEN-LAST:event_btnSorteraActionPerformed
+
+    private void setMaterialTable2(String orderByColumn) {
+
+        System.out.println("Setting table to column " + orderByColumn);
+        model.setRowCount(0);
+        try {
+            String query = "SELECT material.MaterialID, Material.Materialnamn, Antalvara.Antal, Metervara.meter, Kvadratmetervara.kvadratmeter "
+                    + "FROM material "
+                    + "LEFT JOIN Antalvara ON Material.MaterialID = antalvara.MaterialID "
+                    + "LEFT JOIN Metervara ON Material.MaterialID = metervara.MaterialID "
+                    + "LEFT JOIN Kvadratmetervara ON Material.MaterialID = Kvadratmetervara.MaterialID "
+                    + "ORDER BY " + orderByColumn + " ASC";
+
+            ArrayList<HashMap<String, String>> rows = idb.fetchRows(query);
+            for (HashMap<String, String> row : rows) {
+                Object[] rowData = {
+                    row.get("MaterialID"),
+                    row.get("Materialnamn"),
+                    row.get("Antal"),
+                    row.get("Meter"),
+                    row.get("Kvadratmeter")
+                };
+                model.addRow(rowData);
+            }
+        } catch (InfException e) {
+            JOptionPane.showMessageDialog(null, "Databasfel!");
+            System.out.println("Databasfel: " + e);
+        }
+    }
+
+    private void sorteraNamn() {
+
+        model.setRowCount(0);
+        try {
+            String query = "SELECT material.MaterialID, Material.Materialnamn, Antalvara.Antal, Metervara.meter, Kvadratmetervara.kvadratmeter "
+                    + "FROM material "
+                    + "LEFT JOIN Antalvara ON Material.MaterialID = antalvara.MaterialID "
+                    + "LEFT JOIN Metervara ON Material.MaterialID = metervara.MaterialID "
+                    + "LEFT JOIN Kvadratmetervara ON Material.MaterialID = Kvadratmetervara.MaterialID "
+                    + "ORDER BY Materialnamn ASC";
+
+            ArrayList<HashMap<String, String>> rows = idb.fetchRows(query);
+            for (HashMap<String, String> row : rows) {
+                Object[] rowData = {
+                    row.get("MaterialID"),
+                    row.get("Materialnamn"),
+                    row.get("Antal"),
+                    row.get("Meter"),
+                    row.get("Kvadratmeter")
+                };
+                model.addRow(rowData);
+            }
+        } catch (InfException e) {
+            JOptionPane.showMessageDialog(null, "Databasfel!");
+            System.out.println("Databasfel: " + e);
+        }
+    }
+
+    private void sorteraAntal() {
+
+        model.setRowCount(0);
+        try {
+            String query = "SELECT Material.MaterialID, Material.Materialnamn, Antalvara.Antal  FROM material  "
+                    + "JOIN Antalvara ON Material.MaterialID = Antalvara.MaterialID   "
+                    + "ORDER BY Antalvara.Antal";
+
+            ArrayList<HashMap<String, String>> rows = idb.fetchRows(query);
+            for (HashMap<String, String> row : rows) {
+                Object[] rowData = {
+                    row.get("MaterialID"),
+                    row.get("Materialnamn"),
+                    row.get("Antal"),
+                    row.get("Meter")
+
+                };
+                model.addRow(rowData);
+            }
+        } catch (InfException e) {
+            JOptionPane.showMessageDialog(null, "Databasfel!");
+            System.out.println("Databasfel: " + e);
+        }
+    }
+
+    public void sorteraMeter() {
+
+        model.setRowCount(0);
+        try {
+            String query = "SELECT Material.MaterialID, Material.Materialnamn, Metervara.Meter  FROM material "
+                    + "JOIN Metervara ON Material.MaterialID = Metervara.MaterialID "
+                    + "ORDER BY Metervara.Meter";
+
+            ArrayList<HashMap<String, String>> rows = idb.fetchRows(query);
+            for (HashMap<String, String> row : rows) {
+                Object[] rowData = {
+                    row.get("MaterialID"),
+                    row.get("Materialnamn"),
+                    row.get("Antal"),
+                    row.get("Meter")
+
+                };
+                model.addRow(rowData);
+            }
+        } catch (InfException e) {
+            JOptionPane.showMessageDialog(null, "Databasfel!");
+            System.out.println("Databasfel: " + e);
+        }
+
+    }
+
+    public void sorteraKvadratMeter() {
+        model.setRowCount(0);
+        try {
+            String query = "SELECT Material.MaterialID, Material.Materialnamn, Kvadratmetervara.kvadratmeter  FROM material "
+                    + "JOIN Kvadratmetervara ON Material.MaterialID = Kvadratmetervara.MaterialID "
+                    + "ORDER BY Kvadratmetervara.Kvadratmeter";
+
+            ArrayList<HashMap<String, String>> rows = idb.fetchRows(query);
+            for (HashMap<String, String> row : rows) {
+                Object[] rowData = {
+                    row.get("MaterialID"),
+                    row.get("Materialnamn"),
+                    row.get("Antal"),
+                    row.get("Meter"),
+                    row.get("Kvadratmeter")
+
+                };
+                model.addRow(rowData);
+            }
+        } catch (InfException e) {
+            JOptionPane.showMessageDialog(null, "Databasfel!");
+            System.out.println("Databasfel: " + e);
+        }
+
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnHanteraMaterial;
+    private javax.swing.JButton btnSortera;
     private javax.swing.JButton btnUppdatera;
+    private javax.swing.JComboBox<String> cbSortera;
     private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JTextField searchBox;
     private javax.swing.JTable tabell;
