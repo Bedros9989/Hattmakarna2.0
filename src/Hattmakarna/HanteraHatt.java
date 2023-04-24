@@ -536,11 +536,6 @@ public class HanteraHatt extends javax.swing.JFrame {
         cbKategori.setFont(new java.awt.Font("Futura", 0, 14)); // NOI18N
 
         txtStorlek.setFont(new java.awt.Font("Futura", 0, 14)); // NOI18N
-        txtStorlek.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtStorlekActionPerformed(evt);
-            }
-        });
 
         txtTillverkningstimmar.setFont(new java.awt.Font("Futura", 0, 14)); // NOI18N
         txtTillverkningstimmar.addActionListener(new java.awt.event.ActionListener() {
@@ -932,10 +927,6 @@ public class HanteraHatt extends javax.swing.JFrame {
         String hatt = txtHattID.getText();
         new KollaBild(hatt).setVisible(true);
     }//GEN-LAST:event_nuvarandeBildActionPerformed
-
-    private void txtStorlekActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtStorlekActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtStorlekActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
