@@ -132,4 +132,15 @@ public class ValideringsKlass {
         return resultat;
     }
 
+    public static boolean endastPunkt(JTextField ettTextfält) {
+
+        boolean resultat = true;
+        if (ettTextfält.getText().matches(".*[,].*")) {
+            JOptionPane.showMessageDialog(null, "Använd . istället för , vid decimaltal!");
+            resultat = false;
+        }
+        return resultat;
+    }
+
+
 }
