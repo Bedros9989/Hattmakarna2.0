@@ -5,9 +5,13 @@
 package Hattmakarna;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import javax.swing.JOptionPane;
+import javax.swing.RowSorter;
+import javax.swing.SortOrder;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 import oru.inf.InfDB;
 import oru.inf.InfException;
 
@@ -25,7 +29,6 @@ public class SeHattLager extends javax.swing.JFrame {
         this.idb = idb;
         SeHattLager.this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         this.setLocationRelativeTo(null);
-        setHattarTable();
         tabell.setModel(model);
         model.addColumn("HattID");
         model.addColumn("Storlek");
@@ -33,7 +36,6 @@ public class SeHattLager extends javax.swing.JFrame {
         tabell.setDefaultEditor(Object.class, null);
         setHattarTable();
         btnUppdatera.setVisible(false);
-
     }
 
     /**
@@ -184,6 +186,13 @@ public class SeHattLager extends javax.swing.JFrame {
                     hatt.get("Kategori"),};
                 model.addRow(hattData);
             }
+
+            // Add a TableRowSorter to the model
+            TableRowSorter<DefaultTableModel> sorter = new TableRowSorter<>(model);
+            jTable1.setRowSorter(sorter);
+
+            // Sort the data by the first column (HattID)
+            sorter.setSortKeys(Collections.singletonList(new RowSorter.SortKey(0, SortOrder.ASCENDING)));
 
         } catch (InfException e) {
             JOptionPane.showMessageDialog(null, "Databasfel!");
