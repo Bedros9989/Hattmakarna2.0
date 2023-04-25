@@ -197,7 +197,7 @@ public class SeHattLager extends javax.swing.JFrame {
 
 // Add a TableRowSorter to the model
         TableRowSorter<DefaultTableModel> sorter = new TableRowSorter<>(model);
-        jTable1.setRowSorter(sorter);
+        tabell.setRowSorter(sorter);
 
         if (valdKategori.equals("HattID")) {
             sorter.setSortKeys(Collections.singletonList(new RowSorter.SortKey(0, SortOrder.ASCENDING)));
