@@ -232,12 +232,12 @@ public class SeMaterialLager extends javax.swing.JFrame implements ActionListene
         if (ValideringsKlass.textFaltHarVarde2(searchBox)) {
 
             try {
-                ArrayList<HashMap<String, String>> results = idb.fetchRows("SELECT MaterialNamn, "
-                        + "Material.MaterialID, antal, meter, kvadratmeter FROM Material "
-                        + "LEFT JOIN Antalvara ON Material.MaterialID = Antalvara.MaterialID LEFT JOIN Metervara "
-                        + "ON Material.MaterialID = Metervara.MaterialID LEFT JOIN Kvadratmetervara on "
-                        + "Material.MaterialID = Kvadratmetervara.MaterialID WHERE Materialnamn LIKE "
-                        + "'%" + searchText + "%'");
+                    ArrayList<HashMap<String, String>> results = idb.fetchRows("SELECT MaterialNamn, "
+                    + "Material.MaterialID, antal, meter, kvadratmeter FROM Material "
+                    + "LEFT JOIN Antalvara ON Material.MaterialID = Antalvara.MaterialID LEFT JOIN Metervara "
+                    + "ON Material.MaterialID = Metervara.MaterialID LEFT JOIN Kvadratmetervara on "
+                    + "Material.MaterialID = Kvadratmetervara.MaterialID WHERE Materialnamn LIKE "
+                    + "'%" + searchText + "%' OR Material.MaterialID LIKE '%" + searchText + "%'");
                 for (HashMap<String, String> row : results) {
                     Object[] rowData = {
                         row.get("MaterialID"),
@@ -248,22 +248,6 @@ public class SeMaterialLager extends javax.swing.JFrame implements ActionListene
                     model.addRow(rowData);
                 }
 
-                ArrayList<HashMap<String, String>> materialID = idb.fetchRows("SELECT MaterialNamn, "
-                        + "Material.MaterialID, antal, meter, kvadratmeter FROM Material "
-                        + "LEFT JOIN Antalvara ON Material.MaterialID = Antalvara.MaterialID LEFT JOIN Metervara "
-                        + "ON Material.MaterialID = Metervara.MaterialID LEFT JOIN Kvadratmetervara on "
-                        + "Material.MaterialID = Kvadratmetervara.MaterialID WHERE Material.MaterialID LIKE "
-                        + "'%" + searchText + "%'");
-                for (HashMap<String, String> row : materialID) {
-                    Object[] rowData = {
-                        row.get("MaterialID"),
-                        row.get("Materialnamn"),
-                        row.get("Antal"),
-                        row.get("Meter"),
-                        row.get("Kvadratmeter"),};
-                    model.addRow(rowData);
-
-                }
                 tabell.repaint();
             } catch (InfException e) {
                 JOptionPane.showMessageDialog(null, "Database error!");
