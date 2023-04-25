@@ -31,8 +31,8 @@ public class SeHattLager extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         tabell.setModel(model);
         model.addColumn("HattID");
-        model.addColumn("Kategori");
         model.addColumn("Storlek");
+        model.addColumn("Kategori");
         tabell.setDefaultEditor(Object.class, null);
         setHattarTable();
         btnUppdatera.setVisible(false);
@@ -302,8 +302,8 @@ public class SeHattLager extends javax.swing.JFrame {
     
     private void fyllCBSortera() {
         cbSortera.addItem("HattID");
-        cbSortera.addItem("Kategori");
         cbSortera.addItem("Storlek");
+        cbSortera.addItem("Kategori");
     } 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
