@@ -384,6 +384,7 @@ public class RegistreraBestallning extends javax.swing.JFrame {
                         String pris= Double.toString(totalSumma);
                         new BestallningGenomford(idb,bästID,regDatum,adress,kundID,pris).setVisible(true);
                         updateHattar();
+                        updateLojalitet();
                         dispose();
                         
                      
@@ -399,6 +400,7 @@ public class RegistreraBestallning extends javax.swing.JFrame {
                         String pris= Double.toString(summa);
                         new BestallningGenomford(idb,bästID,regDatum,adress,kundID,pris).setVisible(true);
                         updateHattar();
+                        updateLojalitet();
                         dispose();
                     }
 
