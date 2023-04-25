@@ -86,12 +86,25 @@
                   <Component id="jSeparator2" min="-2" pref="627" max="-2" attributes="0"/>
                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
               </Group>
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="1" attributes="0">
+                          <Component id="jLRubrik" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="202" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="1" attributes="0">
+                          <Component id="jSeparator1" min="-2" pref="627" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+              </Group>
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jLÄndraNamn" min="-2" pref="144" max="-2" attributes="0"/>
+                              <Component id="jLAndraNamn" min="-2" pref="144" max="-2" attributes="0"/>
                               <Component id="jLFyllI" min="-2" pref="277" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="32767" attributes="0"/>
@@ -106,32 +119,23 @@
                                   <Component id="jCMaterialNamnen" min="-2" pref="182" max="-2" attributes="0"/>
                               </Group>
                               <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                  <Component id="jLÄndraInformation" min="-2" pref="383" max="-2" attributes="0"/>
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <Component id="jLÄndraEnhetspris" min="-2" pref="128" max="-2" attributes="0"/>
+                                  <Component id="jLAndraInformation" min="-2" pref="383" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="jLAndraEnhetspris" min="-2" pref="128" max="-2" attributes="0"/>
+                                          <Component id="jLAndraMangd" min="-2" pref="102" max="-2" attributes="0"/>
+                                      </Group>
                                       <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                           <Component id="jTAndraNamn" pref="178" max="32767" attributes="0"/>
                                           <Component id="jTAndraEnhetspris" max="32767" attributes="0"/>
+                                          <Component id="jTAndraMangd" max="32767" attributes="0"/>
                                       </Group>
                                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
-                          <EmptySpace min="129" max="32767" attributes="0"/>
-                      </Group>
-                  </Group>
-              </Group>
-              <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="1" attributes="0">
-                          <Component id="jLRubrik" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="202" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="1" attributes="0">
-                          <Component id="jSeparator1" min="-2" pref="627" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -175,7 +179,7 @@
                   <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
                   <Component id="jSeparator2" min="-2" pref="8" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="jLÄndraInformation" min="-2" pref="23" max="-2" attributes="0"/>
+                  <Component id="jLAndraInformation" min="-2" pref="23" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
                           <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
@@ -192,7 +196,7 @@
                           <Component id="jLFyllI" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jLÄndraNamn" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLAndraNamn" min="-2" max="-2" attributes="0"/>
                               <Component id="jTAndraNamn" min="-2" pref="35" max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -204,14 +208,19 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
                           <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-                          <Component id="jLÄndraEnhetspris" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLAndraEnhetspris" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="jTAndraEnhetspris" min="-2" pref="35" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace pref="29" max="32767" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jTAndraMangd" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                      <Component id="jLAndraMangd" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -341,7 +350,7 @@
         </Component>
         <Component class="javax.swing.JSeparator" name="jSeparator2">
         </Component>
-        <Component class="javax.swing.JLabel" name="jL&#xc4;ndraInformation">
+        <Component class="javax.swing.JLabel" name="jLAndraInformation">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Futura" size="17" style="0"/>
@@ -357,7 +366,7 @@
             <Property name="text" type="java.lang.String" value="V&#xe4;lj material:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jL&#xc4;ndraNamn">
+        <Component class="javax.swing.JLabel" name="jLAndraNamn">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Futura" size="14" style="0"/>
@@ -383,7 +392,7 @@
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
         </Component>
-        <Component class="javax.swing.JLabel" name="jL&#xc4;ndraEnhetspris">
+        <Component class="javax.swing.JLabel" name="jLAndraEnhetspris">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Futura" size="14" style="0"/>
@@ -416,6 +425,16 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Fyll i vilken information som ska &#xe4;ndras:"/>
           </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLAndraMangd">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="13" style="0"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="&#xc4;ndra M&#xe4;ngd:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="jTAndraMangd">
         </Component>
       </SubComponents>
     </Container>
