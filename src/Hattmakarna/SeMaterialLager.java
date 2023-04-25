@@ -194,9 +194,7 @@ public class SeMaterialLager extends javax.swing.JFrame implements ActionListene
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(84, 84, 84))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -297,7 +295,7 @@ public class SeMaterialLager extends javax.swing.JFrame implements ActionListene
 //        setMaterialTable2(selectedColumn);
 
 if (sorteringsVal.equals("MaterialID")){
-    //HÄR SKA SORTERINGEN ENLIGT MATERIAL-ID IN
+   
     
      String selectedColumn = (String) columnComboBox.getSelectedItem();
     setMaterialTable2(selectedColumn);    
@@ -326,7 +324,6 @@ if (sorteringsVal.equals("MaterialID")){
 
     private void setMaterialTable2(String orderByColumn) {
 
-        System.out.println("Setting table to column " + orderByColumn);
         model.setRowCount(0);
         try {
             String query = "SELECT material.MaterialID, Material.Materialnamn, Antalvara.Antal, Metervara.meter, Kvadratmetervara.kvadratmeter "
