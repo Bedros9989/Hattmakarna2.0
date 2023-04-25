@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import javax.swing.JOptionPane;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import oru.inf.InfDB;
 import oru.inf.InfException;
 
@@ -23,6 +25,8 @@ public class HanteraKundFonster extends javax.swing.JFrame {
         lojalitet.setEnabled(false);
         nummer.setEnabled(false);
         hämtaKund();
+        kontrolleraNyTelefon();
+        kontrolleraNyLojalitet();
     }
 
 
@@ -317,13 +321,14 @@ public class HanteraKundFonster extends javax.swing.JFrame {
 
     private void sparaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sparaActionPerformed
         
-        int resultat = JOptionPane.showConfirmDialog(null, "Är du nöjd med allt du har skrivit?", "Bekräfta uppgifter", JOptionPane.YES_NO_OPTION);
+    int resultat = JOptionPane.showConfirmDialog(null, "Är du nöjd med allt du har skrivit?", "Bekräfta uppgifter", JOptionPane.YES_NO_OPTION);
     
     if(resultat == JOptionPane.YES_OPTION){
        
         if (ValideringsKlass.rutaEmpty(namn) || ValideringsKlass.rutaEmpty(nummer) || ValideringsKlass.rutaEmpty(adress) || ValideringsKlass.rutaEmpty(mail) || ValideringsKlass.rutaEmpty(lojalitet)) {
            JOptionPane.showMessageDialog(null, "Fel: Vänligen fyll i alla fält");
-        } else {   
+        }
+           else {
         try {
                 String kunden = cbKundID.getSelectedItem().toString();
                 String hämtaID = idb.fetchSingle("select KundID from Kund where Namn= '"+kunden+"'");
@@ -350,9 +355,47 @@ public class HanteraKundFonster extends javax.swing.JFrame {
             System.out.println("Internt felmeddelande" + ettUndantag.getMessage());
         }
         
-        
+            }}
     }//GEN-LAST:event_sparaActionPerformed
-        }}
+
+        private void kontrolleraNyTelefon() {
+        nummer.getDocument().addDocumentListener(new DocumentListener() {
+            
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+            ValideringsKlass.endastNummerTillåten(nummer);
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+            ValideringsKlass.endastNummerTillåten(nummer);
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+            ValideringsKlass.endastNummerTillåten(nummer);
+            }
+        });
+      }
+        private void kontrolleraNyLojalitet() {
+        lojalitet.getDocument().addDocumentListener(new DocumentListener() {
+            
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+            ValideringsKlass.endastNummerTillåten(lojalitet);
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+            ValideringsKlass.endastNummerTillåten(lojalitet);
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+            ValideringsKlass.endastNummerTillåten(lojalitet);
+            }
+        });
+      }       
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField adress;

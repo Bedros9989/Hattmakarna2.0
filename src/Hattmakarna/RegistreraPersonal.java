@@ -215,17 +215,17 @@ public class RegistreraPersonal extends javax.swing.JFrame {
             
             @Override
             public void insertUpdate(DocumentEvent e) {
-                ValideringsKlass.endastNummerTillåten(jAngivetPersonalTelefon);
+            ValideringsKlass.endastNummerTillåten(jAngivetPersonalTelefon);
             }
 
             @Override
             public void removeUpdate(DocumentEvent e) {
-                ValideringsKlass.endastNummerTillåten(jAngivetPersonalTelefon);
+            ValideringsKlass.endastNummerTillåten(jAngivetPersonalTelefon);
             }
 
             @Override
             public void changedUpdate(DocumentEvent e) {
-                ValideringsKlass.endastNummerTillåten(jAngivetPersonalTelefon);
+            ValideringsKlass.endastNummerTillåten(jAngivetPersonalTelefon);
             }
         });
         }
@@ -251,6 +251,7 @@ public class RegistreraPersonal extends javax.swing.JFrame {
             }
         });
     }
+  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField jAngivetPersonalLosen;

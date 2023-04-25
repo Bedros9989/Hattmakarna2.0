@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import javax.swing.JOptionPane;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import oru.inf.InfDB;
 import oru.inf.InfException;
 
@@ -22,6 +24,8 @@ public class HanteraPersonalFonster extends javax.swing.JFrame {
     Losenord.setEnabled(false);
     Timpris.setEnabled(false);
     hämtaPersonal();
+    kontrolleraNyTelefon();
+    kontrolleraNyTimpris();
     }
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -289,13 +293,6 @@ public class HanteraPersonalFonster extends javax.swing.JFrame {
         if (ValideringsKlass.rutaEmpty(Namn) || ValideringsKlass.rutaEmpty(Losenord) || ValideringsKlass.rutaEmpty(Telefonnummer) || ValideringsKlass.rutaEmpty(Timpris)) {
            JOptionPane.showMessageDialog(null, "Fel: Vänligen fyll i alla fält");
         } else {
-            if (ValideringsKlass.endastNummerTillåten(Telefonnummer) || ValideringsKlass.endastNummerTillåten(Timpris)) {
-                }
-            else {
-            if(ValideringsKlass.isPositivt(Timpris)){
-                }
-            else{
-        
         try {
                 String personal = cbPersonalID.getSelectedItem().toString();
                 String hämtaID = idb.fetchSingle("select PersonalID from Personal where Namn= '"+personal+"'");
@@ -322,9 +319,52 @@ public class HanteraPersonalFonster extends javax.swing.JFrame {
         }
         
         
-    } }}}                                    
+    } }                                   
     }//GEN-LAST:event_sparaActionPerformed
 
+        private void kontrolleraNyTelefon() {
+        Telefonnummer.getDocument().addDocumentListener(new DocumentListener() {
+            
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+            ValideringsKlass.endastNummerTillåten(Telefonnummer);
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+            ValideringsKlass.endastNummerTillåten(Telefonnummer);
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+            ValideringsKlass.endastNummerTillåten(Telefonnummer);
+            }
+        });
+        }
+        
+        private void kontrolleraNyTimpris() {
+        Timpris.getDocument().addDocumentListener(new DocumentListener() {
+            
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+            ValideringsKlass.endastNummerTillåten(Timpris);
+            ValideringsKlass.endastPositivt(Timpris);
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                ValideringsKlass.endastNummerTillåten(Timpris);
+                ValideringsKlass.endastPositivt(Timpris);
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                ValideringsKlass.endastNummerTillåten(Timpris);
+                ValideringsKlass.endastPositivt(Timpris);
+            }
+        });
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField ID;
     private javax.swing.JTextField Losenord;
