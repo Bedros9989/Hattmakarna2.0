@@ -2,6 +2,8 @@
 package Hattmakarna;
 
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -11,6 +13,8 @@ import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.ListModel;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import oru.inf.InfDB;
 import oru.inf.InfException;
 
@@ -38,12 +42,12 @@ public class HanteraBestallning extends javax.swing.JFrame {
         taBort.setEnabled(false);
         summan.setEnabled(false);
         status.setEnabled(false);
-        annulera.setEnabled(false);
+        annulera.setVisible(false);
         spara.setEnabled(false);
         ändra.setEnabled(false);
         spara2.setVisible(false);
         jList1.setModel(model);
-        
+        kontrolleraText();
     }
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -435,60 +439,34 @@ public class HanteraBestallning extends javax.swing.JFrame {
     }//GEN-LAST:event_ansvarigActionPerformed
 
     private void statusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statusActionPerformed
-        String bästID = beställningsID.getText();
-        try{
-            if (status.getSelectedItem().equals("Returnerat")){
-                
-                int resultat = JOptionPane.showConfirmDialog(null, "Är du säker att du markera ordern som returnerat", "Bekräfta uppgifter", JOptionPane.YES_NO_OPTION);
-                
-                if(resultat == JOptionPane.YES_OPTION){
-                    
-                    ListModel<String> listModel = jList1.getModel();
-                        for (int i = 0; i < jList1.getModel().getSize(); i++) {
-                        String listItem = jList1.getModel().getElementAt(i);
-                        String[] parts = listItem.split("-");
-                        String selectedText = parts[0].trim();
-                        idb.update("UPDATE hattmakare.Hatt t SET t.Bestallning = null WHERE t.HattID ="+selectedText);
-                        }
-                        
-                        
-                        idb.update("UPDATE hattmakare.Bestallning t SET t.Status = 'Returnerat' WHERE t.BestallningsID = "+bästID);
-                        sök();
-                        kundBox.setEnabled(false);
-                        ansvarig.setEnabled(false);
-                        Adress.setEnabled(false);
-                        datumChooser.setEnabled(false);
-                        jList1.setEnabled(false);
-                        läggTill.setEnabled(false);
-                        taBort.setEnabled(false);
-                        summan.setEnabled(false);
-                        status.setEnabled(false);
-                        annulera.setEnabled(false);
-                        spara.setEnabled(false);
-                        JOptionPane.showMessageDialog(null, "Dina order är nu returnerat!");
-                    
-                    
-                }
-                
-            }else{
-                
-            }
-        
-    }
-        catch (InfException e) {
 
-            JOptionPane.showMessageDialog(null, "Fel på databasuppkopplingen, prova igen senare!");
-            System.out.println("Databasfel: " + e);
-            
-        } catch (Exception ex) {
-//            JOptionPane.showMessageDialog(null, "Något gick snett, prova igen!");
-            
-        }  
-        
+    Object selectedStatus = status.getSelectedItem();
+    if (selectedStatus != null) {
+        if (selectedStatus.equals("Returnerat")) {
+            annulera.setText("Returnera");
+            annulera.setVisible(true);
+        } else if (selectedStatus.equals("Annulerat")) {
+            annulera.setText("Annulera");
+            annulera.setVisible(true);
+        }
+    }
+
     }//GEN-LAST:event_statusActionPerformed
 
     private void sök(){
-        
+        kundBox.setEnabled(false);
+        ansvarig.setEnabled(false);
+        Adress.setEnabled(false);
+        datumChooser.setEnabled(false);
+        jList1.setEnabled(false);
+        läggTill.setEnabled(false);
+        taBort.setEnabled(false);
+        summan.setEnabled(false);
+        status.setEnabled(false);
+        annulera.setVisible(false);
+        spara.setEnabled(false);
+        ändra.setEnabled(false);
+        spara2.setVisible(false);
         model.clear();
         ändra.setEnabled(true);
         ansvarig.removeAllItems();
@@ -505,6 +483,8 @@ public class HanteraBestallning extends javax.swing.JFrame {
             if (!existerandeBeställninga.contains(bästID)){
 
                         JOptionPane.showMessageDialog(null, "Beställning med denna ID existerar inte!");
+                        dispose();
+                        new HanteraBestallning(idb,ID).setVisible(true);
             }else{
      
             String hämtaKund = idb.fetchSingle("Select Namn from Kund join Bestallning B on Kund.KundID = B.Kund where BestallningsID="+bästID);
@@ -521,6 +501,12 @@ public class HanteraBestallning extends javax.swing.JFrame {
             summan.setText(hämtaSumma);
             String hämtaStatus = idb.fetchSingle("select Status from Bestallning where BestallningsID="+bästID);
             status.setSelectedItem(hämtaStatus);
+            
+            if (hämtaStatus.equals("Returnerat") || hämtaStatus.equals("Annulerat") ){
+                
+                annulera.setVisible(false);
+                
+            }
             
             ArrayList<HashMap<String,String>> allaHattar = idb.fetchRows("SELECT * FROM Hatt where Bestallning="+bästID);
             for (HashMap<String, String> hatt : allaHattar){
@@ -550,8 +536,10 @@ public class HanteraBestallning extends javax.swing.JFrame {
     
     private void sökActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sökActionPerformed
 
-        sök();
+        if (ValideringsKlass.rutanÄrTom(beställningsID, jLabel8)){
         
+        sök();
+    }
     }//GEN-LAST:event_sökActionPerformed
 
     private void hittaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hittaActionPerformed
@@ -608,6 +596,27 @@ public class HanteraBestallning extends javax.swing.JFrame {
                         
     }//GEN-LAST:event_taBortActionPerformed
 
+    private void kontrolleraText(){
+     
+     summan.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                ValideringsKlass.endastPositivt(summan);
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                ValideringsKlass.endastPositivt(summan);
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                ValideringsKlass.endastPositivt(summan);
+            }
+        });
+     
+    }
+    
     private void ändraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ändraActionPerformed
         
         taBort.setEnabled(true);
@@ -628,7 +637,8 @@ public class HanteraBestallning extends javax.swing.JFrame {
         String bästID = beställningsID.getText();
                 try{
             
-                int resultat = JOptionPane.showConfirmDialog(null, "Är du säker att du vill annulera beställningen", "Bekräfta uppgifter", JOptionPane.YES_NO_OPTION);
+                    if (status.getSelectedItem().equals("Annulerat")){
+                        int resultat = JOptionPane.showConfirmDialog(null, "Är du säker att du vill annulera beställningen", "Bekräfta uppgifter", JOptionPane.YES_NO_OPTION);
                 
                 if(resultat == JOptionPane.YES_OPTION){
                     
@@ -655,10 +665,42 @@ public class HanteraBestallning extends javax.swing.JFrame {
                         annulera.setEnabled(false);
                         spara.setEnabled(false);
                         JOptionPane.showMessageDialog(null, "Dina order är nu annulerat!");
-                }else{
+             
+                    }
+
+                }else if(status.getSelectedItem().equals("Returnerat")) {
+                    
+                    int resultat = JOptionPane.showConfirmDialog(null, "Är du säker att du markera ordern som returnerat", "Bekräfta uppgifter", JOptionPane.YES_NO_OPTION);
+                
+                if(resultat == JOptionPane.YES_OPTION){
+                    
+                    ListModel<String> listModel = jList1.getModel();
+                        for (int i = 0; i < jList1.getModel().getSize(); i++) {
+                        String listItem = jList1.getModel().getElementAt(i);
+                        String[] parts = listItem.split("-");
+                        String selectedText = parts[0].trim();
+                        idb.update("UPDATE hattmakare.Hatt t SET t.Bestallning = null WHERE t.HattID ="+selectedText);
+                        }
+                        
+                        
+                        idb.update("UPDATE hattmakare.Bestallning t SET t.Status = 'Returnerat' WHERE t.BestallningsID = "+bästID);
+                        sök();
+                        kundBox.setEnabled(false);
+                        ansvarig.setEnabled(false);
+                        Adress.setEnabled(false);
+                        datumChooser.setEnabled(false);
+                        jList1.setEnabled(false);
+                        läggTill.setEnabled(false);
+                        taBort.setEnabled(false);
+                        summan.setEnabled(false);
+                        status.setEnabled(false);
+                        annulera.setEnabled(false);
+                        spara.setEnabled(false);
+                        JOptionPane.showMessageDialog(null, "Dina order är nu returnerat!");
                 
                 }
             }
+                }
         
         catch (InfException e) {
 
@@ -691,8 +733,7 @@ public class HanteraBestallning extends javax.swing.JFrame {
     private void sparaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sparaActionPerformed
       if (ValideringsKlass.datumInteVald(datumChooser)) {
       if (ValideringsKlass.rutanÄrTom2(Adress, jLabel4)) {
-      if (ValideringsKlass.rutanÄrTom(summan, jLabel5))
-      if (ValideringsKlass.endastNummerTillåten3(summan)) {
+      if (ValideringsKlass.rutanÄrTom(summan, jLabel5)){
       if (ValideringsKlass.endastPositivt(summan)) {
       
       
@@ -750,6 +791,7 @@ public class HanteraBestallning extends javax.swing.JFrame {
       }
       }
       }
+      
       }
     }//GEN-LAST:event_sparaActionPerformed
 

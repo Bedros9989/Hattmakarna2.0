@@ -6,13 +6,18 @@ import java.awt.Component;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.RowSorter;
+import javax.swing.SortOrder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 import oru.inf.InfException;
 import oru.inf.InfDB;
 
@@ -40,6 +45,10 @@ public class Statistik extends javax.swing.JFrame {
         model.addColumn("Datum");
         model.addColumn("Skapare");
         tabell.setDefaultEditor(Object.class, null);
+        TableRowSorter<TableModel> sorter = new TableRowSorter<>(model);
+        tabell.setRowSorter(sorter);
+        sorter.setSortKeys(Collections.singletonList(new RowSorter.SortKey(0, SortOrder.ASCENDING)));
+        sorter.sort();
         
     }
 
@@ -210,6 +219,8 @@ public class Statistik extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void okActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okActionPerformed
+        if (ValideringsKlass.datumInteVald(förstaDatum)){
+        if (ValideringsKlass.datumInteVald(andraDatum)){
         
         Date datum1 = förstaDatum.getDate();
         Date datum2 = andraDatum.getDate();
@@ -306,7 +317,8 @@ public class Statistik extends javax.swing.JFrame {
             
         }
         
-        
+        }
+        }
     }//GEN-LAST:event_okActionPerformed
 
         private double raknaUtTotalkostnad1(String beställID){

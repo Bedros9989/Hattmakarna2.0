@@ -145,8 +145,10 @@ private InfDB idb;
         jLFyllI.setFont(new java.awt.Font("Futura", 0, 14)); // NOI18N
         jLFyllI.setText("Fyll i vilken information som ska ändras:");
 
-        jLAndraMangd.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
+        jLAndraMangd.setFont(new java.awt.Font("Futura", 0, 14)); // NOI18N
         jLAndraMangd.setText("Ändra Mängd:");
+
+        jTAndraMangd.setFont(new java.awt.Font("Futura", 0, 14)); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);

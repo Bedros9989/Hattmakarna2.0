@@ -3,12 +3,17 @@ package Hattmakarna;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
+import javax.swing.RowSorter;
+import javax.swing.SortOrder;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 import oru.inf.InfDB;
 import oru.inf.InfException;
 
@@ -16,6 +21,8 @@ public class BestallningsLista extends javax.swing.JFrame {
 
     private InfDB idb;
     DefaultTableModel model = new DefaultTableModel();
+    
+    
 
     public BestallningsLista(InfDB idb) {
         initComponents();
@@ -28,6 +35,12 @@ public class BestallningsLista extends javax.swing.JFrame {
         beställningar();
         jTable1.setModel(model);
         jTable1.setDefaultEditor(Object.class, null);
+        TableRowSorter<TableModel> sorter = new TableRowSorter<>(model);
+        jTable1.setRowSorter(sorter);
+        sorter.setSortKeys(Collections.singletonList(new RowSorter.SortKey(0, SortOrder.ASCENDING)));
+        sorter.sort();
+
+
     }
 
 

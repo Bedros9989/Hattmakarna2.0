@@ -925,8 +925,21 @@ public class HanteraHatt extends javax.swing.JFrame {
     }//GEN-LAST:event_btnUppdateraBildActionPerformed
 
     private void nuvarandeBildActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuvarandeBildActionPerformed
-        String hatt = txtHattID.getText();
-        new KollaBild(hatt).setVisible(true);
+        try {
+            String hatt = txtHattID.getText();
+            
+            HashMap<String,String> allaHattar = idb.fetchRow("SELECT * FROM Hatt WHERE HattID="+hatt);
+            
+            String bildData = allaHattar.get("BildData");
+            if (bildData == null) {
+                JOptionPane.showMessageDialog(null, "Denna hatt har ingen bild!");
+            }else{
+                new KollaBild(hatt).setVisible(true);
+            }
+           
+        } catch (InfException ex) {
+            Logger.getLogger(HanteraHatt.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_nuvarandeBildActionPerformed
 
 

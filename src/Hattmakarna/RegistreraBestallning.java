@@ -9,6 +9,8 @@ import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import javax.swing.ListModel;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import oru.inf.InfDB;
 import oru.inf.InfException;
 
@@ -40,6 +42,7 @@ public class RegistreraBestallning extends javax.swing.JFrame {
         jTextField1.setEnabled(false);
         hämtaID();
         summan.setText(null);
+        kontrolleraText();
         
     }
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -358,13 +361,36 @@ public class RegistreraBestallning extends javax.swing.JFrame {
         }
     }
     
+        private void kontrolleraText(){
+     
+     summan.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                ValideringsKlass.endastPositivt(summan);
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                ValideringsKlass.endastPositivt(summan);
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                ValideringsKlass.endastPositivt(summan);
+            }
+        });
+     
+    }
+    
+        
+    
     private void jbRegBestallningActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbRegBestallningActionPerformed
 
         if (ValideringsKlass.rutanÄrTom2(Adress, jLabel4)){
         if (ValideringsKlass.datumInteVald(jDateChooserReg)){
         if (ValideringsKlass.listaTom(jList1)){
         if (ValideringsKlass.rutanÄrTom(summan,jLabel5)) {
-        
+        if (ValideringsKlass.isPositivt(summan)){
         
         SimpleDateFormat DateFormat = new SimpleDateFormat("yyyy-MM-dd");
         
@@ -440,7 +466,7 @@ public class RegistreraBestallning extends javax.swing.JFrame {
         }
         }
         }
-        
+        }
     }//GEN-LAST:event_jbRegBestallningActionPerformed
 
     private void updateHattar(){

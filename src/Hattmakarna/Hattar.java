@@ -3,11 +3,15 @@ package Hattmakarna;
 
 import java.awt.Window;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import javax.swing.JOptionPane;
+import javax.swing.RowSorter;
+import javax.swing.SortOrder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 import oru.inf.InfDB;
 import oru.inf.InfException;
 
@@ -36,7 +40,10 @@ public class Hattar extends javax.swing.JFrame {
         model.addColumn("Bild");
         addValues();
         tabell.setDefaultEditor(Object.class, null);
-        
+        TableRowSorter<TableModel> sorter = new TableRowSorter<>(model);
+        tabell.setRowSorter(sorter);
+        sorter.setSortKeys(Collections.singletonList(new RowSorter.SortKey(0, SortOrder.ASCENDING)));
+        sorter.sort();
     }
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

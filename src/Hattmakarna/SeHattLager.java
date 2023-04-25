@@ -11,6 +11,7 @@ import javax.swing.JOptionPane;
 import javax.swing.RowSorter;
 import javax.swing.SortOrder;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 import oru.inf.InfDB;
 import oru.inf.InfException;
@@ -37,7 +38,11 @@ public class SeHattLager extends javax.swing.JFrame {
         setHattarTable();
         btnUppdatera.setVisible(false);
         fyllCBSortera();
-
+        TableRowSorter<TableModel> sorter = new TableRowSorter<>(model);
+        tabell.setRowSorter(sorter);
+        sorter.setSortKeys(Collections.singletonList(new RowSorter.SortKey(0, SortOrder.ASCENDING)));
+        sorter.sort();
+        
     }
 
     /**

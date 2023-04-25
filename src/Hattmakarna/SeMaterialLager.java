@@ -13,6 +13,11 @@ import oru.inf.InfException;
 import javax.swing.JComboBox;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Collections;
+import javax.swing.RowSorter;
+import javax.swing.SortOrder;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -46,7 +51,12 @@ public class SeMaterialLager extends javax.swing.JFrame implements ActionListene
         jPanel1.add(columnComboBox);
 
         setMaterialTable2("MaterialID");
-
+        TableRowSorter<TableModel> sorter = new TableRowSorter<>(model);
+        tabell.setRowSorter(sorter);
+        sorter.setSortKeys(Collections.singletonList(new RowSorter.SortKey(0, SortOrder.ASCENDING)));
+        sorter.sort();
+        
+        
     }
 
     /**
