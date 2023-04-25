@@ -17,6 +17,7 @@ public class RegistreraKundFonster extends javax.swing.JFrame {
         this.idb = idb;
         this.setLocationRelativeTo(null);
         RegistreraKundFonster.this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        kontrolleraTelefonnummer();
     }
 
     

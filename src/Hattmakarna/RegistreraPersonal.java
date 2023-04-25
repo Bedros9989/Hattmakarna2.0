@@ -4,6 +4,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import oru.inf.InfDB;
 import oru.inf.InfException;
 
@@ -16,6 +18,9 @@ public class RegistreraPersonal extends javax.swing.JFrame {
         this.idb = idb;
         this.setLocationRelativeTo(null);
         RegistreraPersonal.this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        
+        kontrolleraTelefonnummer();
+        kontrolleraTimpris();
     }
     
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -193,25 +198,59 @@ public class RegistreraPersonal extends javax.swing.JFrame {
         if (ValideringsKlass.rutaEmpty(jAngivetPersonalNamn) || ValideringsKlass.rutaEmpty(jAngivetPersonalLosen) || ValideringsKlass.rutaEmpty(jAngivetPersonalTelefon) || ValideringsKlass.rutaEmpty(jAngivetPersonalTimpris)) {
            jfelMeddelandet.setText("Fel: Vänligen fyll i alla fält");
         } else {
-            if (ValideringsKlass.endastNummerTillåten(jAngivetPersonalTelefon) || ValideringsKlass.endastNummerTillåten(jAngivetPersonalTimpris)) {
-                jfelMeddelandet.setText("Fel: Telefonnummer och Timpris kräver numeriska tecken");
-            }
-            else {
-            if(ValideringsKlass.isPositivt(jAngivetPersonalTimpris)){
-               jfelMeddelandet.setText("Fel: Timpriset får inte vara negativt");
-            }
-            else{
+            
             try {
                 String pID = idb.getAutoIncrement("Personal", "PersonalID");
                 idb.insert("INSERT INTO Personal VALUES (" + pID + ", '" + jAngivetPersonalNamn.getText() + "', '" + jAngivetPersonalLosen.getText() + "', '" + jAngivetPersonalTelefon.getText() + "','" + jAngivetPersonalTimpris.getText() + "');");
-                meddelandeKonfirmera.setText("En ny kund har registrerats!");
+                meddelandeKonfirmera.setText("En ny anställd har registrerats!");
             } catch (InfException exc) {
                 
                 JOptionPane.showMessageDialog(null, "Något gick fel!");
             } 
-            } }}                                            
+            }                                          
     }//GEN-LAST:event_jRegistreraPersonalKnappActionPerformed
 
+        private void kontrolleraTelefonnummer() {
+        jAngivetPersonalTelefon.getDocument().addDocumentListener(new DocumentListener() {
+            
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                ValideringsKlass.endastNummerTillåten(jAngivetPersonalTelefon);
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                ValideringsKlass.endastNummerTillåten(jAngivetPersonalTelefon);
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                ValideringsKlass.endastNummerTillåten(jAngivetPersonalTelefon);
+            }
+        });
+        }
+        
+        private void kontrolleraTimpris() {
+        jAngivetPersonalTimpris.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                ValideringsKlass.endastNummerTillåten(jAngivetPersonalTimpris);
+                ValideringsKlass.endastPositivt(jAngivetPersonalTimpris);
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                ValideringsKlass.endastNummerTillåten(jAngivetPersonalTimpris);
+                ValideringsKlass.endastPositivt(jAngivetPersonalTimpris);
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                ValideringsKlass.endastNummerTillåten(jAngivetPersonalTimpris);
+                ValideringsKlass.endastPositivt(jAngivetPersonalTimpris);
+            }
+        });
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField jAngivetPersonalLosen;
