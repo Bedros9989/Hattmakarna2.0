@@ -3,6 +3,7 @@ package Hattmakarna;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import javax.swing.JOptionPane;
 import javax.swing.RowSorter;
@@ -181,15 +182,26 @@ public class SeHattLager extends javax.swing.JFrame {
             TableRowSorter<DefaultTableModel> sorter = new TableRowSorter<>(model);
             tabell.setRowSorter(sorter);
 
-            // Sort the data by the first column (HattID)
+            // Create a custom Comparator for the first column (HattID)
+            Comparator<String> hattIDComparator = new Comparator<String>() {
+                @Override
+                public int compare(String s1, String s2) {
+                    int hattID1 = Integer.parseInt(s1);
+                    int hattID2 = Integer.parseInt(s2);
+                    return Integer.compare(hattID1, hattID2);
+                }
+            };
+
+            // Set the custom Comparator as the sorter for the first column
+            sorter.setComparator(0, hattIDComparator);
             sorter.setSortKeys(Collections.singletonList(new RowSorter.SortKey(0, SortOrder.ASCENDING)));
- 
+
         } catch (InfException e) {
             JOptionPane.showMessageDialog(null, "Databasfel!");
             System.out.println("Databasfel: " + e);
         }
     }
-    
+
   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
