@@ -243,17 +243,17 @@ public class RegistreraMaterial extends javax.swing.JFrame {
         txtEnhetsPris.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent e) {
-                ValideringsKlass.endastNummerTillåten(txtEnhetsPris);
+                ValideringsKlass.endastNummerTillåten3(txtEnhetsPris);
             }
 
             @Override
             public void removeUpdate(DocumentEvent e) {
-                ValideringsKlass.endastNummerTillåten(txtEnhetsPris);
+                ValideringsKlass.endastNummerTillåten3(txtEnhetsPris);
             }
 
             @Override
             public void changedUpdate(DocumentEvent e) {
-                ValideringsKlass.endastNummerTillåten(txtEnhetsPris);
+                ValideringsKlass.endastNummerTillåten3(txtEnhetsPris);
             }
         });
       }
@@ -262,21 +262,21 @@ public class RegistreraMaterial extends javax.swing.JFrame {
         txtExtra.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent e) {
-                ValideringsKlass.endastNummerTillåten(txtExtra);
+                ValideringsKlass.endastNummerTillåten2(txtExtra);
                 ValideringsKlass.endastPunkt(txtExtra);
                 ValideringsKlass.endastPositivt(txtExtra);
             }
 
             @Override
             public void removeUpdate(DocumentEvent e) {
-                ValideringsKlass.endastNummerTillåten(txtExtra);
+                ValideringsKlass.endastNummerTillåten2(txtExtra);
                 ValideringsKlass.endastPunkt(txtExtra);
                 ValideringsKlass.endastPositivt(txtExtra);
             }
 
             @Override
             public void changedUpdate(DocumentEvent e) {
-                ValideringsKlass.endastNummerTillåten(txtExtra);
+                ValideringsKlass.endastNummerTillåten2(txtExtra);
                 ValideringsKlass.endastPunkt(txtExtra);
                 ValideringsKlass.endastPositivt(txtExtra);
             }

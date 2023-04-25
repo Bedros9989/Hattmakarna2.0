@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import oru.inf.InfDB;
 import oru.inf.InfException;
 
@@ -24,6 +26,9 @@ private InfDB idb;
         initComponents();
         this.idb = idb;
         fillComboboxMaterialNamn();
+        kontrolleraLagerMangd();
+        kontrolleraEnhetspris();
+        kontrolleraMangd();
         this.setLocationRelativeTo(null);
         HanteraMaterial.this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
@@ -298,11 +303,7 @@ private InfDB idb;
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBAndraInformationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAndraInformationActionPerformed
-        if(ValideringsKlass.endastNummerTillåten(jTAndraEnhetspris))
-        if(ValideringsKlass.endastPositivt(jTAndraEnhetspris))
-        //if(ValideringsKlass.isDouble(jTAndraMangd))
-        if(ValideringsKlass.endastPunkt(jTAndraMangd))
-        if(ValideringsKlass.endastPositivt(jTAndraMangd)){
+        
 
             String materialNamn = jCMaterialNamnen.getSelectedItem().toString();
             String nyttNamn = jTAndraNamn.getText();
@@ -327,7 +328,6 @@ private InfDB idb;
                 }
 
                 else  {
-                    int prisInt = Integer.parseInt(nyttEnhetspris);
                     idb.update("UPDATE material SET Enhetspris = '"+nyttEnhetspris+"' WHERE MaterialID = '"+ materialID +"'");
                     JOptionPane.showMessageDialog(null, "Enhetspriset har ändrats till "+nyttEnhetspris+"!");
                 }
@@ -346,13 +346,16 @@ private InfDB idb;
                 Logger.getLogger(HanteraMaterial.class.getName()).log(Level.SEVERE, null, ex);
             }
 
-        }
+        
+        
+        
+        
+        
     }//GEN-LAST:event_jBAndraInformationActionPerformed
 
     private void jBFyllPaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBFyllPaActionPerformed
         if(ValideringsKlass.textFaltHarVarde2(jTLagerMangd)){
-        if(ValideringsKlass.isDouble(jTLagerMangd))
-        if(ValideringsKlass.endastPositivt(jTLagerMangd)){
+       
 
                 ArrayList<String> sqlfraga1 = new ArrayList<String>();
                 ArrayList<String> sqlfraga2 = new ArrayList<String>();
@@ -374,6 +377,7 @@ private InfDB idb;
                     for(String antal1: sqlfraga1) {
                         if(materialID.equals(antal1))
                         {
+                           
                             idb.update("UPDATE antalvara SET Antal = '"+mangd+"' + '"+fraga1+"' WHERE MaterialID = '"+ materialID +"'");
                             String nymangd1 = idb.fetchSingle("SELECT Antal FROM antalvara WHERE MaterialID = '"+ materialID +"'");
                             JOptionPane.showMessageDialog(null, "Nytt saldo är "+nymangd1+"");
@@ -384,6 +388,7 @@ private InfDB idb;
                     for(String antal2: sqlfraga2) {
                         if(materialID.equals(antal2))
                         {
+                           
                             idb.update("UPDATE kvadratmetervara SET Kvadratmeter = '"+mangd+"' + '"+fraga2+"' WHERE MaterialID = '"+ materialID +"'");
                             String nymangd2 = idb.fetchSingle("SELECT kvadratmeter FROM Kvadratmetervara WHERE MaterialID = '"+ materialID +"'");
                             JOptionPane.showMessageDialog(null, "Nytt saldo är "+nymangd2+"");
@@ -393,6 +398,7 @@ private InfDB idb;
                     for(String antal3: sqlfraga3) {
                         if(materialID.equals(antal3))
                         {
+                            
                             idb.update("UPDATE metervara SET Meter = '"+mangd+"' + '"+fraga3+"' WHERE MaterialID = '"+ materialID +"'");
                             String nymangd3 = idb.fetchSingle("SELECT Meter FROM metervara WHERE MaterialID = '"+ materialID +"'");
                             JOptionPane.showMessageDialog(null, "Nytt saldo är "+nymangd3+"");
@@ -404,7 +410,9 @@ private InfDB idb;
                     Logger.getLogger(HanteraMaterial.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
-        }
+        
+        
+        
     }//GEN-LAST:event_jBFyllPaActionPerformed
 
     private void jBAndraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAndraActionPerformed
@@ -446,6 +454,78 @@ private InfDB idb;
         Logger.getLogger(HanteraMaterial.class.getName()).log(Level.SEVERE, null, ex);
         }
     } 
+    
+       private void kontrolleraLagerMangd() {
+        jTLagerMangd.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                ValideringsKlass.endastNummerTillåten2(jTLagerMangd);
+                ValideringsKlass.endastPunkt(jTLagerMangd);
+                ValideringsKlass.endastPositivt(jTLagerMangd);
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                ValideringsKlass.endastNummerTillåten2(jTLagerMangd);
+                ValideringsKlass.endastPunkt(jTLagerMangd);
+                ValideringsKlass.endastPositivt(jTLagerMangd);
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                ValideringsKlass.endastNummerTillåten2(jTLagerMangd);
+                ValideringsKlass.endastPunkt(jTLagerMangd);
+                ValideringsKlass.endastPositivt(jTLagerMangd);
+            }
+        });
+      }
+
+  private void kontrolleraEnhetspris() {
+        jTAndraEnhetspris.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                ValideringsKlass.endastNummerTillåten3(jTAndraEnhetspris);
+                ValideringsKlass.endastPositivt(jTAndraEnhetspris);
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                ValideringsKlass.endastNummerTillåten3(jTAndraEnhetspris);
+                ValideringsKlass.endastPositivt(jTAndraEnhetspris);
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                ValideringsKlass.endastNummerTillåten3(jTAndraEnhetspris);
+                ValideringsKlass.endastPositivt(jTAndraEnhetspris);
+            }
+        });
+    }
+  
+    private void kontrolleraMangd() {
+        jTAndraMangd.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                ValideringsKlass.endastNummerTillåten2(jTAndraMangd);
+                ValideringsKlass.endastPunkt(jTAndraMangd);
+                ValideringsKlass.endastPositivt(jTAndraMangd);
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                ValideringsKlass.endastNummerTillåten2(jTAndraMangd);
+                ValideringsKlass.endastPunkt(jTAndraMangd);
+                ValideringsKlass.endastPositivt(jTAndraMangd);
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                ValideringsKlass.endastNummerTillåten2(jTAndraMangd);
+                ValideringsKlass.endastPunkt(jTAndraMangd);
+                ValideringsKlass.endastPositivt(jTAndraMangd);
+            }
+        });
+    }
      
   
     

@@ -35,7 +35,26 @@ public class ValideringsKlass {
         return resultat;
     }
     
+      public static boolean endastNummerTillåten2(JTextField ettTextfält){
+        
+        boolean resultat = true;
+        if (ettTextfält.getText().matches(".*[a-zA-Z].*")){
+            JOptionPane.showMessageDialog(null, "Endast siffror tillåtna, decimaltal är tillåtet!");
+            resultat=false;  
+        }
+        return resultat;
+    }
     
+        public static boolean endastNummerTillåten3(JTextField ettTextfält){
+        
+        boolean resultat = true;
+        if (ettTextfält.getText().matches(".*[a-zA-Z].*") || (ettTextfält.getText().contains(","))
+               || (ettTextfält.getText().contains("."))){
+            JOptionPane.showMessageDialog(null, "Endast siffror tillåtna, decimaltal är ej tillåtet!");
+            resultat=false;  
+        }
+        return resultat;
+    }
         public static boolean endastNummerTillåtenSträngare(JTextField ettTextfält){
         
         boolean resultat = true;
