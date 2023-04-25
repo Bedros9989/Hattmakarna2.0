@@ -39,6 +39,7 @@ public class RegistreraBestallning extends javax.swing.JFrame {
         hämtaHattar();
         jTextField1.setEnabled(false);
         hämtaID();
+        summan.setText(null);
         
     }
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -362,10 +363,7 @@ public class RegistreraBestallning extends javax.swing.JFrame {
         if (ValideringsKlass.rutanÄrTom2(Adress, jLabel4)){
         if (ValideringsKlass.datumInteVald(jDateChooserReg)){
         if (ValideringsKlass.listaTom(jList1)){
-        //if (ValideringsKlass.endastNummerTillåten3(summan)) {
-        //if (ValideringsKlass.textFaltHarVarde2(summan)) {
-        //if (ValideringsKlass.endastPositivt(summan)) {
-        
+        if (ValideringsKlass.rutanÄrTom(summan,jLabel5)) {
         
         
         SimpleDateFormat DateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -439,8 +437,10 @@ public class RegistreraBestallning extends javax.swing.JFrame {
             }
         
         }
-    }
-    }
+        }
+        }
+        }
+        
     }//GEN-LAST:event_jbRegBestallningActionPerformed
 
     private void updateHattar(){
@@ -493,6 +493,10 @@ public class RegistreraBestallning extends javax.swing.JFrame {
                 new RegistreraKundFonster(idb).setVisible(true);
                 dispose();
                 
+            }else if (cbKundID.getSelectedItem().toString().equals("Välj Kund")){
+                
+                
+                
             }else{
         
         try {
@@ -534,30 +538,17 @@ public class RegistreraBestallning extends javax.swing.JFrame {
     private void updateLojalitet(){
         
     try {
-     ArrayList<String> HattIDn = new ArrayList<>();
-     String KundID = idb.fetchSingle("select KundID from Kund where Namn ='"+cbKundID.getSelectedItem().toString()+"'");
-     HattIDn = idb.fetchColumn("Select HattID from Hatt join Bestallning B on Hatt.Bestallning = B.BestallningsID join Kund K on K.KundID = B.Kund where KundID = '"+KundID+"'");
-     int count = 0;
      
-    for(String hatt : HattIDn){
-        count++;
-    }
-    
-    if(count == 10){
-    Lojalitet = 10;
-    }
-    else if (count == 20)
-    Lojalitet = 20;
-    
-    else if(count == 30){
-    Lojalitet = 30;
-    }
-    else if(count == 40)
-    Lojalitet = 40;
-    
-    else if(count == 50){
-    Lojalitet = 50;  
-    }
+        String kundID = idb.fetchSingle("select KundID from Kund where Namn = '"+cbKundID.getSelectedItem().toString()+"'");
+        String antalKöptaHattar = idb.fetchSingle("select count(*) from hatt join Bestallning B on B.BestallningsID = hatt.Bestallning join Kund K on K.KundID = B.Kund where KundID="+kundID);
+        int antalKöptaHattar2 = Integer.parseInt(antalKöptaHattar);
+        
+        if (antalKöptaHattar2 > 10){
+            
+            idb.update("UPDATE hattmakare.Kund t SET t.Lojalitet = 10 WHERE t.KundID = "+kundID);
+            
+        }
+        
    
         } catch (InfException ex) {
             JOptionPane.showMessageDialog(null, "Något gick fel!");
