@@ -78,7 +78,7 @@ public class SeMaterialLager extends javax.swing.JFrame implements ActionListene
 
         jPanel1.setBackground(new java.awt.Color(249, 248, 244));
 
-        tabell.setFont(new java.awt.Font("Futura", 2, 14)); // NOI18N
+        tabell.setFont(new java.awt.Font("Futura", 0, 14)); // NOI18N
         tabell.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
@@ -95,7 +95,7 @@ public class SeMaterialLager extends javax.swing.JFrame implements ActionListene
         jLabel1.setFont(new java.awt.Font("Futura", 0, 30)); // NOI18N
         jLabel1.setText("Aktuellt materialsaldo");
 
-        btnHanteraMaterial.setFont(new java.awt.Font("Futura", 2, 14)); // NOI18N
+        btnHanteraMaterial.setFont(new java.awt.Font("Futura", 0, 14)); // NOI18N
         btnHanteraMaterial.setText(" Hantera information om material");
         btnHanteraMaterial.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -103,7 +103,7 @@ public class SeMaterialLager extends javax.swing.JFrame implements ActionListene
             }
         });
 
-        btnUppdatera.setFont(new java.awt.Font("Futura", 2, 14)); // NOI18N
+        btnUppdatera.setFont(new java.awt.Font("Futura", 0, 14)); // NOI18N
         btnUppdatera.setText("Uppdatera saldo");
         btnUppdatera.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -111,7 +111,7 @@ public class SeMaterialLager extends javax.swing.JFrame implements ActionListene
             }
         });
 
-        jButton1.setFont(new java.awt.Font("Futura", 2, 14)); // NOI18N
+        jButton1.setFont(new java.awt.Font("Futura", 0, 14)); // NOI18N
         jButton1.setText("Sök ID eller namn");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -122,7 +122,7 @@ public class SeMaterialLager extends javax.swing.JFrame implements ActionListene
         searchBox.setColumns(7);
         searchBox.setFont(new java.awt.Font("Futura", 2, 14)); // NOI18N
 
-        cbSortera.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        cbSortera.setFont(new java.awt.Font("Futura", 0, 14)); // NOI18N
         cbSortera.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "MaterialID", "Materialnamn", "Antal", "Meter", "Kvadratmeter" }));
         cbSortera.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -130,9 +130,10 @@ public class SeMaterialLager extends javax.swing.JFrame implements ActionListene
             }
         });
 
-        jLabel2.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Futura", 0, 14)); // NOI18N
         jLabel2.setText("Sortera efter:");
 
+        btnSortera.setFont(new java.awt.Font("Futura", 0, 14)); // NOI18N
         btnSortera.setText("Sortera");
         btnSortera.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -179,7 +180,7 @@ public class SeMaterialLager extends javax.swing.JFrame implements ActionListene
                     .addComponent(cbSortera, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSortera))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 293, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 291, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnHanteraMaterial, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)

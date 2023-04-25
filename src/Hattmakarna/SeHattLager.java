@@ -37,9 +37,7 @@ public class SeHattLager extends javax.swing.JFrame {
         setHattarTable();
         btnUppdatera.setVisible(false);
         fyllCBSortera();
-        
-        
-        
+
     }
 
     /**
@@ -55,7 +53,6 @@ public class SeHattLager extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         btnHantera = new javax.swing.JButton();
         btnUppdatera = new javax.swing.JToggleButton();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -64,6 +61,7 @@ public class SeHattLager extends javax.swing.JFrame {
         btnSortera = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         searchBox = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -84,12 +82,9 @@ public class SeHattLager extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(249, 248, 244));
 
         jLabel1.setFont(new java.awt.Font("Futura", 0, 30)); // NOI18N
-        jLabel1.setText("Se hattsaldo");
+        jLabel1.setText("Aktuellt hattsaldo");
 
-        jLabel2.setFont(new java.awt.Font("Futura", 0, 14)); // NOI18N
-        jLabel2.setText("Dessa hattar finns för närvarande i lager:");
-
-        btnHantera.setFont(new java.awt.Font("Futura", 2, 14)); // NOI18N
+        btnHantera.setFont(new java.awt.Font("Futura", 0, 14)); // NOI18N
         btnHantera.setText("Hantera hattinformation");
         btnHantera.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -97,7 +92,7 @@ public class SeHattLager extends javax.swing.JFrame {
             }
         });
 
-        btnUppdatera.setFont(new java.awt.Font("Futura", 2, 14)); // NOI18N
+        btnUppdatera.setFont(new java.awt.Font("Futura", 0, 14)); // NOI18N
         btnUppdatera.setText("Uppdatera saldo");
         btnUppdatera.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -122,6 +117,7 @@ public class SeHattLager extends javax.swing.JFrame {
         jScrollPane3.setViewportView(tabell);
 
         cbSortera.setBackground(new java.awt.Color(242, 242, 242));
+        cbSortera.setFont(new java.awt.Font("Futura", 0, 14)); // NOI18N
 
         btnSortera.setFont(new java.awt.Font("Futura", 0, 14)); // NOI18N
         btnSortera.setText("Sortera");
@@ -142,6 +138,9 @@ public class SeHattLager extends javax.swing.JFrame {
             }
         });
 
+        jLabel3.setFont(new java.awt.Font("Futura", 0, 14)); // NOI18N
+        jLabel3.setText("Sortera efter:");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -153,13 +152,14 @@ public class SeHattLager extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane3)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel2)
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(jLabel3)
                                 .addGap(18, 18, 18)
                                 .addComponent(cbSortera, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(27, 27, 27)
                                 .addComponent(btnSortera))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap(38, Short.MAX_VALUE)
+                        .addContainerGap(40, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(btnUppdatera)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -169,22 +169,21 @@ public class SeHattLager extends javax.swing.JFrame {
                                 .addGap(97, 97, 97)
                                 .addComponent(btnHantera)))))
                 .addGap(29, 29, 29))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(208, 208, 208)
                 .addComponent(jLabel1)
-                .addGap(249, 249, 249))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(26, 26, 26)
                 .addComponent(jLabel1)
-                .addGap(32, 32, 32)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel2)
-                        .addComponent(cbSortera, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(btnSortera, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnSortera, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbSortera, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(22, 22, 22)
@@ -229,38 +228,38 @@ public class SeHattLager extends javax.swing.JFrame {
         jTable1.setRowSorter(sorter);
 
         if (valdKategori.equals("HattID")) {
-            sorter.setSortKeys(Collections.singletonList(new RowSorter.SortKey(0, SortOrder.ASCENDING)));
-
+//            sorter.setSortKeys(Collections.singletonList(new RowSorter.SortKey(0, SortOrder.ASCENDING)));
+            setHattarTable();
         } else if (valdKategori.equals("Storlek")) {
-            sorter.setSortKeys(Collections.singletonList(new RowSorter.SortKey(1, SortOrder.ASCENDING)));
+//            sorter.setSortKeys(Collections.singletonList(new RowSorter.SortKey(1, SortOrder.ASCENDING)));
+sorteraStorlek();
         } else if (valdKategori.equals("Kategori")) {
-            sorter.setSortKeys(Collections.singletonList(new RowSorter.SortKey(2, SortOrder.ASCENDING)));
+            sorteraKategori();
+//            sorter.setSortKeys(Collections.singletonList(new RowSorter.SortKey(2, SortOrder.ASCENDING)));
         }
     }//GEN-LAST:event_btnSorteraActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        
+
         String searchText = searchBox.getText();
         model.setRowCount(0);
 
         if (ValideringsKlass.textFaltHarVarde2(searchBox)) {
 
             try {
- ArrayList<HashMap<String, String>> results = idb.fetchRows("SELECT * FROM Hatt WHERE Bestallning IS NULL AND "
-         + "(HattID LIKE '%" + searchText + "%' OR Kategori LIKE '%" + searchText + "%' OR storlek LIKE '%" + 
-         searchText + "%')");
+                ArrayList<HashMap<String, String>> results = idb.fetchRows("SELECT * FROM Hatt WHERE Bestallning IS NULL AND "
+                        + "(HattID LIKE '%" + searchText + "%' OR Kategori LIKE '%" + searchText + "%' OR storlek LIKE '%"
+                        + searchText + "%')");
                 for (HashMap<String, String> row : results) {
                     Object[] rowData = {
                         row.get("HattID"),
                         row.get("Storlek"),
                         row.get("Kategori"),};
-                        
+
                     model.addRow(rowData);
                 }
 
-                   
-                    
                 tabell.repaint();
             } catch (InfException e) {
                 JOptionPane.showMessageDialog(null, "Database error!");
@@ -268,14 +267,11 @@ public class SeHattLager extends javax.swing.JFrame {
             }
         } else {
             // 
-           // setHattarTable("HattID");    BLIR RELEVANT FÖR ATT KODA SORTERINGEN SEN SÅ ATT TABELLEN INITALT SORTERAS 
-           // UTIFRÅN HATTID ASC
+            // setHattarTable("HattID");    BLIR RELEVANT FÖR ATT KODA SORTERINGEN SEN SÅ ATT TABELLEN INITALT SORTERAS 
+            // UTIFRÅN HATTID ASC
         }
 
-        
-        
-        
-        
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void setHattarTable() {
@@ -283,7 +279,7 @@ public class SeHattLager extends javax.swing.JFrame {
         model.setRowCount(0);
 
         try {
-            ArrayList<HashMap<String, String>> hattarILager = idb.fetchRows("Select * from Hatt where Bestallning is null");
+            ArrayList<HashMap<String, String>> hattarILager = idb.fetchRows("Select * from Hatt where Bestallning is null order by HattID asc");
 
             for (HashMap<String, String> hatt : hattarILager) {
                 Object[] hattData = {
@@ -305,17 +301,68 @@ public class SeHattLager extends javax.swing.JFrame {
             System.out.println("Databasfel: " + e);
         }
     }
-    
-    
-  
 
-    
-    
     private void fyllCBSortera() {
         cbSortera.addItem("HattID");
         cbSortera.addItem("Storlek");
         cbSortera.addItem("Kategori");
-    } 
+    }
+
+    private void sorteraStorlek() {
+    model.setRowCount(0);
+
+        try {
+            ArrayList<HashMap<String, String>> hattarILager = idb.fetchRows("Select * from Hatt where Bestallning is null order by Storlek asc");
+
+            for (HashMap<String, String> hatt : hattarILager) {
+                Object[] hattData = {
+                    hatt.get("HattID"),
+                    hatt.get("Storlek"),
+                    hatt.get("Kategori"),};
+                model.addRow(hattData);
+            }
+
+            // Add a TableRowSorter to the model
+            TableRowSorter<DefaultTableModel> sorter = new TableRowSorter<>(model);
+            jTable1.setRowSorter(sorter);
+
+            // Sort the data by the first column (HattID)
+            sorter.setSortKeys(Collections.singletonList(new RowSorter.SortKey(0, SortOrder.ASCENDING)));
+
+        } catch (InfException e) {
+            JOptionPane.showMessageDialog(null, "Databasfel!");
+            System.out.println("Databasfel: " + e);
+        }
+        
+    }
+    
+    private void sorteraKategori(){
+         model.setRowCount(0);
+        
+        try {
+            ArrayList<HashMap<String, String>> hattarILager = idb.fetchRows("Select * from Hatt where Bestallning is null order by Kategori asc");
+
+            for (HashMap<String, String> hatt : hattarILager) {
+                Object[] hattData = {
+                    hatt.get("HattID"),
+                    hatt.get("Storlek"),
+                    hatt.get("Kategori"),};
+                model.addRow(hattData);
+            }
+        
+            // Add a TableRowSorter to the model
+            TableRowSorter<DefaultTableModel> sorter = new TableRowSorter<>(model);
+            jTable1.setRowSorter(sorter);
+
+            // Sort the data by the first column (HattID)
+//            sorter.setSortKeys(Collections.singletonList(new RowSorter.SortKey(1, SortOrder.ASCENDING)));
+
+        } catch (InfException e) {
+            JOptionPane.showMessageDialog(null, "Databasfel!");
+            System.out.println("Databasfel: " + e);
+        }
+        
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnHantera;
@@ -324,7 +371,7 @@ public class SeHattLager extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cbSortera;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
