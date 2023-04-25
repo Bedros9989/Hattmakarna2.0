@@ -193,5 +193,8 @@ public class ValideringsKlass {
         }
         return resultat;
     }
+    
+  
+    }
 
-}
+

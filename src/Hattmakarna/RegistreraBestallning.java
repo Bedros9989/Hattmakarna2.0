@@ -362,9 +362,21 @@ public class RegistreraBestallning extends javax.swing.JFrame {
         if (ValideringsKlass.rutanÄrTom2(Adress, jLabel4)){
         if (ValideringsKlass.datumInteVald(jDateChooserReg)){
         if (ValideringsKlass.listaTom(jList1)){
+        //if (ValideringsKlass.endastNummerTillåten3(summan)) {
+        //if (ValideringsKlass.textFaltHarVarde2(summan)) {
+        //if (ValideringsKlass.endastPositivt(summan)) {
+        
+        
         
         SimpleDateFormat DateFormat = new SimpleDateFormat("yyyy-MM-dd");
         
+        if (cbKundID.getSelectedIndex() == 0){
+            JOptionPane.showMessageDialog(null, "Du har ej valt någon kund");    
+        }
+        
+        else {
+            
+           
         try {
         
             String adress = Adress.getText();
@@ -423,7 +435,10 @@ public class RegistreraBestallning extends javax.swing.JFrame {
             
         }  
         
-    }
+    
+            }
+        
+        }
     }
     }
     }//GEN-LAST:event_jbRegBestallningActionPerformed
@@ -458,7 +473,7 @@ public class RegistreraBestallning extends javax.swing.JFrame {
 
         if(cbHattID.getSelectedIndex() == 0){
             
-            JOptionPane.showMessageDialog(null, "Du har inte valt ett kategori");
+            JOptionPane.showMessageDialog(null, "Du har inte valt en hattkategori");
             
         }else{
         
