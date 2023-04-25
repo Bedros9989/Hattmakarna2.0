@@ -689,7 +689,16 @@ public class HanteraBestallning extends javax.swing.JFrame {
     }//GEN-LAST:event_läggTillActionPerformed
 
     private void sparaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sparaActionPerformed
-    String bästID = beställningsID.getText();
+      if (ValideringsKlass.datumInteVald(datumChooser)) {
+      if (ValideringsKlass.rutanÄrTom2(Adress, jLabel4)) {
+      if (ValideringsKlass.rutanÄrTom(summan, jLabel5))
+      if (ValideringsKlass.endastNummerTillåten3(summan)) {
+      if (ValideringsKlass.endastPositivt(summan)) {
+      
+      
+      
+        
+        String bästID = beställningsID.getText();
     int resultat = JOptionPane.showConfirmDialog(null, "Är du nöjd med allt du har skrivit?", "Bekräfta uppgifter", JOptionPane.YES_NO_OPTION);
  
         try{
@@ -738,7 +747,10 @@ public class HanteraBestallning extends javax.swing.JFrame {
             
         }
         
-        
+      }
+      }
+      }
+      }
     }//GEN-LAST:event_sparaActionPerformed
 
     private void spara2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_spara2ActionPerformed
