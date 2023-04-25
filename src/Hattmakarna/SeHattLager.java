@@ -124,7 +124,8 @@ public class SeHattLager extends javax.swing.JFrame {
         });
 
         jButton1.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
-        jButton1.setText("Sök ID eller kategori");
+        jButton1.setText("Sök ID, storlek eller kategori");
+        jButton1.setActionCommand("Sök ID, storlek eller kategori");
         jButton1.setMaximumSize(new java.awt.Dimension(143, 26));
         jButton1.setMinimumSize(new java.awt.Dimension(143, 26));
         jButton1.setPreferredSize(new java.awt.Dimension(143, 26));
@@ -140,20 +141,6 @@ public class SeHattLager extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnHantera))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                        .addGap(172, 172, 172)
-                        .addComponent(jLabel1)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(24, 24, 24)
-                        .addComponent(searchBox, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(39, 39, 39)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnUppdatera))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addGap(38, 38, 38)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -163,7 +150,21 @@ public class SeHattLager extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(cbSortera, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnSortera, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(btnSortera, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnHantera))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                        .addGap(172, 172, 172)
+                        .addComponent(jLabel1)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(searchBox, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(36, 36, 36)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnUppdatera)))
                 .addGap(29, 29, 29))
         );
         jPanel1Layout.setVerticalGroup(
@@ -183,10 +184,10 @@ public class SeHattLager extends javax.swing.JFrame {
                 .addComponent(btnHantera, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnUppdatera, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnUppdatera, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(searchBox, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(46, Short.MAX_VALUE))
+                .addContainerGap(54, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -239,14 +240,14 @@ public class SeHattLager extends javax.swing.JFrame {
         if (ValideringsKlass.textFaltHarVarde2(searchBox)) {
 
             try {
-               ArrayList<HashMap<String, String>> results = idb.fetchRows("Select * from Hatt where Bestallning is null AND"
-                    + " (HattID LIKE "
-                    + "'%" + searchText + "%' OR Kategori LIKE '%" + searchText + "%')");
+ ArrayList<HashMap<String, String>> results = idb.fetchRows("SELECT * FROM Hatt WHERE Bestallning IS NULL AND "
+         + "(HattID LIKE '%" + searchText + "%' OR Kategori LIKE '%" + searchText + "%' OR storlek LIKE '%" + 
+         searchText + "%')");
                 for (HashMap<String, String> row : results) {
                     Object[] rowData = {
                         row.get("HattID"),
-                        row.get("Kategori"),
-                        row.get("Storlek"),};
+                        row.get("Storlek"),
+                        row.get("Kategori"),};
                         
                     model.addRow(rowData);
                 }
@@ -280,8 +281,8 @@ public class SeHattLager extends javax.swing.JFrame {
             for (HashMap<String, String> hatt : hattarILager) {
                 Object[] hattData = {
                     hatt.get("HattID"),
-                    hatt.get("Kategori"),
-                    hatt.get("Storlek"),};
+                    hatt.get("Storlek"),
+                    hatt.get("Kategori"),};
                 model.addRow(hattData);
             }
 
