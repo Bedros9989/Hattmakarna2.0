@@ -160,7 +160,7 @@ public class SeHattLager extends javax.swing.JFrame {
 
         try {
             ArrayList<HashMap<String, String>> hattarILager = idb.fetchRows("Select * from Hatt where Bestallning is null");
-
+    
             for (HashMap<String, String> hatt : hattarILager) {
                 Object[] hattData = {
                     hatt.get("HattID"),
