@@ -759,62 +759,75 @@ public class HanteraHatt extends javax.swing.JFrame {
 
     private void btnSparaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSparaActionPerformed
         if (ValideringsKlass.endastPunkt(txtStorlek) && ValideringsKlass.endastPunkt(txtTillverkningstimmar) && ValideringsKlass.textFaltHarVarde(txtStorlek) && ValideringsKlass.textFaltHarVarde(txtTillverkningstimmar) && ValideringsKlass.isPositivt(txtStorlek) && ValideringsKlass.isPositivt(txtTillverkningstimmar)) {
-            try {
-                ArrayList<String> allaBestallningar = idb.fetchColumn("SELECT BestallningsID FROM bestallning");
-                boolean bestallningFinns = false;
+            boolean match = false;
+            for (int i = 0; i < cbMaterialHatt.getItemCount(); i++) {
+               
+                if(cbMaterialLager.getSelectedItem() != null) {
+                
+                        if (cbMaterialLager.getSelectedItem().toString().equals(cbMaterialHatt.getItemAt(i).toString())) {
+                    match = true;
+                }}
+            }
+            if (match = false) {
 
-                for (String enBestallning : allaBestallningar) {
-                    if (enBestallning.equals(txtBestallningsID.getText())) {
-                        bestallningFinns = true;
+                try {
+                    ArrayList<String> allaBestallningar = idb.fetchColumn("SELECT BestallningsID FROM bestallning");
+                    boolean bestallningFinns = false;
+
+                    for (String enBestallning : allaBestallningar) {
+                        if (enBestallning.equals(txtBestallningsID.getText())) {
+                            bestallningFinns = true;
+                        }
                     }
-                }
 
-                if (txtBestallningsID.getText().isEmpty() || bestallningFinns == true) {
-                    String hattID = txtHattID.getText();
+                    if (txtBestallningsID.getText().isEmpty() || bestallningFinns == true) {
+                        String hattID = txtHattID.getText();
 
-                    //Uppdaterar materialtabellen och hattmaterialtabellen
-                    uppdateraMaterial();
-                    uppdateraHattMaterial();
-                    laggTillNyttHattMaterial();
-                    laggTillNyttHattMaterialuppdateraMaterial();
+                        //Uppdaterar materialtabellen och hattmaterialtabellen
+                        uppdateraMaterial();
+                        uppdateraHattMaterial();
+                        laggTillNyttHattMaterial();
+                        laggTillNyttHattMaterialuppdateraMaterial();
 
-                    if (txtBestallningsID.getText().isEmpty()) {
-                        bestallningsID = null;
+                        if (txtBestallningsID.getText().isEmpty()) {
+                            bestallningsID = null;
+                        } else {
+                            bestallningsID = txtBestallningsID.getText();
+                        }
+                        raknaUtTotalkostnad();
+                        String skapareString = cbSkapare.getSelectedItem().toString();
+                        String nySkapare = idb.fetchSingle("SELECT PersonalID FROM Personal WHERE Namn= '" + skapareString + "'");
+                        String nyKategori = cbKategori.getSelectedItem().toString();
+                        String nyStorlek = txtStorlek.getText();
+                        String nyTillverkningstimmar = txtTillverkningstimmar.getText();
+                        String nyBestallning = bestallningsID;
+                        String nyTillverkningskostnad = txtTillverkningskostnad.getText();
+
+                        String q = "UPDATE hattmakare.Hatt t SET t.Storlek = ?, t.Skapare= ?,t.Kategori= ?,t.Tillverkningstimmar = ?,t.Bestallning= ?, t.BildData = ?, t.Tillverkningskostnad= ? WHERE t.HattID = ?";
+                        PreparedStatement pst = conn.prepareStatement(q);
+                        pst.setString(1, nyStorlek);
+                        pst.setString(2, nySkapare);
+                        pst.setString(3, nyKategori);
+                        pst.setString(4, nyTillverkningstimmar);
+                        pst.setString(5, nyBestallning);
+                        pst.setBytes(6, pimage);
+                        pst.setString(7, nyTillverkningskostnad);
+                        pst.setString(8, hattID);
+                        pst.execute();
+
+                        JOptionPane.showMessageDialog(null, ("Hatt " + hattID + " har uppdaterats"));
+
                     } else {
-                        bestallningsID = txtBestallningsID.getText();
+                        JOptionPane.showMessageDialog(null, "BeställningsIDt existerar inte!");
                     }
-
-                    String skapareString = cbSkapare.getSelectedItem().toString();
-                    String nySkapare = idb.fetchSingle("SELECT PersonalID FROM Personal WHERE Namn= '" + skapareString + "'");
-                    String nyKategori = cbKategori.getSelectedItem().toString();
-                    String nyStorlek = txtStorlek.getText();
-                    String nyTillverkningstimmar = txtTillverkningstimmar.getText();
-                    String nyBestallning = bestallningsID;
-                    String nyTillverkningskostnad = txtTillverkningskostnad.getText();
-
-                    String q = "UPDATE hattmakare.Hatt t SET t.Storlek = ?, t.Skapare= ?,t.Kategori= ?,t.Tillverkningstimmar = ?,t.Bestallning= ?, t.BildData = ?, t.Tillverkningskostnad= ? WHERE t.HattID = ?";
-                    PreparedStatement pst = conn.prepareStatement(q);
-                    pst.setString(1, nyStorlek);
-                    pst.setString(2, nySkapare);
-                    pst.setString(3, nyKategori);
-                    pst.setString(4, nyTillverkningstimmar);
-                    pst.setString(5, nyBestallning);
-                    pst.setBytes(6, pimage);
-                    pst.setString(7, nyTillverkningskostnad);
-                    pst.setString(8, hattID);
-                    pst.execute();
-
-                    raknaUtTotalkostnad();
-                    JOptionPane.showMessageDialog(null, ("Hatt " + hattID + " har uppdaterats"));
-
-                } else {
-                    JOptionPane.showMessageDialog(null, "BeställningsIDt existerar inte!");
+                } catch (InfException ex) {
+                    JOptionPane.showMessageDialog(null, "Något gick fel");
+                    System.out.println("Internt felmeddelande" + ex.getMessage());
+                } catch (SQLException ex) {
+                    Logger.getLogger(HanteraHatt.class.getName()).log(Level.SEVERE, null, ex);
                 }
-            } catch (InfException ex) {
-                JOptionPane.showMessageDialog(null, "Något gick fel");
-                System.out.println("Internt felmeddelande" + ex.getMessage());
-            } catch (SQLException ex) {
-                Logger.getLogger(HanteraHatt.class.getName()).log(Level.SEVERE, null, ex);
+            } else {
+                JOptionPane.showMessageDialog(null, "Materialet finns redan i hatten!");
             }
         }
     }//GEN-LAST:event_btnSparaActionPerformed
@@ -859,7 +872,7 @@ public class HanteraHatt extends javax.swing.JFrame {
         cbMaterialLager.setEnabled(false);
         txtMangdMaterial.setEnabled(false);
         btnAndra.setEnabled(true);
-        
+
         try {
             String hattID = txtHattID.getText();
 
@@ -868,7 +881,7 @@ public class HanteraHatt extends javax.swing.JFrame {
 
             boolean hattenFinns = false;
             for (String ettHattID : existerandeHattar) {
-                if(ettHattID.contains(hattID)){
+                if (ettHattID.contains(hattID)) {
                     hattenFinns = true;
                 }
             }
@@ -927,16 +940,16 @@ public class HanteraHatt extends javax.swing.JFrame {
     private void nuvarandeBildActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuvarandeBildActionPerformed
         try {
             String hatt = txtHattID.getText();
-            
-            HashMap<String,String> allaHattar = idb.fetchRow("SELECT * FROM Hatt WHERE HattID="+hatt);
-            
+
+            HashMap<String, String> allaHattar = idb.fetchRow("SELECT * FROM Hatt WHERE HattID=" + hatt);
+
             String bildData = allaHattar.get("BildData");
             if (bildData == null) {
                 JOptionPane.showMessageDialog(null, "Denna hatt har ingen bild!");
-            }else{
+            } else {
                 new KollaBild(hatt).setVisible(true);
             }
-           
+
         } catch (InfException ex) {
             Logger.getLogger(HanteraHatt.class.getName()).log(Level.SEVERE, null, ex);
         }
