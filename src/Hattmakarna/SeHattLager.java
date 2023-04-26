@@ -3,6 +3,7 @@ package Hattmakarna;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import javax.swing.JOptionPane;
 import javax.swing.RowSorter;
@@ -108,9 +109,9 @@ public class SeHattLager extends javax.swing.JFrame {
                 .addGap(38, 38, 38)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(btnUppdatera, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnUppdatera, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnHantera, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnHantera, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 496, Short.MAX_VALUE))
                 .addGap(29, 29, 29))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -161,7 +162,7 @@ public class SeHattLager extends javax.swing.JFrame {
         model.setRowCount(0);
 
         try {
-            ArrayList<HashMap<String, String>> hattarILager = idb.fetchRows("Select * from Hatt where Bestallning is null order by HattID asc");
+            ArrayList<HashMap<String, String>> hattarILager = idb.fetchRows("Select * from Hatt where Bestallning is null");
 
             for (HashMap<String, String> hatt : hattarILager) {
                 Object[] hattData = {
@@ -176,6 +177,18 @@ public class SeHattLager extends javax.swing.JFrame {
             tabell.setRowSorter(sorter);
 
             // Sort the data by the first column (HattID)
+            // Create a custom Comparator for the first column (HattID)
+            Comparator<String> hattIDComparator = new Comparator<String>() {
+                @Override
+                public int compare(String s1, String s2) {
+                    int hattID1 = Integer.parseInt(s1);
+                    int hattID2 = Integer.parseInt(s2);
+                    return Integer.compare(hattID1, hattID2);
+                }
+            };
+
+            // Set the custom Comparator as the sorter for the first column
+            sorter.setComparator(0, hattIDComparator);
             sorter.setSortKeys(Collections.singletonList(new RowSorter.SortKey(0, SortOrder.ASCENDING)));
 
         } catch (InfException e) {
