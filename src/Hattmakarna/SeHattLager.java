@@ -9,7 +9,6 @@ import javax.swing.JOptionPane;
 import javax.swing.RowSorter;
 import javax.swing.SortOrder;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 import oru.inf.InfDB;
 import oru.inf.InfException;
@@ -32,7 +31,6 @@ public class SeHattLager extends javax.swing.JFrame {
         tabell.setDefaultEditor(Object.class, null);
         setHattarTable();
         btnUppdatera.setVisible(false);
-
     }
 
     @SuppressWarnings("unchecked")
@@ -149,7 +147,6 @@ public class SeHattLager extends javax.swing.JFrame {
 
     private void btnUppdateraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUppdateraActionPerformed
         setHattarTable();
-
     }//GEN-LAST:event_btnUppdateraActionPerformed
 
     private void btnHanteraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHanteraActionPerformed
@@ -176,7 +173,6 @@ public class SeHattLager extends javax.swing.JFrame {
             TableRowSorter<DefaultTableModel> sorter = new TableRowSorter<>(model);
             tabell.setRowSorter(sorter);
 
-            // Sort the data by the first column (HattID)
             // Create a custom Comparator for the first column (HattID)
             Comparator<String> hattIDComparator = new Comparator<String>() {
                 @Override
@@ -196,11 +192,6 @@ public class SeHattLager extends javax.swing.JFrame {
             System.out.println("Databasfel: " + e);
         }
     }
-
-
-
- 
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnHantera;
