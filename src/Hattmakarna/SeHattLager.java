@@ -42,7 +42,6 @@ public class SeHattLager extends javax.swing.JFrame {
         tabell.setRowSorter(sorter);
         sorter.setSortKeys(Collections.singletonList(new RowSorter.SortKey(0, SortOrder.ASCENDING)));
         sorter.sort();
-        
     }
 
     /**
