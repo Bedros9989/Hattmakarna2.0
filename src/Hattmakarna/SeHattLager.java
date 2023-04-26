@@ -18,7 +18,7 @@ public class SeHattLager extends javax.swing.JFrame {
 
     private InfDB idb;
     DefaultTableModel model = new DefaultTableModel();
- 
+
     public SeHattLager(InfDB idb) {
         initComponents();
         this.idb = idb;
@@ -33,6 +33,7 @@ public class SeHattLager extends javax.swing.JFrame {
         btnUppdatera.setVisible(false);
     }
 
+   
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -41,9 +42,10 @@ public class SeHattLager extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         btnHantera = new javax.swing.JButton();
         btnUppdatera = new javax.swing.JToggleButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        jScrollPane3 = new javax.swing.JScrollPane();
         tabell = new javax.swing.JTable();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -65,7 +67,10 @@ public class SeHattLager extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(249, 248, 244));
 
         jLabel1.setFont(new java.awt.Font("Futura", 0, 30)); // NOI18N
-        jLabel1.setText("Aktuellt hattsaldo");
+        jLabel1.setText("Se hattsaldo");
+
+        jLabel2.setFont(new java.awt.Font("Futura", 0, 14)); // NOI18N
+        jLabel2.setText("Dessa hattar finns för närvarande i lager:");
 
         btnHantera.setFont(new java.awt.Font("Futura", 0, 14)); // NOI18N
         btnHantera.setText("Hantera hattinformation");
@@ -83,18 +88,19 @@ public class SeHattLager extends javax.swing.JFrame {
             }
         });
 
+        tabell.setFont(new java.awt.Font("Futura", 0, 14)); // NOI18N
         tabell.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "HattID", "Kategori", "Storlek"
             }
         ));
-        jScrollPane1.setViewportView(tabell);
+        jScrollPane3.setViewportView(tabell);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -103,30 +109,34 @@ public class SeHattLager extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(65, 65, 65)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(btnUppdatera, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(112, 112, 112)
-                                .addComponent(btnHantera, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 492, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(38, 38, 38)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                    .addComponent(btnUppdatera, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btnHantera))
+                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel2)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(201, 201, 201)
+                        .addGap(172, 172, 172)
                         .addComponent(jLabel1)))
-                .addGap(0, 71, Short.MAX_VALUE))
+                .addContainerGap(45, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(jLabel1)
-                .addGap(12, 12, 12)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnHantera, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnUppdatera, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(67, Short.MAX_VALUE))
+                    .addComponent(btnUppdatera, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnHantera, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -137,7 +147,7 @@ public class SeHattLager extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -145,6 +155,7 @@ public class SeHattLager extends javax.swing.JFrame {
 
     private void btnUppdateraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUppdateraActionPerformed
         setHattarTable();
+
     }//GEN-LAST:event_btnUppdateraActionPerformed
 
     private void btnHanteraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHanteraActionPerformed
@@ -158,7 +169,7 @@ public class SeHattLager extends javax.swing.JFrame {
 
         try {
             ArrayList<HashMap<String, String>> hattarILager = idb.fetchRows("Select * from Hatt where Bestallning is null");
-    
+
             for (HashMap<String, String> hatt : hattarILager) {
                 Object[] hattData = {
                     hatt.get("HattID"),
@@ -191,13 +202,16 @@ public class SeHattLager extends javax.swing.JFrame {
         }
     }
 
+  
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnHantera;
     private javax.swing.JToggleButton btnUppdatera;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable tabell;
     // End of variables declaration//GEN-END:variables

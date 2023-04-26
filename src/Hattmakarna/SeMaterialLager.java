@@ -18,6 +18,9 @@ import javax.swing.RowSorter;
 import javax.swing.SortOrder;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
+import java.util.Comparator;
+
+
 
 /**
  *
@@ -258,7 +261,7 @@ public class SeMaterialLager extends javax.swing.JFrame implements ActionListene
                         row.get("Kvadratmeter"),};
                     model.addRow(rowData);
                 }
-
+                
                 tabell.repaint();
             } catch (InfException e) {
                 JOptionPane.showMessageDialog(null, "Database error!");
@@ -318,34 +321,56 @@ if (sorteringsVal.equals("MaterialID")){
 
 
     }//GEN-LAST:event_btnSorteraActionPerformed
+private void setMaterialTable2(String orderByColumn) {
+    model.setRowCount(0);
+    try {
+        String query = "SELECT material.MaterialID, Material.Materialnamn, Antalvara.Antal, Metervara.meter, Kvadratmetervara.kvadratmeter "
+                + "FROM material "
+                + "LEFT JOIN Antalvara ON Material.MaterialID = antalvara.MaterialID "
+                + "LEFT JOIN Metervara ON Material.MaterialID = metervara.MaterialID "
+                + "LEFT JOIN Kvadratmetervara ON Material.MaterialID = Kvadratmetervara.MaterialID "
+                + "ORDER BY " + orderByColumn + " ASC";
 
-    private void setMaterialTable2(String orderByColumn) {
+        ArrayList<HashMap<String, String>> rows = idb.fetchRows(query);
+        for (HashMap<String, String> row : rows) {
+            Object[] rowData = {
+                row.get("MaterialID"),
+                row.get("Materialnamn"),
+                row.get("Antal"),
+                row.get("Meter"),
+                row.get("Kvadratmeter")
+            };
+            model.addRow(rowData);
+        }
+        
+             // Add a TableRowSorter to the model
+            TableRowSorter<DefaultTableModel> sorter = new TableRowSorter<>(model);
+            tabell.setRowSorter(sorter);
 
-        model.setRowCount(0);
-        try {
-            String query = "SELECT material.MaterialID, Material.Materialnamn, Antalvara.Antal, Metervara.meter, Kvadratmetervara.kvadratmeter "
-                    + "FROM material "
-                    + "LEFT JOIN Antalvara ON Material.MaterialID = antalvara.MaterialID "
-                    + "LEFT JOIN Metervara ON Material.MaterialID = metervara.MaterialID "
-                    + "LEFT JOIN Kvadratmetervara ON Material.MaterialID = Kvadratmetervara.MaterialID "
-                    + "ORDER BY " + orderByColumn + " ASC";
+            // Create a custom Comparator for the first column (MaterialID)
+            Comparator<String> MaterialIDComparator = new Comparator<String>() {
+                @Override
+                public int compare(String s1, String s2) {
+                    int MaterialID1 = Integer.parseInt(s1);
+                    int MaterialID2 = Integer.parseInt(s2);
+                    return Integer.compare(MaterialID1, MaterialID2);
+                }
+            };
 
-            ArrayList<HashMap<String, String>> rows = idb.fetchRows(query);
-            for (HashMap<String, String> row : rows) {
-                Object[] rowData = {
-                    row.get("MaterialID"),
-                    row.get("Materialnamn"),
-                    row.get("Antal"),
-                    row.get("Meter"),
-                    row.get("Kvadratmeter")
-                };
-                model.addRow(rowData);
-            }
+            // Set the custom Comparator as the sorter for the first column
+            sorter.setComparator(0, MaterialIDComparator);
+            sorter.setSortKeys(Collections.singletonList(new RowSorter.SortKey(0, SortOrder.ASCENDING)));
+
         } catch (InfException e) {
             JOptionPane.showMessageDialog(null, "Databasfel!");
             System.out.println("Databasfel: " + e);
         }
-    }
+    
+}
+
+
+
+
 
     private void sorteraNamn() {
 
