@@ -761,14 +761,15 @@ public class HanteraHatt extends javax.swing.JFrame {
         if (ValideringsKlass.endastPunkt(txtStorlek) && ValideringsKlass.endastPunkt(txtTillverkningstimmar) && ValideringsKlass.textFaltHarVarde(txtStorlek) && ValideringsKlass.textFaltHarVarde(txtTillverkningstimmar) && ValideringsKlass.isPositivt(txtStorlek) && ValideringsKlass.isPositivt(txtTillverkningstimmar)) {
             boolean match = false;
             for (int i = 0; i < cbMaterialHatt.getItemCount(); i++) {
-               
-                if(cbMaterialLager.getSelectedItem() != null) {
-                
-                        if (cbMaterialLager.getSelectedItem().toString().equals(cbMaterialHatt.getItemAt(i).toString())) {
-                    match = true;
-                }}
+
+                if (cbMaterialLager.getSelectedItem() != null) {
+
+                    if (cbMaterialLager.getSelectedItem().toString().equals(cbMaterialHatt.getItemAt(i).toString())) {
+                        match = true;
+                    }
+                }
             }
-            if (match = false) {
+            if (match == false) {
 
                 try {
                     ArrayList<String> allaBestallningar = idb.fetchColumn("SELECT BestallningsID FROM bestallning");
@@ -828,6 +829,7 @@ public class HanteraHatt extends javax.swing.JFrame {
                 }
             } else {
                 JOptionPane.showMessageDialog(null, "Materialet finns redan i hatten!");
+                cbMaterialLager.setSelectedIndex(-1);
             }
         }
     }//GEN-LAST:event_btnSparaActionPerformed
