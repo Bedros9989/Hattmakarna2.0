@@ -13,14 +13,6 @@ import oru.inf.InfException;
 import javax.swing.JComboBox;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Collections;
-import javax.swing.RowSorter;
-import javax.swing.SortOrder;
-import javax.swing.table.TableModel;
-import javax.swing.table.TableRowSorter;
-import java.util.Comparator;
-
-
 
 /**
  *
@@ -54,12 +46,7 @@ public class SeMaterialLager extends javax.swing.JFrame implements ActionListene
         jPanel1.add(columnComboBox);
 
         setMaterialTable2("MaterialID");
-        TableRowSorter<TableModel> sorter = new TableRowSorter<>(model);
-        tabell.setRowSorter(sorter);
-        sorter.setSortKeys(Collections.singletonList(new RowSorter.SortKey(0, SortOrder.ASCENDING)));
-        sorter.sort();
-        
-        
+
     }
 
     /**
@@ -91,7 +78,7 @@ public class SeMaterialLager extends javax.swing.JFrame implements ActionListene
 
         jPanel1.setBackground(new java.awt.Color(249, 248, 244));
 
-        tabell.setFont(new java.awt.Font("Futura", 0, 14)); // NOI18N
+        tabell.setFont(new java.awt.Font("Futura", 2, 14)); // NOI18N
         tabell.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
@@ -108,7 +95,7 @@ public class SeMaterialLager extends javax.swing.JFrame implements ActionListene
         jLabel1.setFont(new java.awt.Font("Futura", 0, 30)); // NOI18N
         jLabel1.setText("Aktuellt materialsaldo");
 
-        btnHanteraMaterial.setFont(new java.awt.Font("Futura", 0, 14)); // NOI18N
+        btnHanteraMaterial.setFont(new java.awt.Font("Futura", 2, 14)); // NOI18N
         btnHanteraMaterial.setText(" Hantera information om material");
         btnHanteraMaterial.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -116,7 +103,7 @@ public class SeMaterialLager extends javax.swing.JFrame implements ActionListene
             }
         });
 
-        btnUppdatera.setFont(new java.awt.Font("Futura", 0, 14)); // NOI18N
+        btnUppdatera.setFont(new java.awt.Font("Futura", 2, 14)); // NOI18N
         btnUppdatera.setText("Uppdatera saldo");
         btnUppdatera.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -124,7 +111,7 @@ public class SeMaterialLager extends javax.swing.JFrame implements ActionListene
             }
         });
 
-        jButton1.setFont(new java.awt.Font("Futura", 0, 14)); // NOI18N
+        jButton1.setFont(new java.awt.Font("Futura", 2, 14)); // NOI18N
         jButton1.setText("Sök ID eller namn");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -135,7 +122,7 @@ public class SeMaterialLager extends javax.swing.JFrame implements ActionListene
         searchBox.setColumns(7);
         searchBox.setFont(new java.awt.Font("Futura", 2, 14)); // NOI18N
 
-        cbSortera.setFont(new java.awt.Font("Futura", 0, 14)); // NOI18N
+        cbSortera.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         cbSortera.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "MaterialID", "Materialnamn", "Antal", "Meter", "Kvadratmeter" }));
         cbSortera.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -143,10 +130,9 @@ public class SeMaterialLager extends javax.swing.JFrame implements ActionListene
             }
         });
 
-        jLabel2.setFont(new java.awt.Font("Futura", 0, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         jLabel2.setText("Sortera efter:");
 
-        btnSortera.setFont(new java.awt.Font("Futura", 0, 14)); // NOI18N
         btnSortera.setText("Sortera");
         btnSortera.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -193,7 +179,7 @@ public class SeMaterialLager extends javax.swing.JFrame implements ActionListene
                     .addComponent(cbSortera, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSortera))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 291, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 293, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnHanteraMaterial, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -246,12 +232,12 @@ public class SeMaterialLager extends javax.swing.JFrame implements ActionListene
         if (ValideringsKlass.textFaltHarVarde2(searchBox)) {
 
             try {
-                    ArrayList<HashMap<String, String>> results = idb.fetchRows("SELECT MaterialNamn, "
-                    + "Material.MaterialID, antal, meter, kvadratmeter FROM Material "
-                    + "LEFT JOIN Antalvara ON Material.MaterialID = Antalvara.MaterialID LEFT JOIN Metervara "
-                    + "ON Material.MaterialID = Metervara.MaterialID LEFT JOIN Kvadratmetervara on "
-                    + "Material.MaterialID = Kvadratmetervara.MaterialID WHERE Materialnamn LIKE "
-                    + "'%" + searchText + "%' OR Material.MaterialID LIKE '%" + searchText + "%'");
+                ArrayList<HashMap<String, String>> results = idb.fetchRows("SELECT MaterialNamn, "
+                        + "Material.MaterialID, antal, meter, kvadratmeter FROM Material "
+                        + "LEFT JOIN Antalvara ON Material.MaterialID = Antalvara.MaterialID LEFT JOIN Metervara "
+                        + "ON Material.MaterialID = Metervara.MaterialID LEFT JOIN Kvadratmetervara on "
+                        + "Material.MaterialID = Kvadratmetervara.MaterialID WHERE Materialnamn LIKE "
+                        + "'%" + searchText + "%'");
                 for (HashMap<String, String> row : results) {
                     Object[] rowData = {
                         row.get("MaterialID"),
@@ -261,7 +247,23 @@ public class SeMaterialLager extends javax.swing.JFrame implements ActionListene
                         row.get("Kvadratmeter"),};
                     model.addRow(rowData);
                 }
-                
+
+                ArrayList<HashMap<String, String>> materialID = idb.fetchRows("SELECT MaterialNamn, "
+                        + "Material.MaterialID, antal, meter, kvadratmeter FROM Material "
+                        + "LEFT JOIN Antalvara ON Material.MaterialID = Antalvara.MaterialID LEFT JOIN Metervara "
+                        + "ON Material.MaterialID = Metervara.MaterialID LEFT JOIN Kvadratmetervara on "
+                        + "Material.MaterialID = Kvadratmetervara.MaterialID WHERE Material.MaterialID LIKE "
+                        + "'%" + searchText + "%'");
+                for (HashMap<String, String> row : materialID) {
+                    Object[] rowData = {
+                        row.get("MaterialID"),
+                        row.get("Materialnamn"),
+                        row.get("Antal"),
+                        row.get("Meter"),
+                        row.get("Kvadratmeter"),};
+                    model.addRow(rowData);
+
+                }
                 tabell.repaint();
             } catch (InfException e) {
                 JOptionPane.showMessageDialog(null, "Database error!");
@@ -321,56 +323,34 @@ if (sorteringsVal.equals("MaterialID")){
 
 
     }//GEN-LAST:event_btnSorteraActionPerformed
-private void setMaterialTable2(String orderByColumn) {
-    model.setRowCount(0);
-    try {
-        String query = "SELECT material.MaterialID, Material.Materialnamn, Antalvara.Antal, Metervara.meter, Kvadratmetervara.kvadratmeter "
-                + "FROM material "
-                + "LEFT JOIN Antalvara ON Material.MaterialID = antalvara.MaterialID "
-                + "LEFT JOIN Metervara ON Material.MaterialID = metervara.MaterialID "
-                + "LEFT JOIN Kvadratmetervara ON Material.MaterialID = Kvadratmetervara.MaterialID "
-                + "ORDER BY " + orderByColumn + " ASC";
 
-        ArrayList<HashMap<String, String>> rows = idb.fetchRows(query);
-        for (HashMap<String, String> row : rows) {
-            Object[] rowData = {
-                row.get("MaterialID"),
-                row.get("Materialnamn"),
-                row.get("Antal"),
-                row.get("Meter"),
-                row.get("Kvadratmeter")
-            };
-            model.addRow(rowData);
-        }
-        
-             // Add a TableRowSorter to the model
-            TableRowSorter<DefaultTableModel> sorter = new TableRowSorter<>(model);
-            tabell.setRowSorter(sorter);
+    private void setMaterialTable2(String orderByColumn) {
 
-            // Create a custom Comparator for the first column (MaterialID)
-            Comparator<String> MaterialIDComparator = new Comparator<String>() {
-                @Override
-                public int compare(String s1, String s2) {
-                    int MaterialID1 = Integer.parseInt(s1);
-                    int MaterialID2 = Integer.parseInt(s2);
-                    return Integer.compare(MaterialID1, MaterialID2);
-                }
-            };
+        model.setRowCount(0);
+        try {
+            String query = "SELECT material.MaterialID, Material.Materialnamn, Antalvara.Antal, Metervara.meter, Kvadratmetervara.kvadratmeter "
+                    + "FROM material "
+                    + "LEFT JOIN Antalvara ON Material.MaterialID = antalvara.MaterialID "
+                    + "LEFT JOIN Metervara ON Material.MaterialID = metervara.MaterialID "
+                    + "LEFT JOIN Kvadratmetervara ON Material.MaterialID = Kvadratmetervara.MaterialID "
+                    + "ORDER BY " + orderByColumn + " ASC";
 
-            // Set the custom Comparator as the sorter for the first column
-            sorter.setComparator(0, MaterialIDComparator);
-            sorter.setSortKeys(Collections.singletonList(new RowSorter.SortKey(0, SortOrder.ASCENDING)));
-
+            ArrayList<HashMap<String, String>> rows = idb.fetchRows(query);
+            for (HashMap<String, String> row : rows) {
+                Object[] rowData = {
+                    row.get("MaterialID"),
+                    row.get("Materialnamn"),
+                    row.get("Antal"),
+                    row.get("Meter"),
+                    row.get("Kvadratmeter")
+                };
+                model.addRow(rowData);
+            }
         } catch (InfException e) {
             JOptionPane.showMessageDialog(null, "Databasfel!");
             System.out.println("Databasfel: " + e);
         }
-    
-}
-
-
-
-
+    }
 
     private void sorteraNamn() {
 
