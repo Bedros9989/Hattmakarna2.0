@@ -18,7 +18,7 @@ public class RegistreraPersonal extends javax.swing.JFrame {
         this.idb = idb;
         this.setLocationRelativeTo(null);
         RegistreraPersonal.this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        
+        kontrolleraLosenord();
         kontrolleraTelefonnummer();
         kontrolleraTimpris();
     }
@@ -33,7 +33,6 @@ public class RegistreraPersonal extends javax.swing.JFrame {
         jPersonalTelefon = new javax.swing.JLabel();
         jPersonalTimpris = new javax.swing.JLabel();
         jAngivetPersonalNamn = new javax.swing.JTextField();
-        jAngivetPersonalLosen = new javax.swing.JTextField();
         jAngivetPersonalTelefon = new javax.swing.JTextField();
         jAngivetPersonalTimpris = new javax.swing.JTextField();
         jRegistreraPersonalKnapp = new javax.swing.JButton();
@@ -41,6 +40,7 @@ public class RegistreraPersonal extends javax.swing.JFrame {
         meddelandeKonfirmera = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
+        jAngivetPersonalLosen = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -63,8 +63,6 @@ public class RegistreraPersonal extends javax.swing.JFrame {
         jPersonalTimpris.setText("Timpris");
 
         jAngivetPersonalNamn.setFont(new java.awt.Font("Futura", 0, 14)); // NOI18N
-
-        jAngivetPersonalLosen.setFont(new java.awt.Font("Futura", 0, 14)); // NOI18N
 
         jAngivetPersonalTelefon.setFont(new java.awt.Font("Futura", 0, 14)); // NOI18N
 
@@ -124,17 +122,17 @@ public class RegistreraPersonal extends javax.swing.JFrame {
                                     .addComponent(jPersonalNamn, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jPersonalTelefon, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(54, 54, 54)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jAngivetPersonalTelefon, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jAngivetPersonalLosen, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jAngivetPersonalNamn, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jAngivetPersonalTimpris, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(jAngivetPersonalTelefon, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE)
+                                    .addComponent(jAngivetPersonalNamn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE)
+                                    .addComponent(jAngivetPersonalTimpris, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE)
+                                    .addComponent(jAngivetPersonalLosen, javax.swing.GroupLayout.Alignment.LEADING)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jfelMeddelandet, javax.swing.GroupLayout.PREFERRED_SIZE, 395, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(96, 96, 96)
                                         .addComponent(meddelandeKonfirmera, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(jRegistreraPersonalKnapp, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)))))
@@ -154,9 +152,9 @@ public class RegistreraPersonal extends javax.swing.JFrame {
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(jAngivetPersonalNamn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                            .addComponent(jAngivetPersonalLosen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jPersonalLosen)))
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jPersonalLosen)
+                                            .addComponent(jAngivetPersonalLosen, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGap(2, 2, 2)
                                         .addComponent(jPersonalNamn)))
@@ -251,10 +249,30 @@ public class RegistreraPersonal extends javax.swing.JFrame {
             }
         });
     }
+    
+     private void kontrolleraLosenord() {
+        jAngivetPersonalLosen.getDocument().addDocumentListener(new DocumentListener() {
+            
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+            ValideringsKlass.lösenordetÄrLång(jAngivetPersonalLosen);
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+            ValideringsKlass.lösenordetÄrLång(jAngivetPersonalLosen);
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+            ValideringsKlass.lösenordetÄrLång(jAngivetPersonalLosen);
+            }
+        });
+    }
   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField jAngivetPersonalLosen;
+    private javax.swing.JPasswordField jAngivetPersonalLosen;
     private javax.swing.JTextField jAngivetPersonalNamn;
     private javax.swing.JTextField jAngivetPersonalTelefon;
     private javax.swing.JTextField jAngivetPersonalTimpris;

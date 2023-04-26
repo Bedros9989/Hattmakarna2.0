@@ -55,7 +55,7 @@
                           <EmptySpace max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace pref="43" max="32767" attributes="0"/>
+                          <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="1" attributes="0">
                                   <Group type="103" groupAlignment="1" max="-2" attributes="0">
@@ -66,21 +66,19 @@
                                       <Component id="jÄndraPersonalID" max="32767" attributes="0"/>
                                   </Group>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="1" attributes="0">
-                                      <Component id="Timpris" min="-2" pref="272" max="-2" attributes="0"/>
-                                      <Component id="Telefonnummer" min="-2" pref="272" max="-2" attributes="0"/>
-                                      <Component id="Losenord" alignment="1" min="-2" pref="272" max="-2" attributes="0"/>
-                                      <Component id="Namn" alignment="1" min="-2" pref="272" max="-2" attributes="0"/>
-                                      <Component id="ID" alignment="1" min="-2" pref="272" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="Timpris" alignment="1" pref="272" max="32767" attributes="0"/>
+                                      <Component id="Telefonnummer" alignment="1" pref="272" max="32767" attributes="0"/>
+                                      <Component id="Namn" alignment="1" pref="272" max="32767" attributes="0"/>
+                                      <Component id="ID" alignment="1" pref="272" max="32767" attributes="0"/>
                                       <Component id="cbPersonalID" alignment="1" min="-2" pref="161" max="-2" attributes="0"/>
+                                      <Component id="Losenord" max="32767" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
                               </Group>
-                              <Group type="102" alignment="1" attributes="0">
-                                  <Component id="lblHanteraPersonal" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
-                              </Group>
+                              <Component id="lblHanteraPersonal" alignment="1" min="-2" max="-2" attributes="0"/>
                           </Group>
+                          <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -104,9 +102,9 @@
                       <Component id="jÄndraPersonalNamn" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jÄndraPersonalLosen" min="-2" pref="28" max="-2" attributes="0"/>
-                      <Component id="Losenord" alignment="1" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jÄndraPersonalLosen" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
+                      <Component id="Losenord" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -208,13 +206,6 @@
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="Losenord">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Futura" size="14" style="0"/>
-            </Property>
-          </Properties>
-        </Component>
         <Component class="javax.swing.JTextField" name="Telefonnummer">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -294,6 +285,8 @@
             </Component>
           </SubComponents>
         </Container>
+        <Component class="javax.swing.JPasswordField" name="Losenord">
+        </Component>
       </SubComponents>
     </Container>
   </SubComponents>

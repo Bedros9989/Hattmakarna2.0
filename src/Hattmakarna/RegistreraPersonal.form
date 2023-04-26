@@ -63,13 +63,11 @@
                                       <Component id="jPersonalTelefon" min="-2" pref="139" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="1" attributes="0">
-                                      <Component id="jAngivetPersonalTelefon" min="-2" pref="184" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jAngivetPersonalLosen" min="-2" pref="184" max="-2" attributes="0"/>
-                                          <Component id="jAngivetPersonalNamn" min="-2" pref="184" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Component id="jAngivetPersonalTimpris" min="-2" pref="184" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                      <Component id="jAngivetPersonalTelefon" alignment="0" pref="184" max="32767" attributes="0"/>
+                                      <Component id="jAngivetPersonalNamn" alignment="0" pref="184" max="32767" attributes="0"/>
+                                      <Component id="jAngivetPersonalTimpris" alignment="0" pref="184" max="32767" attributes="0"/>
+                                      <Component id="jAngivetPersonalLosen" alignment="0" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
@@ -77,6 +75,7 @@
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="jfelMeddelandet" min="-2" pref="395" max="-2" attributes="0"/>
                                       <Group type="102" attributes="0">
+                                          <EmptySpace min="-2" pref="96" max="-2" attributes="0"/>
                                           <Component id="meddelandeKonfirmera" min="-2" pref="214" max="-2" attributes="0"/>
                                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                           <Component id="jRegistreraPersonalKnapp" min="-2" pref="169" max="-2" attributes="0"/>
@@ -104,9 +103,9 @@
                                       <Group type="102" alignment="0" attributes="0">
                                           <Component id="jAngivetPersonalNamn" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="3" attributes="0">
-                                              <Component id="jAngivetPersonalLosen" alignment="3" min="-2" max="-2" attributes="0"/>
-                                              <Component id="jPersonalLosen" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="jPersonalLosen" min="-2" max="-2" attributes="0"/>
+                                              <Component id="jAngivetPersonalLosen" min="-2" pref="25" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
@@ -127,7 +126,7 @@
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="1" attributes="0">
                               <Component id="jRegistreraPersonalKnapp" min="-2" pref="40" max="-2" attributes="0"/>
-                              <Component id="meddelandeKonfirmera" min="-2" pref="25" max="-2" attributes="0"/>
+                              <Component id="meddelandeKonfirmera" alignment="1" min="-2" pref="25" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="jfelMeddelandet" min="-2" pref="26" max="-2" attributes="0"/>
@@ -181,13 +180,6 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jAngivetPersonalNamn">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Futura" size="14" style="0"/>
-            </Property>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="jAngivetPersonalLosen">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Futura" size="14" style="0"/>
@@ -270,6 +262,8 @@
             </Component>
           </SubComponents>
         </Container>
+        <Component class="javax.swing.JPasswordField" name="jAngivetPersonalLosen">
+        </Component>
       </SubComponents>
     </Container>
   </SubComponents>
