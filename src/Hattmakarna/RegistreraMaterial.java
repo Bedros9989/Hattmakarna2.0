@@ -247,17 +247,23 @@ public class RegistreraMaterial extends javax.swing.JFrame {
         txtEnhetsPris.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent e) {
-                ValideringsKlass.endastNummerTillåten3(txtEnhetsPris);
+                ValideringsKlass.endastNummerTillåten2(txtEnhetsPris);
+                ValideringsKlass.endastPunkt(txtEnhetsPris);
+                ValideringsKlass.endastPositivt(txtEnhetsPris);
             }
 
             @Override
             public void removeUpdate(DocumentEvent e) {
-                ValideringsKlass.endastNummerTillåten3(txtEnhetsPris);
+                ValideringsKlass.endastNummerTillåten2(txtEnhetsPris);
+                ValideringsKlass.endastPunkt(txtEnhetsPris);
+                ValideringsKlass.endastPositivt(txtEnhetsPris);
             }
 
             @Override
             public void changedUpdate(DocumentEvent e) {
-                ValideringsKlass.endastNummerTillåten3(txtEnhetsPris);
+                ValideringsKlass.endastNummerTillåten2(txtEnhetsPris);
+                ValideringsKlass.endastPunkt(txtEnhetsPris);
+                ValideringsKlass.endastPositivt(txtEnhetsPris);
             }
         });
       }

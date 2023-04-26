@@ -740,7 +740,7 @@ public class HanteraBestallning extends javax.swing.JFrame {
       if (ValideringsKlass.datumInteVald(datumChooser)) {
       if (ValideringsKlass.rutanÄrTom2(Adress, jLabel4)) {
       if (ValideringsKlass.rutanÄrTom(summan, jLabel5)){
-      if (ValideringsKlass.listaTom(jList1)){
+   
       
           
         String bästID = beställningsID.getText();
@@ -795,7 +795,7 @@ public class HanteraBestallning extends javax.swing.JFrame {
       }
       }
       
-      }
+      
       }
     }//GEN-LAST:event_sparaActionPerformed
 

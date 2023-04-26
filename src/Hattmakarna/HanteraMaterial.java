@@ -486,22 +486,26 @@ private InfDB idb;
         jTAndraEnhetspris.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent e) {
-                ValideringsKlass.endastNummerTillåten3(jTAndraEnhetspris);
-                ValideringsKlass.endastPositivt(jTAndraEnhetspris);
+             ValideringsKlass.endastNummerTillåten2(jTAndraEnhetspris);
+             ValideringsKlass.endastPunkt(jTAndraEnhetspris);
+             ValideringsKlass.endastPositivt(jTAndraEnhetspris);
             }
 
             @Override
             public void removeUpdate(DocumentEvent e) {
-                ValideringsKlass.endastNummerTillåten3(jTAndraEnhetspris);
-                ValideringsKlass.endastPositivt(jTAndraEnhetspris);
+            ValideringsKlass.endastNummerTillåten2(jTAndraEnhetspris);
+            ValideringsKlass.endastPunkt(jTAndraEnhetspris);
+            ValideringsKlass.endastPositivt(jTAndraEnhetspris);
             }
 
             @Override
             public void changedUpdate(DocumentEvent e) {
-                ValideringsKlass.endastNummerTillåten3(jTAndraEnhetspris);
-                ValideringsKlass.endastPositivt(jTAndraEnhetspris);
+            ValideringsKlass.endastNummerTillåten2(jTAndraEnhetspris);
+            ValideringsKlass.endastPunkt(jTAndraEnhetspris);
+            ValideringsKlass.endastPositivt(jTAndraEnhetspris);
             }
         });
+  
     }
   
     private void kontrolleraMangd() {
