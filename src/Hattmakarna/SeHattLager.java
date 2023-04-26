@@ -18,7 +18,7 @@ public class SeHattLager extends javax.swing.JFrame {
 
     private InfDB idb;
     DefaultTableModel model = new DefaultTableModel();
-
+ 
     public SeHattLager(InfDB idb) {
         initComponents();
         this.idb = idb;
