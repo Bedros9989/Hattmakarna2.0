@@ -367,16 +367,19 @@ public class RegistreraBestallning extends javax.swing.JFrame {
             @Override
             public void insertUpdate(DocumentEvent e) {
                 ValideringsKlass.endastPositivt(summan);
+                ValideringsKlass.endastNummerTillåten(summan);
             }
 
             @Override
             public void removeUpdate(DocumentEvent e) {
                 ValideringsKlass.endastPositivt(summan);
+                ValideringsKlass.endastNummerTillåten(summan);
             }
 
             @Override
             public void changedUpdate(DocumentEvent e) {
                 ValideringsKlass.endastPositivt(summan);
+                ValideringsKlass.endastNummerTillåten(summan);
             }
         });
      
@@ -390,7 +393,7 @@ public class RegistreraBestallning extends javax.swing.JFrame {
         if (ValideringsKlass.datumInteVald(jDateChooserReg)){
         if (ValideringsKlass.listaTom(jList1)){
         if (ValideringsKlass.rutanÄrTom(summan,jLabel5)) {
-        if (ValideringsKlass.isPositivt(summan)){
+        
         
         SimpleDateFormat DateFormat = new SimpleDateFormat("yyyy-MM-dd");
         
@@ -465,7 +468,7 @@ public class RegistreraBestallning extends javax.swing.JFrame {
         }
         }
         }
-        }
+        
         }
     }//GEN-LAST:event_jbRegBestallningActionPerformed
 
