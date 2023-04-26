@@ -367,19 +367,22 @@ public class RegistreraBestallning extends javax.swing.JFrame {
             @Override
             public void insertUpdate(DocumentEvent e) {
                 ValideringsKlass.endastPositivt(summan);
-                ValideringsKlass.endastNummerTillåten(summan);
+                ValideringsKlass.endastNummerTillåten2(summan);
+                ValideringsKlass.endastPunkt(summan);
             }
 
             @Override
             public void removeUpdate(DocumentEvent e) {
                 ValideringsKlass.endastPositivt(summan);
-                ValideringsKlass.endastNummerTillåten(summan);
+                ValideringsKlass.endastNummerTillåten2(summan);
+                ValideringsKlass.endastPunkt(summan);
             }
 
             @Override
             public void changedUpdate(DocumentEvent e) {
                 ValideringsKlass.endastPositivt(summan);
-                ValideringsKlass.endastNummerTillåten(summan);
+                ValideringsKlass.endastNummerTillåten2(summan);
+                ValideringsKlass.endastPunkt(summan);
             }
         });
      

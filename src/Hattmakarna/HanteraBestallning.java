@@ -602,19 +602,22 @@ public class HanteraBestallning extends javax.swing.JFrame {
             @Override
             public void insertUpdate(DocumentEvent e) {
                 ValideringsKlass.endastPositivt(summan);
-                ValideringsKlass.endastNummerTillåten(summan);
+                ValideringsKlass.endastNummerTillåten2(summan);
+                ValideringsKlass.endastPunkt(summan);
             }
 
             @Override
             public void removeUpdate(DocumentEvent e) {
                 ValideringsKlass.endastPositivt(summan);
-                ValideringsKlass.endastNummerTillåten(summan);
+                ValideringsKlass.endastNummerTillåten2(summan);
+                ValideringsKlass.endastPunkt(summan);
             }
 
             @Override
             public void changedUpdate(DocumentEvent e) {
                 ValideringsKlass.endastPositivt(summan);
-                ValideringsKlass.endastNummerTillåten(summan);
+                ValideringsKlass.endastNummerTillåten2(summan);
+                ValideringsKlass.endastPunkt(summan);
             }
         });
      
@@ -737,6 +740,7 @@ public class HanteraBestallning extends javax.swing.JFrame {
       if (ValideringsKlass.datumInteVald(datumChooser)) {
       if (ValideringsKlass.rutanÄrTom2(Adress, jLabel4)) {
       if (ValideringsKlass.rutanÄrTom(summan, jLabel5)){
+      if (ValideringsKlass.listaTom(jList1)){
       
           
         String bästID = beställningsID.getText();
@@ -791,7 +795,7 @@ public class HanteraBestallning extends javax.swing.JFrame {
       }
       }
       
-      
+      }
       }
     }//GEN-LAST:event_sparaActionPerformed
 
