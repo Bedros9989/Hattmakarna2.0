@@ -817,7 +817,6 @@ public class HanteraHatt extends javax.swing.JFrame {
                         pst.execute();
                         raknaUtTotalkostnad();
                         JOptionPane.showMessageDialog(null, ("Hatt " + hattID + " har uppdaterats"));
-                        cbMaterialLager.setSelectedIndex(-1);
 
                     } else {
                         JOptionPane.showMessageDialog(null, "BeställningsIDt existerar inte!");
@@ -830,9 +829,9 @@ public class HanteraHatt extends javax.swing.JFrame {
                 }
             } else {
                 JOptionPane.showMessageDialog(null, "Materialet finns redan i hatten!");
-                cbMaterialLager.setSelectedIndex(-1);
             }
         }
+        cbMaterialLager.setSelectedIndex(-1);
     }//GEN-LAST:event_btnSparaActionPerformed
 
     private void btnAndraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAndraActionPerformed
