@@ -815,8 +815,9 @@ public class HanteraHatt extends javax.swing.JFrame {
                         pst.setString(7, nyTillverkningskostnad);
                         pst.setString(8, hattID);
                         pst.execute();
-
+                        raknaUtTotalkostnad();
                         JOptionPane.showMessageDialog(null, ("Hatt " + hattID + " har uppdaterats"));
+                        cbMaterialLager.setSelectedIndex(-1);
 
                     } else {
                         JOptionPane.showMessageDialog(null, "BeställningsIDt existerar inte!");
